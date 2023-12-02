@@ -159,13 +159,19 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 
 
 	case STARTRECORDING:
-		pOut->PrintMessage("Action: START RECORDING, Click anywhere");
-		pOut->CreateENDRECORDING();
+		if (pOut->getcount() % 2 == 0) {
+			pOut->incrementcount();
+			pOut->PrintMessage("Action: START RECORDING, Click anywhere");
+			pOut->CreateENDRECORDING();
+		}
 		break;
 
 	case ENDRECORDING:
-		pOut->PrintMessage("Action: END RECORDING, Click anywhere");
-		pOut->CreateSTARTRECORDING();
+		if (pOut->getcount() % 2 != 0) {
+			pOut->incrementcount();
+			pOut->PrintMessage("Action: END RECORDING, Click anywhere");
+			pOut->CreateSTARTRECORDING();
+		}
 		break;
 
 	case PLAYRECORDING:

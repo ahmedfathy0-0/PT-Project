@@ -6,6 +6,7 @@ class Output	//The application manager should have a pointer to this class
 {
 private:
 	window* pWind;	//Pointer to the Graphics Window
+	int count;//for Start and end record items
 public:
 	Output();
 
@@ -41,6 +42,8 @@ public:
 	void setCrntDrawColor(color);
 	void setCrntFillColor(color);
 	void setisFilled(bool);
+	void incrementcount();
+	int getcount() const;
 	bool getisFilled() const;
 	color getCrntDrawColor() const;	//get current drwawing color
 	color getCrntFillColor() const;	//get current filling color

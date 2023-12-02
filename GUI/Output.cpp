@@ -3,6 +3,7 @@
 
 Output::Output()
 {
+	count = 0;  //if count is even start button enabled
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 
@@ -95,6 +96,7 @@ void Output::CreateDrawToolBar() const
 	//To control the order of these images in the menu, 
 	//reorder them in UI_Info.h ==> enum DrawMenuItem
 	string MenuItemImages[DRAW_ITM_COUNT];
+
 	MenuItemImages[ITM_SWITCHPLAY] = "images\\MenuItems\\PLAY.jpg";
 	MenuItemImages[ITM_RECT] = "images\\MenuItems\\Menu_Rect.jpg";
 	MenuItemImages[ITM_SQUARE] = "images\\MenuItems\\Square.jpg";
@@ -113,8 +115,15 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_CHANGEDRAWCLR] = "images\\MenuItems\\CHANGEDRAWCOLOR.jpg";
 	MenuItemImages[ITM_CHANGEFILLCLR] = "images\\MenuItems\\CHANGEFILLCOLOR.jpg";
 	MenuItemImages[ITM_CHANGECOLOR] = "images\\MenuItems\\ChangeColor.jpg";
-	MenuItemImages[ITM_STARTRECORDING] = "images\\MenuItems\\STARTRECORD.jpg";
-	MenuItemImages[ITM_ENDRECORDING] = "images\\MenuItems\\ENDRECORD-1.jpg";
+	if (count % 2 == 0) {
+		MenuItemImages[ITM_STARTRECORDING] = "images\\MenuItems\\STARTRECORD.jpg";
+		MenuItemImages[ITM_ENDRECORDING] = "images\\MenuItems\\ENDRECORD-1.jpg";
+	}
+	if (count % 2 != 0) {
+		MenuItemImages[ITM_STARTRECORDING] = "images\\MenuItems\\STARTRECORD-1.jpg";
+		MenuItemImages[ITM_ENDRECORDING] = "images\\MenuItems\\ENDRECORD.jpg";
+	}
+
 	MenuItemImages[ITM_PLAYRECORDING] = "images\\MenuItems\\PLAYRECORD.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 
@@ -266,6 +275,14 @@ void Output::setCrntFillColor(color color)
 void Output::setisFilled(bool isfilled)
 {
 	UI.ISFILLED = isfilled;
+}
+void Output::incrementcount()
+{
+	count++;
+}
+int Output::getcount() const
+{
+	return count;
 }
 bool Output::getisFilled() const
 {
