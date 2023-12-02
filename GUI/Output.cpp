@@ -318,7 +318,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	if (P1.y < UI.ToolBarHeight || P2.y < UI.ToolBarHeight)
 		CreateDrawToolBar();
 
-
+	ClearStatusBar();
 
 
 }
@@ -349,7 +349,7 @@ void Output::DrawSqr(Point P1, GfxInfo SqGfxInfo, bool selected) const {
 
 	if (p4.y < UI.ToolBarHeight || p3.y < UI.ToolBarHeight)
 		CreateDrawToolBar();
-
+	ClearStatusBar();
 
 }
 
@@ -375,7 +375,7 @@ void Output::DrawTr(Point P1, Point P2, Point P3, GfxInfo TrGfxInfo, bool select
 	if (P1.y < UI.ToolBarHeight || P2.y < UI.ToolBarHeight || P3.y < UI.ToolBarHeight)
 		CreateDrawToolBar();
 
-
+	ClearStatusBar();
 
 }
 void Output::DrawHex(Point P1, GfxInfo HXGfxInfo, bool selected) const
@@ -418,7 +418,7 @@ void Output::DrawHex(Point P1, GfxInfo HXGfxInfo, bool selected) const
 	delete[] y;
 
 
-
+	ClearStatusBar();
 
 }
 void Output::DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) const
@@ -446,6 +446,7 @@ void Output::DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) co
 	pWind->DrawCircle(P1.x, P1.y, radius, style);
 	if (P1.y - radius < UI.ToolBarHeight)
 		CreateDrawToolBar();
+	ClearStatusBar();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
