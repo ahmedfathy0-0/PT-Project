@@ -35,7 +35,7 @@ Output::Output()
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
 	UI.StatusBarColor = grey;
 	UI.ToolBarColor = grey;
-	UI.PenWidth = 3;	//width of the figures frames
+	UI.PenWidth = 4;	//width of the figures frames
 	UI.ISFILLED = false;
 
 	//Create the output window
@@ -319,7 +319,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	else
 		DrawingClr = RectGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, RectGfxInfo.BorderWdth);
 	drawstyle style;
 	if (RectGfxInfo.isFilled)
 	{
@@ -327,7 +327,10 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 		pWind->SetBrush(RectGfxInfo.FillClr);
 	}
 	else
+	{
 		style = FRAME;
+	}
+
 
 
 	pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
@@ -346,7 +349,7 @@ void Output::DrawSqr(Point P1, GfxInfo SqGfxInfo, bool selected) const {
 	else
 		DrawingClr = SqGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, SqGfxInfo.BorderWdth);
 	drawstyle style;
 	if (SqGfxInfo.isFilled)
 	{
@@ -378,7 +381,7 @@ void Output::DrawTr(Point P1, Point P2, Point P3, GfxInfo TrGfxInfo, bool select
 	else
 		DrawingClr = TrGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, TrGfxInfo.BorderWdth);
 	drawstyle style;
 	if (TrGfxInfo.isFilled)
 	{
@@ -403,7 +406,7 @@ void Output::DrawHex(Point P1, GfxInfo HXGfxInfo, bool selected) const
 	else
 		DrawingClr = HXGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, HXGfxInfo.BorderWdth);
 	drawstyle style;
 	if (HXGfxInfo.isFilled)
 	{
@@ -446,7 +449,7 @@ void Output::DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) co
 	else
 		DrawingClr = CircGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 1);
+	pWind->SetPen(DrawingClr, CircGfxInfo.BorderWdth);
 	drawstyle style;
 	if (CircGfxInfo.isFilled)
 	{
