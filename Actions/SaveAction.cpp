@@ -16,7 +16,8 @@ void SaveAction::ReadActionParameters()
 void SaveAction::Execute()
 {
 	ReadActionParameters();
-	fout.open(filename, ios::trunc);
+	fout.open("Saved/"+filename, ios::trunc);
+	fout << getClr(UI.DrawColor) << "     " << getClr(UI.FillColor) << endl;
 	pManager->SaveAll(fout);
 	fout.close();
 }

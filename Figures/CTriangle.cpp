@@ -33,7 +33,7 @@ double CTriangle::CalculateArea(Point P1, Point P2, Point P3) const{
 
 void CTriangle::Save(ofstream& OutFile)
 {
-	OutFile << "TRIANGLE" << "     ";
+	OutFile << "TRIANG" << "     ";
 	OutFile << ID << "     ";
 	OutFile << Corner1.x << "     ";
 	OutFile << Corner1.y << "     ";
