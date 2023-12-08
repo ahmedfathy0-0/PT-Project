@@ -1,9 +1,10 @@
 #include "SelectOneAction.h"
+#include "iostream"
+using namespace std;
 
 SelectOneAction::SelectOneAction(ApplicationManager* pApp) :Action(pApp) {
 
 }
-
 void SelectOneAction::ReadActionParameters() {
 
 	Output* pOut = pManager->GetOutput();
@@ -16,24 +17,14 @@ void SelectOneAction::ReadActionParameters() {
 
 void SelectOneAction::Execute() {
 	ReadActionParameters();
-	SelectedFig = pManager->GetFigure(P.x, P.y);
-	if (SelectedFig != NULL) {
-		if (SelectedFig->IsSelected())
-			UnSelect();
-		else Select();
-	}
-}
-
-void SelectOneAction::Select() 
-{
-	SelectedFig->SetSelected(true);
 	Output* pOut = pManager->GetOutput();
-	//SelectedFig->PrintInfo(pOut);
-	SelectedFig->ChngDrawClr(UI.HighlightColor);
-}
-
-void SelectOneAction::UnSelect() {
-	SelectedFig->SetSelected(false);
-	SelectedFig->ChngDrawClr(BLACK);
-	SelectedFig = NULL;
+	pManager->SetSelectedFigure(pManager->GetFigure(P.x, P.y));
+	if (pManager->GetSelectedFigure() != NULL) {
+		if (pManager->GetSelectedFigure()->IsSelected()) pManager->GetSelectedFigure()->SetSelected(false);
+		else {
+			pManager->deselectall();
+			pManager->GetSelectedFigure()->SetSelected(true);
+			//pManager->GetSelectedFigure()->PrintInfo(pOut);
+		}
+	}
 }

@@ -13,7 +13,7 @@ ApplicationManager::ApplicationManager()
 	pIn = pOut->CreateInput();
 
 	FigCount = 0;
-
+	SelectedFig = NULL;
 	//Create an array of figure pointers and set them to NULL		
 	for (int i = 0; i < MaxFigCount; i++)
 		FigList[i] = NULL;
@@ -381,6 +381,20 @@ CFigure* ApplicationManager::GetFigure(int x, int y) const
 		if(FigList[i]->IsInsideFigure(x,y)) return FigList[i];
 	}
 	return NULL;
+}
+
+void ApplicationManager::SetSelectedFigure(CFigure* pFig) {
+	SelectedFig = pFig;
+}
+
+CFigure* ApplicationManager::GetSelectedFigure() const {
+	return SelectedFig;
+}
+
+void ApplicationManager::deselectall() const {
+	for (int i = 0; i < FigCount; i++) {
+		FigList[i]->SetSelected(false);
+	}
 }
 //==================================================================================//
 //							Interface Management Functions							//

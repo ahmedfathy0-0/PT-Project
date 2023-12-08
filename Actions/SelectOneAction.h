@@ -10,14 +10,12 @@
 class SelectOneAction :public Action {
 
 	Point P;
-	CFigure* SelectedFig;
+	
 public:
 
 	SelectOneAction(ApplicationManager* pApp);
-	void ReadActionParameters();
-	void Execute();
-	void Select();
-	void UnSelect();
+	virtual void ReadActionParameters();
+	virtual void Execute();
 };
 
 #endif
