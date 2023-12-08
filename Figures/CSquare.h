@@ -6,6 +6,7 @@
 class CSquare : public CFigure
 {
 private:
+	int SqID;
 	Point Centre;
 public:
 	CSquare(Point, GfxInfo FigureGfxInfo);

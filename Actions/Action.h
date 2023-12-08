@@ -2,7 +2,8 @@
 #define ACTION_H
 
 #include "..\DefS.h"
-
+#include <iostream>
+using namespace std;
 class ApplicationManager; //forward class declaration
 
 

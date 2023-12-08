@@ -1,9 +1,12 @@
 #include "CRectangle.h"
-
+#include <iostream>
+using namespace std;
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Corner1 = P1;
 	Corner2 = P2;
+	RecID = ID + 1;
+	cout << RecID << endl;
 }
 
 

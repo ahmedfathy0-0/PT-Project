@@ -6,6 +6,7 @@
 class CRectangle : public CFigure
 {
 private:
+	int RecID;
 	Point Corner1;
 	Point Corner2;
 public:
