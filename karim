@@ -1,0 +1,7 @@
+CIRCLE     -842150451     617     323     717     335     BLUE     NO_FILL
+HEXAGON     -842150451     269     208     ORANGE     GREEN
+RECTANGLE     -842150451     332     224     593     320     RED     BLACK
+TRIANGLE     -842150451     811     241     907     280     803     354     RED     BLACK
+TRIANGLE     -842150451     963     247     1071     313     917     406     BLUE     NO_FILL
+TRIANGLE     -842150451     575     136     710     135     604     251     BLUE     GREEN
+SQUARE     -842150451     410     433     RED     NO_FILL

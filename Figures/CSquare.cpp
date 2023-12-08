@@ -22,6 +22,19 @@ bool CSquare::IsInsideFigure(int x, int y) const{
 	else return false;
 }
 
+void CSquare::Save(ofstream& OutFile)
+{
+	OutFile << "SQUARE" << "     ";
+	OutFile << ID << "     ";
+	OutFile << Centre.x << "     ";
+	OutFile << Centre.y << "     ";
+	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
+	if (FigGfxInfo.isFilled)
+		OutFile << getClr(FigGfxInfo.FillClr) << endl;
+	else
+		OutFile << "NO_FILL" << endl;
+}
+
 /*void CSquare::PrintInfo(Output* pOut) const {
 	string message = "Circle: Centre= (" + to_string(Centre.x) + " ," + to_string(Centre.y) + " )";
 	pOut->PrintMessage(message);

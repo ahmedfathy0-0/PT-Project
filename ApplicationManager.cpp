@@ -5,6 +5,7 @@
 #include "Actions\AddHexAction.h"
 #include "Actions\AddCircAction.h"
 #include "Actions\SelectOneAction.h"
+#include "Actions\SaveAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -68,7 +69,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 		return;
 
 	case SAVE:
-		pOut->PrintMessage("Action: Save Graph, Click anywhere");
+		pAct = new SaveAction(this);
 		break;
 
 	case UNDO:
@@ -383,6 +384,7 @@ CFigure* ApplicationManager::GetFigure(int x, int y) const
 	return NULL;
 }
 
+
 void ApplicationManager::SetSelectedFigure(CFigure* pFig) {
 	SelectedFig = pFig;
 }
@@ -396,6 +398,13 @@ void ApplicationManager::deselectall() const {
 		FigList[i]->SetSelected(false);
 	}
 }
+
+void ApplicationManager::SaveAll(ofstream& OutFile) const
+{
+	for (int i = 0; i < FigCount; i++)
+		FigList[i]->Save(OutFile);
+}
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
@@ -404,6 +413,7 @@ void ApplicationManager::deselectall() const {
 
 void ApplicationManager::UpdateInterface() const
 {
+	pOut->ClearDrawArea();
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 }
