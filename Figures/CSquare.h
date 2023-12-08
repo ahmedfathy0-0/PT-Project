@@ -10,6 +10,8 @@ private:
 public:
 	CSquare(Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
+	virtual bool IsInsideFigure(int x, int y) const;
+	//virtual void PrintInfo(Output*) const;
 };
 
 #endif

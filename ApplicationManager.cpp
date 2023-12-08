@@ -4,7 +4,7 @@
 #include "Actions\AddTrgAction.h"
 #include "Actions\AddHexAction.h"
 #include "Actions\AddCircAction.h"
-
+#include "Actions\SelectOneAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -80,7 +80,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 		break;
 
 	case SELECTONE:
-		pOut->PrintMessage("Action: Select One, Click anywhere");
+		pAct = new SelectOneAction(this);
 		break;
 
 	case LOAD:
@@ -377,6 +377,9 @@ CFigure* ApplicationManager::GetFigure(int x, int y) const
 	//Add your code here to search for a figure given a point x,y	
 	//Remember that ApplicationManager only calls functions do NOT implement it.
 
+	for (int i = 0; i < FigCount; i++) {
+		if(FigList[i]->IsInsideFigure(x,y)) return FigList[i];
+	}
 	return NULL;
 }
 //==================================================================================//
@@ -384,11 +387,13 @@ CFigure* ApplicationManager::GetFigure(int x, int y) const
 //==================================================================================//
 
 //Draw all figures on the user interface
+
 void ApplicationManager::UpdateInterface() const
 {
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 }
+
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input
 Input* ApplicationManager::GetInput() const

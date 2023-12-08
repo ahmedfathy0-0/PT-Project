@@ -10,6 +10,10 @@ private:
 public:
 	CHexagon(Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
+	virtual bool IsInsideFigure(int x, int y) const;
+	double CalculateArea(Point, Point, Point) const;
+	//virtual void PrintInfo(Output*) const;
+	~CHexagon();
 };
 
 #endif
