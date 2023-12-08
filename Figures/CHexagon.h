@@ -7,7 +7,6 @@ class CHexagon : public CFigure
 {
 private:
 	Point Center;
-	int HexID;
 public:
 	CHexagon(Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;

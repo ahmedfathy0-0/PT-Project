@@ -1,9 +1,9 @@
 #include "CSquare.h"
-#include <iostream>
-using namespace std;
+
 CSquare::CSquare(Point P1,  GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Centre = P1;
+	
 }
 void CSquare::Draw(Output* pOut) const
 {

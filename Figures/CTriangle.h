@@ -9,7 +9,6 @@ private:
 	Point Corner1;
 	Point Corner2;
 	Point Corner3;
-	int TrID;
 public:
 	CTriangle(Point,Point,Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
