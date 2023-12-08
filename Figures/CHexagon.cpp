@@ -56,7 +56,7 @@ double CHexagon::CalculateArea(Point P1, Point P2, Point P3) const {
 
 void CHexagon::Save(ofstream& OutFile)
 {
-	OutFile << "HEXAGON" << "     ";
+	OutFile << "HEXAGN" << "     ";
 	OutFile << ID << "     ";
 	OutFile << Center.x << "     ";
 	OutFile << Center.y << "     ";

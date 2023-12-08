@@ -24,7 +24,7 @@ bool CRectangle::IsInsideFigure(int x, int y) const{
 
 void CRectangle::Save(ofstream& OutFile)
 {
-	OutFile << "RECTANGLE" << "     ";
+	OutFile << "RECTAN" << "     ";
 	OutFile << ID << "     ";
 	OutFile << Corner1.x << "     ";
 	OutFile << Corner1.y << "     ";

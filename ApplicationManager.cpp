@@ -14,7 +14,7 @@ ApplicationManager::ApplicationManager()
 	pIn = pOut->CreateInput();
 
 	FigCount = 0;
-
+	SelectedFig = NULL;
 	//Create an array of figure pointers and set them to NULL		
 	for (int i = 0; i < MaxFigCount; i++)
 		FigList[i] = NULL;
@@ -383,12 +383,28 @@ CFigure* ApplicationManager::GetFigure(int x, int y) const
 	}
 	return NULL;
 }
-////////////////////////////////////////////////////////////////////////////////////
+
+
+void ApplicationManager::SetSelectedFigure(CFigure* pFig) {
+	SelectedFig = pFig;
+}
+
+CFigure* ApplicationManager::GetSelectedFigure() const {
+	return SelectedFig;
+}
+
+void ApplicationManager::deselectall() const {
+	for (int i = 0; i < FigCount; i++) {
+		FigList[i]->SetSelected(false);
+	}
+}
+
 void ApplicationManager::SaveAll(ofstream& OutFile) const
 {
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->Save(OutFile);
 }
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//

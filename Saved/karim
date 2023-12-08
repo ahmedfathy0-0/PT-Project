@@ -1,0 +1,5 @@
+ORANGE     YELLOW
+CIRCLE     1     410     187     465     214     BLUE     NO_FILL
+CIRCLE     1     686     283     768     289     BLUE     NO_FILL
+TRIANGLE     1     303     353     391     335     353     470     BLUE     RED
+SQUARE     1     185     230     ORANGE     YELLOW
