@@ -23,6 +23,21 @@ bool CCircle::IsInsideFigure(int x, int y) const {
 	else return false;
 }
 
+void CCircle::Save(ofstream& OutFile)
+{
+	OutFile << "CIRCLE" << "     ";
+	OutFile << ID << "     ";
+	OutFile << Center.x << "     ";
+	OutFile << Center.y << "     ";
+	OutFile << point.x << "     ";
+	OutFile << point.y << "     ";
+	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
+	if (FigGfxInfo.isFilled)
+		OutFile << getClr(FigGfxInfo.FillClr) << endl;
+	else
+		OutFile << "NO_FILL" << endl;
+}
+
 /*void CCircle::PrintInfo(Output* pOut) const {
 	string message = "Circle, Center = (" + to_string(Center.x) + "," + to_string(Center.y)
 		+ "), Radius: " + to_string(int(CalculateDistance(Center,point)));

@@ -25,3 +25,19 @@ double CFigure::CalculateDistance(Point P1, Point P2) const{
 	return sqrt(pow((P1.x - P2.x), 2) + pow((P1.y - P2.y), 2));
 }
 
+string CFigure::getClr(color Dclr)
+{
+	if (Dclr == BLACK)
+		return "BLACK";
+	else if (Dclr == YELLOW)
+		return "YELLOW";
+	else if (Dclr == ORANGE)
+		return "ORANGE";
+	else if (Dclr == RED)
+		return "RED";
+	else if (Dclr == GREEN)
+		return "GREEN";
+	else if (Dclr == BLUE)
+		return "BLUE";
+}
+

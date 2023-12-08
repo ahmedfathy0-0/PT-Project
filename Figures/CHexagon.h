@@ -12,6 +12,7 @@ public:
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInsideFigure(int x, int y) const;
 	double CalculateArea(Point, Point, Point) const;
+	virtual void Save(ofstream& OutFile);
 	//virtual void PrintInfo(Output*) const;
 	~CHexagon();
 };

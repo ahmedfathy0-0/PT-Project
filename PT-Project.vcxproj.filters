@@ -172,6 +172,10 @@
     <ClCompile Include="Actions\AddCircAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\SelectOneAction.cpp" />
+    <ClCompile Include="Actions\SaveAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -281,6 +285,10 @@
       <Filter>Figures Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\AddCircAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SelectOneAction.h" />
+    <ClInclude Include="Actions\SaveAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>
