@@ -365,8 +365,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
+	pFig->setID(FigCount);
 	if (FigCount < MaxFigCount)
 		FigList[FigCount++] = pFig;
+
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure* ApplicationManager::GetFigure(int x, int y) const
