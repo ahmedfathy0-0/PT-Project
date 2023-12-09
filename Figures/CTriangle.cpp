@@ -69,6 +69,8 @@ void CTriangle::Load(ifstream& Infile)
 	string clr;
 	FigGfxInfo.BorderWdth = UI.PenWidth;
 	Infile >> ID >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y >> Corner3.x >> Corner3.y;
+	Center.x = (Corner1.x + Corner2.x + Corner3.x) / 3;
+	Center.y = (Corner1.y + Corner2.y + Corner3.y) / 3;
 	Infile >> clr;
 	FigGfxInfo.DrawClr = getClr(clr);
 	Infile >> clr;

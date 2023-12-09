@@ -1,4 +1,8 @@
-BLUE     GREEN
-2
-HEXAGN     1     260     181     BLUE     NO_FILL
-HEXAGN     2     611     274     BLUE     NO_FILL
+RED     GREEN
+6
+HEXAGN     1     173     248     BLUE     NO_FILL
+CIRCLE     2     518     259     606     264     BLUE     NO_FILL
+TRIANG     3     745     177     924     197     792     341     BLUE     NO_FILL
+SQUARE     4     1152     256     BLUE     NO_FILL
+RECTAN     5     24     457     1287     542     BLUE     NO_FILL
+TRIANG     6     856     103     744     174     926     194     RED     GREEN

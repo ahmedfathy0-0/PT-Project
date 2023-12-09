@@ -57,6 +57,8 @@ void CRectangle::Load(ifstream& Infile)
 	string clr;
 	FigGfxInfo.BorderWdth = UI.PenWidth;
 	Infile >> ID >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y;
+	Center.x = (Corner1.x + Corner2.x) / 2;
+	Center.y = (Corner1.y + Corner2.y) / 2;
 	Infile >> clr;
 	FigGfxInfo.DrawClr = getClr(clr);
 	Infile >> clr;
