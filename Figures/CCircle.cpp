@@ -27,6 +27,13 @@ bool CCircle::IsInsideFigure(int x, int y) const {
 	else return false;
 }
 
+void CCircle::Move(Point NewCenter)
+{
+	point.x += NewCenter.x - Center.x;
+	point.y += NewCenter.y - Center.y;
+	Center = NewCenter;
+}
+
 void CCircle::Save(ofstream& OutFile)
 {
 	OutFile << "CIRCLE" << "     ";

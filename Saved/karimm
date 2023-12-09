@@ -1,7 +1,3 @@
 BLUE     GREEN
-5
-SQUARE     1     138     258     BLUE     NO_FILL
-RECTAN     2     307     171     357     386     BLUE     NO_FILL
-TRIANG     3     455     197     563     251     473     363     BLUE     NO_FILL
-HEXAGN     4     734     286     BLUE     NO_FILL
-CIRCLE     5     1045     270     1122     296     BLUE     NO_FILL
+1
+TRIANG     1     234     161     311     235     183     253     BLUE     NO_FILL

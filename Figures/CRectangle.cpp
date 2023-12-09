@@ -8,6 +8,8 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(Figur
 {
 	Corner1 = P1;
 	Corner2 = P2;
+	Center.x = (Corner1.x + Corner2.x) / 2;
+	Center.y = (Corner1.y + Corner2.y) / 2;
 }
 
 
@@ -24,6 +26,15 @@ bool CRectangle::IsInsideFigure(int x, int y) const{
 	int minX = min(Corner1.x, Corner2.x);
 	if (x >= minX && x <= maxX && y >= minY && y <= maxY) return true;
 	else return false;
+}
+
+void CRectangle::Move(Point NewCenter)
+{
+	Corner1.x += NewCenter.x - Center.x;
+	Corner1.y += NewCenter.y - Center.y;
+	Corner2.x += NewCenter.x - Center.x;
+	Corner2.y += NewCenter.y - Center.y;
+	Center = NewCenter;
 }
 
 void CRectangle::Save(ofstream& OutFile)

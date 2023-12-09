@@ -31,6 +31,7 @@ public:
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
 	double CalculateDistance(Point P1, Point P2) const;
+	virtual void Move(Point) = 0;
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 

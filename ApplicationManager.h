@@ -35,6 +35,7 @@ public:
 	void SaveAll(ofstream& OutFile) const;
 	void Clearall();
 	void deletefigure();
+	void movefigure(Point New);
 
 	// functions for the select action//
 	CFigure* GetFigure(int x, int y) const; //Search for a figure given a point inside the figure

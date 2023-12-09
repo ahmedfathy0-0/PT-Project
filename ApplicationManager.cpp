@@ -8,6 +8,7 @@
 #include "Actions\SaveAction.h"
 #include "Actions\ClearAll.h"
 #include "Actions/DeleteAction.h"
+#include "Actions/MoveFigure.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -91,7 +92,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 		break;
 
 	case MOVE:
-		pOut->PrintMessage("Action: Move Figure, Click anywhere");
+		pAct = new MoveAction(this);
 		break;
 
 	case RESIZE:
@@ -432,6 +433,12 @@ void ApplicationManager::deletefigure()
 			FigCount--;
 			FigList[FigCount] = NULL;
 		}
+}
+void ApplicationManager::movefigure(Point New)
+{
+	for (int i = 0; i < FigCount; i++)
+		if (FigList[i]->IsSelected())
+			FigList[i]->Move(New);
 }
 //==================================================================================//
 //							Interface Management Functions							//

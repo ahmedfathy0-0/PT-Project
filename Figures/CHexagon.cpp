@@ -58,6 +58,11 @@ double CHexagon::CalculateArea(Point P1, Point P2, Point P3) const {
 	return 0.5 * fabs((P1.x * (P2.y - P3.y)) + (P2.x * (P3.y - P1.y)) + (P3.x * (P1.y - P2.y)));
 }
 
+void CHexagon::Move(Point NewCenter)
+{
+	Center = NewCenter;
+}
+
 void CHexagon::Save(ofstream& OutFile)
 {
 	OutFile << "HEXAGN" << "     ";

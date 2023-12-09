@@ -9,7 +9,8 @@ CTriangle::CTriangle(Point P1, Point P2,Point P3,GfxInfo FigureGfxInfo) :CFigure
 	Corner1 = P1;
 	Corner2 = P2;
 	Corner3 = P3;
-
+	Center.x = (Corner1.x + Corner2.x + Corner3.x) / 3;
+	Center.y = (Corner1.y + Corner2.y + Corner3.y) / 3;
 }
 void CTriangle::Draw(Output* pOut) const
 {
@@ -33,6 +34,17 @@ bool CTriangle::IsInsideFigure(int x, int y) const
 
 double CTriangle::CalculateArea(Point P1, Point P2, Point P3) const{
 	return 0.5 * fabs((P1.x * (P2.y - P3.y)) + (P2.x * (P3.y - P1.y)) + (P3.x * (P1.y - P2.y)));
+}
+
+void CTriangle::Move(Point NewCenter)
+{
+	Corner1.x = Corner1.x + NewCenter.x - Center.x;
+	Corner1.y = Corner1.y + NewCenter.y - Center.y;
+	Corner2.x = Corner2.x + NewCenter.x - Center.x;
+	Corner2.y = Corner2.y + NewCenter.y - Center.y;
+	Corner3.x = Corner3.x + NewCenter.x - Center.x;
+	Corner3.y = Corner3.y + NewCenter.y - Center.y;
+	Center = NewCenter;
 }
 
 void CTriangle::Save(ofstream& OutFile)

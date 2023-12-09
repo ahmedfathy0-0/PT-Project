@@ -26,6 +26,11 @@ bool CSquare::IsInsideFigure(int x, int y) const{
 	else return false;
 }
 
+void CSquare::Move(Point NewCenter)
+{
+	Centre = NewCenter;
+}
+
 void CSquare::Save(ofstream& OutFile)
 {
 	OutFile << "SQUARE" << "     ";
