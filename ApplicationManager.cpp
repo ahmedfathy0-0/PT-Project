@@ -195,37 +195,47 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 			pOut->PrintMessage("The draw color will now be black!");
 			pOut->setCrntDrawColor(BLACK);
 			pOut->setisFilled(false);
-
+			Changefigurecolor(BLACK,0);
 			break;
 
 		case YELLOWCLR:
 			pOut->PrintMessage("The draw color will now be yellow!");
 			pOut->setCrntDrawColor(YELLOW);
 			pOut->setisFilled(false);
+			Changefigurecolor(YELLOW, 0);
+
 			break;
 
 		case ORANGECLR:
 			pOut->PrintMessage("The draw color will now be orange!");
 			pOut->setCrntDrawColor(ORANGE);
 			pOut->setisFilled(false);
+			Changefigurecolor(ORANGE, 0);
+
 			break;
 
 		case REDCLR:
 			pOut->PrintMessage("The draw color will now be red!");
 			pOut->setCrntDrawColor(RED);
 			pOut->setisFilled(false);
+			Changefigurecolor(RED, 0);
+
 			break;
 
 		case GREENCLR:
 			pOut->PrintMessage("The draw color will now be green!");
 			pOut->setCrntDrawColor(GREEN);
 			pOut->setisFilled(false);
+			Changefigurecolor(GREEN, 0);
+
 			break;
 
 		case BLUECLR:
 			pOut->PrintMessage("The draw color will now be blue!");
 			pOut->setCrntDrawColor(BLUE);
 			pOut->setisFilled(false);
+			Changefigurecolor(BLUE, 0);
+
 			break;
 
 		}
@@ -249,36 +259,48 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 			pOut->PrintMessage("The fill color will now be black");
 			pOut->setCrntFillColor(BLACK);
 			pOut->setisFilled(true);
+			Changefigurecolor(BLACK, 1);
+
 			break;
 
 		case YELLOWCLR:
 			pOut->PrintMessage("The fill color will now be yellow");
 			pOut->setCrntFillColor(YELLOW);
 			pOut->setisFilled(true);
+			Changefigurecolor(YELLOW, 1);
+
 			break;
 
 		case ORANGECLR:
 			pOut->PrintMessage("The fill color will now be orange");
 			pOut->setCrntFillColor(ORANGE);
 			pOut->setisFilled(true);
+			Changefigurecolor(ORANGE, 1);
+
 			break;
 
 		case REDCLR:
 			pOut->PrintMessage("The fill color will now be red");
 			pOut->setCrntFillColor(RED);
 			pOut->setisFilled(true);
+			Changefigurecolor(RED, 1);
+
 			break;
 
 		case GREENCLR:
 			pOut->PrintMessage("The fill color will now be green");
 			pOut->setCrntFillColor(GREEN);
 			pOut->setisFilled(true);
+			Changefigurecolor(GREEN, 1);
+
 			break;
 
 		case BLUECLR:
 			pOut->PrintMessage("The fill color will now be blue");
 			pOut->setCrntFillColor(BLUE);
 			pOut->setisFilled(true);
+			Changefigurecolor(BLUE, 1);
+
 			break;
 
 		}
@@ -300,6 +322,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 			pOut->PrintMessage("Action: you pressed the black color");
 			pOut->setCrntFillColor(BLACK);
 			pOut->setCrntDrawColor(BLACK);
+			Changefigurecolor(BLACK, 2);
 			pOut->setisFilled(true);
 			break;
 
@@ -308,6 +331,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 			pOut->setCrntFillColor(YELLOW);
 			pOut->setCrntDrawColor(YELLOW);
 			pOut->setisFilled(true);
+			Changefigurecolor(YELLOW, 2);
+
 			break;
 
 		case ORANGECLR:
@@ -315,12 +340,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 			pOut->setCrntFillColor(ORANGE);
 			pOut->setCrntDrawColor(ORANGE);
 			pOut->setisFilled(true);
+			Changefigurecolor(ORANGE, 2);
+
 			break;
 
 		case REDCLR:
 			pOut->PrintMessage("Action: you pressed the red color");
 			pOut->setCrntFillColor(RED);
 			pOut->setCrntDrawColor(RED);
+			Changefigurecolor(RED, 2);
+
 			pOut->setisFilled(true);
 			break;
 
@@ -328,6 +357,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 			pOut->PrintMessage("Action: you pressed the green color");
 			pOut->setCrntFillColor(GREEN);
 			pOut->setCrntDrawColor(GREEN);
+			Changefigurecolor(GREEN, 2);
+
 			pOut->setisFilled(true);
 			break;
 
@@ -336,6 +367,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 			pOut->setCrntFillColor(BLUE);
 			pOut->setCrntDrawColor(BLUE);
 			pOut->setisFilled(true);
+			Changefigurecolor(BLUE, 2);
+
 			break;
 
 		}
@@ -425,7 +458,8 @@ void ApplicationManager::Clearall()
 }
 void ApplicationManager::deletefigure()
 {
-	for (int i = 0; i < FigCount; i++)
+	bool flag = true;
+	for (int i = 0; i < FigCount&&flag; i++)
 		if (FigList[i]->IsSelected())
 		{
 			delete FigList[i];
@@ -433,7 +467,28 @@ void ApplicationManager::deletefigure()
 			FigList[i]->setID(i + 1);
 			FigCount--;
 			FigList[FigCount] = NULL;
+			flag = false;
 		}
+}
+void ApplicationManager::Changefigurecolor(color c,int type)
+{
+	bool flag = true;
+	for (int i = 0; i < FigCount&&flag; i++)
+	if (FigList[i]->IsSelected())
+	{
+		FigList[i]->SetSelected(false);
+		if (type == 0) {
+			FigList[i]->ChngDrawClr(c);
+		}
+		else if (type == 1) {
+			FigList[i]->ChngFillClr(c);
+		}
+		else if (type == 2) {
+			FigList[i]->ChngFillClr(c);
+			FigList[i]->ChngDrawClr(c);
+		}
+		flag = false;
+	}
 }
 void ApplicationManager::movefigure(Point New)
 {

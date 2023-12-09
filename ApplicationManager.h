@@ -36,6 +36,8 @@ public:
 	void SaveAll(ofstream& OutFile) const;
 	void Clearall();
 	void deletefigure();
+	void Changefigurecolor(color,int);//the integer here represent the type of change color 
+	                                  //if = 0 change draw color if =1 change fillcolor if =-1 change both 
 	void movefigure(Point New);
 
 	// functions for the select action//

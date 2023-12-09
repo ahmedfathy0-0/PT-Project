@@ -19,6 +19,7 @@ void CFigure::ChngFillClr(color Fclr)
 {	
 	FigGfxInfo.isFilled = true;
 	FigGfxInfo.FillClr = Fclr; 
+
 }
 
 double CFigure::CalculateDistance(Point P1, Point P2) const{
