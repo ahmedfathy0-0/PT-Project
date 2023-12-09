@@ -429,9 +429,9 @@ void ApplicationManager::deletefigure()
 			delete FigList[i];
 			FigList[i] = FigList[FigCount-1];
 			FigList[i]->setID(i + 1);
+			FigCount--;
+			FigList[FigCount] = NULL;
 		}
-	FigCount--;
-	FigList[FigCount] = NULL;
 }
 //==================================================================================//
 //							Interface Management Functions							//
