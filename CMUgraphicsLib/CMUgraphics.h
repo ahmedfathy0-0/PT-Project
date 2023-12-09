@@ -71,7 +71,9 @@ enum angletype {
 class window {
 
   private:
-  
+
+
+
     // Various Win32 Data structures
 	const HINSTANCE hInstance;
     WNDCLASS wndcWindow;
@@ -139,6 +141,7 @@ class window {
     
   public:
  
+
     // Create a new window! iWindWidth and iWindHeight will change the size of 
     // the window created. iWindXPos and iWindYPos is the position the window
     // will appear on the screen

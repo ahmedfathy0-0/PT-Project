@@ -1,8 +1,10 @@
 #include "ApplicationManager.h"
+#include <windows.h>
 
 
 int main()
 {
+
 
 	ActionType ActType;
 

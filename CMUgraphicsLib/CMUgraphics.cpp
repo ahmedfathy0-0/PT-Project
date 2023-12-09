@@ -223,6 +223,14 @@ hInstance(GetModuleHandle(0)), iWindowWidth(iWindWidth), iWindowHeight(iWindHeig
 	if (hwndWindow) {
 		ShowWindow(hwndWindow, SW_SHOW);
 		dcScreen = GetDC(hwndWindow);
+
+
+
+			HMENU hMenu = GetSystemMenu(hwndWindow, FALSE);
+			if (hMenu != NULL) {
+				// Disable the close button (SC_CLOSE)
+				EnableMenuItem(hMenu, SC_CLOSE, MF_BYCOMMAND | MF_GRAYED);
+			}
 		
         // No doublebuffering yet so dcActive is the same as dcScreen
 		dcActive = dcScreen;
@@ -556,6 +564,7 @@ clicktype window::WaitMouseClick(int &iX, int &iY) {
 		    delete mqueTmp;
 		    return ctTmp;
 		}
+	
 	}
 }
 
