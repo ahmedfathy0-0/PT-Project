@@ -76,6 +76,23 @@ void CHexagon::Save(ofstream& OutFile)
 		OutFile << "NO_FILL" << endl;
 }
 
+void CHexagon::Load(ifstream& Infile)
+{
+	string clr;
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	Infile >> ID >> Center.x >> Center.y;
+	Infile >> clr;
+	FigGfxInfo.DrawClr = getClr(clr);
+	Infile >> clr;
+	if (clr == "NO_FILL")
+	{
+		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = GREEN;
+	}
+	else
+		FigGfxInfo.FillClr = getClr(clr);
+}
+
 CHexagon::~CHexagon() {
 	delete[] x;
 	delete[] y;

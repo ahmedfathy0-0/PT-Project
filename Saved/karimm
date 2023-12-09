@@ -1,3 +1,4 @@
 BLUE     GREEN
-1
-TRIANG     1     234     161     311     235     183     253     BLUE     NO_FILL
+2
+HEXAGN     1     260     181     BLUE     NO_FILL
+HEXAGN     2     611     274     BLUE     NO_FILL

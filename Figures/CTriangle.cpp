@@ -64,6 +64,23 @@ void CTriangle::Save(ofstream& OutFile)
 		OutFile << "NO_FILL" << endl;
 }
 
+void CTriangle::Load(ifstream& Infile)
+{
+	string clr;
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	Infile >> ID >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y >> Corner3.x >> Corner3.y;
+	Infile >> clr;
+	FigGfxInfo.DrawClr = getClr(clr);
+	Infile >> clr;
+	if (clr == "NO_FILL")
+	{
+		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = GREEN;
+	}
+	else
+		FigGfxInfo.FillClr = getClr(clr);
+}
+
 /*void CTriangle::PrintInfo(Output* pOut) const {
 	string message = "Triangle: Corner 1= (" + to_string(Corner1.x) + "," + to_string(Corner1.y)
 		+ "), Corner 2= (" + to_string(Corner2.x) + "," + to_string(Corner2.y) + "), Corner 3= (" + to_string(Corner3.x)

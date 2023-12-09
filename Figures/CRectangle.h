@@ -16,6 +16,7 @@ public:
 	virtual bool IsInsideFigure(int x, int y) const;
 	virtual void Move(Point);
 	virtual void Save(ofstream& OutFile);
+	virtual void Load(ifstream& Infile);
 	//virtual void PrintInfo(Output*) const;
 };
 

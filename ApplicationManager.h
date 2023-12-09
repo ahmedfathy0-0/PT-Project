@@ -5,6 +5,7 @@
 #include "Figures\CFigure.h"
 #include "GUI\input.h"
 #include "GUI\output.h"
+#include "Actions/Action.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager

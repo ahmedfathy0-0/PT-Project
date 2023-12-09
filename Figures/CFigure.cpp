@@ -45,4 +45,19 @@ string CFigure::getClr(color Dclr)
 	else if (Dclr == BLUE)
 		return "BLUE";
 }
+color CFigure::getClr(string Dclr)
+{
+	if (Dclr == "BLACK")
+		return BLACK;
+	else if (Dclr == "YELLOW")
+		return YELLOW;
+	else if (Dclr == "ORANGE")
+		return ORANGE;
+	else if (Dclr == "RED")
+		return RED;
+	else if (Dclr == "GREEN")
+		return GREEN;
+	else if (Dclr == "BLUE")
+		return BLUE;
+}
 

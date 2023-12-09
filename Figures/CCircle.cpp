@@ -49,6 +49,23 @@ void CCircle::Save(ofstream& OutFile)
 		OutFile << "NO_FILL" << endl;
 }
 
+void CCircle::Load(ifstream& Infile)
+{
+	string clr;
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	Infile >> ID >> Center.x >> Center.y >> point.x >> point.y;
+	Infile >> clr;
+	FigGfxInfo.DrawClr = getClr(clr);
+	Infile >> clr;
+	if (clr == "NO_FILL")
+	{
+		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = GREEN;
+	}
+	else
+		FigGfxInfo.FillClr = getClr(clr);
+}
+
 /*void CCircle::PrintInfo(Output* pOut) const {
 	string message = "Circle, Center = (" + to_string(Center.x) + "," + to_string(Center.y)
 		+ "), Radius: " + to_string(int(CalculateDistance(Center,point)));

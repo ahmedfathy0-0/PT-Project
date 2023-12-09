@@ -44,6 +44,23 @@ void CSquare::Save(ofstream& OutFile)
 		OutFile << "NO_FILL" << endl;
 }
 
+void CSquare::Load(ifstream& Infile)
+{
+	string clr;
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	Infile >> ID >> Centre.x >> Centre.y;
+	Infile >> clr;
+	FigGfxInfo.DrawClr = getClr(clr);
+	Infile >> clr;
+	if (clr == "NO_FILL")
+	{
+		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = GREEN;
+	}
+	else
+		FigGfxInfo.FillClr = getClr(clr);
+}
+
 /*void CSquare::PrintInfo(Output* pOut) const {
 	string message = "Circle: Centre= (" + to_string(Centre.x) + " ," + to_string(Centre.y) + " )";
 	pOut->PrintMessage(message);

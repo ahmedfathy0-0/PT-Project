@@ -1,3 +1,8 @@
-BLUE     GREEN
-1
-TRIANG     1     1226     190     1303     264     1175     282     BLUE     NO_FILL
+BLUE     BLACK
+6
+RECTAN     1     92     191     174     326     BLACK     YELLOW
+SQUARE     2     288     239     YELLOW     ORANGE
+SQUARE     3     520     255     ORANGE     RED
+TRIANG     4     688     194     863     180     776     330     RED     GREEN
+HEXAGN     5     1028     251     GREEN     BLUE
+CIRCLE     6     205     543     262     544     BLUE     BLACK

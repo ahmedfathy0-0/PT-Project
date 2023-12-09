@@ -7,8 +7,9 @@
 #include "Actions\SelectOneAction.h"
 #include "Actions\SaveAction.h"
 #include "Actions\ClearAll.h"
-#include "Actions/DeleteAction.h"
-#include "Actions/MoveFigure.h"
+#include "Actions\DeleteAction.h"
+#include "Actions\MoveFigure.h"
+#include "Actions\LoadAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -88,7 +89,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 		break;
 
 	case LOAD:
-		pOut->PrintMessage("Action: Load Graph, Click anywhere");
+		pAct = new LoadAction(this);
 		break;
 
 	case MOVE:
