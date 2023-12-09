@@ -8,6 +8,7 @@ class CSquare : public CFigure
 private:
 	Point Centre;
 public:
+	CSquare();
 	CSquare(Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInsideFigure(int x, int y) const;

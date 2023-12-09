@@ -3,6 +3,10 @@
 int* x = new int[UI.HexagonVertices];
 int* y = new int[UI.HexagonVertices];
 
+CHexagon::CHexagon() : CFigure(FigGfxInfo)
+{
+}
+
 CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;

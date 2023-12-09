@@ -132,6 +132,8 @@
     <ClCompile Include="Actions\AddHexAction.cpp" />
     <ClCompile Include="Actions\AddSqrAction.cpp" />
     <ClCompile Include="Actions\AddTrgAction.cpp" />
+    <ClCompile Include="Actions\ClearAll.cpp" />
+    <ClCompile Include="Actions\DeleteAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectOneAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
@@ -187,6 +189,8 @@
     <ClInclude Include="Actions\AddHexAction.h" />
     <ClInclude Include="Actions\AddSqrAction.h" />
     <ClInclude Include="Actions\AddTrgAction.h" />
+    <ClInclude Include="Actions\ClearAll.h" />
+    <ClInclude Include="Actions\DeleteAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\SelectOneAction.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />

@@ -29,10 +29,12 @@ public:
 	//Reads the input command from the user and returns the corresponding action type
 	ActionType GetUserAction() const;
 	void ExecuteAction(ActionType, ActionType, ActionType); //Creates an action and executes it
-
+	int GetFigCount();
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	void SaveAll(ofstream& OutFile) const;
+	void Clearall();
+	void deletefigure();
 
 	// functions for the select action//
 	CFigure* GetFigure(int x, int y) const; //Search for a figure given a point inside the figure

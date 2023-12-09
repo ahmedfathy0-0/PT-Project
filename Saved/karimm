@@ -1,6 +1,7 @@
-RED     BLUE
-RECTAN     1     140     170     197     333     BLUE     NO_FILL
-SQUARE     1     246     173     BLUE     YELLOW
-TRIANG     1     313     147     442     249     361     294     BLACK     RED
-HEXAGO     1     603     218     ORANGE     GREEN
-CIRCLE     1     873     230     1015     231     RED     BLUE
+BLUE     GREEN
+5
+SQUARE     1     138     258     BLUE     NO_FILL
+RECTAN     2     307     171     357     386     BLUE     NO_FILL
+TRIANG     3     455     197     563     251     473     363     BLUE     NO_FILL
+HEXAGN     4     734     286     BLUE     NO_FILL
+CIRCLE     5     1045     270     1122     296     BLUE     NO_FILL

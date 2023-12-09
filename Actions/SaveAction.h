@@ -11,6 +11,8 @@ class SaveAction : public Action
 private:
 	string filename;
 	ofstream fout;
+protected:
+	string getClr(color Dclr);
 public :
 	SaveAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

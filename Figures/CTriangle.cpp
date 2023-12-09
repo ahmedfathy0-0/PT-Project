@@ -1,5 +1,9 @@
 #include "CTriangle.h"
 
+CTriangle::CTriangle() : CFigure(FigGfxInfo)
+{
+}
+
 CTriangle::CTriangle(Point P1, Point P2,Point P3,GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Corner1 = P1;

@@ -1,5 +1,9 @@
 #include "CSquare.h"
 
+CSquare::CSquare() : CFigure(FigGfxInfo)
+{
+}
+
 CSquare::CSquare(Point P1,  GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Centre = P1;

@@ -6,6 +6,8 @@
 #include "Actions\AddCircAction.h"
 #include "Actions\SelectOneAction.h"
 #include "Actions\SaveAction.h"
+#include "Actions\ClearAll.h"
+#include "Actions/DeleteAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -97,11 +99,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 		break;
 
 	case CLEAR:
-		pOut->PrintMessage("Action: Clear All, Click anywhere");
+		pAct = new ClearAll(this);
 		break;
 
 	case DELET:
-		pOut->PrintMessage("Action: Delete Figure, Click anywhere");
+		pAct = new DeleteAction(this);
 		break;
 
 	case DRAWING_AREA:
@@ -358,6 +360,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 		pAct = NULL;
 	}
 }
+int ApplicationManager::GetFigCount()
+{
+	return FigCount;
+}
 //==================================================================================//
 //						Figures Management Functions								//
 //==================================================================================//
@@ -365,9 +371,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
-	pFig->setID(FigCount);
 	if (FigCount < MaxFigCount)
 		FigList[FigCount++] = pFig;
+	pFig->setID(FigCount);
 
 }
 ////////////////////////////////////////////////////////////////////////////////////
@@ -406,7 +412,27 @@ void ApplicationManager::SaveAll(ofstream& OutFile) const
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->Save(OutFile);
 }
-
+void ApplicationManager::Clearall()
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		delete FigList[i];
+		FigList[i] = NULL;
+	}
+	FigCount = 0;
+}
+void ApplicationManager::deletefigure()
+{
+	for (int i = 0; i < FigCount; i++)
+		if (FigList[i]->IsSelected())
+		{
+			delete FigList[i];
+			FigList[i] = FigList[FigCount-1];
+			FigList[i]->setID(i + 1);
+		}
+	FigCount--;
+	FigList[FigCount] = NULL;
+}
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//

@@ -1,5 +1,6 @@
-ORANGE     YELLOW
-CIRCLE     1     410     187     465     214     BLUE     NO_FILL
-CIRCLE     1     686     283     768     289     BLUE     NO_FILL
-TRIANGLE     1     303     353     391     335     353     470     BLUE     RED
-SQUARE     1     185     230     ORANGE     YELLOW
+BLUE     GREEN
+4
+SQUARE     1     138     258     BLUE     NO_FILL
+RECTAN     2     307     171     357     386     BLUE     NO_FILL
+CIRCLE     3     1045     270     1122     296     BLUE     NO_FILL
+HEXAGN     4     734     286     BLUE     NO_FILL
