@@ -436,6 +436,8 @@ CFigure* ApplicationManager::GetSelectedFigure() const {
 	return SelectedFig;
 }
 
+
+
 void ApplicationManager::deselectall() const {
 	for (int i = 0; i < FigCount; i++) {
 		FigList[i]->SetSelected(false);
@@ -495,6 +497,11 @@ void ApplicationManager::movefigure(Point New)
 	for (int i = 0; i < FigCount; i++)
 		if (FigList[i]->IsSelected())
 			FigList[i]->Move(New);
+}
+
+CFigure* ApplicationManager::GetFigByIndex(int i)
+{
+	return FigList[i];
 }
 //==================================================================================//
 //							Interface Management Functions							//
