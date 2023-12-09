@@ -1,13 +1,16 @@
 #pragma once
-#include"PickAndHide.h"
+#include"ApplicationManager.h"
 #include<cstdlib>
 #include<time.h>
 #include<iostream>
-class PickByFig:public PickAndHide
+#include"Actions/Action.h"
+class PickByFig :public Action
 {
 public:
+	PickByFig(ApplicationManager* pApp);
+	
 	CFigure* Randomize();
-	void Action::ReadActionParameters();
-	void Action::Execute();
+	virtual void ReadActionParameters();
+	virtual void Execute();
 };
 

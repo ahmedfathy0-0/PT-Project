@@ -5,14 +5,11 @@
 #include"Figures/CFigure.h"
 #include"GUI/Input.h"
 #include"GUI/Output.h"
-class PickAndHide:public Action
+class PickAndHide
 {
-
-	PickAndHide(ApplicationManager* pApp) :Action(pApp)
-	{
-
-	}
-	virtual CFigure* Randomize() = 0;
+	
+	
+	virtual CFigure* rRandomize() = 0;
 	
 	
 };

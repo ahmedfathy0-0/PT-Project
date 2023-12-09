@@ -10,6 +10,8 @@
 #include "Actions\DeleteAction.h"
 #include "Actions\MoveFigure.h"
 #include "Actions\LoadAction.h"
+#include"PickByFig.h"
+
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -143,9 +145,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 		switch (ActTypeForPickndHide)
 		{
 		case PICKBYFIG:
-			pOut->PrintMessage("You Chose to Select by Figure");
-
-
+			pAct = new PickByFig(this);
 			break;
 
 		case PICKBYCOL:
