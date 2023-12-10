@@ -24,35 +24,51 @@ CFigure* PickByFig::Randomize()
 		if (dynamic_cast<CCircle*>(ptrRandom))
 		{
 		pOut->PrintMessage("Pick all the Circles!");
+		FigureToPick = Circle;
 		return ptrRandom;
 		}
 		if (dynamic_cast<CHexagon*>(ptrRandom))
 		{
 			pOut->PrintMessage("Pick all the Hexagons!");
+			FigureToPick = Hexagon;
 			return ptrRandom;
 		}
 		if (dynamic_cast<CRectangle*>(ptrRandom))
 		{
 			pOut->PrintMessage("Pick all the Rectangles!");
+			FigureToPick = Rectangle;
 			return ptrRandom;
 		}
 		if (dynamic_cast<CSquare*>(ptrRandom))
 		{
 			pOut->PrintMessage("Pick all the Squares!");
+			FigureToPick = Square;
 			return ptrRandom;
 		}
 		if (dynamic_cast<CTriangle*>(ptrRandom))
 		{
 			pOut->PrintMessage("Pick all the Triangles!");
+			FigureToPick = Triangle;
 			return ptrRandom;
 		}
 }
+
+
+
 void PickByFig::Execute()
 {
-	Randomize();
+	int RightCounter = 0;
+	int WrongCounter = 0;
+	CFigure*ptrRandom= Randomize();
+	
+	ReadActionParameters();
 }
+
+
+
 void PickByFig::ReadActionParameters()
 {
-
+	Input* pIn = pManager->GetInput();
+	pIn->GetPointClicked(P.x, P.y);
 }
 	
