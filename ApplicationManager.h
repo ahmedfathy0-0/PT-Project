@@ -16,11 +16,12 @@ private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
-	CFigure* SelectedFig; //Pointer to the selected figure
 
 	//Pointers to Input and Output classes
 	Input* pIn;
 	Output* pOut;
+	bool IsRecording;
+	ofstream Recordfile;
 
 public:
 	ApplicationManager();
@@ -33,19 +34,21 @@ public:
 	int GetFigCount();
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
+	void Changefigurecolor(color, int);//the integer here represent the type of change color 
+	//if = 0 change draw color if =1 change fillcolor if =-1 change both 
 	void SaveAll(ofstream& OutFile) const;
 	void Clearall();
 	void deletefigure();
-	void Changefigurecolor(color,int);//the integer here represent the type of change color 
-	                                  //if = 0 change draw color if =1 change fillcolor if =-1 change both 
 	void movefigure(Point New);
+	// functions for the Start,Stop,and Play Record  action//
+	void StartRecord(string) ;
 
 	// functions for the select action//
 	CFigure* GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	void IsInsideFigure(CFigure* pFig);
 	void SetSelectedFigure(CFigure* pFig);
 	CFigure* GetSelectedFigure() const;
-	void deselectall() const;
+	void deselectall() ;
 
 	// -- Interface Management Functions
 	Input* GetInput() const; //Return pointer to the input

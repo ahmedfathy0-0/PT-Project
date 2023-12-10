@@ -10,6 +10,7 @@
 #include "Actions\DeleteAction.h"
 #include "Actions\MoveFigure.h"
 #include "Actions\LoadAction.h"
+#include "Actions\StartRecordingAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -18,10 +19,13 @@ ApplicationManager::ApplicationManager()
 	pIn = pOut->CreateInput();
 
 	FigCount = 0;
-	SelectedFig = NULL;
+
 	//Create an array of figure pointers and set them to NULL		
 	for (int i = 0; i < MaxFigCount; i++)
 		FigList[i] = NULL;
+	IsRecording = false;
+	//create Record File
+
 }
 
 //==================================================================================//
@@ -164,23 +168,35 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 
 
 	case STARTRECORDING:
-		if (pOut->getcount() % 2 == 0) {
-			pOut->incrementcount();
+		if (!IsRecording) {
+			if (FigCount == 0) {
+		
 			pOut->PrintMessage("Action: START RECORDING, Click anywhere");
 			pOut->CreateENDRECORDING();
+			IsRecording = true;
+			pAct = new StartRecordingAction(this);
+		}
+			else {
+				pOut->PrintMessage("Please Clear all first");
+			}
 		}
 		break;
 
 	case ENDRECORDING:
-		if (pOut->getcount() % 2 != 0) {
-			pOut->incrementcount();
+		if (IsRecording) {
+
 			pOut->PrintMessage("Action: END RECORDING, Click anywhere");
 			pOut->CreateSTARTRECORDING();
+			IsRecording = false;
+			pAct = new StartRecordingAction(this);
+
 		}
 		break;
 
 	case PLAYRECORDING:
-		pOut->PrintMessage("Action: PLAY RECORDING, Click anywhere");
+		if (!IsRecording) {
+			pOut->PrintMessage("Action: PLAY RECORDING, Click anywhere");
+		}
 		break;
 
 	case CHANGEDRAWCOLOR:
@@ -406,9 +422,13 @@ int ApplicationManager::GetFigCount()
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
-	if (FigCount < MaxFigCount)
+	if (FigCount < MaxFigCount) {
 		FigList[FigCount++] = pFig;
+	}
 	pFig->setID(FigCount);
+	if (IsRecording)
+		pFig->StartEndRecord(Recordfile);
+
 
 }
 ////////////////////////////////////////////////////////////////////////////////////
@@ -429,16 +449,19 @@ CFigure* ApplicationManager::GetFigure(int x, int y) const
 
 
 void ApplicationManager::SetSelectedFigure(CFigure* pFig) {
-	SelectedFig = pFig;
+
+		if (IsRecording)
+			pFig->StartEndRecord(Recordfile);
+
 }
 
-CFigure* ApplicationManager::GetSelectedFigure() const {
-	return SelectedFig;
-}
 
-void ApplicationManager::deselectall() const {
+
+void ApplicationManager::deselectall()  {
 	for (int i = 0; i < FigCount; i++) {
 		FigList[i]->SetSelected(false);
+		if (IsRecording)
+			FigList[i]->StartEndRecord(Recordfile);
 	}
 }
 
@@ -465,9 +488,13 @@ void ApplicationManager::deletefigure()
 			delete FigList[i];
 			FigList[i] = FigList[FigCount-1];
 			FigList[i]->setID(i + 1);
+			if(FigList[i]!=NULL)
+			if (IsRecording)
+				FigList[i]->StartEndRecord(Recordfile);
 			FigCount--;
 			FigList[FigCount] = NULL;
 			flag = false;
+
 		}
 }
 void ApplicationManager::Changefigurecolor(color c,int type)
@@ -487,14 +514,29 @@ void ApplicationManager::Changefigurecolor(color c,int type)
 			FigList[i]->ChngFillClr(c);
 			FigList[i]->ChngDrawClr(c);
 		}
+		if (IsRecording)
+		FigList[i]->StartEndRecord(Recordfile);
 		flag = false;
 	}
 }
 void ApplicationManager::movefigure(Point New)
 {
-	for (int i = 0; i < FigCount; i++)
-		if (FigList[i]->IsSelected())
+	for (int i = 0; i < FigCount; i++) {
+		if (FigList[i]->IsSelected()){
 			FigList[i]->Move(New);
+			if (IsRecording)
+			FigList[i]->StartEndRecord(Recordfile);
+	}
+
+}
+
+}
+void ApplicationManager::StartRecord(string filename) 
+{
+	if (IsRecording)
+		Recordfile.open(filename);
+	else
+		Recordfile.close();
 }
 //==================================================================================//
 //							Interface Management Functions							//
@@ -505,6 +547,7 @@ void ApplicationManager::movefigure(Point New)
 void ApplicationManager::UpdateInterface() const
 {
 	pOut->ClearDrawArea();
+	
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 }

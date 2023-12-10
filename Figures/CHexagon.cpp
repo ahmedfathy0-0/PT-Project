@@ -93,6 +93,22 @@ void CHexagon::Load(ifstream& Infile)
 		FigGfxInfo.FillClr = getClr(clr);
 }
 
+void CHexagon::StartEndRecord(ofstream& OutFile)
+{
+	OutFile << "HEXAGN" << "     ";
+	OutFile << ID << "     ";
+	OutFile << Center.x << "     ";
+	OutFile << Center.y << "     ";
+	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
+	if (FigGfxInfo.isFilled)
+		OutFile << getClr(FigGfxInfo.FillClr) << "     ";
+	else
+		OutFile << "NO_FILL" << "     ";
+	if (this->IsSelected())
+		OutFile << "SELECTED" << endl;
+	else
+		OutFile << "NOT_SELECTED" << endl;
+}
 CHexagon::~CHexagon() {
 	delete[] x;
 	delete[] y;

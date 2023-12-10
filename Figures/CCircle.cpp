@@ -66,6 +66,27 @@ void CCircle::Load(ifstream& Infile)
 		FigGfxInfo.FillClr = getClr(clr);
 }
 
+void CCircle::StartEndRecord(ofstream& OutFile)
+{
+	OutFile << "CIRCLE" << "     ";
+	OutFile << ID << "     ";
+	OutFile << Center.x << "     ";
+	OutFile << Center.y << "     ";
+	OutFile << point.x << "     ";
+	OutFile << point.y << "     ";
+	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
+	if (FigGfxInfo.isFilled)
+		OutFile << getClr(FigGfxInfo.FillClr) << "     ";
+	else
+		OutFile << "NO_FILL" << "     ";
+	if(this->IsSelected())
+		OutFile << "SELECTED" << endl;
+	else 
+		OutFile << "NOT_SELECTED" << endl;
+
+
+}
+
 /*void CCircle::PrintInfo(Output* pOut) const {
 	string message = "Circle, Center = (" + to_string(Center.x) + "," + to_string(Center.y)
 		+ "), Radius: " + to_string(int(CalculateDistance(Center,point)));

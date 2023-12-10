@@ -1,7 +1,7 @@
 #include "SelectOneAction.h"
 #include "iostream"
 using namespace std;
-
+#include "..\Figures\CFigure.h"
 SelectOneAction::SelectOneAction(ApplicationManager* pApp) :Action(pApp) {
 
 }
@@ -18,13 +18,14 @@ void SelectOneAction::ReadActionParameters() {
 void SelectOneAction::Execute() {
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
-	pManager->SetSelectedFigure(pManager->GetFigure(P.x, P.y));
-	if (pManager->GetSelectedFigure() != NULL) {
-		if (pManager->GetSelectedFigure()->IsSelected()) pManager->GetSelectedFigure()->SetSelected(false);
+	CFigure* pFig = pManager->GetFigure(P.x, P.y);
+	if (pFig != NULL) {
+		if (pFig->IsSelected()) { pFig->SetSelected(false); }
 		else {
 			pManager->deselectall();
-			pManager->GetSelectedFigure()->SetSelected(true);
+			pFig->SetSelected(true);
 			//pManager->GetSelectedFigure()->PrintInfo(pOut);
 		}
+		pManager->SetSelectedFigure(pFig);
 	}
 }

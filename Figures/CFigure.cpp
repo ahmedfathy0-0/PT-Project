@@ -61,4 +61,12 @@ color CFigure::getClr(string Dclr)
 	else if (Dclr == "BLUE")
 		return BLUE;
 }
+bool CFigure::getselected(string select)
+{
+	if (select == "SELECTED")
+		return 1;
+	else if (select == "NOT_SELECTED")
+		return 0;
+
+}
 

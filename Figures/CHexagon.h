@@ -16,6 +16,9 @@ public:
 	virtual void Move(Point);
 	virtual void Save(ofstream& OutFile);
 	virtual void Load(ifstream& Infile);
+	virtual void StartEndRecord(ofstream& OutFile) ;
+
+
 	//virtual void PrintInfo(Output*) const;
 	~CHexagon();
 };

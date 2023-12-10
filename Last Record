@@ -1,0 +1,11 @@
+SQUARE     1     460     424     BLUE     NO_FILL     NOT_SELECTED
+HEXAGN     2     830     334     BLUE     NO_FILL     NOT_SELECTED
+SQUARE     1     460     424     BLUE     NO_FILL     NOT_SELECTED
+HEXAGN     2     830     334     BLUE     NO_FILL     NOT_SELECTED
+SQUARE     1     460     424     BLUE     NO_FILL     SELECTED
+SQUARE     1     238     270     BLUE     NO_FILL     SELECTED
+SQUARE     1     238     270     GREEN     GREEN     NOT_SELECTED
+SQUARE     1     238     270     GREEN     GREEN     NOT_SELECTED
+HEXAGN     2     830     334     BLUE     NO_FILL     NOT_SELECTED
+SQUARE     1     238     270     GREEN     GREEN     SELECTED
+HEXAGN     1     830     334     BLUE     NO_FILL     NOT_SELECTED

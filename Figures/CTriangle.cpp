@@ -83,6 +83,27 @@ void CTriangle::Load(ifstream& Infile)
 		FigGfxInfo.FillClr = getClr(clr);
 }
 
+void CTriangle::StartEndRecord(ofstream& OutFile)
+{
+	OutFile << "TRIANG" << "     ";
+	OutFile << ID << "     ";
+	OutFile << Corner1.x << "     ";
+	OutFile << Corner1.y << "     ";
+	OutFile << Corner2.x << "     ";
+	OutFile << Corner2.y << "     ";
+	OutFile << Corner3.x << "     ";
+	OutFile << Corner3.y << "     ";
+	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
+	if (FigGfxInfo.isFilled)
+		OutFile << getClr(FigGfxInfo.FillClr) << "     ";
+	else
+		OutFile << "NO_FILL" << "     ";
+	if (this->IsSelected())
+		OutFile << "SELECTED" << endl;
+	else
+		OutFile << "NOT_SELECTED" << endl;
+}
+
 /*void CTriangle::PrintInfo(Output* pOut) const {
 	string message = "Triangle: Corner 1= (" + to_string(Corner1.x) + "," + to_string(Corner1.y)
 		+ "), Corner 2= (" + to_string(Corner2.x) + "," + to_string(Corner2.y) + "), Corner 3= (" + to_string(Corner3.x)

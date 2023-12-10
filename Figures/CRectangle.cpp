@@ -71,6 +71,25 @@ void CRectangle::Load(ifstream& Infile)
 		FigGfxInfo.FillClr = getClr(clr);
 }
 
+void CRectangle::StartEndRecord(ofstream& OutFile)
+{
+	OutFile << "RECTAN" << "     ";
+	OutFile << ID << "     ";
+	OutFile << Corner1.x << "     ";
+	OutFile << Corner1.y << "     ";
+	OutFile << Corner2.x << "     ";
+	OutFile << Corner2.y << "     ";
+	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
+	if (FigGfxInfo.isFilled)
+		OutFile << getClr(FigGfxInfo.FillClr) << "     ";
+	else
+		OutFile << "NO_FILL" << "     ";
+	if (this->IsSelected())
+		OutFile << "SELECTED" << endl;
+	else
+		OutFile << "NOT_SELECTED" << endl;
+}
+
 /*void CRectangle::PrintInfo(Output* pOut) const {
 	string message = "Rectangle: Corner 1= (" + to_string(Corner1.x) + "," + to_string(Corner1.y)
 		+ "), Corner 2= (" + to_string(Corner2.x) + "," + to_string(Corner2.y) + ")";

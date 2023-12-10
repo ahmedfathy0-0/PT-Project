@@ -61,6 +61,23 @@ void CSquare::Load(ifstream& Infile)
 		FigGfxInfo.FillClr = getClr(clr);
 }
 
+void CSquare::StartEndRecord(ofstream& OutFile)
+{
+	OutFile << "SQUARE" << "     ";
+	OutFile << ID << "     ";
+	OutFile << Centre.x << "     ";
+	OutFile << Centre.y << "     ";
+	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
+	if (FigGfxInfo.isFilled)
+		OutFile << getClr(FigGfxInfo.FillClr) << "     ";
+	else
+		OutFile << "NO_FILL" << "     ";
+	if (this->IsSelected())
+		OutFile << "SELECTED" << endl;
+	else
+		OutFile << "NOT_SELECTED" << endl;;
+}
+
 /*void CSquare::PrintInfo(Output* pOut) const {
 	string message = "Circle: Centre= (" + to_string(Centre.x) + " ," + to_string(Centre.y) + " )";
 	pOut->PrintMessage(message);
