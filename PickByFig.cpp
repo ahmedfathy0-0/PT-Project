@@ -58,9 +58,97 @@ CFigure* PickByFig::RandomizeFig()
 
 void PickByFig::Execute()
 {
+	CFigure* Clicked;
 	int RightCounter = 0;
 	int WrongCounter = 0;
 	 RandomizeFig();
+	 while (RightCounter<=pManager->RandomizedFigCount(ptrRandom))
+	 {
+		 switch (ptrRandom->type())
+		 {
+		 case circle:
+			 ReadActionParameters();
+			  Clicked = pManager->GetFigure(P.x, P.y);
+			 if (Clicked == NULL)
+			 {
+
+			 }
+			 else if (Clicked->type() == circle)
+			 {
+				 RightCounter++;
+
+			 }
+			 else
+			 {
+				 WrongCounter++;
+			 }
+			 break;
+		 case hexagon:
+			 ReadActionParameters();
+			  Clicked = pManager->GetFigure(P.x, P.y);
+			 if (Clicked == NULL)
+			 {
+
+			 }
+			 else if (Clicked->type() == hexagon)
+			 {
+				 RightCounter++;
+			 }
+			 else
+			 {
+				 WrongCounter++;
+			 }
+			 break;
+		 case rectangle:
+			 ReadActionParameters();
+			  Clicked = pManager->GetFigure(P.x, P.y);
+			 if (Clicked == NULL)
+			 {
+
+			 }
+			 else if (Clicked->type() == rectangle)
+			 {
+				 RightCounter++;
+			 }
+			 else
+			 {
+				 WrongCounter++;
+			 }
+			 break;
+		 case square:
+			 ReadActionParameters();
+			  Clicked = pManager->GetFigure(P.x, P.y);
+			 if (Clicked == NULL)
+			 {
+
+			 }
+			 else if (Clicked->type() == square)
+			 {
+				 RightCounter++;
+			 }
+			 else
+			 {
+				 WrongCounter++;
+			 }
+			 break;
+		 case triangle:
+			 ReadActionParameters();
+			  Clicked = pManager->GetFigure(P.x, P.y);
+			 if (Clicked == NULL)
+			 {
+
+			 }
+			 else if (Clicked->type() == triangle)
+			 {
+				 RightCounter++;
+			 }
+			 else
+			 {
+				 WrongCounter++;
+			 }
+			 break;
+		 }
+	 }
 
 	
 

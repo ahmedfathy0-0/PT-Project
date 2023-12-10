@@ -546,12 +546,12 @@ CFigure* ApplicationManager::GetFigByIndex(int i)
 
 
 
-int ApplicationManager:: RandomizedFigCount()
+int ApplicationManager::RandomizedFigCount(CFigure*p)
 {
 	int count = 0;
-	for(int i=0;i<GetFigCount();i++)
+	for (int i = 0; i < GetFigCount(); i++)
 	{
-		if (FigList[i]->type())
+		if (FigList[i]->type() == p->type())
 		{
 			count++;
 		}

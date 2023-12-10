@@ -57,7 +57,7 @@ public:
 
 	//Functions for PickAndHide
 	CFigure* GetFigByIndex(int i);
-	int RandomizedFigCount();
+	int RandomizedFigCount(CFigure*);
 	
 };
 
