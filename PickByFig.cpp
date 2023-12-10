@@ -19,7 +19,7 @@ CFigure* PickByFig::Randomize()
 		return NULL;
 	}
 	srand(time(0));
-	int Random_Index = rand() % ((pManager->GetFigCount() + 1));
+	int Random_Index = rand() % (pManager->GetFigCount());
 	CFigure* ptrRandom = pManager->GetFigByIndex(Random_Index);
 		if (dynamic_cast<CCircle*>(ptrRandom))
 		{
@@ -59,9 +59,11 @@ void PickByFig::Execute()
 {
 	int RightCounter = 0;
 	int WrongCounter = 0;
-	CFigure*ptrRandom= Randomize();
+	 Randomize();
+
 	
-	ReadActionParameters();
+
+	
 }
 
 
