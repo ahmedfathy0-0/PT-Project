@@ -11,6 +11,8 @@
 #include "Actions\MoveFigure.h"
 #include "Actions\LoadAction.h"
 #include "Actions\StartRecordingAction.h"
+#include"PickByFig.h"
+
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -147,9 +149,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 		switch (ActTypeForPickndHide)
 		{
 		case PICKBYFIG:
-			pOut->PrintMessage("You Chose to Select by Figure");
-
-
+			pAct = new PickByFig(this);
 			break;
 
 		case PICKBYCOL:
@@ -537,6 +537,11 @@ void ApplicationManager::StartRecord(string filename)
 		Recordfile.open(filename);
 	else
 		Recordfile.close();
+}
+
+CFigure* ApplicationManager::GetFigByIndex(int i)
+{
+	return FigList[i];
 }
 //==================================================================================//
 //							Interface Management Functions							//
