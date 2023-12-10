@@ -10,6 +10,7 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(Figur
 	Corner2 = P2;
 	Center.x = (Corner1.x + Corner2.x) / 2;
 	Center.y = (Corner1.y + Corner2.y) / 2;
+	figtype = rectangle;
 }
 
 

@@ -8,6 +8,7 @@ CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) : CFigure(FigureGfxI
 {
 	Center = P1;
 	point = P2;
+	figtype = circle;
 }
 
 

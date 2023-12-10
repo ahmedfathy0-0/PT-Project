@@ -8,20 +8,14 @@
 class PickByFig :public Action
 {private:
 	Point P;
-	enum WhichFigFromRandom
-	{
-		Circle,
-		Hexagon,
-		Rectangle,
-		Square,
-		Triangle
-	};
-	WhichFigFromRandom FigureToPick;
+	CFigure* ptrRandom;
+	FigureType FigureToPick;
 public:
 	PickByFig(ApplicationManager* pApp);
 	
-	CFigure* Randomize();
+	CFigure* RandomizeFig();
 	virtual void ReadActionParameters();
 	virtual void Execute();
+	
 };
 

@@ -543,6 +543,21 @@ CFigure* ApplicationManager::GetFigByIndex(int i)
 {
 	return FigList[i];
 }
+
+
+
+int ApplicationManager:: RandomizedFigCount()
+{
+	int count = 0;
+	for(int i=0;i<GetFigCount();i++)
+	{
+		if (FigList[i]->type())
+		{
+			count++;
+		}
+	}
+	return count;
+}
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//

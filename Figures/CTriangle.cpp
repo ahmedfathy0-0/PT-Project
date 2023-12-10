@@ -11,6 +11,7 @@ CTriangle::CTriangle(Point P1, Point P2,Point P3,GfxInfo FigureGfxInfo) :CFigure
 	Corner3 = P3;
 	Center.x = (Corner1.x + Corner2.x + Corner3.x) / 3;
 	Center.y = (Corner1.y + Corner2.y + Corner3.y) / 3;
+	figtype = triangle;
 }
 void CTriangle::Draw(Output* pOut) const
 {

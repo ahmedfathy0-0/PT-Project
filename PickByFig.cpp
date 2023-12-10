@@ -5,12 +5,13 @@
 #include"Figures/CSquare.h"
 #include"Figures/CTriangle.h"
 #include"Actions/Action.h"
+#include"DEFS.h"
 PickByFig::PickByFig(ApplicationManager* papp) :Action(papp)
 {
 
 }
 
-CFigure* PickByFig::Randomize()
+CFigure* PickByFig::RandomizeFig()
 {
 	Output* pOut = pManager->GetOutput();
 	if (pManager->GetFigCount() == 0)
@@ -20,35 +21,35 @@ CFigure* PickByFig::Randomize()
 	}
 	srand(time(0));
 	int Random_Index = rand() % (pManager->GetFigCount());
-	CFigure* ptrRandom = pManager->GetFigByIndex(Random_Index);
-		if (dynamic_cast<CCircle*>(ptrRandom))
+	 ptrRandom = pManager->GetFigByIndex(Random_Index);
+		if (ptrRandom->type()==circle)
 		{
 		pOut->PrintMessage("Pick all the Circles!");
-		FigureToPick = Circle;
+		FigureToPick = circle;
 		return ptrRandom;
 		}
-		if (dynamic_cast<CHexagon*>(ptrRandom))
+		if (ptrRandom->type()==hexagon)
 		{
 			pOut->PrintMessage("Pick all the Hexagons!");
-			FigureToPick = Hexagon;
+			FigureToPick = hexagon;
 			return ptrRandom;
 		}
-		if (dynamic_cast<CRectangle*>(ptrRandom))
+		if (ptrRandom->type()==rectangle)
 		{
 			pOut->PrintMessage("Pick all the Rectangles!");
-			FigureToPick = Rectangle;
+			FigureToPick = rectangle;
 			return ptrRandom;
 		}
-		if (dynamic_cast<CSquare*>(ptrRandom))
+		if (ptrRandom->type()==square)
 		{
 			pOut->PrintMessage("Pick all the Squares!");
-			FigureToPick = Square;
+			FigureToPick = square;
 			return ptrRandom;
 		}
-		if (dynamic_cast<CTriangle*>(ptrRandom))
+		if (ptrRandom->type()==triangle)
 		{
 			pOut->PrintMessage("Pick all the Triangles!");
-			FigureToPick = Triangle;
+			FigureToPick = triangle;
 			return ptrRandom;
 		}
 }
@@ -59,7 +60,7 @@ void PickByFig::Execute()
 {
 	int RightCounter = 0;
 	int WrongCounter = 0;
-	 Randomize();
+	 RandomizeFig();
 
 	
 

@@ -8,6 +8,7 @@ class CCircle : public CFigure
 private:
 	Point Center;
 	Point point;//Point at the circle
+	
 public:
 	CCircle();
 	CCircle(Point,Point, GfxInfo FigureGfxInfo);

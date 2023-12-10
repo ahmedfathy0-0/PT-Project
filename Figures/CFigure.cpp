@@ -31,6 +31,11 @@ void CFigure::setID(int i)
 	ID = i;
 }
 
+int CFigure::type()
+{
+	return figtype;
+}
+
 string CFigure::getClr(color Dclr)
 {
 	if (Dclr == BLACK)
