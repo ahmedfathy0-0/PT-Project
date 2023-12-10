@@ -188,7 +188,6 @@
     <ClCompile Include="Actions\LoadAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="PickAndHide.cpp" />
     <ClCompile Include="PickByFig.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -317,7 +316,6 @@
     <ClInclude Include="Actions\LoadAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
-    <ClInclude Include="PickAndHide.h" />
     <ClInclude Include="PickByFig.h" />
   </ItemGroup>
   <ItemGroup>
