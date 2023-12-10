@@ -57,7 +57,8 @@ CFigure* PickByFig::RandomizeFig()
 
 
 void PickByFig::Execute()
-{
+{	
+	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	CFigure* Clicked;
 	int RightCounter = 0;
@@ -72,6 +73,7 @@ void PickByFig::Execute()
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
+				 pOut->PrintMessage("You clicked on an empty area...Please pick Circles:))");
 
 			 }
 			 else if (Clicked->type() == circle)
@@ -90,11 +92,12 @@ void PickByFig::Execute()
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
-
+				 pOut->PrintMessage("You clicked on an empty area...Please pick Hexagons:))");
 			 }
 			 else if (Clicked->type() == hexagon)
 			 {
 				 RightCounter++;
+				 Clicked->IsHidden(true);
 			 }
 			 else
 			 {
@@ -106,11 +109,12 @@ void PickByFig::Execute()
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
-
+				 pOut->PrintMessage("You clicked on an empty area...Please pick Rectangles:))");
 			 }
 			 else if (Clicked->type() == rectangle)
 			 {
 				 RightCounter++;
+				 Clicked->IsHidden(true);
 			 }
 			 else
 			 {
@@ -122,11 +126,12 @@ void PickByFig::Execute()
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
-
+				 pOut->PrintMessage("You clicked on an empty area...Please pick Squares:))");
 			 }
 			 else if (Clicked->type() == square)
 			 {
 				 RightCounter++;
+				 Clicked->IsHidden(true);
 			 }
 			 else
 			 {
@@ -138,11 +143,12 @@ void PickByFig::Execute()
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
-
+				 pOut->PrintMessage("You clicked on an empty area...Please pick Triangles:))");
 			 }
 			 else if (Clicked->type() == triangle)
 			 {
 				 RightCounter++;
+				 Clicked->IsHidden(true);
 			 }
 			 else
 			 {
