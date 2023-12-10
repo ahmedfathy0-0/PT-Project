@@ -58,11 +58,12 @@ CFigure* PickByFig::RandomizeFig()
 
 void PickByFig::Execute()
 {
+	Input* pIn = pManager->GetInput();
 	CFigure* Clicked;
 	int RightCounter = 0;
 	int WrongCounter = 0;
 	 RandomizeFig();
-	 while (RightCounter<=pManager->RandomizedFigCount(ptrRandom))
+	 while (RightCounter<pManager->RandomizedFigCount(ptrRandom))
 	 {
 		 switch (ptrRandom->type())
 		 {
@@ -76,7 +77,8 @@ void PickByFig::Execute()
 			 else if (Clicked->type() == circle)
 			 {
 				 RightCounter++;
-
+				 Clicked->IsHidden(true);
+				 
 			 }
 			 else
 			 {
@@ -148,6 +150,7 @@ void PickByFig::Execute()
 			 }
 			 break;
 		 }
+		 
 	 }
 
 	

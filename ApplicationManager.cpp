@@ -125,6 +125,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 	case TO_DRAW:
 		pOut->PrintMessage("Action: Switch to Draw Mode, creating simualtion tool bar");
 		pOut->CreateDrawToolBar();
+		for (int i = 0; i < GetFigCount(); i++)
+		{
+			FigList[i]->IsHidden(false);
+		}
 		break;
 
 	case TO_PLAY:
@@ -567,9 +571,13 @@ int ApplicationManager::RandomizedFigCount(CFigure*p)
 void ApplicationManager::UpdateInterface() const
 {
 	pOut->ClearDrawArea();
-	
+
 	for (int i = 0; i < FigCount; i++)
-		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
+		if(!(FigList[i]->GetHiddenStatus()))
+		{
+			FigList[i]->Draw(pOut);//Call Draw function (virtual member fn)
+
+		}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////

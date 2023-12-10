@@ -4,6 +4,7 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
+	isHidden = false;
 }
 
 void CFigure::SetSelected(bool s)
@@ -73,5 +74,14 @@ bool CFigure::getselected(string select)
 	else if (select == "NOT_SELECTED")
 		return 0;
 
+}
+void CFigure::IsHidden(bool b)
+{
+	isHidden = b;
+}
+
+bool CFigure::GetHiddenStatus()
+{
+	return isHidden;
 }
 
