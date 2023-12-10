@@ -6,6 +6,7 @@
 #include"Figures/CTriangle.h"
 #include"Actions/Action.h"
 #include"DEFS.h"
+#include<cstring>
 PickByFig::PickByFig(ApplicationManager* papp) :Action(papp)
 {
 
@@ -66,6 +67,17 @@ void PickByFig::Execute()
 	 RandomizeFig();
 	 while (RightCounter<pManager->RandomizedFigCount(ptrRandom))
 	 {
+		 
+		 if (pIn->GetUserAction() == TO_DRAW)
+		 {
+			 pManager->UnHideFigures();
+			 pManager->UpdateInterface();
+			 RightCounter = 0;
+			 WrongCounter = 0;
+			 RandomizeFig();
+		 }
+		 
+		 
 		 switch (ptrRandom->type())
 		 {
 		 case circle:
@@ -80,7 +92,7 @@ void PickByFig::Execute()
 			 {
 				 RightCounter++;
 				 Clicked->IsHidden(true);
-				 
+				 pManager->UpdateInterface();
 			 }
 			 else
 			 {
@@ -98,6 +110,7 @@ void PickByFig::Execute()
 			 {
 				 RightCounter++;
 				 Clicked->IsHidden(true);
+				 pManager->UpdateInterface();
 			 }
 			 else
 			 {
@@ -115,6 +128,7 @@ void PickByFig::Execute()
 			 {
 				 RightCounter++;
 				 Clicked->IsHidden(true);
+				 pManager->UpdateInterface();
 			 }
 			 else
 			 {
@@ -132,6 +146,7 @@ void PickByFig::Execute()
 			 {
 				 RightCounter++;
 				 Clicked->IsHidden(true);
+				 pManager->UpdateInterface();
 			 }
 			 else
 			 {
@@ -149,6 +164,7 @@ void PickByFig::Execute()
 			 {
 				 RightCounter++;
 				 Clicked->IsHidden(true);
+				 pManager->UpdateInterface();
 			 }
 			 else
 			 {
@@ -156,8 +172,9 @@ void PickByFig::Execute()
 			 }
 			 break;
 		 }
-		 
+		  
 	 }
+
 
 	
 

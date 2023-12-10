@@ -58,6 +58,8 @@ public:
 	//Functions for PickAndHide
 	CFigure* GetFigByIndex(int i);
 	int RandomizedFigCount(CFigure*);
+	void UnHideFigures();
+	bool CheckForFillColor();
 	
 };
 

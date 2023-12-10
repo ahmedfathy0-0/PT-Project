@@ -7,17 +7,15 @@
 #include"Figures/CFigure.h"
 #include"DEFS.h";
 #include<cstring>
-class PickByFig :public Action
-{private:
+class PickByFillClr:public Action
+{
 	Point P;
 	CFigure* ptrRandom;
-	FigureType FigureToPick;
 public:
-	PickByFig(ApplicationManager* pApp);
-	
-	CFigure* RandomizeFig();
+	PickByFillClr(ApplicationManager* pApp);
+
+	CFigure* RandomizeClr();
 	virtual void ReadActionParameters();
 	virtual void Execute();
-	
 };
 

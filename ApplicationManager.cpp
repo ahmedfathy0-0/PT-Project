@@ -125,10 +125,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 	case TO_DRAW:
 		pOut->PrintMessage("Action: Switch to Draw Mode, creating simualtion tool bar");
 		pOut->CreateDrawToolBar();
-		for (int i = 0; i < GetFigCount(); i++)
-		{
-			FigList[i]->IsHidden(false);
-		}
+		UnHideFigures();
 		break;
 
 	case TO_PLAY:
@@ -451,6 +448,13 @@ CFigure* ApplicationManager::GetFigure(int x, int y) const
 	return NULL;
 }
 
+void ApplicationManager::UnHideFigures()
+{
+	for (int i = 0; i < GetFigCount(); i++)
+	{
+		FigList[i]->IsHidden(false);
+	}
+}
 
 void ApplicationManager::SetSelectedFigure(CFigure* pFig) {
 
@@ -562,6 +566,19 @@ int ApplicationManager::RandomizedFigCount(CFigure*p)
 	}
 	return count;
 }
+
+bool ApplicationManager::CheckForFillColor()
+{
+	for (int i = 0; i < GetFigCount(); i++)
+	{
+		if (FigList[i]->isfilled())
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//

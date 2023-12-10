@@ -23,6 +23,11 @@ void CFigure::ChngFillClr(color Fclr)
 
 }
 
+bool CFigure::isfilled()
+{
+	return FigGfxInfo.isFilled;
+}
+
 double CFigure::CalculateDistance(Point P1, Point P2) const{
 	return sqrt(pow((P1.x - P2.x), 2) + pow((P1.y - P2.y), 2));
 }
