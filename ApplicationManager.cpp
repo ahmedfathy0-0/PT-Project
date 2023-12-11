@@ -123,9 +123,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 		break;
 
 	case TO_DRAW:
+		
 		pOut->PrintMessage("Action: Switch to Draw Mode, creating simualtion tool bar");
 		pOut->CreateDrawToolBar();
 		UnHideFigures();
+		
 		break;
 
 	case TO_PLAY:
@@ -163,8 +165,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 			break;
 		}
 
-		pOut->deletePickAndHideToolbar();
-		UI.conDforPicknHide = false;
+		//pOut->deletePickAndHideToolbar();
 		break;
 
 

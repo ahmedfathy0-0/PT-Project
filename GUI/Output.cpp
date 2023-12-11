@@ -167,11 +167,8 @@ void Output::CreatePlayToolBar() const
 
 void Output::CreatePickAndHideToolbar() const
 {
-	UI.InterfaceMode = MODE_PLAY;
-	pWind->SetBrush(WHITE);
-	pWind->SetPen(WHITE, 1);
-	pWind->DrawRectangle(0, UI.ToolBarHeight, UI.PickandHidetoolbarwidth, UI.PickandHidetoolbarheight);
-
+	
+	CreatePlayToolBar();
 	string PickAndHideImages[PICKANDHIDECOUNT];
 	PickAndHideImages[ITM_PICKBYFIGURE] = "images\\MenuItems\\pickbyfig.jpg";
 	PickAndHideImages[ITM_PICKBYCOLOR] = "images\\MenuItems\\ChangeColor.jpg";
@@ -179,16 +176,16 @@ void Output::CreatePickAndHideToolbar() const
 
 	for (int i = 0; i < PICKANDHIDECOUNT; i++)
 	{
-		pWind->DrawImage(PickAndHideImages[i], i * UI.MenuItemWidth, UI.ToolBarHeight, UI.MenuItemWidth, UI.PickandHidetoolbarheight / 2);
+		pWind->DrawImage(PickAndHideImages[i], ((i+2) * UI.MenuItemWidth) + 5, 5, UI.MenuItemWidth - 5, UI.ToolBarHeight - 10);
 	}
 
 }
 
 void Output::deletePickAndHideToolbar() const
 {
-	pWind->SetPen(UI.BkGrndColor, 1);
-	pWind->SetBrush(UI.BkGrndColor);
-	pWind->DrawRectangle(0, UI.ToolBarHeight, UI.PickandHidetoolbarwidth, UI.ToolBarHeight + UI.PickandHidetoolbarheight);
+//	pWind->SetPen(UI.BkGrndColor, 1);
+	//pWind->SetBrush(UI.BkGrndColor);
+	//pWind->DrawRectangle(0, UI.ToolBarHeight, UI.PickandHidetoolbarwidth, UI.ToolBarHeight + UI.PickandHidetoolbarheight);
 }
 
 void Output::ClearDrawArea() const

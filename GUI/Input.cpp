@@ -113,8 +113,9 @@ ActionType Input::GetUserAction() const
 		//perform checks similar to Draw mode checks above
 		//and return the correspoding action
 
-		if (y >= 0 && y < UI.ToolBarHeight)
+		if (y >= 0 && y < UI.ToolBarHeight &&!UI.conDforPicknHide)
 		{
+			
 			int ClickedItemOrder = x / UI.MenuItemWidth;
 			switch (ClickedItemOrder)
 			{
@@ -123,10 +124,10 @@ ActionType Input::GetUserAction() const
 			default:return EMPTY_PLAYTOOLBAR;
 			}
 		}
-		if (y >= UI.ToolBarHeight && y <= UI.PickandHidetoolbarheight && UI.conDforPicknHide)
+		if (y >= 0 && y < UI.ToolBarHeight && UI.conDforPicknHide)
 		{
 
-			int clickeditemorder = x / UI.MenuItemWidth;
+			int clickeditemorder = ((x) / UI.MenuItemWidth)-2;
 			switch (clickeditemorder)
 			{
 			case(ITM_PICKBYFIGURE):return PICKBYFIG;

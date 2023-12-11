@@ -68,7 +68,7 @@ void PickByFig::Execute()
 	 while (RightCounter<pManager->RandomizedFigCount(ptrRandom))
 	 {
 		 
-		 if (pIn->GetUserAction() == TO_DRAW)
+		 if (pIn->GetUserAction() == PICKBYFIG)
 		 {
 			 pManager->UnHideFigures();
 			 pManager->UpdateInterface();
@@ -97,6 +97,7 @@ void PickByFig::Execute()
 			 else
 			 {
 				 WrongCounter++;
+				 pOut->PrintMessage("Wrong figure....Please pick circles only:)");
 			 }
 			 break;
 		 case hexagon:
@@ -115,6 +116,7 @@ void PickByFig::Execute()
 			 else
 			 {
 				 WrongCounter++;
+				 pOut->PrintMessage("Wrong figure....Please pick hexagons only:)");
 			 }
 			 break;
 		 case rectangle:
@@ -133,6 +135,7 @@ void PickByFig::Execute()
 			 else
 			 {
 				 WrongCounter++;
+				 pOut->PrintMessage("Wrong figure....Please pick rectangles only:)");
 			 }
 			 break;
 		 case square:
@@ -151,6 +154,7 @@ void PickByFig::Execute()
 			 else
 			 {
 				 WrongCounter++;
+				 pOut->PrintMessage("Wrong figure....Please pick squares only:)");
 			 }
 			 break;
 		 case triangle:
@@ -169,14 +173,17 @@ void PickByFig::Execute()
 			 else
 			 {
 				 WrongCounter++;
+				 pOut->PrintMessage("Wrong figure....Please pick triangles only:)");
 			 }
 			 break;
 		 }
 		  
 	 }
 
-
-	
+	 UI.conDforPicknHide = false;
+	 string rightcount = to_string(RightCounter);
+	 string wrongcount = to_string(WrongCounter);
+	 pOut->PrintMessage("SCORE---------->>Right attempts: " + rightcount + " Wrong attempts: " + wrongcount);
 
 	
 }
