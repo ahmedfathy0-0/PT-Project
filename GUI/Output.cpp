@@ -13,7 +13,7 @@ Output::Output()
 	UI.wy = 5;
 	UI.SqrSize = 160;
 	UI.HexagonVertices = 6;
-	UI.HexagonSize = 160;
+	UI.HexagonSize = 100;
 
 	UI.StatusBarHeight = 60;
 	UI.ToolBarHeight = 60;
