@@ -568,6 +568,20 @@ int ApplicationManager::RandomizedFigCount(CFigure*p)
 	return count;
 }
 
+int ApplicationManager::RandomizedFillClrCount(CFigure*p)
+{
+	int count = 0;
+	for (int i = 0; i < GetFigCount(); i++)
+	{
+		if (FigList[i]->GetFillClr() == p->GetFillClr())
+		{
+			count++;
+		}
+	}
+	return count;
+
+}
+
 bool ApplicationManager::CheckForFillColor()
 {
 	for (int i = 0; i < GetFigCount(); i++)

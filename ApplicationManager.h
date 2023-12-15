@@ -60,6 +60,7 @@ public:
 	int RandomizedFigCount(CFigure*);
 	void UnHideFigures();
 	bool CheckForFillColor();
+	int RandomizedFillClrCount(CFigure*);
 	
 };
 

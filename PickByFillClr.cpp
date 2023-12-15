@@ -23,10 +23,22 @@ CFigure* PickByFillClr::RandomizeClr()
 
 void PickByFillClr::Execute()
 {
+	Output* pOut = pManager->GetOutput();
+	Input* pIn = pManager->GetInput();
+	CFigure* Clicked;
+	int RightCounter = 0;
+	int WrongCounter = 0;
+	RandomizeClr();
+	while (RightCounter < (pManager->RandomizedFillClrCount(ptrRandom)))
+	{
+
+
+	}
 
 }
 
 void PickByFillClr::ReadActionParameters()
 {
-
+	Input* pIn = pManager->GetInput();
+	pIn->GetPointClicked(P.x, P.y);
 }

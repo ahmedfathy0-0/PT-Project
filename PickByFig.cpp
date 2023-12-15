@@ -173,6 +173,8 @@ void PickByFig::Execute()
 			 else
 			 {
 				 WrongCounter++;
+				 Clicked->IsHidden(true);
+				 pManager->UpdateInterface();
 				 pOut->PrintMessage("Wrong figure....Please pick triangles only:)");
 			 }
 			 break;
