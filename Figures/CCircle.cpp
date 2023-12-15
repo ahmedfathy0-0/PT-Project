@@ -116,8 +116,8 @@ void CCircle::PlayRecord(ifstream& Infile)
 
 }
 
-/*void CCircle::PrintInfo(Output* pOut) const {
+void CCircle::PrintInfo(Output* pOut) {
 	string message = "Circle, Center = (" + to_string(Center.x) + "," + to_string(Center.y)
 		+ "), Radius: " + to_string(int(CalculateDistance(Center,point)));
 	pOut->PrintMessage(message);
-}*/
+}

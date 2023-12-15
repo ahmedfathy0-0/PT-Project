@@ -132,9 +132,9 @@ void CTriangle::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 }
 
-/*void CTriangle::PrintInfo(Output* pOut) const {
+void CTriangle::PrintInfo(Output* pOut) {
 	string message = "Triangle: Corner 1= (" + to_string(Corner1.x) + "," + to_string(Corner1.y)
 		+ "), Corner 2= (" + to_string(Corner2.x) + "," + to_string(Corner2.y) + "), Corner 3= (" + to_string(Corner3.x)
 		+ "," + to_string(Corner3.y) + ")";
 	pOut->PrintMessage(message);
-}*/
+}

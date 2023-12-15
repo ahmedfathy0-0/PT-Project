@@ -51,7 +51,7 @@ public:
 	bool isfilled();
 	color GetFillClr();
 
-	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
+	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 	void setID(int);
 	int getID ()const;
 };

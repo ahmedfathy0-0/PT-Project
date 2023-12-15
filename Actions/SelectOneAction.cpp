@@ -24,8 +24,8 @@ void SelectOneAction::Execute() {
 		else {
 			pManager->deselectall();
 			pFig->SetSelected(true);
-			//pManager->GetSelectedFigure()->PrintInfo(pOut);
 			pManager->SetSelectedFigure(pFig);
+			pManager->GetSelectedFigure()->PrintInfo(pOut);
 		}
 	}
 }

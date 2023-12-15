@@ -104,7 +104,7 @@ void CSquare::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 }
 
-/*void CSquare::PrintInfo(Output* pOut) const {
-	string message = "Circle: Centre= (" + to_string(Centre.x) + " ," + to_string(Centre.y) + " )";
+void CSquare::PrintInfo(Output* pOut) {
+	string message = "Square: Centre= (" + to_string(Centre.x) + " ," + to_string(Centre.y) + " )";
 	pOut->PrintMessage(message);
-}*/
+}

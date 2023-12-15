@@ -22,7 +22,7 @@ public:
 	virtual void StartEndRecord(ofstream& OutFile);
 	virtual void PlayRecord(ifstream& Infile);
 
-	//virtual void PrintInfo(Output*) const;
+	virtual void PrintInfo(Output*);
 };
 
 #endif

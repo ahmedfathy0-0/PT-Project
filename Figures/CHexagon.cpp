@@ -1,7 +1,5 @@
 #include "CHexagon.h"
 
-int* x = new int[UI.HexagonVertices];
-int* y = new int[UI.HexagonVertices];
 
 CHexagon::CHexagon() : CFigure(FigGfxInfo)
 {
@@ -21,6 +19,8 @@ void CHexagon::Draw(Output* pOut) const
 
 bool CHexagon::IsInsideFigure(int X, int Y) const 
 {
+	int x[6];
+	int y[6];
 	x[0] = Center.x + UI.HexagonSize;
 	y[0] = Center.y;
 	x[1] = Center.x + UI.HexagonSize / 2;
@@ -136,13 +136,9 @@ void CHexagon::PlayRecord(ifstream& Infile)
 
 }
 CHexagon::~CHexagon() {
-	delete[] x;
-	delete[] y;
-	x = nullptr;
-	y = nullptr;
 }
 
-/*void CHexagon::PrintInfo(Output* pOut) const {
+void CHexagon::PrintInfo(Output* pOut) {
 	string message = "Hexagon: Centre= (" + to_string(Center.x) + " ," + to_string(Center.y) + " )";
 	pOut->PrintMessage(message);
-}*/
+}

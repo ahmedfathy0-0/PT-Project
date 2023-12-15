@@ -118,8 +118,8 @@ void CRectangle::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 }
 
-/*void CRectangle::PrintInfo(Output* pOut) const {
+void CRectangle::PrintInfo(Output* pOut)  {
 	string message = "Rectangle: Corner 1= (" + to_string(Corner1.x) + "," + to_string(Corner1.y)
 		+ "), Corner 2= (" + to_string(Corner2.x) + "," + to_string(Corner2.y) + ")";
 	pOut->PrintMessage(message);
-}*/
+}
