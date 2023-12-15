@@ -11,7 +11,11 @@
 #include "Actions\MoveFigure.h"
 #include "Actions\LoadAction.h"
 #include "Actions\StartRecordingAction.h"
+#include "Actions\PlayRecordAction.h"
+
 #include"PickByFig.h"
+#include"Actions\Changecolor.h"
+
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -26,7 +30,8 @@ ApplicationManager::ApplicationManager()
 	for (int i = 0; i < MaxFigCount; i++)
 		FigList[i] = NULL;
 	IsRecording = false;
-	//create Record File
+	SelectedFigure = NULL;
+	OPcount = 0;
 
 }
 
@@ -40,13 +45,27 @@ ActionType ApplicationManager::GetUserAction() const
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Creates an action and executes it
-void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, ActionType ActTypeForPickndHide)
+void ApplicationManager::ExecuteAction(ActionType ActType)
 {
-
+	ActionType ActiType = DRAW_CIRCLE;
+	ActionType ActTypeForPickndHide = DRAW_HEXAGON;
 
 	Action* pAct = NULL;
 
 	//According to Action Type, create the corresponding action object
+	if (OPcount == 20) {
+		pOut->PrintMessage("You Reached the maximum operation please End Record first to continue drawing");
+		switch(ActType)
+				case ENDRECORDING:
+					if (IsRecording) {
+						pOut->CreateSTARTRECORDING();
+						IsRecording = false;
+						pAct = new StartRecordingAction(this);
+						OPcount = 0;
+						Recordfile.close();
+					}
+	}
+	else
 	switch (ActType)
 	{
 	case DRAW_RECT:
@@ -172,8 +191,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 	case STARTRECORDING:
 		if (!IsRecording) {
 			if (FigCount == 0) {
-		
-			pOut->PrintMessage("Action: START RECORDING, Click anywhere");
 			pOut->CreateENDRECORDING();
 			IsRecording = true;
 			pAct = new StartRecordingAction(this);
@@ -186,18 +203,17 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 
 	case ENDRECORDING:
 		if (IsRecording) {
-
-			pOut->PrintMessage("Action: END RECORDING, Click anywhere");
 			pOut->CreateSTARTRECORDING();
 			IsRecording = false;
 			pAct = new StartRecordingAction(this);
-
+			OPcount = 0;
+			Recordfile.close();
 		}
 		break;
 
 	case PLAYRECORDING:
 		if (!IsRecording) {
-			pOut->PrintMessage("Action: PLAY RECORDING, Click anywhere");
+			pAct = new PlayRecordAction(this);
 		}
 		break;
 
@@ -210,49 +226,76 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 		switch (ActiType) {
 
 		case BLACKCLR:
-			pOut->PrintMessage("The draw color will now be black!");
-			pOut->setCrntDrawColor(BLACK);
-			pOut->setisFilled(false);
-			Changefigurecolor(BLACK,0);
+			if (SelectedFigure != NULL)
+				pAct = new Changecolor(this, BLACK, "BLACK", 0);
+			else{
+				pOut->PrintMessage("The draw color will now be black!");
+				pOut->setCrntDrawColor(BLACK);
+				pOut->setisFilled(false);
+			}
 			break;
 
 		case YELLOWCLR:
-			pOut->PrintMessage("The draw color will now be yellow!");
-			pOut->setCrntDrawColor(YELLOW);
-			pOut->setisFilled(false);
-			Changefigurecolor(YELLOW, 0);
-
+			if (SelectedFigure != NULL)
+				pAct = new Changecolor(this, YELLOW, "YELLOW", 0);
+			else{
+				pOut->PrintMessage("The draw color will now be yellow!");
+				pOut->setCrntDrawColor(YELLOW);
+				pOut->setisFilled(false);
+			}
 			break;
 
 		case ORANGECLR:
-			pOut->PrintMessage("The draw color will now be orange!");
-			pOut->setCrntDrawColor(ORANGE);
-			pOut->setisFilled(false);
-			Changefigurecolor(ORANGE, 0);
 
+			if (SelectedFigure != NULL) {
+				pAct = new Changecolor(this, ORANGE, "ORANGE", 0);
+			}
+			else{
+				pOut->PrintMessage("The draw color will now be orange!");
+				pOut->setCrntDrawColor(ORANGE);
+				pOut->setisFilled(false);
+			}
 			break;
 
 		case REDCLR:
-			pOut->PrintMessage("The draw color will now be red!");
-			pOut->setCrntDrawColor(RED);
-			pOut->setisFilled(false);
-			Changefigurecolor(RED, 0);
 
+			if (SelectedFigure != NULL)
+			{
+				pAct = new Changecolor(this, RED, "RED", 0);
+			}
+			else{
+				pOut->PrintMessage("The draw color will now be red!");
+				pOut->setCrntDrawColor(RED);
+				pOut->setisFilled(false);
+			}
 			break;
 
 		case GREENCLR:
-			pOut->PrintMessage("The draw color will now be green!");
-			pOut->setCrntDrawColor(GREEN);
-			pOut->setisFilled(false);
-			Changefigurecolor(GREEN, 0);
+
+			if (SelectedFigure != NULL)
+			{
+				pAct = new Changecolor(this, GREEN, "GREEN", 0);
+		}
+			else{
+				pOut->PrintMessage("The draw color will now be green!");
+				pOut->setCrntDrawColor(GREEN);
+				pOut->setisFilled(false);
+			
+			}
 
 			break;
 
 		case BLUECLR:
-			pOut->PrintMessage("The draw color will now be blue!");
-			pOut->setCrntDrawColor(BLUE);
-			pOut->setisFilled(false);
-			Changefigurecolor(BLUE, 0);
+
+			if (SelectedFigure != NULL)
+			{
+				pAct = new Changecolor(this, BLUE, "BLUE", 0);
+			}
+			else{
+				pOut->PrintMessage("The draw color will now be blue!");
+				pOut->setCrntDrawColor(BLUE);
+				pOut->setisFilled(false);
+			}
 
 			break;
 
@@ -274,51 +317,83 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 		switch (ActType) {
 
 		case BLACKCLR:
-			pOut->PrintMessage("The fill color will now be black");
-			pOut->setCrntFillColor(BLACK);
-			pOut->setisFilled(true);
-			Changefigurecolor(BLACK, 1);
 
+			if (SelectedFigure != NULL)
+			{
+				pAct = new Changecolor(this, BLACK, "BLACK", 1);
+			}
+			else{
+				pOut->PrintMessage("The fill color will now be black");
+				pOut->setCrntFillColor(BLACK);
+				pOut->setisFilled(true);
+			}
 			break;
 
 		case YELLOWCLR:
-			pOut->PrintMessage("The fill color will now be yellow");
-			pOut->setCrntFillColor(YELLOW);
-			pOut->setisFilled(true);
-			Changefigurecolor(YELLOW, 1);
+
+			if (SelectedFigure != NULL)
+			{
+				pAct = new Changecolor(this, YELLOW, "YELLOW", 1);
+			}
+			else{
+				pOut->PrintMessage("The fill color will now be yellow");
+				pOut->setCrntFillColor(YELLOW);
+				pOut->setisFilled(true);
+			}
 
 			break;
 
 		case ORANGECLR:
-			pOut->PrintMessage("The fill color will now be orange");
-			pOut->setCrntFillColor(ORANGE);
-			pOut->setisFilled(true);
-			Changefigurecolor(ORANGE, 1);
+
+			if (SelectedFigure != NULL)
+			{
+
+				pAct = new Changecolor(this, ORANGE, "ORANGE", 1);
+			}
+			else{
+				pOut->PrintMessage("The fill color will now be orange");
+				pOut->setCrntFillColor(ORANGE);
+				pOut->setisFilled(true);
+			}
+
 
 			break;
 
 		case REDCLR:
-			pOut->PrintMessage("The fill color will now be red");
-			pOut->setCrntFillColor(RED);
-			pOut->setisFilled(true);
-			Changefigurecolor(RED, 1);
 
+			if (SelectedFigure != NULL)
+			{
+				pAct = new Changecolor(this, RED, "RED", 1);
+			}
+			else{
+				pOut->PrintMessage("The fill color will now be red");
+				pOut->setCrntFillColor(RED);
+				pOut->setisFilled(true);
+			}
 			break;
 
 		case GREENCLR:
-			pOut->PrintMessage("The fill color will now be green");
-			pOut->setCrntFillColor(GREEN);
-			pOut->setisFilled(true);
-			Changefigurecolor(GREEN, 1);
-
+			if (SelectedFigure != NULL)
+			{
+				pAct = new Changecolor(this, GREEN, "GREEN", 1);
+			}
+			else{
+				pOut->PrintMessage("The fill color will now be green");
+				pOut->setCrntFillColor(GREEN);
+				pOut->setisFilled(true);
+			}
 			break;
 
 		case BLUECLR:
-			pOut->PrintMessage("The fill color will now be blue");
-			pOut->setCrntFillColor(BLUE);
-			pOut->setisFilled(true);
-			Changefigurecolor(BLUE, 1);
-
+			if (SelectedFigure != NULL)
+			{
+		 		pAct = new Changecolor(this, BLUE, "BLUE", 1);
+		    }
+			else{
+				pOut->PrintMessage("The fill color will now be blue");
+				pOut->setCrntFillColor(BLUE);
+				pOut->setisFilled(true);
+			}
 			break;
 
 		}
@@ -337,56 +412,87 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 		switch (ActiType) {
 
 		case BLACKCLR:
-			pOut->PrintMessage("Action: you pressed the black color");
-			pOut->setCrntFillColor(BLACK);
-			pOut->setCrntDrawColor(BLACK);
-			Changefigurecolor(BLACK, 2);
-			pOut->setisFilled(true);
+
+			if (SelectedFigure != NULL)
+			{
+				pAct = new Changecolor(this, BLACK, "BLACK", 2);
+			}
+			else{
+				pOut->PrintMessage("Action: you pressed the black color");
+				pOut->setCrntFillColor(BLACK);
+				pOut->setCrntDrawColor(BLACK);
+				pOut->setisFilled(true);
+			}
+
 			break;
 
 		case YELLOWCLR:
-			pOut->PrintMessage("Action: you pressed the yellow color");
-			pOut->setCrntFillColor(YELLOW);
-			pOut->setCrntDrawColor(YELLOW);
-			pOut->setisFilled(true);
-			Changefigurecolor(YELLOW, 2);
 
+			if (SelectedFigure != NULL)
+			{
+				pAct = new Changecolor(this, YELLOW, "YELLOW", 2);
+			}
+			else{
+				pOut->PrintMessage("Action: you pressed the yellow color");
+				pOut->setCrntFillColor(YELLOW);
+				pOut->setCrntDrawColor(YELLOW);
+				pOut->setisFilled(true);
+			}
 			break;
 
 		case ORANGECLR:
-			pOut->PrintMessage("Action: you pressed the orange color");
-			pOut->setCrntFillColor(ORANGE);
-			pOut->setCrntDrawColor(ORANGE);
-			pOut->setisFilled(true);
-			Changefigurecolor(ORANGE, 2);
 
+			if (SelectedFigure != NULL)
+			{
+				pAct = new Changecolor(this, ORANGE, "ORANGE", 2);
+			}
+			else{
+				pOut->PrintMessage("Action: you pressed the orange color");
+				pOut->setCrntFillColor(ORANGE);
+				pOut->setCrntDrawColor(ORANGE);
+				pOut->setisFilled(true);
+			}
 			break;
 
 		case REDCLR:
-			pOut->PrintMessage("Action: you pressed the red color");
-			pOut->setCrntFillColor(RED);
-			pOut->setCrntDrawColor(RED);
-			Changefigurecolor(RED, 2);
 
-			pOut->setisFilled(true);
+			if (SelectedFigure != NULL)
+			{
+				pAct = new Changecolor(this, RED, "RED", 2);
+			}
+			else{
+				pOut->PrintMessage("Action: you pressed the red color");
+				pOut->setCrntFillColor(RED);
+				pOut->setCrntDrawColor(RED);
+				pOut->setisFilled(true);
+			}
+
 			break;
 
 		case GREENCLR:
-			pOut->PrintMessage("Action: you pressed the green color");
-			pOut->setCrntFillColor(GREEN);
-			pOut->setCrntDrawColor(GREEN);
-			Changefigurecolor(GREEN, 2);
-
-			pOut->setisFilled(true);
+			if (SelectedFigure != NULL){
+			pAct = new Changecolor(this, GREEN, "GREEN", 2);
+		    }
+			else{
+				pOut->PrintMessage("Action: you pressed the green color");
+				pOut->setCrntFillColor(GREEN);
+				pOut->setCrntDrawColor(GREEN);
+					pOut->setisFilled(true);
+			}
+	
 			break;
 
 		case BLUECLR:
-			pOut->PrintMessage("Action: you pressed the blue color");
-			pOut->setCrntFillColor(BLUE);
-			pOut->setCrntDrawColor(BLUE);
-			pOut->setisFilled(true);
-			Changefigurecolor(BLUE, 2);
-
+			if (SelectedFigure != NULL)
+			{
+				pAct = new Changecolor(this, BLUE, "BLUE", 2);
+			}
+			else{
+				pOut->PrintMessage("Action: you pressed the blue color");
+				pOut->setCrntFillColor(BLUE);
+				pOut->setCrntDrawColor(BLUE);
+				pOut->setisFilled(true);
+			}
 			break;
 
 		}
@@ -400,6 +506,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 
 	case EXIT:
 		///create ExitAction here
+	{
+    }
 
 		break;
 
@@ -409,8 +517,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType, ActionType ActiType, 
 	if (pAct != NULL)
 	{
 		pAct->Execute();//Execute
-		delete pAct;	//You may need to change this line depending to your implementation
-		pAct = NULL;
+		if (pAct != NULL) {
+			delete pAct;	//You may need to change this line depending to your implementation
+			pAct = NULL;
+		}
 	}
 }
 int ApplicationManager::GetFigCount()
@@ -424,14 +534,30 @@ int ApplicationManager::GetFigCount()
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
-	if (FigCount < MaxFigCount) {
-		FigList[FigCount++] = pFig;
+	int i = 0;
+	for (i;i < FigCount;i++){
+		if (FigList[i] != NULL) {
+			if (pFig->getID() == FigList[i]->getID()) {
+				delete FigList[i];
+				FigList[i] = NULL;
+				FigList[i] = pFig;
+				break;
+			}
+		}
+}
+	if (i == FigCount)
+	{
+		if (FigCount < MaxFigCount) {
+			FigList[FigCount++] = pFig;
+		}
+		pFig->setID(FigCount);
+		if (IsRecording && OPcount <= 20) {
+			OPcount++;
+			pFig->StartEndRecord(Recordfile);
+		}
+		if (pFig->IsSelected())////used for PlayRecord while streaming
+			SelectedFigure = pFig;
 	}
-	pFig->setID(FigCount);
-	if (IsRecording)
-		pFig->StartEndRecord(Recordfile);
-
-
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure* ApplicationManager::GetFigure(int x, int y) const
@@ -458,20 +584,35 @@ void ApplicationManager::UnHideFigures()
 }
 
 void ApplicationManager::SetSelectedFigure(CFigure* pFig) {
+	if (pFig){
+		SelectedFigure = pFig;
+	if (IsRecording && OPcount <= 20) {
+		OPcount++;
+		pFig->StartEndRecord(Recordfile);
+	}
+}
+}
 
-		if (IsRecording)
-			pFig->StartEndRecord(Recordfile);
 
+
+CFigure* ApplicationManager::GetSelectedFigure() const
+{
+	return SelectedFigure;
 }
 
 
 
 void ApplicationManager::deselectall()  {
-	for (int i = 0; i < FigCount; i++) {
-		FigList[i]->SetSelected(false);
-		if (IsRecording)
-			FigList[i]->StartEndRecord(Recordfile);
+	if (SelectedFigure != NULL) {
+		SelectedFigure->SetSelected(false);
+		if (IsRecording && OPcount < 20) {
+			OPcount++;
+			SelectedFigure->StartEndRecord(Recordfile);
+		}
+
+		SelectedFigure = NULL;
 	}
+
 }
 
 void ApplicationManager::SaveAll(ofstream& OutFile) const
@@ -492,60 +633,53 @@ void ApplicationManager::deletefigure()
 {
 	bool flag = true;
 	for (int i = 0; i < FigCount&&flag; i++)
-		if (FigList[i]->IsSelected())
-		{
-			delete FigList[i];
-			FigList[i] = FigList[FigCount-1];
-			FigList[i]->setID(i + 1);
-			if(FigList[i]!=NULL)
-			if (IsRecording)
-				FigList[i]->StartEndRecord(Recordfile);
-			FigCount--;
-			FigList[FigCount] = NULL;
-			flag = false;
+		if (FigList[i] != NULL) {
+			if (FigList[i]->IsSelected())
+			{
+				if (IsRecording && OPcount <= 20) {
+					OPcount++;
+					Recordfile << "DELETE" << endl;
+				}
+				delete FigList[i];
+				FigList[i] = FigList[FigCount - 1];
+				FigList[i]->setID(i + 1);
 
-		}
-}
-void ApplicationManager::Changefigurecolor(color c,int type)
-{
-	bool flag = true;
-	for (int i = 0; i < FigCount&&flag; i++)
-	if (FigList[i]->IsSelected())
-	{
-		FigList[i]->SetSelected(false);
-		if (type == 0) {
-			FigList[i]->ChngDrawClr(c);
-		}
-		else if (type == 1) {
-			FigList[i]->ChngFillClr(c);
-		}
-		else if (type == 2) {
-			FigList[i]->ChngFillClr(c);
-			FigList[i]->ChngDrawClr(c);
-		}
-		if (IsRecording)
-		FigList[i]->StartEndRecord(Recordfile);
-		flag = false;
-	}
-}
-void ApplicationManager::movefigure(Point New)
-{
-	for (int i = 0; i < FigCount; i++) {
-		if (FigList[i]->IsSelected()){
-			FigList[i]->Move(New);
-			if (IsRecording)
-			FigList[i]->StartEndRecord(Recordfile);
-	}
+				FigCount--;
+				FigList[FigCount] = NULL;
+				SelectedFigure = NULL;
+				flag = false;
 
-}
-
+			}
+		}
 }
 void ApplicationManager::StartRecord(string filename) 
 {
 	if (IsRecording)
-		Recordfile.open(filename);
+		Recordfile.open(filename ,ios::trunc);
 	else
 		Recordfile.close();
+}
+
+void ApplicationManager::RecordFigure(CFigure* pFig)
+{
+	if (pFig != NULL) {
+		if (IsRecording && OPcount < 20) {
+			OPcount++;
+			pFig->StartEndRecord(Recordfile);
+		}
+	}
+	deselectall();
+
+}
+
+ofstream* ApplicationManager::getRecoedFile() 
+{
+	return &Recordfile;
+}
+
+bool ApplicationManager::getIsRecording() 
+{
+	return IsRecording;
 }
 
 CFigure* ApplicationManager::GetFigByIndex(int i)
@@ -603,7 +737,6 @@ bool ApplicationManager::CheckForFillColor()
 void ApplicationManager::UpdateInterface() const
 {
 	pOut->ClearDrawArea();
-
 	for (int i = 0; i < FigCount; i++)
 		if(!(FigList[i]->GetHiddenStatus()))
 		{

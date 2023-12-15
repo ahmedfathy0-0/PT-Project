@@ -88,6 +88,34 @@ void CCircle::StartEndRecord(ofstream& OutFile)
 
 }
 
+void CCircle::PlayRecord(ifstream& Infile)
+{
+	string clr;
+	string slc;
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	Infile >> ID >> Center.x >> Center.y >> point.x >> point.y;
+	Infile >> clr;
+	FigGfxInfo.DrawClr = getClr(clr);
+	Infile >> clr;
+	if (clr == "NO_FILL")
+	{
+		FigGfxInfo.isFilled = false;
+	}
+	else {
+
+		FigGfxInfo.FillClr = getClr(clr);
+	}
+	Infile >> slc;
+	if (slc == "SELECTED")
+	{
+		this->SetSelected(true);
+	}
+	else
+		this->SetSelected(false);
+
+
+}
+
 /*void CCircle::PrintInfo(Output* pOut) const {
 	string message = "Circle, Center = (" + to_string(Center.x) + "," + to_string(Center.y)
 		+ "), Radius: " + to_string(int(CalculateDistance(Center,point)));

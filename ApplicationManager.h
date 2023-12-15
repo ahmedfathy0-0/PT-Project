@@ -15,14 +15,14 @@ class ApplicationManager
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
-
+	CFigure* SelectedFigure;
 
 	//Pointers to Input and Output classes
 	Input* pIn;
 	Output* pOut;
 	bool IsRecording;
-	ofstream Recordfile;
-
+	ofstream Recordfile;//used for save kids operations in the game
+	int OPcount;//used for max 20 operation
 public:
 	ApplicationManager();
 	~ApplicationManager();
@@ -30,7 +30,7 @@ public:
 	// -- Action-Related Functions
 	//Reads the input command from the user and returns the corresponding action type
 	ActionType GetUserAction() const;
-	void ExecuteAction(ActionType, ActionType, ActionType); //Creates an action and executes it
+	void ExecuteAction(ActionType); //Creates an action and executes it
 	int GetFigCount();
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
@@ -42,6 +42,10 @@ public:
 	void movefigure(Point New);
 	// functions for the Start,Stop,and Play Record  action//
 	void StartRecord(string) ;
+	void RecordFigure(CFigure*); //to record any changes in draw mode
+	ofstream* getRecoedFile();//send the file address to any class Action
+	bool getIsRecording();//send the Recording boolean to any class Action
+
 
 	// functions for the select action//
 	CFigure* GetFigure(int x, int y) const; //Search for a figure given a point inside the figure

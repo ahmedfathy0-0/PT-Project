@@ -25,7 +25,7 @@ void SelectOneAction::Execute() {
 			pManager->deselectall();
 			pFig->SetSelected(true);
 			//pManager->GetSelectedFigure()->PrintInfo(pOut);
+			pManager->SetSelectedFigure(pFig);
 		}
-		pManager->SetSelectedFigure(pFig);
 	}
 }

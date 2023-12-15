@@ -16,6 +16,7 @@ public:
 	virtual void Save(ofstream& OutFile);
 	virtual void Load(ifstream& Infile);
 	virtual void StartEndRecord(ofstream& OutFile);
+	virtual void PlayRecord(ifstream& Infile);
 
 	//virtual void PrintInfo(Output*) const;
 };

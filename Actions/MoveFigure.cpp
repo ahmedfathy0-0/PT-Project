@@ -1,20 +1,36 @@
 #include "MoveFigure.h"
 
-MoveAction::MoveAction(ApplicationManager* pApp) : Action(pApp) {}
+MoveAction::MoveAction(ApplicationManager* pApp) : Action(pApp) {
+
+
+}
 
 void MoveAction::ReadActionParameters()
 {
-	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
+	pOut = pManager->GetOutput();
+	pIn = pManager->GetInput();
+	pFig = pManager->GetSelectedFigure();
 
-	pOut->PrintMessage("Click on Where You Want to Move");
+		if (pFig) {
+			pOut->PrintMessage("Click on Where You Want to Move");
+			pIn->GetPointClicked(NewCenter.x, NewCenter.y);
+		}
+		else
+			pOut->PrintMessage("Please select Figure first");
+	}
 
-	pIn->GetPointClicked(NewCenter.x, NewCenter.y);
-	pOut->ClearStatusBar();
-}
+
+
 
 void MoveAction::Execute()
 {
+
 	ReadActionParameters();
-	pManager->movefigure(NewCenter);
-}
+	if(pFig)
+	    pFig->Move(NewCenter);
+	pManager->deselectall();
+	pManager->RecordFigure(pFig);
+	pOut->ClearStatusBar();
+	}
+
+

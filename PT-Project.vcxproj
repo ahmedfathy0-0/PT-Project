@@ -132,10 +132,12 @@
     <ClCompile Include="Actions\AddHexAction.cpp" />
     <ClCompile Include="Actions\AddSqrAction.cpp" />
     <ClCompile Include="Actions\AddTrgAction.cpp" />
+    <ClCompile Include="Actions\Changecolor.cpp" />
     <ClCompile Include="Actions\ClearAll.cpp" />
     <ClCompile Include="Actions\DeleteAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\MoveFigure.cpp" />
+    <ClCompile Include="Actions\PlayRecordAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectOneAction.cpp" />
     <ClCompile Include="Actions\StartRecordingAction.cpp" />
@@ -194,6 +196,7 @@
     <ClInclude Include="Actions\AddHexAction.h" />
     <ClInclude Include="Actions\AddSqrAction.h" />
     <ClInclude Include="Actions\AddTrgAction.h" />
+    <ClInclude Include="Actions\Changecolor.h" />
     <ClInclude Include="Actions\ClearAll.h" />
     <ClInclude Include="Actions\DeleteAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />

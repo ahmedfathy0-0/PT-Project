@@ -228,8 +228,8 @@ hInstance(GetModuleHandle(0)), iWindowWidth(iWindWidth), iWindowHeight(iWindHeig
 
 			HMENU hMenu = GetSystemMenu(hwndWindow, FALSE);
 			if (hMenu != NULL) {
-				// Disable the close button (SC_CLOSE)
-				EnableMenuItem(hMenu, SC_CLOSE, MF_BYCOMMAND | MF_GRAYED);
+			//Disable the close button (SC_CLOSE)
+			EnableMenuItem(hMenu, SC_CLOSE, MF_BYCOMMAND | MF_GRAYED);
 			}
 		
         // No doublebuffering yet so dcActive is the same as dcScreen

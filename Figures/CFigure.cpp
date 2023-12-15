@@ -5,6 +5,7 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
 	isHidden = false;
+	ID = 0;
 }
 
 void CFigure::SetSelected(bool s)
@@ -42,6 +43,11 @@ void CFigure::setID(int i)
 	ID = i;
 }
 
+int CFigure::getID() const
+{
+	return ID;
+}
+
 int CFigure::type()
 {
 	return figtype;
@@ -75,6 +81,8 @@ color CFigure::getClr(string Dclr)
 	else if (Dclr == "GREEN")
 		return GREEN;
 	else if (Dclr == "BLUE")
+		return BLUE;
+	else
 		return BLUE;
 }
 bool CFigure::getselected(string select)
