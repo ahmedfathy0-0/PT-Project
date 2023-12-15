@@ -1,5 +1,5 @@
 #include "CHexagon.h"
-#include <iostream>
+
 CHexagon::CHexagon() : CFigure(FigGfxInfo)
 {
 }
@@ -50,7 +50,6 @@ bool CHexagon::IsInsideFigure(int X, int Y) const
 	double triangle4Area = CalculateArea(P, P3, P4);
 	double triangle5Area = CalculateArea(P, P4, P5);
 	double triangle6Area = CalculateArea(P, P5, P6);
-	std::cout << triangle1Area + triangle2Area + triangle3Area + triangle4Area + triangle5Area + triangle6Area << endl;
 	if (HexagonArea1 == triangle1Area + triangle2Area + triangle3Area + triangle4Area + triangle5Area + triangle6Area 
 		||HexagonArea2== triangle1Area + triangle2Area + triangle3Area + triangle4Area + triangle5Area + triangle6Area) return true;
 	else return false;
