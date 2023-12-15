@@ -4,13 +4,19 @@
 #include "../ApplicationManager.h"
 #include "../GUI/Input.h"
 #include "../GUI/Output.h"
+#include "../Figures/CFigure.h"
+#include <fstream>
+
 
 class MoveAction : public Action
 {
 private:
 	Point NewCenter;
+	CFigure* pFig;
+	Output* pOut;
+	Input* pIn;
 public :
-	MoveAction(ApplicationManager* pApp);
+	MoveAction(ApplicationManager* pApp);//Garbage intial value if its garabge getpoint from the user
 	virtual void ReadActionParameters();
 	virtual void Execute();
 };

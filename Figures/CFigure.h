@@ -4,8 +4,8 @@
 #include "..\defs.h"
 #include "..\GUI\Output.h"
 #include <fstream>
-
 //Base class for all figures
+
 class CFigure
 {
 protected:
@@ -17,6 +17,7 @@ protected:
 	bool getselected(string select);
 	FigureType figtype;
 	bool isHidden;
+
 	/// Add more parameters if needed.
 
 public:
@@ -42,7 +43,8 @@ public:
 
 	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
 	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
-	virtual void StartEndRecord(ofstream& OutFile) = 0;
+	virtual void StartEndRecord(ofstream& OutFile) = 0;//Record child action
+	virtual void PlayRecord(ifstream& Infile) = 0;//Play that Record
 	int type();
 	void IsHidden(bool);
 	bool GetHiddenStatus();
@@ -50,6 +52,7 @@ public:
 
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 	void setID(int);
+	int getID ()const;
 };
 
 #endif

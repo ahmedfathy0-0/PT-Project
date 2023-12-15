@@ -79,6 +79,31 @@ void CSquare::StartEndRecord(ofstream& OutFile)
 		OutFile << "NOT_SELECTED" << endl;;
 }
 
+void CSquare::PlayRecord(ifstream& Infile)
+{
+	string clr;
+	string slc;
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	Infile >> ID >> Centre.x >> Centre.y;
+	Infile >> clr;
+	FigGfxInfo.DrawClr = getClr(clr);
+	Infile >> clr;
+	if (clr == "NO_FILL")
+	{
+		FigGfxInfo.isFilled = false;
+	}
+	else {
+		FigGfxInfo.FillClr = getClr(clr);
+	}
+	Infile >> slc;
+	if (slc == "SELECTED")
+	{
+		this->SetSelected(true);
+	}
+	else
+		this->SetSelected(false);
+}
+
 /*void CSquare::PrintInfo(Output* pOut) const {
 	string message = "Circle: Centre= (" + to_string(Centre.x) + " ," + to_string(Centre.y) + " )";
 	pOut->PrintMessage(message);

@@ -2,7 +2,7 @@
 #define ACTION_H
 
 #include "..\DefS.h"
-
+#include "..\CMUgraphicsLib\auxil.h"
 class ApplicationManager; //forward class declaration
 
 

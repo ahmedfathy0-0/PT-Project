@@ -429,6 +429,7 @@ void Output::DrawHex(Point P1, GfxInfo HXGfxInfo, bool selected) const
 	y[5] = P1.y - UI.HexagonSize * 0.866;
 	pWind->DrawPolygon(x, y, UI.HexagonVertices, style);
 	if ((P1.y - UI.HexagonSize * 0.866) < UI.ToolBarHeight)
+		CreateDrawToolBar();
 
 
 

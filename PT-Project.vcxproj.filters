@@ -191,6 +191,10 @@
     <ClCompile Include="PickByFig.cpp" />
     <ClCompile Include="Actions\StartRecordingAction.cpp" />
     <ClCompile Include="PickByFillClr.cpp" />
+    <ClCompile Include="Actions\Changecolor.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\PlayRecordAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -322,6 +326,9 @@
     <ClInclude Include="Actions\PlayRecordAction.h" />
     <ClInclude Include="Actions\StartRecordingAction.h" />
     <ClInclude Include="PickByFillClr.h" />
+    <ClInclude Include="Actions\Changecolor.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

@@ -91,6 +91,33 @@ void CRectangle::StartEndRecord(ofstream& OutFile)
 		OutFile << "NOT_SELECTED" << endl;
 }
 
+void CRectangle::PlayRecord(ifstream& Infile)
+{
+	string clr;
+	string slc;
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	Infile >> ID >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y;
+	Center.x = (Corner1.x + Corner2.x) / 2;
+	Center.y = (Corner1.y + Corner2.y) / 2;
+	Infile >> clr;
+	FigGfxInfo.DrawClr = getClr(clr);
+	Infile >> clr;
+	if (clr == "NO_FILL")
+	{
+		FigGfxInfo.isFilled = false;
+	}
+	else {
+		FigGfxInfo.FillClr = getClr(clr);
+	}
+	Infile >> slc;
+	if (slc == "SELECTED")
+	{
+		this->SetSelected(true);
+	}
+	else
+		this->SetSelected(false);
+}
+
 /*void CRectangle::PrintInfo(Output* pOut) const {
 	string message = "Rectangle: Corner 1= (" + to_string(Corner1.x) + "," + to_string(Corner1.y)
 		+ "), Corner 2= (" + to_string(Corner2.x) + "," + to_string(Corner2.y) + ")";

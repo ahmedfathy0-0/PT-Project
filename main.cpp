@@ -7,9 +7,6 @@ int main()
 
 
 	ActionType ActType;
-
-	ActionType ActiType = DRAW_CIRCLE;
-	ActionType ActTypeForPickndHide = DRAW_HEXAGON;
 	//Create an object of ApplicationManager
 	ApplicationManager AppManager;
 
@@ -19,7 +16,7 @@ int main()
 		ActType = AppManager.GetUserAction();
 
 		//Exexute the action
-		AppManager.ExecuteAction(ActType, ActiType, ActTypeForPickndHide);
+		AppManager.ExecuteAction(ActType);
 
 		//Update the interface
 		AppManager.UpdateInterface();

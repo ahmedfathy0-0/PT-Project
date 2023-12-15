@@ -105,6 +105,33 @@ void CTriangle::StartEndRecord(ofstream& OutFile)
 		OutFile << "NOT_SELECTED" << endl;
 }
 
+void CTriangle::PlayRecord(ifstream& Infile)
+{
+	string clr;
+	string slc;
+	FigGfxInfo.BorderWdth = UI.PenWidth;
+	Infile >> ID >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y >> Corner3.x >> Corner3.y;
+	Center.x = (Corner1.x + Corner2.x + Corner3.x) / 3;
+	Center.y = (Corner1.y + Corner2.y + Corner3.y) / 3;
+	Infile >> clr;
+	FigGfxInfo.DrawClr = getClr(clr);
+	Infile >> clr;
+	if (clr == "NO_FILL")
+	{
+		FigGfxInfo.isFilled = false;
+	}
+	else {
+		FigGfxInfo.FillClr = getClr(clr);
+	}
+	Infile >> slc;
+	if (slc == "SELECTED")
+	{
+		this->SetSelected(true);
+	}
+	else
+		this->SetSelected(false);
+}
+
 /*void CTriangle::PrintInfo(Output* pOut) const {
 	string message = "Triangle: Corner 1= (" + to_string(Corner1.x) + "," + to_string(Corner1.y)
 		+ "), Corner 2= (" + to_string(Corner2.x) + "," + to_string(Corner2.y) + "), Corner 3= (" + to_string(Corner3.x)

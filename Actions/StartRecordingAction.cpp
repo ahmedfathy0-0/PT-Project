@@ -14,11 +14,8 @@ void StartRecordingAction::ReadActionParameters()
 void StartRecordingAction::Execute()
 {
 	ReadActionParameters();
-	fout.open(filename, ios::trunc);
-	fout << getClr(UI.DrawColor) << "     " << getClr(UI.FillColor) << endl;
-	fout << pManager->GetFigCount() << endl;
 	pManager->StartRecord(filename);
-	fout.close();
+
 }
 string StartRecordingAction::getClr(color Dclr)
 {
