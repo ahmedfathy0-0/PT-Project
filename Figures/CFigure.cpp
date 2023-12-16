@@ -6,6 +6,34 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	Selected = false;
 	isHidden = false;
 	ID = 0;
+	
+	if (isfilled())
+	{
+		if (UI.FillColor == RED)
+		{
+			FillClr = Red;
+		}
+		if (UI.FillColor == BLUE)
+		{
+			FillClr = Blue;
+		}
+		if (UI.FillColor == GREEN)
+		{
+			FillClr = Green;
+		}
+		if (UI.FillColor == ORANGE)
+		{
+			FillClr = Orange;
+		}
+		if (UI.FillColor == YELLOW)
+		{
+			FillClr = Yellow;
+		}
+		if (UI.FillColor == BLACK)
+		{
+			FillClr = Black;
+		}
+	}
 }
 
 void CFigure::SetSelected(bool s)

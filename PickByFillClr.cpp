@@ -61,6 +61,15 @@ void PickByFillClr::Execute()
 	RandomizeClr();
 	while (RightCounter<pManager->RandomizedFillClrCount(ptrRandom))
 	{
+
+		if (pIn->GetUserAction() == PICKBYCOL)
+		{
+			pManager->UnHideFigures();
+			pManager->UpdateInterface();
+			RightCounter = 0;
+			WrongCounter = 0;
+			RandomizeClr();
+		}
 		switch (ptrRandom->GetFillClr())
 		{
 		case Red:
