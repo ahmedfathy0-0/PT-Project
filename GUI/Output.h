@@ -7,6 +7,7 @@ class Output	//The application manager should have a pointer to this class
 private:
 	window* pWind;	//Pointer to the Graphics Window
 	int count;//for Start and end record items
+	static string Lastmsg;
 public:
 	Output();
 

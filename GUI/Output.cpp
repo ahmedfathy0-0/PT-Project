@@ -1,5 +1,5 @@
 #include "Output.h"
-
+string Output::Lastmsg = " ";
 
 Output::Output()
 {
@@ -200,7 +200,7 @@ void Output::ClearDrawArea() const
 void Output::PrintMessage(string msg) const	//Prints a message on status bar
 {
 	ClearStatusBar();	//First clear the status bar
-
+	Lastmsg = msg;
 	pWind->SetPen(UI.MsgColor, 50);
 	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
 	pWind->DrawString(10, UI.height - (int)(UI.StatusBarHeight / 1.5) - 5, msg);
@@ -335,7 +335,8 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	if (P1.y < UI.ToolBarHeight || P2.y < UI.ToolBarHeight)
 		CreateDrawToolBar();
 
-
+	ClearStatusBar();	
+	PrintMessage(Lastmsg);
 
 
 }
@@ -367,7 +368,8 @@ void Output::DrawSqr(Point P1, GfxInfo SqGfxInfo, bool selected) const {
 	if (p4.y < UI.ToolBarHeight || p3.y < UI.ToolBarHeight)
 		CreateDrawToolBar();
 	
-
+	ClearStatusBar();
+	PrintMessage(Lastmsg);
 }
 
 void Output::DrawTr(Point P1, Point P2, Point P3, GfxInfo TrGfxInfo, bool selected) const
@@ -393,7 +395,8 @@ void Output::DrawTr(Point P1, Point P2, Point P3, GfxInfo TrGfxInfo, bool select
 		CreateDrawToolBar();
 
 
-
+	ClearStatusBar();
+	PrintMessage(Lastmsg);
 
 }
 void Output::DrawHex(Point P1, GfxInfo HXGfxInfo, bool selected) const
@@ -437,7 +440,8 @@ void Output::DrawHex(Point P1, GfxInfo HXGfxInfo, bool selected) const
 	delete[] y;
 
 
-
+	ClearStatusBar();
+	PrintMessage(Lastmsg);
 
 }
 void Output::DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) const
@@ -466,6 +470,8 @@ void Output::DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) co
 	if (P1.y - radius < UI.ToolBarHeight)
 		CreateDrawToolBar();
 
+	ClearStatusBar();
+	PrintMessage(Lastmsg);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
