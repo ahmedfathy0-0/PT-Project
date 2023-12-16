@@ -188,8 +188,10 @@
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PickAndHideAction.cpp" />
     <ClCompile Include="PickByFig.cpp" />
     <ClCompile Include="PickByFillClr.cpp" />
+    <ClCompile Include="SwitchToPlayAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\AddCircAction.h" />
@@ -238,8 +240,10 @@
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
+    <ClInclude Include="PickAndHideAction.h" />
     <ClInclude Include="PickByFig.h" />
     <ClInclude Include="PickByFillClr.h" />
+    <ClInclude Include="SwitchToPlayAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

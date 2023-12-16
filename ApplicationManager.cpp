@@ -12,9 +12,10 @@
 #include "Actions\LoadAction.h"
 #include "Actions\StartRecordingAction.h"
 #include "Actions\PlayRecordAction.h"
-
+#include"PickAndHideAction.h"
 #include"PickByFig.h"
 #include"PickByFillClr.h"
+#include"SwitchToPlayAction.h"
 #include"Actions\Changecolor.h"
 
 
@@ -151,8 +152,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case TO_PLAY:
-		pOut->PrintMessage("Action: Switch to Play Mode, creating Design tool bar");
-		pOut->CreatePlayToolBar();
+		pAct = new SwitchToPlayAction(this);
 		break;
 
 	case EMPTY_PLAYTOOLBAR:
@@ -165,9 +165,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case PICKANDHIDE:
-		pOut->PrintMessage("Action:Pick and Hide. Choose an Option");
-		pOut->CreatePickAndHideToolbar();
-		UI.conDforPicknHide = true;
+		pAct = new PickAndHideAction(this);
+		pAct->Execute();
 		ActTypeForPickndHide = pIn->GetUserAction();
 		switch (ActTypeForPickndHide)
 		{

@@ -195,6 +195,8 @@
       <Filter>Action Classes</Filter>
     </ClCompile>
     <ClCompile Include="Actions\PlayRecordAction.cpp" />
+    <ClCompile Include="PickAndHideAction.cpp" />
+    <ClCompile Include="SwitchToPlayAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -329,6 +331,8 @@
     <ClInclude Include="Actions\Changecolor.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
+    <ClInclude Include="PickAndHideAction.h" />
+    <ClInclude Include="SwitchToPlayAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
