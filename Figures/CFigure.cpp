@@ -21,6 +21,30 @@ void CFigure::ChngFillClr(color Fclr)
 {	
 	FigGfxInfo.isFilled = true;
 	FigGfxInfo.FillClr = Fclr; 
+	if (Fclr == RED)
+	{
+		FillClr = Red;
+	}
+	if (Fclr == BLUE)
+	{
+		FillClr = Blue;
+	}
+	if (Fclr == GREEN)
+	{
+		FillClr = Green;
+	}
+	if (Fclr == ORANGE)
+	{
+		FillClr = Orange;
+	}
+	if (Fclr == YELLOW)
+	{
+		FillClr = Yellow;
+	}
+	if (Fclr == BLACK)
+	{
+		FillClr = Black;
+	}
 
 }
 
@@ -29,9 +53,9 @@ bool CFigure::isfilled()
 	return FigGfxInfo.isFilled;
 }
 
-color CFigure::GetFillClr()
+int CFigure::GetFillClr()
 {
-	return FigGfxInfo.FillClr;
+	return FillClr;
 }
 
 double CFigure::CalculateDistance(Point P1, Point P2) const{

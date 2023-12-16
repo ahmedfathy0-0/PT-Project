@@ -75,4 +75,15 @@ enum FigureType
 	triangle
 };
 
+enum FillClr
+{
+	Red,
+	Blue,
+	Green,
+	Orange,
+	Yellow,
+	Black,
+	No_Fill
+};
+
 #endif

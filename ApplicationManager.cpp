@@ -14,6 +14,7 @@
 #include "Actions\PlayRecordAction.h"
 
 #include"PickByFig.h"
+#include"PickByFillClr.h"
 #include"Actions\Changecolor.h"
 
 
@@ -175,7 +176,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case PICKBYCOL:
-			pOut->PrintMessage("You Chose to Select by Color");
+			pAct = new PickByFillClr(this);
 
 			break;
 		case PICKBYBOTH:
@@ -570,7 +571,7 @@ CFigure* ApplicationManager::GetFigure(int x, int y) const
 	//Remember that ApplicationManager only calls functions do NOT implement it.
 
 	for (int i = 0; i < FigCount; i++) {
-		if(FigList[i]->IsInsideFigure(x,y)) return FigList[i];
+		if(FigList[i]->IsInsideFigure(x,y)&&(FigList[i]->GetHiddenStatus()==false)) return FigList[i];
 	}
 	return NULL;
 }
@@ -704,6 +705,10 @@ int ApplicationManager::RandomizedFigCount(CFigure*p)
 
 int ApplicationManager::RandomizedFillClrCount(CFigure*p)
 {
+	if (CheckForFillColor() == false)
+	{
+		return 0;
+	}
 	int count = 0;
 	for (int i = 0; i < GetFigCount(); i++)
 	{

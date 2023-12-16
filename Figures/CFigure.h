@@ -16,6 +16,7 @@ protected:
 	color getClr(string Dclr);
 	bool getselected(string select);
 	FigureType figtype;
+	FillClr FillClr=No_Fill;
 	bool isHidden;
 
 	/// Add more parameters if needed.
@@ -49,7 +50,7 @@ public:
 	void IsHidden(bool);
 	bool GetHiddenStatus();
 	bool isfilled();
-	color GetFillClr();
+	int GetFillClr();
 
 	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 	void setID(int);

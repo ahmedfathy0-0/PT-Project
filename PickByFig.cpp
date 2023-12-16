@@ -85,7 +85,6 @@ void PickByFig::Execute()
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
-				 pOut->PrintMessage("You clicked on an empty area...Please pick Circles:))");
 
 			 }
 			 else if (Clicked->type() == circle)
@@ -93,11 +92,15 @@ void PickByFig::Execute()
 				 RightCounter++;
 				 Clicked->IsHidden(true);
 				 pManager->UpdateInterface();
+				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
 			 }
 			 else
 			 {
 				 WrongCounter++;
-				 pOut->PrintMessage("Wrong figure....Please pick circles only:)");
+				 Clicked->IsHidden(true);
+				 pManager->UpdateInterface();
+				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+
 			 }
 			 break;
 		 case hexagon:
@@ -105,18 +108,21 @@ void PickByFig::Execute()
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
-				 pOut->PrintMessage("You clicked on an empty area...Please pick Hexagons:))");
+				 
 			 }
 			 else if (Clicked->type() == hexagon)
 			 {
 				 RightCounter++;
 				 Clicked->IsHidden(true);
 				 pManager->UpdateInterface();
+				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
 			 }
 			 else
 			 {
 				 WrongCounter++;
-				 pOut->PrintMessage("Wrong figure....Please pick hexagons only:)");
+				 Clicked->IsHidden(true);
+				 pManager->UpdateInterface();
+				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
 			 }
 			 break;
 		 case rectangle:
@@ -124,18 +130,21 @@ void PickByFig::Execute()
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
-				 pOut->PrintMessage("You clicked on an empty area...Please pick Rectangles:))");
+				 
 			 }
 			 else if (Clicked->type() == rectangle)
 			 {
 				 RightCounter++;
 				 Clicked->IsHidden(true);
 				 pManager->UpdateInterface();
+				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
 			 }
 			 else
 			 {
 				 WrongCounter++;
-				 pOut->PrintMessage("Wrong figure....Please pick rectangles only:)");
+				 Clicked->IsHidden(true);
+				 pManager->UpdateInterface();
+				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
 			 }
 			 break;
 		 case square:
@@ -143,18 +152,21 @@ void PickByFig::Execute()
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
-				 pOut->PrintMessage("You clicked on an empty area...Please pick Squares:))");
+				
 			 }
 			 else if (Clicked->type() == square)
 			 {
 				 RightCounter++;
 				 Clicked->IsHidden(true);
 				 pManager->UpdateInterface();
+				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
 			 }
 			 else
 			 {
 				 WrongCounter++;
-				 pOut->PrintMessage("Wrong figure....Please pick squares only:)");
+				 Clicked->IsHidden(true);
+				 pManager->UpdateInterface();
+				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
 			 }
 			 break;
 		 case triangle:
@@ -162,20 +174,21 @@ void PickByFig::Execute()
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
-				 pOut->PrintMessage("You clicked on an empty area...Please pick Triangles:))");
+				
 			 }
 			 else if (Clicked->type() == triangle)
 			 {
 				 RightCounter++;
 				 Clicked->IsHidden(true);
 				 pManager->UpdateInterface();
+				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
 			 }
 			 else
 			 {
 				 WrongCounter++;
 				 Clicked->IsHidden(true);
 				 pManager->UpdateInterface();
-				 pOut->PrintMessage("Wrong figure....Please pick triangles only:)");
+				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
 			 }
 			 break;
 		 }
@@ -183,9 +196,11 @@ void PickByFig::Execute()
 	 }
 
 	 UI.conDforPicknHide = false;
-	 string rightcount = to_string(RightCounter);
-	 string wrongcount = to_string(WrongCounter);
-	 pOut->PrintMessage("SCORE---------->>Right attempts: " + rightcount + " Wrong attempts: " + wrongcount);
+	 if (pManager->GetFigCount()!=0)
+	 {
+		 pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+	 }
+	 
 
 	
 }
