@@ -7,7 +7,7 @@ class Output	//The application manager should have a pointer to this class
 private:
 	window* pWind;	//Pointer to the Graphics Window
 	int count;//for Start and end record items
-	static string Lastmsg;
+	static string Lastmsg;//used to fix statue bar issue to get last message back after clear all in every figure function
 public:
 	Output();
 

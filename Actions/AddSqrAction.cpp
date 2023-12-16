@@ -29,6 +29,7 @@ void AddSqrAction::ReadActionParameters()
 	RectGfxInfo.isFilled = pOut->getisFilled();
 	RectGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 	pOut->ClearStatusBar();
+	pOut->PrintMessage("You draw a new Square ;)");
 
 }
 

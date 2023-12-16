@@ -34,6 +34,7 @@ void AddRectAction::ReadActionParameters()
 	RectGfxInfo.isFilled = pOut->getisFilled();
 	RectGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 	pOut->ClearStatusBar();
+	pOut->PrintMessage("You draw a new Rectangle ;)");
 
 }
 

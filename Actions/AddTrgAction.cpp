@@ -40,6 +40,7 @@ void AddTrgAction::ReadActionParameters()
 	RectGfxInfo.isFilled = pOut->getisFilled();
 	RectGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 	pOut->ClearStatusBar();
+	pOut->PrintMessage("You draw a new Triangle ;)");
 
 }
 
