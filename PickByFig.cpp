@@ -7,9 +7,10 @@
 #include"Actions/Action.h"
 #include"DEFS.h"
 #include<cstring>
+
 PickByFig::PickByFig(ApplicationManager* papp) :Action(papp)
 {
-
+	ptrToPickByFill = NULL;
 }
 
 CFigure* PickByFig::RandomizeFig()
@@ -67,14 +68,33 @@ void PickByFig::Execute()
 	 RandomizeFig();
 	 while (RightCounter<pManager->RandomizedFigCount(ptrRandom))
 	 {
-		 
-		 if (pIn->GetUserAction() == PICKBYFIG)
+		 pIn->GetPointClicked(P.x, P.y);
+		 if (P.x<=(UI.MenuItemWidth*3)&&P.x>= (UI.MenuItemWidth * 2)&&P.y<=UI.ToolBarHeight&&P.y>=0)
 		 {
 			 pManager->UnHideFigures();
 			 pManager->UpdateInterface();
 			 RightCounter = 0;
 			 WrongCounter = 0;
 			 RandomizeFig();
+		 }
+		 
+
+		 else if (P.x<= (UI.MenuItemWidth )&&P.x>=0 && P.y <= UI.ToolBarHeight && P.y >= 0)
+		 {
+			 
+			 UI.conDforPicknHide = false;
+			 pManager->UnHideFigures();
+			 pManager->UpdateInterface();
+			 pOut->CreateDrawToolBar();
+			 break;
+		 }
+		 else if (P.x <= (UI.MenuItemWidth * 4) && P.x >= (UI.MenuItemWidth * 3) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		 {
+			 pManager->UnHideFigures();
+			 pManager->UpdateInterface();
+			 ptrToPickByFill = new PickByFillClr(pManager);
+			 ptrToPickByFill->Execute();
+			 break;
 		 }
 		 
 		 
@@ -196,9 +216,13 @@ void PickByFig::Execute()
 	 }
 
 	 UI.conDforPicknHide = false;
-	 if (pManager->GetFigCount()!=0)
+	 if (pManager->GetFigCount()!=0&&ptrToPickByFill==NULL)
 	 {
 		 pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+	 }
+	 if (ptrToPickByFill!=NULL)
+	 {
+		 delete ptrToPickByFill;
 	 }
 	 
 
@@ -209,7 +233,6 @@ void PickByFig::Execute()
 
 void PickByFig::ReadActionParameters()
 {
-	Input* pIn = pManager->GetInput();
-	pIn->GetPointClicked(P.x, P.y);
+	
 }
 	
