@@ -63,7 +63,7 @@ void PickByFig::Execute()
 	 RandomizeFig();
 	 while (RightCounter<pManager->RandomizedFigCount(ptrRandom))
 	 {
-		 pIn->GetPointClicked(P.x, P.y);
+		 ReadActionParameters();
 		 if (P.x<=(UI.MenuItemWidth*3)&&P.x>= (UI.MenuItemWidth * 2)&&P.y<=UI.ToolBarHeight&&P.y>=0)
 		 {
 			 pManager->UnHideFigures();
@@ -96,7 +96,6 @@ void PickByFig::Execute()
 		 switch (ptrRandom->type())
 		 {
 		 case circle:
-			 ReadActionParameters();
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
@@ -119,7 +118,6 @@ void PickByFig::Execute()
 			 }
 			 break;
 		 case hexagon:
-			 ReadActionParameters();
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
@@ -141,7 +139,6 @@ void PickByFig::Execute()
 			 }
 			 break;
 		 case rectangle:
-			 ReadActionParameters();
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
@@ -163,7 +160,6 @@ void PickByFig::Execute()
 			 }
 			 break;
 		 case square:
-			 ReadActionParameters();
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
@@ -185,7 +181,6 @@ void PickByFig::Execute()
 			 }
 			 break;
 		 case triangle:
-			 ReadActionParameters();
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
@@ -228,6 +223,7 @@ void PickByFig::Execute()
 
 void PickByFig::ReadActionParameters()
 {
-	
+	Input* pIn = pManager->GetInput();
+	pIn->GetPointClicked(P.x, P.y);
 }
 	
