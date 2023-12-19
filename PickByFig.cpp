@@ -27,31 +27,26 @@ CFigure* PickByFig::RandomizeFig()
 		if (ptrRandom->type()==circle)
 		{
 		pOut->PrintMessage("Pick all the Circles!");
-		FigureToPick = circle;
 		return ptrRandom;
 		}
 		if (ptrRandom->type()==hexagon)
 		{
 			pOut->PrintMessage("Pick all the Hexagons!");
-			FigureToPick = hexagon;
 			return ptrRandom;
 		}
 		if (ptrRandom->type()==rectangle)
 		{
 			pOut->PrintMessage("Pick all the Rectangles!");
-			FigureToPick = rectangle;
 			return ptrRandom;
 		}
 		if (ptrRandom->type()==square)
 		{
 			pOut->PrintMessage("Pick all the Squares!");
-			FigureToPick = square;
 			return ptrRandom;
 		}
 		if (ptrRandom->type()==triangle)
 		{
 			pOut->PrintMessage("Pick all the Triangles!");
-			FigureToPick = triangle;
 			return ptrRandom;
 		}
 }
