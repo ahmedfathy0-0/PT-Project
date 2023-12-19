@@ -1,0 +1,6 @@
+YELLOW     BLACK
+4
+CIRCLE     1     307     251     401     326     BLUE     NO_FILL
+TRIANG     2     744     256     744     256     576     454     BLUE     NO_FILL
+HEXAGN     3     262     20     YELLOW     BLACK
+RECTAN     4     529     320     885     501     YELLOW     BLACK
