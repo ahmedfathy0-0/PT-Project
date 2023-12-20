@@ -8,6 +8,8 @@
 
 class ClearAll : public Action
 {
+private:
+	ofstream ClearRecord;
 public:
 	ClearAll(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

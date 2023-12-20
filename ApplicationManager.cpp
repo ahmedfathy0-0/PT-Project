@@ -627,8 +627,6 @@ void ApplicationManager::Clearall()
 		delete FigList[i];
 		FigList[i] = NULL;
 	}
-		Recordfile.open("Last Record", ios::trunc);
-		Recordfile.close();
 	FigCount = 0;
 }
 void ApplicationManager::deletefigure()

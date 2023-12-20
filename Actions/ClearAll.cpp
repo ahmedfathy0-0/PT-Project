@@ -8,4 +8,6 @@ void ClearAll::Execute()
 	UI.DrawColor = BLUE;
 	UI.FillColor = GREEN;
 	UI.ISFILLED = false;
+	ClearRecord.open("Last Record", ios::trunc);
+	ClearRecord.close();
 }
