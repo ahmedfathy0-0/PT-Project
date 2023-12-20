@@ -14,7 +14,6 @@ class PickByFig :public Action
 {private:
 	Point P;
 	CFigure* ptrRandom;
-	FigureType FigureToPick;
 	PickByFillClr* ptrToPickByFill;
 public:
 	PickByFig(ApplicationManager* pApp);
