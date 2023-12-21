@@ -197,6 +197,9 @@
     <ClCompile Include="Actions\PlayRecordAction.cpp" />
     <ClCompile Include="PickAndHideAction.cpp" />
     <ClCompile Include="SwitchToPlayAction.cpp" />
+    <ClCompile Include="Actions\ChangeFillColor.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -333,6 +336,9 @@
     </ClInclude>
     <ClInclude Include="PickAndHideAction.h" />
     <ClInclude Include="SwitchToPlayAction.h" />
+    <ClInclude Include="Actions\ChangeFillColor.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

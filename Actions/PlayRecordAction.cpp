@@ -15,11 +15,12 @@ void PlayRecordAction::ReadActionParameters()
 
 	pOut->PrintMessage("Streaming The Last Record is started ;)");
 	filename = "Last Record";
+	pManager->Clearall();
 }
 
 void PlayRecordAction::Execute()
 {
-	pManager->Clearall();
+
 	ReadActionParameters();
 	fIn.open(filename);
 	bool flag = true;
@@ -55,11 +56,13 @@ void PlayRecordAction::Execute()
 		else if (type == "DELETE") {
 			pManager->deletefigure();
 		}
-		else {
+		else if(type=="FINISHED") {
 			flag = false;
 		}
 		pManager->UpdateInterface();
 		Pause(2000);
+
+		
 
 	}
 	pOut->PrintMessage("Streaming The Last Record is finished :)");
