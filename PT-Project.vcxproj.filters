@@ -196,12 +196,13 @@
     </ClCompile>
     <ClCompile Include="Actions\PlayRecordAction.cpp" />
     <ClCompile Include="PickAndHideAction.cpp" />
-    <ClCompile Include="SwitchToPlayAction.cpp" />
-    <ClCompile Include="Actions\UndoAction.cpp" />
+        <ClCompile Include="Actions\UndoAction.cpp" />
     <ClCompile Include="Actions\RedoAction.cpp">
+ <ClCompile Include="SwitchToPlayAction.cpp" />
+     <ClCompile Include="Actions\ChangeFillColor.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-  </ItemGroup>
+ </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
       <Filter>CMUgraphicsLib</Filter>
@@ -336,12 +337,11 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="PickAndHideAction.h" />
-    <ClInclude Include="SwitchToPlayAction.h" />
-    <ClInclude Include="Actions\UndoAction.h" />
+       <ClInclude Include="Actions\UndoAction.h" />
     <ClInclude Include="Actions\RedoAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
-  </ItemGroup>
+        <ClInclude Include="Actions\ChangeFillColor.h">
+   <ClInclude Include="SwitchToPlayAction.h" /> 
+    </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
   </ItemGroup>

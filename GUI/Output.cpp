@@ -268,6 +268,7 @@ void Output::setCrntDrawColor(color color)
 void Output::setCrntFillColor(color color)
 {
 	UI.FillColor = color;
+
 }
 void Output::setisFilled(bool isfilled)
 {

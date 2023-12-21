@@ -1,7 +1,17 @@
 #include "PickByFillClr.h"
+#include "PickByFig.h"
+#include"Figures/CCircle.h"
+#include"Figures/CHexagon.h"
+#include"Figures/CRectangle.h"
+#include"Figures/CSquare.h"
+#include"Figures/CTriangle.h"
+#include"Actions/Action.h"
+#include"DEFS.h"
+#include<cstring>
+
 PickByFillClr::PickByFillClr(ApplicationManager* pApp) :Action(pApp)
 {
-
+	ptrToPickByFig = NULL;
 }
 
 CFigure* PickByFillClr::RandomizeClr()
@@ -61,6 +71,37 @@ void PickByFillClr::Execute()
 	RandomizeClr();
 	while (RightCounter<pManager->RandomizedFillClrCount(ptrRandom))
 	{
+		pIn->GetPointClicked(P.x, P.y);
+		if (P.x <= (UI.MenuItemWidth * 4) && P.x >= (UI.MenuItemWidth * 3) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		{
+			pManager->UnHideFigures();
+			pManager->UpdateInterface();
+			RightCounter = 0;
+			WrongCounter = 0;
+			RandomizeClr();
+		}
+
+
+		else if (P.x <= (UI.MenuItemWidth) && P.x >= 0 && P.y <= UI.ToolBarHeight && P.y >= 0)
+		{
+
+			UI.conDforPicknHide = false;
+			pManager->UnHideFigures();
+			pManager->UpdateInterface();
+			pOut->CreateDrawToolBar();
+			break;
+		}
+
+		else if (P.x <= (UI.MenuItemWidth * 3) && P.x >= (UI.MenuItemWidth * 2) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		{
+			pManager->UnHideFigures();
+			pManager->UpdateInterface();
+			ptrToPickByFig = new PickByFig(pManager);
+			ptrToPickByFig->Execute();
+			break;
+		}
+
+		
 		switch (ptrRandom->GetFillClr())
 		{
 		case Red:
@@ -208,9 +249,14 @@ void PickByFillClr::Execute()
 
 	}
 	UI.conDforPicknHide = false;
-	if(pManager->GetFigCount()!=0&&pManager->CheckForFillColor()==true)
-	pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-
+	if (pManager->GetFigCount() != 0 && pManager->CheckForFillColor() == true&&ptrToPickByFig==NULL)
+	{
+		pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+	}
+	if (ptrToPickByFig!=NULL)
+	{
+		delete ptrToPickByFig;
+	}
 }
 
 Action* PickByFillClr::Clone()
@@ -228,6 +274,5 @@ void PickByFillClr::Redo()
 
 void PickByFillClr::ReadActionParameters()
 {
-	Input* pIn = pManager->GetInput();
-	pIn->GetPointClicked(P.x, P.y);
+	
 }

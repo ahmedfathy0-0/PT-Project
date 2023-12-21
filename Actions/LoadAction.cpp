@@ -23,9 +23,19 @@ void LoadAction::Execute()
 	ReadActionParameters();
 	fIn.open("Saved/" + filename);
 	fIn >> type;
-	UI.DrawColor = getclr(type);
+		UI.DrawColor = getclr(type);
 	fIn >> type;
-	UI.FillColor = getclr(type);
+	if (type != "NO_FILL")
+	{
+		UI.ISFILLED = true;
+		UI.FillColor = getclr(type);
+	}
+	else
+	{
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
+	}
+
 	fIn >> NO_OF_FIGS;
 	CFigure* myFig = NULL;
 	for (int i = 0; i < NO_OF_FIGS; i++)

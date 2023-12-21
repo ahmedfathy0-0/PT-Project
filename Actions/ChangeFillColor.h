@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef CHANGE_COLOR_H
-#define CHANGE_COLOR_H
+#ifndef CHANGE_FCOLOR_H
+#define CHANGE_FCOLOR_H
 #include "Action.h"
 #include "../Figures/CFigure.h"
 #include "..\ApplicationManager.h"
@@ -9,21 +9,18 @@
 #include "../GUI/Output.h"
 
 
-class ChangeDrawcolor : public Action
+class ChangeFillcolor : public Action
 {
 private:
 	CFigure* pFig;
 	color Color;
 	string name;
-	Output* pOut ;
+	Output* pOut;
 	Input* pIn;
 public:
-	ChangeDrawcolor(ApplicationManager* pApp);
-	virtual void ReadActionParameters( );
+	ChangeFillcolor(ApplicationManager* pApp);
+	virtual void ReadActionParameters();
 	virtual void Execute();
-	virtual Action* Clone();
-	virtual void Undo();
-	virtual void Redo();
 };
 
-#endif
+#endif#pragma once

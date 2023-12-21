@@ -7,9 +7,10 @@
 #include"Actions/Action.h"
 #include"DEFS.h"
 #include<cstring>
+
 PickByFig::PickByFig(ApplicationManager* papp) :Action(papp)
 {
-
+	ptrToPickByFill = NULL;
 }
 
 CFigure* PickByFig::RandomizeFig()
@@ -26,31 +27,26 @@ CFigure* PickByFig::RandomizeFig()
 		if (ptrRandom->type()==circle)
 		{
 		pOut->PrintMessage("Pick all the Circles!");
-		FigureToPick = circle;
 		return ptrRandom;
 		}
 		if (ptrRandom->type()==hexagon)
 		{
 			pOut->PrintMessage("Pick all the Hexagons!");
-			FigureToPick = hexagon;
 			return ptrRandom;
 		}
 		if (ptrRandom->type()==rectangle)
 		{
 			pOut->PrintMessage("Pick all the Rectangles!");
-			FigureToPick = rectangle;
 			return ptrRandom;
 		}
 		if (ptrRandom->type()==square)
 		{
 			pOut->PrintMessage("Pick all the Squares!");
-			FigureToPick = square;
 			return ptrRandom;
 		}
 		if (ptrRandom->type()==triangle)
 		{
 			pOut->PrintMessage("Pick all the Triangles!");
-			FigureToPick = triangle;
 			return ptrRandom;
 		}
 }
@@ -67,8 +63,8 @@ void PickByFig::Execute()
 	 RandomizeFig();
 	 while (RightCounter<pManager->RandomizedFigCount(ptrRandom))
 	 {
-		 
-		 if (pIn->GetUserAction() == PICKBYFIG)
+		 ReadActionParameters();
+		 if (P.x<=(UI.MenuItemWidth*3)&&P.x>= (UI.MenuItemWidth * 2)&&P.y<=UI.ToolBarHeight&&P.y>=0)
 		 {
 			 pManager->UnHideFigures();
 			 pManager->UpdateInterface();
@@ -77,11 +73,29 @@ void PickByFig::Execute()
 			 RandomizeFig();
 		 }
 		 
+
+		 else if (P.x<= (UI.MenuItemWidth )&&P.x>=0 && P.y <= UI.ToolBarHeight && P.y >= 0)
+		 {
+			 
+			 UI.conDforPicknHide = false;
+			 pManager->UnHideFigures();
+			 pManager->UpdateInterface();
+			 pOut->CreateDrawToolBar();
+			 break;
+		 }
+		 else if (P.x <= (UI.MenuItemWidth * 4) && P.x >= (UI.MenuItemWidth * 3) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		 {
+			 pManager->UnHideFigures();
+			 pManager->UpdateInterface();
+			 ptrToPickByFill = new PickByFillClr(pManager);
+			 ptrToPickByFill->Execute();
+			 break;
+		 }
+		 
 		 
 		 switch (ptrRandom->type())
 		 {
 		 case circle:
-			 ReadActionParameters();
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
@@ -104,7 +118,6 @@ void PickByFig::Execute()
 			 }
 			 break;
 		 case hexagon:
-			 ReadActionParameters();
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
@@ -126,7 +139,6 @@ void PickByFig::Execute()
 			 }
 			 break;
 		 case rectangle:
-			 ReadActionParameters();
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
@@ -148,7 +160,6 @@ void PickByFig::Execute()
 			 }
 			 break;
 		 case square:
-			 ReadActionParameters();
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
@@ -170,7 +181,6 @@ void PickByFig::Execute()
 			 }
 			 break;
 		 case triangle:
-			 ReadActionParameters();
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
@@ -196,9 +206,13 @@ void PickByFig::Execute()
 	 }
 
 	 UI.conDforPicknHide = false;
-	 if (pManager->GetFigCount()!=0)
+	 if (pManager->GetFigCount()!=0&&ptrToPickByFill==NULL)
 	 {
 		 pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+	 }
+	 if (ptrToPickByFill!=NULL)
+	 {
+		 delete ptrToPickByFill;
 	 }
 	 
 

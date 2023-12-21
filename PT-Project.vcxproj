@@ -141,6 +141,7 @@
     <ClCompile Include="Actions\RedoAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectOneAction.cpp" />
+    <ClCompile Include="Actions\ChangeFillColor.cpp" />
     <ClCompile Include="Actions\StartRecordingAction.cpp" />
     <ClCompile Include="Actions\UndoAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="Actions\AddSqrAction.h" />
     <ClInclude Include="Actions\AddTrgAction.h" />
     <ClInclude Include="Actions\Changecolor.h" />
+    <ClInclude Include="Actions\ChangeFillColor.h" />
     <ClInclude Include="Actions\ClearAll.h" />
     <ClInclude Include="Actions\DeleteAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
