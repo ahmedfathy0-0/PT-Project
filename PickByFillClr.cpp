@@ -213,6 +213,19 @@ void PickByFillClr::Execute()
 
 }
 
+Action* PickByFillClr::Clone()
+{
+	return new PickByFillClr(*this);
+}
+
+void PickByFillClr::Undo()
+{
+}
+
+void PickByFillClr::Redo()
+{
+}
+
 void PickByFillClr::ReadActionParameters()
 {
 	Input* pIn = pManager->GetInput();

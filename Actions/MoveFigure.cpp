@@ -33,4 +33,26 @@ void MoveAction::Execute()
 	pOut->ClearStatusBar();
 	}
 
+Action* MoveAction::Clone()
+{
+	return new MoveAction(*this);
+}
+
+void MoveAction::Undo()
+{
+	if (pFig)
+	{
+		Point Center = pFig->ReturnOldCenter();
+		pFig->Move(Center);
+	}
+}
+
+void MoveAction::Redo()
+{
+	if (pFig)
+	{
+		Point Center = pFig->ReturnOldCenter();
+		pFig->Move(Center);
+	}
+}
 

@@ -1,5 +1,5 @@
 #include "AddTrgAction.h"
-#include "..\Figures\CTriangle.h"
+
 
 #include "..\ApplicationManager.h"
 
@@ -51,8 +51,24 @@ void AddTrgAction::Execute()
 	ReadActionParameters();
 
 	//Create a Triangle with the parameters read from the user
-	CTriangle* T = new CTriangle(P1,P2, P3, RectGfxInfo);
+	T = new CTriangle(P1,P2, P3, RectGfxInfo);
 
 	//Add the Triangle to the list of figures
+	T->IsHidden(false);
 	pManager->AddFigure(T);
+}
+
+Action* AddTrgAction::Clone()
+{
+	return new AddTrgAction(*this);
+}
+
+void AddTrgAction::Undo()
+{
+	T->IsHidden(true);
+}
+
+void AddTrgAction::Redo()
+{
+	T->IsHidden(false);
 }

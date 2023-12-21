@@ -17,3 +17,16 @@ void PickAndHideAction::Execute()
 	UI.conDforPicknHide = true;
 }
 
+Action* PickAndHideAction::Clone()
+{
+	return new PickAndHideAction(*this);
+}
+
+void PickAndHideAction::Undo()
+{
+}
+
+void PickAndHideAction::Redo()
+{
+}
+

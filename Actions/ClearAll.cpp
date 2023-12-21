@@ -9,3 +9,16 @@ void ClearAll::Execute()
 	UI.FillColor = GREEN;
 	UI.ISFILLED = false;
 }
+
+Action* ClearAll::Clone()
+{
+	return new ClearAll(*this);
+}
+
+void ClearAll::Undo()
+{
+}
+
+void ClearAll::Redo()
+{
+}

@@ -61,6 +61,7 @@ double CHexagon::CalculateArea(Point P1, Point P2, Point P3) const {
 
 void CHexagon::Move(Point NewCenter)
 {
+	OldCenter = Center;
 	Center = NewCenter;
 }
 
@@ -135,6 +136,12 @@ void CHexagon::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 
 }
+
+Point CHexagon::ReturnOldCenter()
+{
+	return OldCenter;
+}
+
 CHexagon::~CHexagon() {
 }
 

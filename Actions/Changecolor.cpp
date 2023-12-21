@@ -41,3 +41,17 @@ void Changecolor::Execute()
 
 
 }
+
+Action* Changecolor::Clone()
+{
+	return new Changecolor(*this);
+}
+
+void Changecolor::Undo()
+{
+
+}
+
+void Changecolor::Redo()
+{
+}

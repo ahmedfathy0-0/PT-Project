@@ -122,6 +122,11 @@ void CFigure::IsHidden(bool b)
 	isHidden = b;
 }
 
+void CFigure::SetHidden(bool b)
+{
+	isHidden = b;
+}
+
 bool CFigure::GetHiddenStatus()
 {
 	return isHidden;

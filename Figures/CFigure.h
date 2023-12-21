@@ -37,6 +37,7 @@ public:
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
 	double CalculateDistance(Point P1, Point P2) const;
 	virtual void Move(Point) = 0;
+	virtual Point ReturnOldCenter() = 0;
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 
@@ -48,6 +49,7 @@ public:
 	virtual void PlayRecord(ifstream& Infile) = 0;//Play that Record
 	int type();
 	void IsHidden(bool);
+	void SetHidden(bool);
 	bool GetHiddenStatus();
 	bool isfilled();
 	int GetFillClr();

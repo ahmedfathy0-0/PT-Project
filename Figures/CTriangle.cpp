@@ -39,6 +39,7 @@ double CTriangle::CalculateArea(Point P1, Point P2, Point P3) const{
 
 void CTriangle::Move(Point NewCenter)
 {
+	OldCenter = Center;
 	Corner1.x = Corner1.x + NewCenter.x - Center.x;
 	Corner1.y = Corner1.y + NewCenter.y - Center.y;
 	Corner2.x = Corner2.x + NewCenter.x - Center.x;
@@ -130,6 +131,11 @@ void CTriangle::PlayRecord(ifstream& Infile)
 	}
 	else
 		this->SetSelected(false);
+}
+
+Point CTriangle::ReturnOldCenter()
+{
+	return OldCenter;
 }
 
 void CTriangle::PrintInfo(Output* pOut) {

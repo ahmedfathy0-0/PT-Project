@@ -12,6 +12,9 @@ public:
 	DeleteAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
 	virtual void Execute();
+	virtual Action* Clone();
+	virtual void Undo();
+	virtual void Redo();
 };
 
 #endif

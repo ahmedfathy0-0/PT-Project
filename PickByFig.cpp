@@ -205,6 +205,19 @@ void PickByFig::Execute()
 	
 }
 
+Action* PickByFig::Clone()
+{
+	return new PickByFig(*this);
+}
+
+void PickByFig::Undo()
+{
+}
+
+void PickByFig::Redo()
+{
+}
+
 
 
 void PickByFig::ReadActionParameters()

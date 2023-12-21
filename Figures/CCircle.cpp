@@ -30,6 +30,7 @@ bool CCircle::IsInsideFigure(int x, int y) const {
 
 void CCircle::Move(Point NewCenter)
 {
+	OldCenter = Center;
 	point.x += NewCenter.x - Center.x;
 	point.y += NewCenter.y - Center.y;
 	Center = NewCenter;
@@ -114,6 +115,11 @@ void CCircle::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 
 
+}
+
+Point CCircle::ReturnOldCenter()
+{
+	return OldCenter;
 }
 
 void CCircle::PrintInfo(Output* pOut) {

@@ -29,3 +29,16 @@ void SelectOneAction::Execute() {
 		}
 	}
 }
+
+Action* SelectOneAction::Clone()
+{
+	return new SelectOneAction(*this);
+}
+
+void SelectOneAction::Undo()
+{
+}
+
+void SelectOneAction::Redo()
+{
+}

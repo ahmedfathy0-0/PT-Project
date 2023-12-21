@@ -62,3 +62,17 @@ color LoadAction::getclr(string colour)
 		return BLUE;
 }
 
+Action* LoadAction::Clone()
+{
+	return NULL;
+}
+
+void LoadAction::Undo()
+{
+
+}
+
+void LoadAction::Redo()
+{
+}
+

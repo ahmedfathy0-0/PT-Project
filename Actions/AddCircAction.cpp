@@ -1,5 +1,5 @@
 #include "AddCircAction.h"
-#include "..\Figures\CCircle.h"
+
 
 #include "..\ApplicationManager.h"
 
@@ -43,8 +43,24 @@ void AddCircAction::Execute()
 	ReadActionParameters();
 
 	//Create a Circle with the parameters read from the user
-	CCircle* C = new CCircle(P1,P2, RectGfxInfo);
+	C = new CCircle(P1,P2, RectGfxInfo);
 
 	//Add the Circle to the list of figures
+	C->IsHidden(false);
 	pManager->AddFigure(C);
+}
+
+Action* AddCircAction::Clone()
+{
+	return new AddCircAction(*this);
+}
+
+void AddCircAction::Undo()
+{
+	C->SetHidden(true);
+}
+
+void AddCircAction::Redo()
+{
+	C->SetHidden(false);
 }

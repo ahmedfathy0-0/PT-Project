@@ -29,6 +29,7 @@ bool CSquare::IsInsideFigure(int x, int y) const{
 
 void CSquare::Move(Point NewCenter)
 {
+	OldCentre = Centre;
 	Centre = NewCenter;
 }
 
@@ -102,6 +103,11 @@ void CSquare::PlayRecord(ifstream& Infile)
 	}
 	else
 		this->SetSelected(false);
+}
+
+Point CSquare::ReturnOldCenter()
+{
+	return OldCentre;
 }
 
 void CSquare::PrintInfo(Output* pOut) {

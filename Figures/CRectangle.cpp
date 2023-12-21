@@ -31,6 +31,7 @@ bool CRectangle::IsInsideFigure(int x, int y) const{
 
 void CRectangle::Move(Point NewCenter)
 {
+	OldCenter = Center;
 	Corner1.x += NewCenter.x - Center.x;
 	Corner1.y += NewCenter.y - Center.y;
 	Corner2.x += NewCenter.x - Center.x;
@@ -116,6 +117,11 @@ void CRectangle::PlayRecord(ifstream& Infile)
 	}
 	else
 		this->SetSelected(false);
+}
+
+Point CRectangle::ReturnOldCenter()
+{
+	return OldCenter;
 }
 
 void CRectangle::PrintInfo(Output* pOut)  {

@@ -10,6 +10,7 @@ private:
 	Point Corner2;
 	Point Corner3;
 	Point Center;
+	Point OldCenter;
 public:
 	CTriangle();
 	CTriangle(Point,Point,Point, GfxInfo FigureGfxInfo);
@@ -21,7 +22,7 @@ public:
 	virtual void Load(ifstream& Infile);
 	virtual void StartEndRecord(ofstream& OutFile);
 	virtual void PlayRecord(ifstream& Infile);
-
+	virtual Point ReturnOldCenter();
 	virtual void PrintInfo(Output*);
 };
 

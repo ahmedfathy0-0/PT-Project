@@ -1,5 +1,5 @@
 #include "AddSqrAction.h"
-#include "..\Figures\CSquare.h"
+
 
 #include "..\ApplicationManager.h"
 
@@ -40,8 +40,24 @@ void AddSqrAction::Execute()
 	ReadActionParameters();
 
 	//Create a Square with the parameters read from the user
-	CSquare* S = new CSquare(P1, RectGfxInfo);
+	S = new CSquare(P1, RectGfxInfo);
 
 	//Add the Square to the list of figures
+	S->IsHidden(false);
 	pManager->AddFigure(S);
+}
+
+Action* AddSqrAction::Clone()
+{
+	return new AddSqrAction(*this);
+}
+
+void AddSqrAction::Undo()
+{
+	S->IsHidden(true);
+}
+
+void AddSqrAction::Redo()
+{
+	S->IsHidden(false);
 }

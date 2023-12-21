@@ -19,6 +19,9 @@ public :
 	virtual void ReadActionParameters();
 	virtual void Execute();
 	color getclr(string);
+	virtual Action* Clone();
+	virtual void Undo();
+	virtual void Redo();
 };
 
 #endif
