@@ -20,6 +20,8 @@ public:
 	CFigure* RandomizeFig();
 	virtual void ReadActionParameters();
 	virtual void Execute();
+	void RightCase(CFigure*,int&,int&);
+	void WrongCase(CFigure*, int&, int&);
 	
 };
 

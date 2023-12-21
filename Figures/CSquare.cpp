@@ -2,12 +2,14 @@
 
 CSquare::CSquare() : CFigure(FigGfxInfo)
 {
+
 }
 
 CSquare::CSquare(Point P1,  GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Centre = P1;
 	figtype = square;
+
 	
 }
 void CSquare::Draw(Output* pOut) const

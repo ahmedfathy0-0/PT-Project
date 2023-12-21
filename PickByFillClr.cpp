@@ -35,6 +35,7 @@ CFigure* PickByFillClr::RandomizeClr()
 		RandomIndex = rand() % (pManager->GetFigCount());
 		ptrRandom = pManager->GetFigByIndex(RandomIndex);
 	}
+
 	switch (ptrRandom->GetFillClr())
 	{
 	case Red:

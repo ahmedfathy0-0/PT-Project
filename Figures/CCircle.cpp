@@ -2,6 +2,7 @@
 
 CCircle::CCircle() : CFigure(FigGfxInfo)
 {
+
 }
 
 CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
@@ -9,6 +10,7 @@ CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) : CFigure(FigureGfxI
 	Center = P1;
 	point = P2;
 	figtype = circle;
+
 }
 
 
