@@ -20,3 +20,16 @@ void ChangeFillcolor::Execute()
 	}
 
 }
+
+Action* ChangeFillcolor::Clone()
+{
+	return nullptr;
+}
+
+void ChangeFillcolor::Undo()
+{
+}
+
+void ChangeFillcolor::Redo()
+{
+}

@@ -409,7 +409,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		//adding the action to the undoable list if this action is undoable
 	if (dynamic_cast<AddCircAction*>(pAct) != NULL || dynamic_cast<AddRectAction*>(pAct) != NULL || dynamic_cast<AddSqrAction*>(pAct) != NULL ||
 			dynamic_cast<AddTrgAction*>(pAct) != NULL || dynamic_cast<AddHexAction*>(pAct) != NULL || dynamic_cast<DeleteAction*>(pAct) != NULL || dynamic_cast<MoveAction*>(pAct) != NULL
-			|| dynamic_cast<Changecolor*>(pAct) != NULL)
+			|| dynamic_cast<ChangeDrawcolor*>(pAct) != NULL)
 		{
 			AddAction(pAct);
 			ClearRedoList();

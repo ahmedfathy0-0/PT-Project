@@ -14,7 +14,7 @@ void ClearAll::Execute()
 
 Action* ClearAll::Clone()
 {
-	return new ClearAll(*this);
+	return nullptr;
 }
 
 void ClearAll::Undo()
