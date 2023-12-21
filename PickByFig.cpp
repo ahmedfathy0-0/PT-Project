@@ -97,108 +97,73 @@ void PickByFig::Execute()
 		 {
 		 case circle:
 			  Clicked = pManager->GetFigure(P.x, P.y);
-			 if (Clicked == NULL)
+			  if (Clicked == NULL)
+			  {
+			  }
+			  else if (Clicked->type() == circle)
 			 {
-
-			 }
-			 else if (Clicked->type() == circle)
-			 {
-				 RightCounter++;
-				 Clicked->IsHidden(true);
-				 pManager->UpdateInterface();
-				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+				 RightCase(Clicked,RightCounter,WrongCounter);
 			 }
 			 else
 			 {
-				 WrongCounter++;
-				 Clicked->IsHidden(true);
-				 pManager->UpdateInterface();
-				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+				 WrongCase(Clicked, RightCounter, WrongCounter);
 
 			 }
 			 break;
 		 case hexagon:
 			  Clicked = pManager->GetFigure(P.x, P.y);
-			 if (Clicked == NULL)
+			  if (Clicked == NULL)
+			  {
+			  }
+			  else if (Clicked->type() == hexagon)
 			 {
-				 
-			 }
-			 else if (Clicked->type() == hexagon)
-			 {
-				 RightCounter++;
-				 Clicked->IsHidden(true);
-				 pManager->UpdateInterface();
-				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+				 RightCase(Clicked, RightCounter, WrongCounter);
 			 }
 			 else
 			 {
-				 WrongCounter++;
-				 Clicked->IsHidden(true);
-				 pManager->UpdateInterface();
-				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+				 WrongCase(Clicked, RightCounter, WrongCounter);
 			 }
 			 break;
 		 case rectangle:
 			  Clicked = pManager->GetFigure(P.x, P.y);
-			 if (Clicked == NULL)
+			  if (Clicked == NULL)
+			  {
+			  }
+			  else if (Clicked->type() == rectangle)
 			 {
-				 
-			 }
-			 else if (Clicked->type() == rectangle)
-			 {
-				 RightCounter++;
-				 Clicked->IsHidden(true);
-				 pManager->UpdateInterface();
-				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+				 RightCase(Clicked, RightCounter, WrongCounter);
 			 }
 			 else
 			 {
-				 WrongCounter++;
-				 Clicked->IsHidden(true);
-				 pManager->UpdateInterface();
-				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+				 WrongCase(Clicked, RightCounter, WrongCounter);
 			 }
 			 break;
 		 case square:
 			  Clicked = pManager->GetFigure(P.x, P.y);
-			 if (Clicked == NULL)
+			  if (Clicked == NULL)
+			  {
+			  }
+			  else if (Clicked->type() == square)
 			 {
-				
-			 }
-			 else if (Clicked->type() == square)
-			 {
-				 RightCounter++;
-				 Clicked->IsHidden(true);
-				 pManager->UpdateInterface();
-				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+				 RightCase(Clicked, RightCounter, WrongCounter);
 			 }
 			 else
 			 {
-				 WrongCounter++;
-				 Clicked->IsHidden(true);
-				 pManager->UpdateInterface();
-				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+				 WrongCase(Clicked, RightCounter, WrongCounter);
 			 }
 			 break;
 		 case triangle:
 			  Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
-				
 			 }
 			 else if (Clicked->type() == triangle)
 			 {
-				 RightCounter++;
-				 Clicked->IsHidden(true);
-				 pManager->UpdateInterface();
-				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+				 RightCase(Clicked, RightCounter, WrongCounter);
 			 }
 			 else
 			 {
-				 WrongCounter++;
-				 Clicked->IsHidden(true);
-				 pManager->UpdateInterface();
-				 pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+				 WrongCase(Clicked, RightCounter, WrongCounter);
 			 }
 			 break;
 		 }
@@ -215,8 +180,6 @@ void PickByFig::Execute()
 		 delete ptrToPickByFill;
 	 }
 	 
-
-	
 }
 
 Action* PickByFig::Clone()
@@ -231,9 +194,22 @@ void PickByFig::Undo()
 void PickByFig::Redo()
 {
 }
-
-
-
+void PickByFig::RightCase(CFigure* Clicked,int& right,int& wrong)
+{
+	Output* pOut = pManager->GetOutput();
+	right++;
+	Clicked->IsHidden(true);
+	pManager->UpdateInterface();
+	pOut->PrintMessage("Right attempts: " + to_string(right) + " Wrong attempts: " + to_string(wrong));
+}
+void PickByFig::WrongCase(CFigure*clicked, int&right, int&wrong)
+{
+	Output* pOut = pManager->GetOutput();
+	wrong++;
+	clicked->IsHidden(true);
+	pManager->UpdateInterface();
+	pOut->PrintMessage("Right attempts: " + to_string(right) + " Wrong attempts: " + to_string(wrong));
+}
 void PickByFig::ReadActionParameters()
 {
 	Input* pIn = pManager->GetInput();

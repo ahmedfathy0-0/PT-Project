@@ -2,12 +2,14 @@
 
 CHexagon::CHexagon() : CFigure(FigGfxInfo)
 {
+
 }
 
 CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
 	figtype = hexagon;
+
 }
 
 void CHexagon::Draw(Output* pOut) const

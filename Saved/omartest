@@ -1,0 +1,10 @@
+BLUE     ORANGE
+8
+HEXAGN     1     303     314     BLUE     NO_FILL
+SQUARE     2     605     303     BLUE     NO_FILL
+SQUARE     3     179     391     BLUE     GREEN
+HEXAGN     4     921     332     BLUE     GREEN
+HEXAGN     5     439     477     BLUE     RED
+SQUARE     6     778     494     BLUE     RED
+HEXAGN     7     422     194     BLUE     ORANGE
+SQUARE     8     172     192     BLUE     ORANGE
