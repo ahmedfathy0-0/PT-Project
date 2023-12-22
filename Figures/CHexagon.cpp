@@ -193,12 +193,12 @@ void CHexagon::PlayRecord(ifstream& Infile)
 
 }
 
-Point CHexagon::ReturnCenter()
+Point CHexagon::ReturnCenter() const
 {
 	return Center;
 }
 
-Point CHexagon::ReturnOldCenter()
+Point CHexagon::ReturnOldCenter() const
 {
 	return OldCenter;
 }

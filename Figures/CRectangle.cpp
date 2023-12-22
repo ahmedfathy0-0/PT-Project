@@ -133,12 +133,12 @@ void CRectangle::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 }
 
-Point CRectangle::ReturnCenter()
+Point CRectangle::ReturnCenter() const 
 {
 	return Center;
 }
 
-Point CRectangle::ReturnOldCenter()
+Point CRectangle::ReturnOldCenter() const 
 {
 	return OldCenter;
 }

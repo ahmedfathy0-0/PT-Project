@@ -118,12 +118,12 @@ void CSquare::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 }
 
-Point CSquare::ReturnCenter()
+Point CSquare::ReturnCenter() const
 {
 	return Centre;
 }
 
-Point CSquare::ReturnOldCenter()
+Point CSquare::ReturnOldCenter()const
 {
 	return OldCentre;
 }

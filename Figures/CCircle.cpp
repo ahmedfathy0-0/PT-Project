@@ -130,12 +130,12 @@ void CCircle::PlayRecord(ifstream& Infile)
 
 }
 
-Point CCircle::ReturnCenter()
+Point CCircle::ReturnCenter() const
 {
 	return Center;
 }
 
-Point CCircle::ReturnOldCenter()
+Point CCircle::ReturnOldCenter()const
 {
 	return OldCenter;
 }

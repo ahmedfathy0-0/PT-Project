@@ -20,8 +20,8 @@ public:
 	virtual void Load(ifstream& Infile);
 	virtual void StartEndRecord(ofstream& OutFile) ;
 	virtual void PlayRecord(ifstream& Infile);
-	virtual Point ReturnCenter();
-	virtual Point ReturnOldCenter();
+	virtual Point ReturnCenter() const;
+	virtual Point ReturnOldCenter() const;
 	virtual void PrintInfo(Output*);
 };
 
