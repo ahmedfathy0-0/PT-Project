@@ -27,6 +27,11 @@ void MoveDragAction::Execute()
 	ReadActionParameters();
 	if (pFig)
 	{
+		bool MoveCondition = false; 
+		/*
+		used to first get checked is in the figure or not
+		after you can move out the figure
+		*/
 		int IX, IY, ix, iy;
 		Point C = pFig->ReturnCenter();
 		while (true)
@@ -41,7 +46,7 @@ void MoveDragAction::Execute()
 		{
 			if (pFig)
 			{
-				if (pFig->IsInsideFigure(IX, IY))
+				if (pFig->IsInsideFigure(IX, IY)||MoveCondition)
 				{
 					NewCenter.x = IX + C.x - ix;
 					NewCenter.y = IY + C.y - iy;
@@ -51,6 +56,7 @@ void MoveDragAction::Execute()
 				pManager->UpdateInterface();
 				if (!pIn->isClicked(NewCenter.x, NewCenter.y))
 					break;
+				MoveCondition = true;
 			}
 		}
 		pManager->deselectall();
