@@ -12,6 +12,7 @@ class LoadAction : public Action
 private:
 	string filename;
 	string type;
+	string fillcolor;
 	int NO_OF_FIGS;
 	ifstream fIn;
 public :

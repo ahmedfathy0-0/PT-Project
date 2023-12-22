@@ -65,9 +65,14 @@ void CCircle::Load(ifstream& Infile)
 	{
 		FigGfxInfo.isFilled = false;
 		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
 	}
 	else
+	{
 		FigGfxInfo.FillClr = getClr(clr);
+		UI.FillColor = FigGfxInfo.FillClr;
+	}
 }
 
 void CCircle::StartEndRecord(ofstream& OutFile)

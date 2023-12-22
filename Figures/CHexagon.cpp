@@ -125,9 +125,14 @@ void CHexagon::PlayRecord(ifstream& Infile)
 	if (clr == "NO_FILL")
 	{
 		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
 	}
-	else {
+	else
+	{
 		FigGfxInfo.FillClr = getClr(clr);
+		UI.FillColor = FigGfxInfo.FillClr;
 	}
 	Infile >> slc;
 	if (slc == "SELECTED")

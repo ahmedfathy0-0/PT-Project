@@ -24,17 +24,7 @@ void LoadAction::Execute()
 	fIn.open("Saved/" + filename);
 	fIn >> type;
 		UI.DrawColor = getclr(type);
-	fIn >> type;
-	if (type != "NO_FILL")
-	{
-		UI.ISFILLED = true;
-		UI.FillColor = getclr(type);
-	}
-	else
-	{
-		UI.ISFILLED = false;
-		UI.FillColor = GREEN;
-	}
+	fIn >> fillcolor;
 
 	fIn >> NO_OF_FIGS;
 	CFigure* myFig = NULL;
@@ -53,6 +43,16 @@ void LoadAction::Execute()
 			myFig = new CCircle;
 		myFig->Load(fIn);
 		pManager->AddFigure(myFig);
+	}
+	if (fillcolor != "NO_FILL")
+	{
+		UI.ISFILLED = true;
+		UI.FillColor = getclr(fillcolor);
+	}
+	else
+	{
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
 	}
 }
 
