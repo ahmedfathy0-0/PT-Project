@@ -35,6 +35,12 @@ void CSquare::Move(Point NewCenter)
 	Centre = NewCenter;
 }
 
+void CSquare::Resize(Point NewPoint)
+{
+	UI.SqrSize = 2 * abs(Centre.y - NewPoint.y);
+
+}
+
 void CSquare::Save(ofstream& OutFile)
 {
 	OutFile << "SQUARE" << "     ";
@@ -60,9 +66,14 @@ void CSquare::Load(ifstream& Infile)
 	{
 		FigGfxInfo.isFilled = false;
 		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
 	}
 	else
+	{
 		FigGfxInfo.FillClr = getClr(clr);
+		UI.FillColor = FigGfxInfo.FillClr;
+	}
 }
 
 void CSquare::StartEndRecord(ofstream& OutFile)
@@ -107,7 +118,12 @@ void CSquare::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 }
 
-Point CSquare::ReturnOldCenter()
+Point CSquare::ReturnCenter() const
+{
+	return Centre;
+}
+
+Point CSquare::ReturnOldCenter()const
 {
 	return OldCentre;
 }

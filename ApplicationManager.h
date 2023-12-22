@@ -43,7 +43,6 @@ public:
 	void SaveAll(ofstream& OutFile) const;
 	void Clearall();
 	void deletefigure();
-	void movefigure(Point New);
 	// functions for the Start,Stop,and Play Record  action//
 	void StartRecord(string) ;
 	void RecordFigure(CFigure*); //to record any changes in draw mode
@@ -71,6 +70,7 @@ public:
 	Input* GetInput() const; //Return pointer to the input
 	Output* GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
+	void UpdateBuffer(bool) const;
 
 	//Functions for PickAndHide
 	CFigure* GetFigByIndex(int i);

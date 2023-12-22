@@ -9,6 +9,8 @@
 #include "Actions\ClearAll.h"
 #include "Actions\DeleteAction.h"
 #include "Actions\MoveFigure.h"
+#include "Actions\MoveFigureByDrag.h"
+#include "Actions\ResizeAction.h"
 #include "Actions\LoadAction.h"
 #include "Actions\StartRecordingAction.h"
 #include "Actions\PlayRecordAction.h"
@@ -130,8 +132,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new MoveAction(this);
 		break;
 
+	case MOVEDRAG:
+		pAct = new MoveDragAction(this);
+		break;
+
 	case RESIZE:
-		pOut->PrintMessage("Action: RE-SIZE, Click anywhere");
+		pAct = new ResizeAction(this);
 		break;
 
 	case CLEAR:
@@ -496,9 +502,7 @@ void ApplicationManager::SetSelectedFigure(CFigure* pFig) {
 
 CFigure* ApplicationManager::GetSelectedFigure() const
 {
-	if (SelectedFigure != NULL) {
 		return SelectedFigure;
-	}
 }
 
 
@@ -721,16 +725,22 @@ bool ApplicationManager::CheckForFillColor()
 
 //Draw all figures on the user interface
 
+void ApplicationManager::UpdateBuffer(bool flag) const
+{
+	pIn->SetBuffering(flag);
+	pIn->SetWaitClose(flag);
+	pIn->UpdateBuffer();
+}
 void ApplicationManager::UpdateInterface() const
 {
+
 	pOut->ClearDrawArea();
 	for (int i = 0; i < FigCount; i++)
-		if(!(FigList[i]->GetHiddenStatus()))
+		if (!(FigList[i]->GetHiddenStatus()))
 		{
 			FigList[i]->Draw(pOut);//Call Draw function (virtual member fn)1
 		}
 }
-
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input
 Input* ApplicationManager::GetInput() const

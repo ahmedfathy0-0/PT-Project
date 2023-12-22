@@ -51,6 +51,15 @@ void CTriangle::Move(Point NewCenter)
 	Center = NewCenter;
 }
 
+void CTriangle::Resize(Point NewPoint)
+{
+	Point* Nearest2Point = NewPoint.IsNeartoWhich(&Corner1, &Corner2);
+	Point* NearestPoint = NewPoint.IsNeartoWhich(Nearest2Point, &Corner3);
+	NearestPoint->x = NewPoint.x;
+	NearestPoint->y = NewPoint.y;
+
+}
+
 void CTriangle::Save(ofstream& OutFile)
 {
 	OutFile << "TRIANG" << "     ";
@@ -122,9 +131,14 @@ void CTriangle::PlayRecord(ifstream& Infile)
 	if (clr == "NO_FILL")
 	{
 		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
 	}
-	else {
+	else
+	{
 		FigGfxInfo.FillClr = getClr(clr);
+		UI.FillColor = FigGfxInfo.FillClr;
 	}
 	Infile >> slc;
 	if (slc == "SELECTED")
@@ -135,7 +149,12 @@ void CTriangle::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 }
 
-Point CTriangle::ReturnOldCenter()
+Point CTriangle::ReturnCenter()const
+{
+	return Center;
+}
+
+Point CTriangle::ReturnOldCenter()const
 {
 	return OldCenter;
 }

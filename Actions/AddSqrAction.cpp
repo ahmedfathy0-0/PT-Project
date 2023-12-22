@@ -45,6 +45,10 @@ void AddSqrAction::Execute()
 	//Add the Square to the list of figures
 	S->IsHidden(false);
 	pManager->AddFigure(S);
+
+
+
+
 }
 
 Action* AddSqrAction::Clone()

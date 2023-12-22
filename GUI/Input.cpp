@@ -11,6 +11,21 @@ void Input::GetPointClicked(int& x, int& y) const
 	pWind->WaitMouseClick(x, y);	//Wait for mouse click
 }
 
+void Input::UpdateBuffer() const// to solve when window turns white suddenly or after minmized it
+{
+
+	pWind->UpdateBuffer();
+}
+void Input::SetBuffering (bool flag)const// to solve when window turns white suddenly or after minmized it
+{
+	pWind->SetBuffering(flag);
+
+}
+void Input::SetWaitClose(bool flag) const {
+	pWind->SetWaitClose(flag);
+}
+
+
 string Input::GetSrting(Output* pO) const
 {
 	string Label;
@@ -32,6 +47,14 @@ string Input::GetSrting(Output* pO) const
 		pWind->FlushMouseQueue();
 		pWind->FlushKeyQueue();
 	}
+}
+
+bool Input::isClicked(int &x,int &y)//told us is the user click to the left button or not 
+{
+	if (pWind->GetButtonState(LEFT_BUTTON, x, y) == BUTTON_DOWN)
+		return true;
+	else
+		return false;
 }
 
 //This function reads the position where the user clicks to determine the desired action
@@ -61,6 +84,7 @@ ActionType Input::GetUserAction() const
 			case ITM_CIRCLE: return DRAW_CIRCLE;
 			case ITM_SELECTONE: return SELECTONE;
 			case ITM_MOVE: return MOVE;
+			case ITM_MOVEDRAG: return MOVEDRAG;
 			case ITM_RESIZE: return RESIZE;
 			case ITM_CLEAR: return CLEAR;
 			case ITM_DELETE: return DELET;
@@ -130,6 +154,8 @@ ActionType Input::GetUserAction() const
 			int clickeditemorder = ((x) / UI.MenuItemWidth)-2;
 			switch (clickeditemorder)
 			{
+			case(-2):
+				UI.conDforPicknHide = false;
 			case(ITM_PICKBYFIGURE):return PICKBYFIG;
 			case(ITM_PICKBYCOLOR):return PICKBYCOL;
 			case(ITM_PICKBYBOTH):return PICKBYBOTH;

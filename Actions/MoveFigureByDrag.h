@@ -1,28 +1,24 @@
-#ifndef LOAD_ACTION_H
-#define LOAD_ACTION_H
+#pragma once
 #include "Action.h"
-#include "..\Figures\CFigure.h"
 #include "../ApplicationManager.h"
 #include "../GUI/Input.h"
 #include "../GUI/Output.h"
+#include "../Figures/CFigure.h"
 #include <fstream>
 
-class LoadAction : public Action
+
+class MoveDragAction : public Action
 {
 private:
-	string filename;
-	string type;
-	string fillcolor;
-	int NO_OF_FIGS;
-	ifstream fIn;
+	Point NewCenter;
+	CFigure* pFig;
+	Output* pOut;
+	Input* pIn;
 public :
-	LoadAction(ApplicationManager* pApp);
+	MoveDragAction(ApplicationManager* pApp);//Garbage intial value if its garabge getpoint from the user
 	virtual void ReadActionParameters();
 	virtual void Execute();
-	color getclr(string);
 	virtual Action* Clone();
 	virtual void Undo();
 	virtual void Redo();
 };
-
-#endif

@@ -16,7 +16,7 @@ CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) : CFigure(FigureGfxI
 
 void CCircle::Draw(Output* pOut) const
 {
-	//Call Output::DrawRect to draw a Circle on the screen	
+	//Call Output::DrawCirc to draw a Circle on the screen	
 	pOut->DrawCirc(Center, point, FigGfxInfo, Selected);
 }
 
@@ -36,6 +36,12 @@ void CCircle::Move(Point NewCenter)
 	point.x += NewCenter.x - Center.x;
 	point.y += NewCenter.y - Center.y;
 	Center = NewCenter;
+}
+
+void CCircle::Resize(Point NewPoint)
+{
+	point.x = NewPoint.x;
+	point.y = NewPoint.y;
 }
 
 void CCircle::Save(ofstream& OutFile)
@@ -65,9 +71,14 @@ void CCircle::Load(ifstream& Infile)
 	{
 		FigGfxInfo.isFilled = false;
 		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
 	}
 	else
+	{
 		FigGfxInfo.FillClr = getClr(clr);
+		UI.FillColor = FigGfxInfo.FillClr;
+	}
 }
 
 void CCircle::StartEndRecord(ofstream& OutFile)
@@ -119,7 +130,12 @@ void CCircle::PlayRecord(ifstream& Infile)
 
 }
 
-Point CCircle::ReturnOldCenter()
+Point CCircle::ReturnCenter() const
+{
+	return Center;
+}
+
+Point CCircle::ReturnOldCenter()const
 {
 	return OldCenter;
 }

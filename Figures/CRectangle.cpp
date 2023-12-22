@@ -41,6 +41,13 @@ void CRectangle::Move(Point NewCenter)
 	Center = NewCenter;
 }
 
+void CRectangle::Resize(Point NewPoint)
+{
+	Point* NearestPoint = NewPoint.IsNeartoWhich(&Corner1, &Corner2);
+	NearestPoint->x = NewPoint.x;
+	NearestPoint->y = NewPoint.y;
+}
+
 void CRectangle::Save(ofstream& OutFile)
 {
 	OutFile << "RECTAN" << "     ";
@@ -70,9 +77,14 @@ void CRectangle::Load(ifstream& Infile)
 	{
 		FigGfxInfo.isFilled = false;
 		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
 	}
 	else
+	{
 		FigGfxInfo.FillClr = getClr(clr);
+		UI.FillColor = FigGfxInfo.FillClr;
+	}
 }
 
 void CRectangle::StartEndRecord(ofstream& OutFile)
@@ -121,7 +133,12 @@ void CRectangle::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 }
 
-Point CRectangle::ReturnOldCenter()
+Point CRectangle::ReturnCenter() const 
+{
+	return Center;
+}
+
+Point CRectangle::ReturnOldCenter() const 
 {
 	return OldCenter;
 }
