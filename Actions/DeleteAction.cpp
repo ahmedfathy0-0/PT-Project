@@ -1,13 +1,22 @@
 #include "DeleteAction.h"
 
 DeleteAction::DeleteAction(ApplicationManager* pApp) : Action(pApp) {}
-void DeleteAction::ReadActionParameters(){}
+void DeleteAction::ReadActionParameters()
+{
+	pOut = pManager->GetOutput();
+	pFig = pManager->GetSelectedFigure();
+	if (pFig == NULL())
+		pOut->PrintMessage("Please select Figure first");
+	else
+		pOut->PrintMessage("Figure Deleted");
+}
 void DeleteAction::Execute()
 {
+	ReadActionParameters();
 	//pManager->deletefigure();
-	if (pManager->GetSelectedFigure() != NULL)
+	if (pFig != NULL)
 	{
-		pManager->GetSelectedFigure()->SetHidden(true);
+		pFig->SetHidden(true);
 	}
 }
 

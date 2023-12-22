@@ -193,6 +193,11 @@ void CHexagon::PlayRecord(ifstream& Infile)
 
 }
 
+Point CHexagon::ReturnCenter()
+{
+	return Center;
+}
+
 Point CHexagon::ReturnOldCenter()
 {
 	return OldCenter;

@@ -25,29 +25,45 @@ void MoveDragAction::ReadActionParameters()
 void MoveDragAction::Execute()
 {
 	ReadActionParameters();
-	int IX, IY,ix,iy;
-	pIn->isClicked(ix, iy);
-	while (true)
+	if (pFig)
 	{
-		if (pIn->isClicked(IX, IY))
+		bool MoveCondition = false; 
+		/*
+		used to first get checked is in the figure or not
+		after you can move out the figure
+		*/
+		int IX, IY, ix, iy;
+		Point C = pFig->ReturnCenter();
+		while (true)
+		{
+			if (pIn->isClicked(IX, IY))
+			{
+				pIn->isClicked(ix, iy);
+				break;
+			}
+		}
+		while (pIn->isClicked(IX, IY))
+		{
 			if (pFig)
 			{
-				if (pFig->IsInsideFigure(IX, IY))
+				if (pFig->IsInsideFigure(IX, IY)||MoveCondition)
 				{
-					NewCenter.x = IX;
-					NewCenter.y = IY;
+					NewCenter.x = IX + C.x - ix;
+					NewCenter.y = IY + C.y - iy;
 					pFig->Move(NewCenter);
 				}
-				Sleep(10);
+				Sleep(1);
 				pManager->UpdateInterface();
 				if (!pIn->isClicked(NewCenter.x, NewCenter.y))
 					break;
+				MoveCondition = true;
 			}
+		}
+		pManager->deselectall();
+		pManager->RecordFigure(pFig);
+		pOut->ClearStatusBar();
 	}
-	pManager->deselectall();
-	pManager->RecordFigure(pFig);
-	pOut->ClearStatusBar();
-	}
+}
 
 Action* MoveDragAction::Clone()
 {
