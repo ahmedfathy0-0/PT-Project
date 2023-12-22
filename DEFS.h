@@ -57,6 +57,15 @@ enum ActionType //The actions supported (you can add more if needed)
 struct Point	//To be used for figures points
 {
 	int x, y;
+	Point* IsNeartoWhich(Point* P1, Point* P2) {
+		if (this->getDistance(P1) < this->getDistance(P2))
+			return P1;
+		else
+			return P2;
+	}
+	double getDistance(Point* P1) {
+		return sqrt(pow(this->x - P1->x, 2) + pow(this->y - P1->y, 2));
+	}
 };
 
 struct GfxInfo	//Graphical info of each figure (you may add more members)

@@ -35,6 +35,12 @@ void CSquare::Move(Point NewCenter)
 	Centre = NewCenter;
 }
 
+void CSquare::Resize(Point NewPoint)
+{
+	UI.SqrSize = 2 * abs(Centre.y - NewPoint.y);
+
+}
+
 void CSquare::Save(ofstream& OutFile)
 {
 	OutFile << "SQUARE" << "     ";

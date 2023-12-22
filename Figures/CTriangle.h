@@ -18,6 +18,7 @@ public:
 	virtual bool IsInsideFigure(int x, int y) const;
 	double CalculateArea(Point, Point, Point) const;
 	virtual void Move(Point);
+	virtual void Resize(Point);
 	virtual void Save(ofstream& OutFile);
 	virtual void Load(ifstream& Infile);
 	virtual void StartEndRecord(ofstream& OutFile);

@@ -41,6 +41,13 @@ void CRectangle::Move(Point NewCenter)
 	Center = NewCenter;
 }
 
+void CRectangle::Resize(Point NewPoint)
+{
+	Point* NearestPoint = NewPoint.IsNeartoWhich(&Corner1, &Corner2);
+	NearestPoint->x = NewPoint.x;
+	NearestPoint->y = NewPoint.y;
+}
+
 void CRectangle::Save(ofstream& OutFile)
 {
 	OutFile << "RECTAN" << "     ";

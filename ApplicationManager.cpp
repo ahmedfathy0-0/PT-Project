@@ -10,6 +10,7 @@
 #include "Actions\DeleteAction.h"
 #include "Actions\MoveFigure.h"
 #include "Actions\MoveFigureByDrag.h"
+#include "Actions\ResizeAction.h"
 #include "Actions\LoadAction.h"
 #include "Actions\StartRecordingAction.h"
 #include "Actions\PlayRecordAction.h"
@@ -136,7 +137,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case RESIZE:
-		pOut->PrintMessage("Action: RE-SIZE, Click anywhere");
+		pAct = new ResizeAction(this);
 		break;
 
 	case CLEAR:

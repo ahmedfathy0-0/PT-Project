@@ -51,6 +51,15 @@ void CTriangle::Move(Point NewCenter)
 	Center = NewCenter;
 }
 
+void CTriangle::Resize(Point NewPoint)
+{
+	Point* Nearest2Point = NewPoint.IsNeartoWhich(&Corner1, &Corner2);
+	Point* NearestPoint = NewPoint.IsNeartoWhich(Nearest2Point, &Corner3);
+	NearestPoint->x = NewPoint.x;
+	NearestPoint->y = NewPoint.y;
+
+}
+
 void CTriangle::Save(ofstream& OutFile)
 {
 	OutFile << "TRIANG" << "     ";

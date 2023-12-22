@@ -20,51 +20,100 @@ void CHexagon::Draw(Output* pOut) const
 
 bool CHexagon::IsInsideFigure(int X, int Y) const 
 {
-	int x[6];
-	int y[6];
-	x[0] = Center.x + UI.HexagonSize;
-	y[0] = Center.y;
-	x[1] = Center.x + UI.HexagonSize / 2;
-	y[1] = Center.y + UI.HexagonSize * 0.866;
-	x[2] = Center.x - UI.HexagonSize / 2;
-	y[2] = Center.y + UI.HexagonSize * 0.866;
-	x[3] = Center.x - UI.HexagonSize;
-	y[3] = Center.y;
-	x[4] = Center.x - UI.HexagonSize / 2;
-	y[4] = Center.y - UI.HexagonSize * 0.866;
-	x[5] = Center.x + UI.HexagonSize / 2;
-	y[5] = Center.y - UI.HexagonSize * 0.866;
+	Point p3, p4;
+	p3.x = Center.x + UI.HexagonSize;
+	p3.y = Center.y - UI.HexagonSize*0.866;
+	p4.x = Center.x - UI.HexagonSize;
+	p4.y = Center.y + UI.HexagonSize*0.866;
 
-	Point P1, P2, P3, P4, P5, P6, P;
-	P1.x = x[0]; P1.y = y[0];
-	P2.x = x[1]; P2.y = y[1];
-	P3.x = x[2]; P3.y = y[2];
-	P4.x = x[3]; P4.y = y[3];
-	P5.x = x[4]; P5.y = y[4];
-	P6.x = x[5]; P6.y = y[5];
-	P.x = X; P.y = Y;
+	if (X >= p4.x && X <= p3.x && Y >= p3.y && Y <= p4.y)
+	{
 
-	double HexagonArea1 = 25950;
-	double HexagonArea2 = 25800;
-	double triangle1Area = CalculateArea(P, P1, P6);
-	double triangle2Area = CalculateArea(P, P1, P2);
-	double triangle3Area = CalculateArea(P, P2, P3);
-	double triangle4Area = CalculateArea(P, P3, P4);
-	double triangle5Area = CalculateArea(P, P4, P5);
-	double triangle6Area = CalculateArea(P, P5, P6);
-	if (HexagonArea1 == triangle1Area + triangle2Area + triangle3Area + triangle4Area + triangle5Area + triangle6Area 
-		||HexagonArea2== triangle1Area + triangle2Area + triangle3Area + triangle4Area + triangle5Area + triangle6Area) return true;
-	else return false;
+		///after findig that the hexagon is inside the rectangle or not we now need to find is the point in the four triangle remain or not
+			//note: that the four triangle area +the hexagon area = rectangle area
+			//first triangle
+		Point P;
+		Point Corner3;
+		Point Corner2;
+		Point Corner1;
+		P.x = X;
+		P.y = Y;
+		Corner1.x = Center.x - UI.HexagonSize;
+		Corner1.y = Center.y - UI.HexagonSize * 0.866;
+		Corner2.x = Corner1.x + UI.HexagonSize / 2;
+		Corner2.y = Corner1.y;
+		Corner3.x = Corner1.x;
+		Corner3.y = Corner1.y + UI.HexagonSize * 0.866;
+		double BigTriangleArea1 = CalculateArea(Corner1, Corner2, Corner3);
+		double firstSmallArea1 = CalculateArea(Corner1, Corner2, P);
+		double SecondSmallArea1 = CalculateArea(Corner1, Corner3, P);
+		double thirdSmallArea1 = CalculateArea(Corner2, Corner3, P);
+
+		///second triangle
+		Corner1.x += UI.HexagonSize + UI.HexagonSize/ 2;
+		//y coordianate of Corner1 is same here
+		Corner2.x += UI.HexagonSize + (UI.HexagonSize) / 2;
+		//y coordianate of Corner2 is same here
+		Corner3.x += 2 * UI.HexagonSize;
+		//y coordianate of Corner3 is same here
+		double BigTriangleArea2 = CalculateArea(Corner1, Corner2, Corner3);
+		double firstSmallArea2 = CalculateArea(Corner1, Corner2, P);
+		double SecondSmallArea2 = CalculateArea(Corner1, Corner3, P);
+		double thirdSmallArea2 = CalculateArea(Corner2, Corner3, P);
+
+		///third triangle
+		Corner1.y +=2*(UI.HexagonSize * 0.866);
+		//x coordianate of Corner1 is same here
+		Corner2.y += 2 * (UI.HexagonSize * 0.866);
+		//x coordianate of Corner2 is same here
+		// coordianates of Corner3 is same here
+		double BigTriangleArea3 = CalculateArea(Corner1, Corner2, Corner3);
+		double firstSmallArea3 = CalculateArea(Corner1, Corner2, P);
+		double SecondSmallArea3 = CalculateArea(Corner1, Corner3, P);
+		double thirdSmallArea3 = CalculateArea(Corner2, Corner3, P);
+
+		///Fourth triangle
+		//coordianates of Corner1 is same here
+		Corner2.x -= 2 * UI.HexagonSize;
+		//y coordianate of Corner2 is same here
+		Corner3.x -= 2 * UI.HexagonSize;
+		// y coordianate of Corner3 is same here
+		double BigTriangleArea4 = CalculateArea(Corner1, Corner2, Corner3);
+		double firstSmallArea4 = CalculateArea(Corner1, Corner2, P);
+		double SecondSmallArea4 = CalculateArea(Corner1, Corner3, P);
+		double thirdSmallArea4 = CalculateArea(Corner2, Corner3, P);
+
+
+		if ((BigTriangleArea1 == firstSmallArea1 + SecondSmallArea1 + thirdSmallArea1) || (BigTriangleArea2 == firstSmallArea2 + SecondSmallArea2 + thirdSmallArea2) || (BigTriangleArea3 == firstSmallArea3 + SecondSmallArea3 + thirdSmallArea3) || (BigTriangleArea4 == firstSmallArea4 + SecondSmallArea4 + thirdSmallArea4)) 
+		return false;
+		else 
+			return true;
+
+
+	}
+
+
+
+
+
+	else 
+		return false;
 }
 
 double CHexagon::CalculateArea(Point P1, Point P2, Point P3) const {
 	return 0.5 * fabs((P1.x * (P2.y - P3.y)) + (P2.x * (P3.y - P1.y)) + (P3.x * (P1.y - P2.y)));
+
 }
 
 void CHexagon::Move(Point NewCenter)
 {
 	OldCenter = Center;
 	Center = NewCenter;
+}
+
+void CHexagon::Resize(Point NewPoint)
+{
+	UI.HexagonSize = 2 * abs(Center.y - NewPoint.y);
 }
 
 void CHexagon::Save(ofstream& OutFile)

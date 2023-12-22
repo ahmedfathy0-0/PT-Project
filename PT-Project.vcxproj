@@ -140,6 +140,7 @@
     <ClCompile Include="Actions\MoveFigureByDrag.cpp" />
     <ClCompile Include="Actions\PlayRecordAction.cpp" />
     <ClCompile Include="Actions\RedoAction.cpp" />
+    <ClCompile Include="Actions\ResizeAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectOneAction.cpp" />
     <ClCompile Include="Actions\ChangeFillColor.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="Actions\MoveFigureByDrag.h" />
     <ClInclude Include="Actions\PlayRecordAction.h" />
     <ClInclude Include="Actions\RedoAction.h" />
+    <ClInclude Include="Actions\ResizeAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\SelectOneAction.h" />
     <ClInclude Include="Actions\StartRecordingAction.h" />
