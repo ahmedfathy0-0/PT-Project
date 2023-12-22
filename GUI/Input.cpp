@@ -34,6 +34,15 @@ string Input::GetSrting(Output* pO) const
 	}
 }
 
+bool Input::isClicked()
+{
+	int x, y;
+	if (pWind->GetButtonState(LEFT_BUTTON,x,y)== BUTTON_DOWN)
+		return true;
+	else
+		return false;
+}
+
 //This function reads the position where the user clicks to determine the desired action
 ActionType Input::GetUserAction() const
 {
