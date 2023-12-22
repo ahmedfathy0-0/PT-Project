@@ -264,12 +264,13 @@ void Output::deleteColorPalette() const
 }
 void Output::setCrntDrawColor(color color)
 {
+	UI.OldDrawColor = UI.DrawColor;
 	UI.DrawColor = color;
 }
 void Output::setCrntFillColor(color color)
 {
+	UI.OldFillColor = UI.FillColor;
 	UI.FillColor = color;
-
 }
 void Output::setisFilled(bool isfilled)
 {
@@ -289,8 +290,6 @@ bool Output::getisFilled() const
 }
 color Output::getCrntDrawColor() const	//get current drawing color
 {
-
-
 	return UI.DrawColor;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -300,6 +299,17 @@ color Output::getCrntFillColor() const	//get current filling color
 	return UI.FillColor;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+color Output::getOldFillColor() const	//get old filling color
+{
+	return UI.OldFillColor;
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+color Output::getOldDrawColor() const	//get old Drawing color
+{
+	return UI.OldDrawColor;
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+
 
 int Output::getCrntPenWidth() const		//get current pen width
 {
@@ -338,6 +348,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 		CreateDrawToolBar();
 
 	ClearStatusBar();	
+
 	PrintMessage(Lastmsg);
 
 
@@ -371,7 +382,9 @@ void Output::DrawSqr(Point P1, GfxInfo SqGfxInfo, bool selected) const {
 		CreateDrawToolBar();
 	
 	ClearStatusBar();
+
 	PrintMessage(Lastmsg);
+
 }
 
 void Output::DrawTr(Point P1, Point P2, Point P3, GfxInfo TrGfxInfo, bool selected) const
@@ -398,6 +411,7 @@ void Output::DrawTr(Point P1, Point P2, Point P3, GfxInfo TrGfxInfo, bool select
 
 
 	ClearStatusBar();
+
 	PrintMessage(Lastmsg);
 
 }
@@ -433,17 +447,19 @@ void Output::DrawHex(Point P1, GfxInfo HXGfxInfo, bool selected) const
 	x[5] = P1.x + UI.HexagonSize / 2;
 	y[5] = P1.y - UI.HexagonSize * 0.866;
 	pWind->DrawPolygon(x, y, UI.HexagonVertices, style);
+
+
 	if ((P1.y - UI.HexagonSize * 0.866) < UI.ToolBarHeight)
 		CreateDrawToolBar();
 
 
-
+	ClearStatusBar();
 	delete[] x;
 	delete[] y;
 
 
-	ClearStatusBar();
 	PrintMessage(Lastmsg);
+
 
 }
 void Output::DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) const
@@ -469,6 +485,7 @@ void Output::DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) co
 
 
 	pWind->DrawCircle(P1.x, P1.y, radius, style);
+
 	if (P1.y - radius < UI.ToolBarHeight)
 		CreateDrawToolBar();
 

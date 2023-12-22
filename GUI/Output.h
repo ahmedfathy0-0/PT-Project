@@ -48,6 +48,11 @@ public:
 	bool getisFilled() const;
 	color getCrntDrawColor() const;	//get current drwawing color
 	color getCrntFillColor() const;	//get current filling color
+	color getOldFillColor() const;	//get old filling color
+	color getOldDrawColor() const;	//get old Drawing color
+
+
+
 	int getCrntPenWidth() const;		//get current pen width
 
 

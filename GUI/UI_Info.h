@@ -112,7 +112,9 @@ struct UI_Info	//User Interface Info.
 
 
 	color DrawColor;		//Drawing color
+	color OldDrawColor;
 	color FillColor;		//Filling color
+	color OldFillColor;
 	color HighlightColor;	//Highlighting color
 	color MsgColor;			//Messages color
 	color BkGrndColor;		//Background color

@@ -50,6 +50,8 @@ void AddRectAction::Execute()
 	//Add the rectangle to the list of figures
 	R->IsHidden(false);
 	pManager->AddFigure(R);
+
+
 }
 
 Action* AddRectAction::Clone()

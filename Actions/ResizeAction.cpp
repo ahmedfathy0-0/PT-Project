@@ -37,17 +37,22 @@ void ResizeAction::Execute()
 				{
 					NewCenter.x = IX;
 					NewCenter.y = IY;
+					pManager->UpdateBuffer(true);
+					pOut->CreateDrawToolBar();
+					pManager->UpdateInterface();
 					pFig->Resize(NewCenter);
+
 				}
-				Sleep(10);
+				Sleep(1);
 				pManager->UpdateInterface();
 				if (!pIn->isClicked(NewCenter.x, NewCenter.y))
 					break;
 				flag = true;
 			}
 	}
-	pManager->deselectall();
+	pManager->UpdateBuffer(false);
 	pManager->RecordFigure(pFig);
+	pManager->deselectall();
 	pOut->ClearStatusBar();
 }
 

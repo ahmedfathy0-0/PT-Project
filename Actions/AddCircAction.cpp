@@ -48,6 +48,8 @@ void AddCircAction::Execute()
 	//Add the Circle to the list of figures
 	C->IsHidden(false);
 	pManager->AddFigure(C);
+
+
 }
 
 Action* AddCircAction::Clone()

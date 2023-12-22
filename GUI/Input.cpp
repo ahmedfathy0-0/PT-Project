@@ -1,5 +1,6 @@
 #include "Input.h"
 #include "Output.h"
+int Input::flag = false;
 Input::Input(window* pW)
 {
 	pWind = pW; //point to the passed window
@@ -10,6 +11,21 @@ void Input::GetPointClicked(int& x, int& y) const
 {
 	pWind->WaitMouseClick(x, y);	//Wait for mouse click
 }
+
+void Input::UpdateBuffer() const// to solve when window turns white suddenly or after minmized it
+{
+
+	pWind->UpdateBuffer();
+}
+void Input::SetBuffering (bool flag)const// to solve when window turns white suddenly or after minmized it
+{
+	pWind->SetBuffering(flag);
+
+}
+void Input::SetWaitClose(bool flag) const {
+	pWind->SetWaitClose(flag);
+}
+
 
 string Input::GetSrting(Output* pO) const
 {
@@ -34,7 +50,7 @@ string Input::GetSrting(Output* pO) const
 	}
 }
 
-bool Input::isClicked(int &x,int &y)
+bool Input::isClicked(int &x,int &y)//told us is the user click to the left button or not 
 {
 	if (pWind->GetButtonState(LEFT_BUTTON, x, y) == BUTTON_DOWN)
 		return true;
@@ -43,7 +59,7 @@ bool Input::isClicked(int &x,int &y)
 }
 
 //This function reads the position where the user clicks to determine the desired action
-ActionType Input::GetUserAction() const
+ActionType Input::GetUserAction(Output* pOut) const
 {
 	int x, y;
 	pWind->WaitMouseClick(x, y);	//Get the coordinates of the user click
@@ -80,8 +96,15 @@ ActionType Input::GetUserAction() const
 			case ITM_STARTRECORDING:return STARTRECORDING;
 			case ITM_ENDRECORDING: return ENDRECORDING;
 			case ITM_PLAYRECORDING:return PLAYRECORDING;
-			case ITM_CHANGEDRAWCLR:return CHANGEDRAWCOLOR;
-			case ITM_CHANGEFILLCLR:return CHANGEFILLCOLOR;
+			case ITM_CHANGEDRAWCLR: {
+				flag = false;
+				pOut->setisFilled(false);
+				return CHANGEDRAWCOLOR;}
+			case ITM_CHANGEFILLCLR: {
+				flag = true;
+				pOut->setisFilled(true);
+				return CHANGEFILLCOLOR;
+			}
 			case ITM_CHANGECOLOR: return CHANGECOLOR;
 			case ITM_EXIT: return EXIT;
 			default: return EMPTY;	//A click on empty place in design toolbar
@@ -94,12 +117,67 @@ ActionType Input::GetUserAction() const
 
 				int ClickedItemOrder = ((x - UI.ColorPaletteWidthstart) / (UI.MenuItemWidth));
 				switch (ClickedItemOrder) {
-				case(COLOR_BLACK): return BLACKCLR;
-				case(COLOR_YELLOW): return YELLOWCLR;
-				case(COLOR_ORANGE): return ORANGECLR;
-				case(COLOR_RED): return REDCLR;
-				case(COLOR_GREEN): return GREENCLR;
-				case(COLOR_BLUE): return BLUECLR;
+				case(COLOR_BLACK): {
+					if (flag == true) {
+						pOut->PrintMessage("The Fill color will now be black");
+						pOut->setCrntFillColor(BLACK);
+					}
+					else {
+						pOut->PrintMessage("The Draw color will now be black");
+						pOut->setCrntDrawColor(BLACK);
+					}
+					return BLACKCLR;
+				}
+				case(COLOR_YELLOW): { 
+					if (flag == true) {
+						pOut->PrintMessage("The Fill color will now be YELLOW");
+						pOut->setCrntFillColor(YELLOW);
+					}
+					else {
+						pOut->PrintMessage("The Draw color will now be YELLOW");
+						pOut->setCrntDrawColor(YELLOW);
+					}
+					return YELLOWCLR;}
+				case(COLOR_ORANGE): {
+					if (flag == true) {
+						pOut->PrintMessage("The Fill color will now be ORANGE");
+						pOut->setCrntFillColor(ORANGE);
+					}
+					else {
+						pOut->PrintMessage("The Draw color will now be ORANGE");
+						pOut->setCrntDrawColor(ORANGE);
+					}
+					return ORANGECLR;}
+				case(COLOR_RED): { 
+					if (flag == true) {
+						pOut->PrintMessage("The Fill color will now be RED");
+						pOut->setCrntFillColor(RED);
+					}
+					else {
+						pOut->PrintMessage("The Draw color will now be RED");
+						pOut->setCrntDrawColor(RED);
+					}
+					return REDCLR;}
+				case(COLOR_GREEN): { 
+					if (flag == true) {
+						pOut->PrintMessage("The Fill color will now be GREEN");
+						pOut->setCrntFillColor(GREEN);
+					}
+					else {
+						pOut->PrintMessage("The Draw color will now be GREEN");
+						pOut->setCrntDrawColor(GREEN);
+					}
+					return GREENCLR;}
+				case(COLOR_BLUE): {
+					if (flag == true) {
+						pOut->PrintMessage("The Fill color will now be BLUE");
+						pOut->setCrntFillColor(BLUE);
+					}
+					else {
+						pOut->PrintMessage("The Draw color will now be BLUE");
+						pOut->setCrntDrawColor(BLUE);
+					}
+					return BLUECLR;}
 				}
 			}
 		}
