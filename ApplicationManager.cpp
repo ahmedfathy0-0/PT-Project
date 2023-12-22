@@ -130,6 +130,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new MoveAction(this);
 		break;
 
+	case MOVEDRAG:
+		pAct = new MoveAction(this);
+		break;
+
 	case RESIZE:
 		pOut->PrintMessage("Action: RE-SIZE, Click anywhere");
 		break;

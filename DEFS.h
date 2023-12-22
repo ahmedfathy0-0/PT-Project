@@ -27,6 +27,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	SAVE,
 	LOAD,
 	MOVE,
+	MOVEDRAG,
 	RESIZE,
 	CLEAR,
 	DELET,

@@ -26,6 +26,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	//TODO: Add more items names here
 	ITM_SELECTONE,
 	ITM_MOVE,
+	ITM_MOVEDRAG,
 	ITM_RESIZE,
 	ITM_DELETE,
 	ITM_CLEAR,

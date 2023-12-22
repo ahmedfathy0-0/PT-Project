@@ -70,6 +70,7 @@ ActionType Input::GetUserAction() const
 			case ITM_CIRCLE: return DRAW_CIRCLE;
 			case ITM_SELECTONE: return SELECTONE;
 			case ITM_MOVE: return MOVE;
+			case ITM_MOVEDRAG: return MOVEDRAG;
 			case ITM_RESIZE: return RESIZE;
 			case ITM_CLEAR: return CLEAR;
 			case ITM_DELETE: return DELET;
