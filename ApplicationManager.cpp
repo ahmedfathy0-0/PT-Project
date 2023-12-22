@@ -22,6 +22,7 @@
 #include "Actions/UndoAction.h"
 #include "Actions/RedoAction.h"
 #include"Actions\ChangeFillcolor.h"
+#include"PickByBoth.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -192,7 +193,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 			break;
 		case PICKBYBOTH:
-			pOut->PrintMessage("You Chose to Pick by Both");
+			pAct = new PickByBoth(this);
 
 			break;
 		}
@@ -704,6 +705,23 @@ int ApplicationManager::RandomizedFillClrCount(CFigure*p)
 	}
 	return count;
 
+}
+
+int ApplicationManager::RandomizedPickByBothCount(CFigure*p)
+{
+	if (CheckForFillColor() == false)
+	{
+		return 0;
+	}
+	int count = 0;
+	for (int i = 0; i < GetFigCount(); i++)
+	{
+		if (FigList[i]->GetFillClr() == p->GetFillClr()&&FigList[i]->type()==p->type())
+		{
+			count++;
+		}
+	}
+	return count;
 }
 
 bool ApplicationManager::CheckForFillColor()

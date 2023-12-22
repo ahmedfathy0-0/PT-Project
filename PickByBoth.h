@@ -8,21 +8,21 @@
 #include"DEFS.h"
 #include<cstring>
 #include"PickByFig.h"
-class PickByFig;
-class PickByFillClr:public Action
-{private:
+#include"PickByFillClr.h"
+class PickByBoth :public Action
+{
+private:
 	Point P;
 	CFigure* ptrRandom;
-	PickByFig* ptrToPickByFig;
 public:
-	PickByFillClr(ApplicationManager* pApp);
-	void RightCase(CFigure*, int&, int&);
-	void WrongCase(CFigure*, int&, int&);
-	CFigure* RandomizeClr();
-	void RestartGame();
-	void ReturnToDrawMidGame();
+	PickByBoth(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
 	virtual void Execute();
+	CFigure* Randomize();
+	void RightCase(CFigure*, int&, int&);
+	void WrongCase(CFigure*, int&, int&);
+	void RestartGame();
+	void ReturnToDrawMidGame();
 	virtual Action* Clone();
 	virtual void Undo();
 	virtual void Redo();

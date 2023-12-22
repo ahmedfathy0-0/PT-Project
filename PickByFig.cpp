@@ -96,8 +96,6 @@ void PickByFig::Execute()
 				 WrongCase(Clicked, RightCounter, WrongCounter);
 			 }
 	 }
-	
-	 
 	 if (pManager->GetFigCount()!=0&&ptrToPickByFill==NULL)
 	 {
 		 pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
@@ -107,27 +105,26 @@ void PickByFig::Execute()
 		 ReadActionParameters();
 		 if (P.x <= (UI.MenuItemWidth * 3) && P.x >= (UI.MenuItemWidth * 2) && P.y <= UI.ToolBarHeight && P.y >= 0)
 		 {
-			 pManager->UnHideFigures();
+			  pManager->UnHideFigures();
 			 pManager->UpdateInterface();
-			 RightCounter = 0;
-			 WrongCounter = 0;
 			 Execute();
 		 }
 		 else if (P.x <= (UI.MenuItemWidth) && P.x >= 0 && P.y <= UI.ToolBarHeight && P.y >= 0)
 		 {
-
-			 UI.conDforPicknHide = false;
+			 ReturnToDrawMidGame();
+		 }
+		 else if (P.x <= (UI.MenuItemWidth * 4) && P.x >= (UI.MenuItemWidth * 3) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		 {
 			 pManager->UnHideFigures();
 			 pManager->UpdateInterface();
-			 pOut->CreateDrawToolBar();
+			 ptrToPickByFill = new PickByFillClr(pManager);
+			 ptrToPickByFill->Execute();
 		 }
 	 }
 	 if (ptrToPickByFill!=NULL)
 	 {
 		 delete ptrToPickByFill;
 	 }
-	 
-	 
 }
 
 Action* PickByFig::Clone()
@@ -168,6 +165,10 @@ void PickByFig::ReturnToDrawMidGame()
 {
 	Output* pOut = pManager->GetOutput();
 	UI.conDforPicknHide = false;
+	if (ptrToPickByFill != NULL)
+	{
+		delete ptrToPickByFill;
+	}
 	pManager->UnHideFigures();
 	pManager->UpdateInterface();
 	pOut->CreateDrawToolBar();
