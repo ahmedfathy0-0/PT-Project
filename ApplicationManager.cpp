@@ -726,13 +726,14 @@ bool ApplicationManager::CheckForFillColor()
 
 void ApplicationManager::UpdateInterface() const
 {
-	pIn->UpdateBuffer();
+
 	pOut->ClearDrawArea();
 	for (int i = 0; i < FigCount; i++)
 		if(!(FigList[i]->GetHiddenStatus()))
 		{
 			FigList[i]->Draw(pOut);//Call Draw function (virtual member fn)1
 		}
+	pIn->UpdateBuffer();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
