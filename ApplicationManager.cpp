@@ -305,6 +305,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pOut->PrintMessage("Action: change fill color, Choose the color you want");
 		pOut->CreateColorPalette();
 		UI.conD = true;
+		pAct = new ChangeFillcolor(this);
 		ActType = pIn->GetUserAction();
 
 		switch (ActType) {
@@ -407,9 +408,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct->Execute();//Execute
 
 		//adding the action to the undoable list if this action is undoable
-	if (dynamic_cast<AddCircAction*>(pAct) != NULL || dynamic_cast<AddRectAction*>(pAct) != NULL || dynamic_cast<AddSqrAction*>(pAct) != NULL ||
+		if (dynamic_cast<AddCircAction*>(pAct) != NULL || dynamic_cast<AddRectAction*>(pAct) != NULL || dynamic_cast<AddSqrAction*>(pAct) != NULL ||
 			dynamic_cast<AddTrgAction*>(pAct) != NULL || dynamic_cast<AddHexAction*>(pAct) != NULL || dynamic_cast<DeleteAction*>(pAct) != NULL || dynamic_cast<MoveAction*>(pAct) != NULL
-			|| dynamic_cast<ChangeDrawcolor*>(pAct) != NULL)
+			|| dynamic_cast<ChangeDrawcolor*>(pAct) != NULL || dynamic_cast<ChangeFillcolor*>(pAct) != NULL)
 		{
 			AddAction(pAct);
 			ClearRedoList();
@@ -749,5 +750,8 @@ ApplicationManager::~ApplicationManager()
 		delete FigList[i];
 	delete pIn;
 	delete pOut;
-
+	for (int i = 0; i < UndoableActionsCount; i++)
+		delete UndoableActions[i];
+	for (int i = 0; i < RedoableActionsCount; i++)
+		delete RedoableActions[i];
 }
