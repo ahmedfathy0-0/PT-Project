@@ -50,7 +50,6 @@ void AddCircAction::Execute()
 	pManager->AddFigure(C);
 
 
-
 }
 
 Action* AddCircAction::Clone()

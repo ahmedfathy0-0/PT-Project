@@ -264,12 +264,13 @@ void Output::deleteColorPalette() const
 }
 void Output::setCrntDrawColor(color color)
 {
+	UI.OldDrawColor = UI.DrawColor;
 	UI.DrawColor = color;
 }
 void Output::setCrntFillColor(color color)
 {
+	UI.OldFillColor = UI.FillColor;
 	UI.FillColor = color;
-
 }
 void Output::setisFilled(bool isfilled)
 {
@@ -289,8 +290,6 @@ bool Output::getisFilled() const
 }
 color Output::getCrntDrawColor() const	//get current drawing color
 {
-
-
 	return UI.DrawColor;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -300,6 +299,17 @@ color Output::getCrntFillColor() const	//get current filling color
 	return UI.FillColor;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+color Output::getOldFillColor() const	//get old filling color
+{
+	return UI.OldFillColor;
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+color Output::getOldDrawColor() const	//get old Drawing color
+{
+	return UI.OldDrawColor;
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+
 
 int Output::getCrntPenWidth() const		//get current pen width
 {

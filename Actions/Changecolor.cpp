@@ -7,7 +7,6 @@ void ChangeDrawcolor::ReadActionParameters()
 	 pOut = pManager->GetOutput();
 	 pIn = pManager->GetInput();
 	pFig = pManager->GetSelectedFigure();
-
 }
 
 void ChangeDrawcolor::Execute()

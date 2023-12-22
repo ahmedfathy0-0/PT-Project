@@ -51,7 +51,7 @@ ApplicationManager::ApplicationManager()
 ActionType ApplicationManager::GetUserAction() const
 {
 	//Ask the input to get the action from the user.
-	return pIn->GetUserAction();
+	return pIn->GetUserAction(pOut);
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Creates an action and executes it
@@ -180,7 +180,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case PICKANDHIDE:
 		pAct = new PickAndHideAction(this);
 		pAct->Execute();
-		ActTypeForPickndHide = pIn->GetUserAction();
+		ActTypeForPickndHide = pIn->GetUserAction(pOut);
 		switch (ActTypeForPickndHide)
 		{
 		case PICKBYFIG:
@@ -232,74 +232,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case CHANGEDRAWCOLOR:
-		pOut->PrintMessage("Action: change draw color, Choose the color you want");
-		pOut->CreateColorPalette();
-		UI.conD = true;
-		ActiType = pIn->GetUserAction();
-
-		switch (ActiType) {
-
-		case BLACKCLR:
-			pOut->PrintMessage("The draw color will now be black!");
-			pOut->setCrntDrawColor(BLACK);
-			pOut->setisFilled(false);
-			if (SelectedFigure != NULL)
-				pAct = new ChangeDrawcolor(this);
-			break;
-
-		case YELLOWCLR:
-			pOut->PrintMessage("The draw color will now be yellow!");
-			pOut->setCrntDrawColor(YELLOW);
-			pOut->setisFilled(false);
-			if (SelectedFigure != NULL)
-				pAct = new ChangeDrawcolor(this);
-			break;
-
-		case ORANGECLR:
-			pOut->PrintMessage("The draw color will now be orange!");
-			pOut->setCrntDrawColor(ORANGE);
-			pOut->setisFilled(false);
-			if (SelectedFigure != NULL) {
-				pAct = new ChangeDrawcolor(this);
-			}
-			break;
-
-		case REDCLR:
-			pOut->PrintMessage("The draw color will now be red!");
-			pOut->setCrntDrawColor(RED);
-			pOut->setisFilled(false);
-			if (SelectedFigure != NULL)
-			{
-				pAct = new ChangeDrawcolor(this);
-			}
-
-			break;
-
-		case GREENCLR:
-
-			pOut->PrintMessage("The draw color will now be green!");
-			pOut->setCrntDrawColor(GREEN);
-			pOut->setisFilled(false);
-			if (SelectedFigure != NULL)
-			{
-				pAct = new ChangeDrawcolor(this);
-			}
-
-			break;
-
-		case BLUECLR:
-			pOut->PrintMessage("The draw color will now be blue!");
-			pOut->setCrntDrawColor(BLUE);
-			pOut->setisFilled(false);
-			if (SelectedFigure != NULL)
-			{
-				pAct = new ChangeDrawcolor(this);
-			}
-
-			break;
-
+		if (SelectedFigure != NULL) {
+			pOut->CreateColorPalette();
+			UI.conD = true;
+			ActiType = pIn->GetUserAction(pOut);
+			pAct = new ChangeDrawcolor(this);
 		}
-
+		else
+			pOut->PrintMessage("Please select figure first to be able to change the color");
 
 		pOut->deleteColorPalette();
 
@@ -308,80 +248,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case CHANGEFILLCOLOR:
-		pOut->PrintMessage("Action: change fill color, Choose the color you want");
-		pOut->CreateColorPalette();
-		UI.conD = true;
-		ActType = pIn->GetUserAction();
-
-		switch (ActType) {
-
-		case BLACKCLR:
-			pOut->PrintMessage("The fill color will now be black");
-			pOut->setCrntFillColor(BLACK);
-			pOut->setisFilled(true);
-			if (SelectedFigure != NULL)
-			{
-				pAct = new ChangeFillcolor(this);
-			}
-
-			break;
-
-		case YELLOWCLR:
-			pOut->PrintMessage("The fill color will now be yellow");
-			pOut->setCrntFillColor(YELLOW);
-			pOut->setisFilled(true);
-			if (SelectedFigure != NULL)
-			{
-				pAct = new ChangeFillcolor(this);
-			}
-
-
-			break;
-
-		case ORANGECLR:
-			pOut->PrintMessage("The fill color will now be orange");
-			pOut->setCrntFillColor(ORANGE);
-			pOut->setisFilled(true);
-		
-			if (SelectedFigure != NULL)
-				pAct = new ChangeFillcolor(this);
-
-			break;
-
-		case REDCLR:
-			pOut->PrintMessage("The fill color will now be red");
-			pOut->setCrntFillColor(RED);
-			pOut->setisFilled(true);
-			if (SelectedFigure != NULL)
-			{
-				pAct = new ChangeFillcolor(this);
-			}
-
-			break;
-
-		case GREENCLR:
-			pOut->PrintMessage("The fill color will now be green");
-			pOut->setCrntFillColor(GREEN);
-			pOut->setisFilled(true);
-			if (SelectedFigure != NULL)
-			{
-				pAct = new ChangeFillcolor(this);
-			}
-
-			break;
-
-		case BLUECLR:
-			pOut->PrintMessage("The fill color will now be blue");
-			pOut->setCrntFillColor(BLUE);
-			pOut->setisFilled(true);
-			if (SelectedFigure != NULL)
-			{
-		 		pAct = new ChangeFillcolor(this);
-		    }
-			break;
-
+		if (SelectedFigure != NULL) {
+			pOut->CreateColorPalette();
+			UI.conD = true;
+			ActiType = pIn->GetUserAction(pOut);
+			pAct = new ChangeFillcolor(this);
 		}
-
+		else
+			pOut->PrintMessage("Please select figure first to be able to change the color");
 
 		pOut->deleteColorPalette();
 		UI.conD = false;
