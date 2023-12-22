@@ -11,6 +11,13 @@ void Input::GetPointClicked(int& x, int& y) const
 	pWind->WaitMouseClick(x, y);	//Wait for mouse click
 }
 
+void Input::UpdateBuffer() const// to solve when window turns white suddenly or after minmized it
+{
+	pWind->SetBuffering(true);
+	pWind->UpdateBuffer();
+}
+
+
 string Input::GetSrting(Output* pO) const
 {
 	string Label;
@@ -34,7 +41,7 @@ string Input::GetSrting(Output* pO) const
 	}
 }
 
-bool Input::isClicked(int &x,int &y)
+bool Input::isClicked(int &x,int &y)//told us is the user click to the left button or not 
 {
 	if (pWind->GetButtonState(LEFT_BUTTON, x, y) == BUTTON_DOWN)
 		return true;
