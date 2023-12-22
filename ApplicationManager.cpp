@@ -724,18 +724,22 @@ bool ApplicationManager::CheckForFillColor()
 
 //Draw all figures on the user interface
 
+void ApplicationManager::UpdateBuffer(bool flag) const
+{
+	pIn->SetBuffering(flag);
+	pIn->SetWaitClose(flag);
+	pIn->UpdateBuffer();
+}
 void ApplicationManager::UpdateInterface() const
 {
 
 	pOut->ClearDrawArea();
 	for (int i = 0; i < FigCount; i++)
-		if(!(FigList[i]->GetHiddenStatus()))
+		if (!(FigList[i]->GetHiddenStatus()))
 		{
 			FigList[i]->Draw(pOut);//Call Draw function (virtual member fn)1
 		}
-	pIn->UpdateBuffer();
 }
-
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input
 Input* ApplicationManager::GetInput() const

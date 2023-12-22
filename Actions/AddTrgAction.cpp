@@ -56,7 +56,14 @@ void AddTrgAction::Execute()
 	//Add the Triangle to the list of figures
 	T->IsHidden(false);
 	pManager->AddFigure(T);
+
+
+
+
+
+
 }
+
 
 Action* AddTrgAction::Clone()
 {

@@ -338,6 +338,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 		CreateDrawToolBar();
 
 	ClearStatusBar();	
+
 	PrintMessage(Lastmsg);
 
 
@@ -371,7 +372,9 @@ void Output::DrawSqr(Point P1, GfxInfo SqGfxInfo, bool selected) const {
 		CreateDrawToolBar();
 	
 	ClearStatusBar();
+
 	PrintMessage(Lastmsg);
+
 }
 
 void Output::DrawTr(Point P1, Point P2, Point P3, GfxInfo TrGfxInfo, bool selected) const
@@ -398,6 +401,7 @@ void Output::DrawTr(Point P1, Point P2, Point P3, GfxInfo TrGfxInfo, bool select
 
 
 	ClearStatusBar();
+
 	PrintMessage(Lastmsg);
 
 }
@@ -433,17 +437,19 @@ void Output::DrawHex(Point P1, GfxInfo HXGfxInfo, bool selected) const
 	x[5] = P1.x + UI.HexagonSize / 2;
 	y[5] = P1.y - UI.HexagonSize * 0.866;
 	pWind->DrawPolygon(x, y, UI.HexagonVertices, style);
+
+
 	if ((P1.y - UI.HexagonSize * 0.866) < UI.ToolBarHeight)
 		CreateDrawToolBar();
 
 
-
+	ClearStatusBar();
 	delete[] x;
 	delete[] y;
 
 
-	ClearStatusBar();
 	PrintMessage(Lastmsg);
+
 
 }
 void Output::DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) const
@@ -469,6 +475,7 @@ void Output::DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected) co
 
 
 	pWind->DrawCircle(P1.x, P1.y, radius, style);
+
 	if (P1.y - radius < UI.ToolBarHeight)
 		CreateDrawToolBar();
 

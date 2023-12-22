@@ -50,17 +50,21 @@ void MoveDragAction::Execute()
 				{
 					NewCenter.x = IX + C.x - ix;
 					NewCenter.y = IY + C.y - iy;
+					pManager->UpdateBuffer(true);
+					pOut->CreateDrawToolBar();
+					pManager->UpdateInterface();
 					pFig->Move(NewCenter);
 				}
 				Sleep(1);
-				pManager->UpdateInterface();
+				
 				if (!pIn->isClicked(NewCenter.x, NewCenter.y))
 					break;
 				MoveCondition = true;
 			}
 		}
-		pManager->deselectall();
+		pManager->UpdateBuffer(false);
 		pManager->RecordFigure(pFig);
+		pManager->deselectall();
 		pOut->ClearStatusBar();
 	}
 }

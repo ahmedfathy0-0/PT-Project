@@ -13,8 +13,16 @@ void Input::GetPointClicked(int& x, int& y) const
 
 void Input::UpdateBuffer() const// to solve when window turns white suddenly or after minmized it
 {
-	pWind->SetBuffering(true);
+
 	pWind->UpdateBuffer();
+}
+void Input::SetBuffering (bool flag)const// to solve when window turns white suddenly or after minmized it
+{
+	pWind->SetBuffering(flag);
+
+}
+void Input::SetWaitClose(bool flag) const {
+	pWind->SetWaitClose(flag);
 }
 
 

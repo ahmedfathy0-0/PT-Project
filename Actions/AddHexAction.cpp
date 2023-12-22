@@ -31,6 +31,7 @@ void AddHexAction::ReadActionParameters()
 	pOut->ClearStatusBar();
 	pOut->PrintMessage("You draw a new Hexagon ;)");
 
+
 }
 
 //Execute the action
@@ -45,6 +46,10 @@ void AddHexAction::Execute()
 	//Add the Hexagon to the list of figures
 	H->IsHidden(false);
 	pManager->AddFigure(H);
+
+
+
+
 }
 
 Action* AddHexAction::Clone()
