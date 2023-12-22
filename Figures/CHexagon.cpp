@@ -113,7 +113,7 @@ void CHexagon::Move(Point NewCenter)
 
 void CHexagon::Resize(Point NewPoint)
 {
-	UI.HexagonSize = 2 * abs(Center.y - NewPoint.y);
+	UI.HexagonSize = (abs(Center.y - NewPoint.y))/0.866;
 }
 
 void CHexagon::Save(ofstream& OutFile)
