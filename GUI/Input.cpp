@@ -34,10 +34,9 @@ string Input::GetSrting(Output* pO) const
 	}
 }
 
-bool Input::isClicked()
+bool Input::isClicked(int &x,int &y)
 {
-	int x, y;
-	if (pWind->GetButtonState(LEFT_BUTTON,x,y)== BUTTON_DOWN)
+	if (pWind->GetButtonState(LEFT_BUTTON, x, y) == BUTTON_DOWN)
 		return true;
 	else
 		return false;

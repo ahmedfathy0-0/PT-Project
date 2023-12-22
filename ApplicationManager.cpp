@@ -9,6 +9,7 @@
 #include "Actions\ClearAll.h"
 #include "Actions\DeleteAction.h"
 #include "Actions\MoveFigure.h"
+#include "Actions\MoveFigureByDrag.h"
 #include "Actions\LoadAction.h"
 #include "Actions\StartRecordingAction.h"
 #include "Actions\PlayRecordAction.h"
@@ -131,7 +132,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case MOVEDRAG:
-		pAct = new MoveAction(this);
+		pAct = new MoveDragAction(this);
 		break;
 
 	case RESIZE:

@@ -43,7 +43,6 @@ public:
 	void SaveAll(ofstream& OutFile) const;
 	void Clearall();
 	void deletefigure();
-	void movefigure(Point New);
 	// functions for the Start,Stop,and Play Record  action//
 	void StartRecord(string) ;
 	void RecordFigure(CFigure*); //to record any changes in draw mode

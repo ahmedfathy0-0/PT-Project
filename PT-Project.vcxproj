@@ -137,6 +137,7 @@
     <ClCompile Include="Actions\DeleteAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\MoveFigure.cpp" />
+    <ClCompile Include="Actions\MoveFigureByDrag.cpp" />
     <ClCompile Include="Actions\PlayRecordAction.cpp" />
     <ClCompile Include="Actions\RedoAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
@@ -207,6 +208,7 @@
     <ClInclude Include="Actions\DeleteAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\MoveFigure.h" />
+    <ClInclude Include="Actions\MoveFigureByDrag.h" />
     <ClInclude Include="Actions\PlayRecordAction.h" />
     <ClInclude Include="Actions\RedoAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
