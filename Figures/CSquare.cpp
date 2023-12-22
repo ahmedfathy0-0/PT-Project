@@ -112,6 +112,11 @@ void CSquare::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 }
 
+Point CSquare::ReturnCenter()
+{
+	return Centre;
+}
+
 Point CSquare::ReturnOldCenter()
 {
 	return OldCentre;

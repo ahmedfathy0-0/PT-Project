@@ -8,6 +8,8 @@
 
 class DeleteAction : public Action
 {
+	CFigure* pFig;
+	Output* pOut;
 public:
 	DeleteAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

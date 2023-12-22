@@ -140,6 +140,11 @@ void CTriangle::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 }
 
+Point CTriangle::ReturnCenter()
+{
+	return Center;
+}
+
 Point CTriangle::ReturnOldCenter()
 {
 	return OldCenter;

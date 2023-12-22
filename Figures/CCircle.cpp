@@ -124,6 +124,11 @@ void CCircle::PlayRecord(ifstream& Infile)
 
 }
 
+Point CCircle::ReturnCenter()
+{
+	return Center;
+}
+
 Point CCircle::ReturnOldCenter()
 {
 	return OldCenter;

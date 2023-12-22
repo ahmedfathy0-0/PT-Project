@@ -500,9 +500,7 @@ void ApplicationManager::SetSelectedFigure(CFigure* pFig) {
 
 CFigure* ApplicationManager::GetSelectedFigure() const
 {
-	if (SelectedFigure != NULL) {
 		return SelectedFigure;
-	}
 }
 
 

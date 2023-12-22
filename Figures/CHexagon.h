@@ -19,6 +19,7 @@ public:
 	virtual void Load(ifstream& Infile);
 	virtual void StartEndRecord(ofstream& OutFile) ;
 	virtual void PlayRecord(ifstream& Infile);
+	virtual Point ReturnCenter();
 	virtual Point ReturnOldCenter();
 	virtual void PrintInfo(Output*) ;
 	~CHexagon();
