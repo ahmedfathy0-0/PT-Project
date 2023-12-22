@@ -22,6 +22,8 @@ public:
 	virtual void Execute();
 	void RightCase(CFigure*,int&,int&);
 	void WrongCase(CFigure*, int&, int&);
+	void RestartGame();
+	void ReturnToDrawMidGame();
 	
 	virtual Action* Clone();
 	virtual void Undo();

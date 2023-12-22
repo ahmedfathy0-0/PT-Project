@@ -139,6 +139,8 @@ ActionType Input::GetUserAction() const
 			int clickeditemorder = ((x) / UI.MenuItemWidth)-2;
 			switch (clickeditemorder)
 			{
+			case(-2):
+				UI.conDforPicknHide = false;
 			case(ITM_PICKBYFIGURE):return PICKBYFIG;
 			case(ITM_PICKBYCOLOR):return PICKBYCOL;
 			case(ITM_PICKBYBOTH):return PICKBYBOTH;
