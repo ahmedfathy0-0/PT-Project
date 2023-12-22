@@ -61,7 +61,8 @@ void PickByFig::Execute()
 	int RightCounter = 0;
 	int WrongCounter = 0;
 	 RandomizeFig();
-	 do {
+	 while (RightCounter < pManager->RandomizedFigCount(ptrRandom))
+	 {
 		 ReadActionParameters();
 		 if (P.x <= (UI.MenuItemWidth * 3) && P.x >= (UI.MenuItemWidth * 2) && P.y <= UI.ToolBarHeight && P.y >= 0)
 		 {
@@ -81,85 +82,21 @@ void PickByFig::Execute()
 			 ptrToPickByFill->Execute();
 			 break;
 		 }
-
-
-		 switch (ptrRandom->type())
-		 {
-		 case circle:
 			 Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
-			 }
-			 else if (Clicked->type() == circle)
-			 {
-				 RightCase(Clicked, RightCounter, WrongCounter);
-			 }
-			 else
-			 {
-				 WrongCase(Clicked, RightCounter, WrongCounter);
 
 			 }
-			 break;
-		 case hexagon:
-			 Clicked = pManager->GetFigure(P.x, P.y);
-			 if (Clicked == NULL)
-			 {
-			 }
-			 else if (Clicked->type() == hexagon)
+			 else if (ptrRandom->type() == Clicked->type())
 			 {
 				 RightCase(Clicked, RightCounter, WrongCounter);
 			 }
-			 else
+			 else if (ptrRandom->type() != Clicked->type())
 			 {
 				 WrongCase(Clicked, RightCounter, WrongCounter);
 			 }
-			 break;
-		 case rectangle:
-			 Clicked = pManager->GetFigure(P.x, P.y);
-			 if (Clicked == NULL)
-			 {
-			 }
-			 else if (Clicked->type() == rectangle)
-			 {
-				 RightCase(Clicked, RightCounter, WrongCounter);
-			 }
-			 else
-			 {
-				 WrongCase(Clicked, RightCounter, WrongCounter);
-			 }
-			 break;
-		 case square:
-			 Clicked = pManager->GetFigure(P.x, P.y);
-			 if (Clicked == NULL)
-			 {
-			 }
-			 else if (Clicked->type() == square)
-			 {
-				 RightCase(Clicked, RightCounter, WrongCounter);
-			 }
-			 else
-			 {
-				 WrongCase(Clicked, RightCounter, WrongCounter);
-			 }
-			 break;
-		 case triangle:
-			 Clicked = pManager->GetFigure(P.x, P.y);
-			 if (Clicked == NULL)
-			 {
-			 }
-			 else if (Clicked->type() == triangle)
-			 {
-				 RightCase(Clicked, RightCounter, WrongCounter);
-			 }
-			 else
-			 {
-				 WrongCase(Clicked, RightCounter, WrongCounter);
-			 }
-			 break;
-		 }
-
 	 }
-	 while (RightCounter < pManager->RandomizedFigCount(ptrRandom));
+	
 	 
 	 if (pManager->GetFigCount()!=0&&ptrToPickByFill==NULL)
 	 {

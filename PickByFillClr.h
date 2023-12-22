@@ -16,7 +16,8 @@ class PickByFillClr:public Action
 	PickByFig* ptrToPickByFig;
 public:
 	PickByFillClr(ApplicationManager* pApp);
-
+	void RightCase(CFigure*, int&, int&);
+	void WrongCase(CFigure*, int&, int&);
 	CFigure* RandomizeClr();
 	virtual void ReadActionParameters();
 	virtual void Execute();

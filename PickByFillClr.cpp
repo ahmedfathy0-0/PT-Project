@@ -14,6 +14,24 @@ PickByFillClr::PickByFillClr(ApplicationManager* pApp) :Action(pApp)
 	ptrToPickByFig = NULL;
 }
 
+void PickByFillClr::RightCase(CFigure* Clicked, int& right, int& wrong)
+{
+	Output* pOut = pManager->GetOutput();
+	right++;
+	Clicked->IsHidden(true);
+	pManager->UpdateInterface();
+	pOut->PrintMessage("Right attempts: " + to_string(right) + " Wrong attempts: " + to_string(wrong));
+}
+
+void PickByFillClr::WrongCase(CFigure* Clicked, int& right, int& wrong)
+{
+	Output* pOut = pManager->GetOutput();
+	wrong++;
+	Clicked->IsHidden(true);
+	pManager->UpdateInterface();
+	pOut->PrintMessage("Right attempts: " + to_string(right) + " Wrong attempts: " + to_string(wrong));
+}
+
 CFigure* PickByFillClr::RandomizeClr()
 {
 	Output* pOut = pManager->GetOutput();
@@ -70,9 +88,9 @@ void PickByFillClr::Execute()
 	int RightCounter = 0;
 	int WrongCounter = 0;
 	RandomizeClr();
-	while (RightCounter<pManager->RandomizedFillClrCount(ptrRandom))
+	while (RightCounter < pManager->RandomizedFillClrCount(ptrRandom))
 	{
-		pIn->GetPointClicked(P.x, P.y);
+		ReadActionParameters();
 		if (P.x <= (UI.MenuItemWidth * 4) && P.x >= (UI.MenuItemWidth * 3) && P.y <= UI.ToolBarHeight && P.y >= 0)
 		{
 			pManager->UnHideFigures();
@@ -101,153 +119,19 @@ void PickByFillClr::Execute()
 			ptrToPickByFig->Execute();
 			break;
 		}
-
-		
-		switch (ptrRandom->GetFillClr())
-		{
-		case Red:
-			ReadActionParameters();
 			Clicked = pManager->GetFigure(P.x, P.y);
 			if (Clicked == NULL)
 			{
 
 			}
-			else if (Clicked->GetFillClr() == Red)
+			else if (ptrRandom->GetFillClr() == Clicked->GetFillClr())
 			{
-				RightCounter++;
-				Clicked->IsHidden(true);
-				pManager->UpdateInterface();
-				pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+				RightCase(Clicked, RightCounter, WrongCounter);
 			}
-			else
+			else if (ptrRandom->GetFillClr() != Clicked->GetFillClr())
 			{
-				WrongCounter++;
-				Clicked->IsHidden(true);
-				pManager->UpdateInterface();
-				pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-
+				WrongCase(Clicked, RightCounter, WrongCounter);
 			}
-			break;
-
-		case Blue:
-			ReadActionParameters();
-			Clicked = pManager->GetFigure(P.x, P.y);
-			if (Clicked == NULL)
-			{
-
-			}
-			else if (Clicked->GetFillClr() == Blue)
-			{
-				RightCounter++;
-				Clicked->IsHidden(true);
-				pManager->UpdateInterface();
-				pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-			}
-			else
-			{
-				WrongCounter++;
-				Clicked->IsHidden(true);
-				pManager->UpdateInterface();
-				pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-
-			}
-			break;
-		case Green:
-			ReadActionParameters();
-			Clicked = pManager->GetFigure(P.x, P.y);
-			if (Clicked == NULL)
-			{
-
-			}
-			else if (Clicked->GetFillClr() == Green)
-			{
-				RightCounter++;
-				Clicked->IsHidden(true);
-				pManager->UpdateInterface();
-				pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-			}
-			else
-			{
-				WrongCounter++;
-				Clicked->IsHidden(true);
-				pManager->UpdateInterface();
-				pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-
-			}
-			break;
-		case Orange:
-			ReadActionParameters();
-			Clicked = pManager->GetFigure(P.x, P.y);
-			if (Clicked == NULL)
-			{
-
-			}
-			else if (Clicked->GetFillClr() == Orange)
-			{
-				RightCounter++;
-				Clicked->IsHidden(true);
-				pManager->UpdateInterface();
-				pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-			}
-			else
-			{
-				WrongCounter++;
-				Clicked->IsHidden(true);
-				pManager->UpdateInterface();
-				pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-
-			}
-			break;
-		case Yellow:
-			ReadActionParameters();
-			Clicked = pManager->GetFigure(P.x, P.y);
-			if (Clicked == NULL)
-			{
-
-			}
-			else if (Clicked->GetFillClr() == Yellow)
-			{
-				RightCounter++;
-				Clicked->IsHidden(true);
-				pManager->UpdateInterface();
-				pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-			}
-			else
-			{
-				WrongCounter++;
-				Clicked->IsHidden(true);
-				pManager->UpdateInterface();
-				pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-
-			}
-			break;
-		case Black:
-			ReadActionParameters();
-			Clicked = pManager->GetFigure(P.x, P.y);
-			if (Clicked == NULL)
-			{
-
-			}
-			else if (Clicked->GetFillClr() == Black)
-			{
-				RightCounter++;
-				Clicked->IsHidden(true);
-				pManager->UpdateInterface();
-				pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-			}
-			else
-			{
-				WrongCounter++;
-				Clicked->IsHidden(true);
-				pManager->UpdateInterface();
-				pOut->PrintMessage("Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-
-			}
-			break;
-
-		}
-		
-
 	}
 	UI.conDforPicknHide = false;
 	if (pManager->GetFigCount() != 0 && pManager->CheckForFillColor() == true&&ptrToPickByFig==NULL)
@@ -275,5 +159,6 @@ void PickByFillClr::Redo()
 
 void PickByFillClr::ReadActionParameters()
 {
-	
+	Input* pIn = pManager->GetInput();
+	pIn->GetPointClicked(P.x, P.y);
 }
