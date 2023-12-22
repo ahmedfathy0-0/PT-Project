@@ -14,5 +14,8 @@ public:
 	SwitchToPlayAction(ApplicationManager*);
 	void ReadActionParameters();
 	void Execute();
+	virtual Action* Clone();
+	virtual void Undo();
+	virtual void Redo();
 };
 

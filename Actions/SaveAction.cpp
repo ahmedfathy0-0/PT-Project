@@ -26,6 +26,16 @@ void SaveAction::Execute()
 	pManager->SaveAll(fout);
 	fout.close();
 }
+Action* SaveAction::Clone()
+{
+	return NULL;
+}
+void SaveAction::Undo()
+{
+}
+void SaveAction::Redo()
+{
+}
 string SaveAction::getClr(color Dclr)
 {
 	if (Dclr == BLACK)

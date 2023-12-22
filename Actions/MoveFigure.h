@@ -19,6 +19,9 @@ public :
 	MoveAction(ApplicationManager* pApp);//Garbage intial value if its garabge getpoint from the user
 	virtual void ReadActionParameters();
 	virtual void Execute();
+	virtual Action* Clone();
+	virtual void Undo();
+	virtual void Redo();
 };
 
 #endif

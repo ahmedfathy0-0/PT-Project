@@ -11,3 +11,16 @@ void ClearAll::Execute()
 	ClearRecord.open("Last Record", ios::trunc);
 	ClearRecord.close();
 }
+
+Action* ClearAll::Clone()
+{
+	return nullptr;
+}
+
+void ClearAll::Undo()
+{
+}
+
+void ClearAll::Redo()
+{
+}

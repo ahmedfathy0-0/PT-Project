@@ -22,3 +22,17 @@ void ChangeDrawcolor::Execute()
 	}
 
 }
+
+Action* ChangeDrawcolor::Clone()
+{
+	return new ChangeDrawcolor(*this);
+}
+
+void ChangeDrawcolor::Undo()
+{
+
+}
+
+void ChangeDrawcolor::Redo()
+{
+}

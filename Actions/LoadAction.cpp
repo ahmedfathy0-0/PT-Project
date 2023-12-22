@@ -24,17 +24,7 @@ void LoadAction::Execute()
 	fIn.open("Saved/" + filename);
 	fIn >> type;
 		UI.DrawColor = getclr(type);
-	fIn >> type;
-	if (type != "NO_FILL")
-	{
-		UI.ISFILLED = true;
-		UI.FillColor = getclr(type);
-	}
-	else
-	{
-		UI.ISFILLED = false;
-		UI.FillColor = GREEN;
-	}
+	fIn >> fillcolor;
 
 	fIn >> NO_OF_FIGS;
 	CFigure* myFig = NULL;
@@ -54,6 +44,16 @@ void LoadAction::Execute()
 		myFig->Load(fIn);
 		pManager->AddFigure(myFig);
 	}
+	if (fillcolor != "NO_FILL")
+	{
+		UI.ISFILLED = true;
+		UI.FillColor = getclr(fillcolor);
+	}
+	else
+	{
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
+	}
 }
 
 color LoadAction::getclr(string colour)
@@ -70,5 +70,19 @@ color LoadAction::getclr(string colour)
 		return GREEN;
 	else if (colour == "BLUE")
 		return BLUE;
+}
+
+Action* LoadAction::Clone()
+{
+	return NULL;
+}
+
+void LoadAction::Undo()
+{
+
+}
+
+void LoadAction::Redo()
+{
 }
 

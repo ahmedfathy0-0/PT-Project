@@ -45,8 +45,24 @@ void AddRectAction::Execute()
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	CRectangle* R = new CRectangle(P1, P2, RectGfxInfo);
+	R = new CRectangle(P1, P2, RectGfxInfo);
 
 	//Add the rectangle to the list of figures
+	R->IsHidden(false);
 	pManager->AddFigure(R);
+}
+
+Action* AddRectAction::Clone()
+{
+	return new AddRectAction(*this);
+}
+
+void AddRectAction::Undo()
+{
+	R->IsHidden(true);
+}
+
+void AddRectAction::Redo()
+{
+	R->IsHidden(false);
 }

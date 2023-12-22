@@ -17,6 +17,16 @@ void StartRecordingAction::Execute()
 	pManager->StartRecord(filename);
 
 }
+Action* StartRecordingAction::Clone()
+{
+	return NULL;
+}
+void StartRecordingAction::Undo()
+{
+}
+void StartRecordingAction::Redo()
+{
+}
 string StartRecordingAction::getClr(color Dclr)
 {
 	if (Dclr == BLACK)

@@ -8,7 +8,7 @@ class CCircle : public CFigure
 private:
 	Point Center;
 	Point point;//Point at the circle
-	
+	Point OldCenter;
 public:
 	CCircle();
 	CCircle(Point,Point, GfxInfo FigureGfxInfo);
@@ -19,7 +19,7 @@ public:
 	virtual void Load(ifstream& Infile);
 	virtual void StartEndRecord(ofstream& OutFile) ;
 	virtual void PlayRecord(ifstream& Infile);
-
+	virtual Point ReturnOldCenter();
 	virtual void PrintInfo(Output*);
 };
 

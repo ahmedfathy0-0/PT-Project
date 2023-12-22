@@ -16,3 +16,16 @@ void SwitchToPlayAction::Execute()
 	pOut->PrintMessage("Action: Switch to Play Mode, creating Design tool bar");
 	pOut->CreatePlayToolBar();
 }
+
+Action* SwitchToPlayAction::Clone()
+{
+	return new SwitchToPlayAction(*this);
+}
+
+void SwitchToPlayAction::Undo()
+{
+}
+
+void SwitchToPlayAction::Redo()
+{
+}

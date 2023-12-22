@@ -9,6 +9,7 @@
 #include "Actions\ClearAll.h"
 #include "Actions\DeleteAction.h"
 #include "Actions\MoveFigure.h"
+#include "Actions\MoveFigureByDrag.h"
 #include "Actions\LoadAction.h"
 #include "Actions\StartRecordingAction.h"
 #include "Actions\PlayRecordAction.h"
@@ -17,10 +18,9 @@
 #include"PickByFillClr.h"
 #include"SwitchToPlayAction.h"
 #include"Actions\Changecolor.h"
+#include "Actions/UndoAction.h"
+#include "Actions/RedoAction.h"
 #include"Actions\ChangeFillcolor.h"
-
-
-
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -36,7 +36,12 @@ ApplicationManager::ApplicationManager()
 	IsRecording = false;
 	SelectedFigure = NULL;
 	OPcount = 0;
-
+	UndoableActionsCount = 0;
+	RedoableActionsCount = 0;
+	for (int i = 0; i < 4; i++)
+		UndoableActions[i] = NULL;
+	for (int i = 0; i < 4; i++)
+		RedoableActions[i] = NULL;
 }
 
 //==================================================================================//
@@ -107,11 +112,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case UNDO:
-		pOut->PrintMessage("Action: Undo Action, Click anywhere");
+		pAct = new UndoAction(this);
 		break;
 
 	case REDO:
-		pOut->PrintMessage("Action: Redo Action, Click anywhere");
+		pAct = new RedoAction(this);
 		break;
 
 	case SELECTONE:
@@ -124,6 +129,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	case MOVE:
 		pAct = new MoveAction(this);
+		break;
+
+	case MOVEDRAG:
+		pAct = new MoveDragAction(this);
 		break;
 
 	case RESIZE:
@@ -243,7 +252,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pOut->setisFilled(false);
 			if (SelectedFigure != NULL)
 				pAct = new ChangeDrawcolor(this);
-
 			break;
 
 		case ORANGECLR:
@@ -267,13 +275,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case GREENCLR:
+
 			pOut->PrintMessage("The draw color will now be green!");
 			pOut->setCrntDrawColor(GREEN);
 			pOut->setisFilled(false);
 			if (SelectedFigure != NULL)
 			{
 				pAct = new ChangeDrawcolor(this);
-		}
+			}
+
 			break;
 
 		case BLUECLR:
@@ -377,6 +387,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case CHANGECOLOR:
+		
 			break;
 
 
@@ -399,6 +410,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	if (pAct != NULL)
 	{
 		pAct->Execute();//Execute
+
+		//adding the action to the undoable list if this action is undoable
+	if (dynamic_cast<AddCircAction*>(pAct) != NULL || dynamic_cast<AddRectAction*>(pAct) != NULL || dynamic_cast<AddSqrAction*>(pAct) != NULL ||
+			dynamic_cast<AddTrgAction*>(pAct) != NULL || dynamic_cast<AddHexAction*>(pAct) != NULL || dynamic_cast<DeleteAction*>(pAct) != NULL || dynamic_cast<MoveAction*>(pAct) != NULL
+			|| dynamic_cast<ChangeDrawcolor*>(pAct) != NULL)
+		{
+			AddAction(pAct);
+			ClearRedoList();
+		}
+
 		if (pAct != NULL) {
 			delete pAct;	//You may need to change this line depending to your implementation
 			pAct = NULL;
@@ -479,7 +500,9 @@ void ApplicationManager::SetSelectedFigure(CFigure* pFig) {
 
 CFigure* ApplicationManager::GetSelectedFigure() const
 {
-	return SelectedFigure;
+	if (SelectedFigure != NULL) {
+		return SelectedFigure;
+	}
 }
 
 
@@ -495,6 +518,85 @@ void ApplicationManager::deselectall()  {
 		SelectedFigure = NULL;
 	}
 
+}
+
+void ApplicationManager::AddAction(Action* Act)
+{
+	if (Act != NULL)
+	{
+		if (UndoableActionsCount < 5) //if the undo array doesn't have the maximum 5 elements
+		{
+			UndoableActions[UndoableActionsCount++] = Act->Clone();
+		}
+
+		else //if it has 5 elements,it will remove the oldest element of the array and put the new action in the last index
+		{
+			if (UndoableActions[0]) 
+			{
+				delete UndoableActions[0];
+				UndoableActions[0] = NULL;
+				for (int i = 0; i < 4; i++)
+				{
+					UndoableActions[i] = UndoableActions[i + 1];
+				}
+				UndoableActions[4] = Act->Clone();
+
+			}
+		}
+	}
+}
+
+Action* ApplicationManager::ReturnLastUndoableAction()
+{
+	if (UndoableActionsCount == 0)
+		return NULL;
+	else if (UndoableActionsCount > 0)
+	{
+		UndoableActionsCount--;
+		/*if (UndoableActionsCount == 0)
+		{
+			for (int i = 0; i < 4; i++) 
+			{
+				if (UndoableActions[i]) UndoableActionsCount++;
+				else break;
+			}
+			return UndoableActions[UndoableActionsCount];
+		}*/
+		return UndoableActions[UndoableActionsCount];
+	}
+}
+void ApplicationManager::AddToRedo(Action* Act)
+{
+	if (Act != NULL)
+	{
+		RedoableActions[RedoableActionsCount++] = Act->Clone();
+		delete UndoableActions[UndoableActionsCount];
+		UndoableActions[UndoableActionsCount] = NULL;
+	}
+}
+
+Action* ApplicationManager::ReturnLastRedoableAction()
+{
+	if (RedoableActionsCount == 0)
+		return NULL;
+	else if (RedoableActionsCount > 0)
+	{
+		RedoableActionsCount--;
+		return RedoableActions[RedoableActionsCount];
+	}
+}
+
+void ApplicationManager::ClearRedoList()
+{
+	for (int i = 0; i < RedoableActionsCount; i++)
+	{
+		if (RedoableActions[i] != NULL)
+		{
+			delete RedoableActions[i];
+			RedoableActions[i] = NULL;
+		}
+	}
+	RedoableActionsCount = 0;
 }
 
 void ApplicationManager::SaveAll(ofstream& OutFile) const
@@ -514,7 +616,7 @@ void ApplicationManager::Clearall()
 void ApplicationManager::deletefigure()
 {
 	bool flag = true;
-	for (int i = 0; i < FigCount&&flag; i++)
+	/*for (int i = 0; i < FigCount && flag; i++)
 		if (FigList[i] != NULL) {
 			if (FigList[i]->IsSelected())
 			{
@@ -522,7 +624,10 @@ void ApplicationManager::deletefigure()
 					OPcount++;
 					Recordfile << "DELETE" << endl;
 				}
-				delete FigList[i];
+				//delete FigList[i];
+
+				//this is the part i changed ya fathy
+				FigList[i]->IsHidden(true);
 				FigList[i] = FigList[FigCount - 1];
 				FigList[i]->setID(i + 1);
 
@@ -532,7 +637,7 @@ void ApplicationManager::deletefigure()
 				flag = false;
 
 			}
-		}
+		}*/
 }
 void ApplicationManager::StartRecord(string filename) 
 {
@@ -626,8 +731,7 @@ void ApplicationManager::UpdateInterface() const
 	for (int i = 0; i < FigCount; i++)
 		if(!(FigList[i]->GetHiddenStatus()))
 		{
-			FigList[i]->Draw(pOut);//Call Draw function (virtual member fn)
-
+			FigList[i]->Draw(pOut);//Call Draw function (virtual member fn)1
 		}
 }
 

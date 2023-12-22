@@ -2,6 +2,7 @@
 
 CTriangle::CTriangle() : CFigure(FigGfxInfo)
 {
+
 }
 
 CTriangle::CTriangle(Point P1, Point P2,Point P3,GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
@@ -12,6 +13,7 @@ CTriangle::CTriangle(Point P1, Point P2,Point P3,GfxInfo FigureGfxInfo) :CFigure
 	Center.x = (Corner1.x + Corner2.x + Corner3.x) / 3;
 	Center.y = (Corner1.y + Corner2.y + Corner3.y) / 3;
 	figtype = triangle;
+
 }
 void CTriangle::Draw(Output* pOut) const
 {
@@ -39,6 +41,7 @@ double CTriangle::CalculateArea(Point P1, Point P2, Point P3) const{
 
 void CTriangle::Move(Point NewCenter)
 {
+	OldCenter = Center;
 	Corner1.x = Corner1.x + NewCenter.x - Center.x;
 	Corner1.y = Corner1.y + NewCenter.y - Center.y;
 	Corner2.x = Corner2.x + NewCenter.x - Center.x;
@@ -119,9 +122,14 @@ void CTriangle::PlayRecord(ifstream& Infile)
 	if (clr == "NO_FILL")
 	{
 		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
 	}
-	else {
+	else
+	{
 		FigGfxInfo.FillClr = getClr(clr);
+		UI.FillColor = FigGfxInfo.FillClr;
 	}
 	Infile >> slc;
 	if (slc == "SELECTED")
@@ -130,6 +138,11 @@ void CTriangle::PlayRecord(ifstream& Infile)
 	}
 	else
 		this->SetSelected(false);
+}
+
+Point CTriangle::ReturnOldCenter()
+{
+	return OldCenter;
 }
 
 void CTriangle::PrintInfo(Output* pOut) {

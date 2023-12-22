@@ -35,6 +35,7 @@ CFigure* PickByFillClr::RandomizeClr()
 		RandomIndex = rand() % (pManager->GetFigCount());
 		ptrRandom = pManager->GetFigByIndex(RandomIndex);
 	}
+
 	switch (ptrRandom->GetFillClr())
 	{
 	case Red:
@@ -257,6 +258,19 @@ void PickByFillClr::Execute()
 	{
 		delete ptrToPickByFig;
 	}
+}
+
+Action* PickByFillClr::Clone()
+{
+	return new PickByFillClr(*this);
+}
+
+void PickByFillClr::Undo()
+{
+}
+
+void PickByFillClr::Redo()
+{
 }
 
 void PickByFillClr::ReadActionParameters()

@@ -34,6 +34,14 @@ string Input::GetSrting(Output* pO) const
 	}
 }
 
+bool Input::isClicked(int &x,int &y)
+{
+	if (pWind->GetButtonState(LEFT_BUTTON, x, y) == BUTTON_DOWN)
+		return true;
+	else
+		return false;
+}
+
 //This function reads the position where the user clicks to determine the desired action
 ActionType Input::GetUserAction() const
 {
@@ -61,6 +69,7 @@ ActionType Input::GetUserAction() const
 			case ITM_CIRCLE: return DRAW_CIRCLE;
 			case ITM_SELECTONE: return SELECTONE;
 			case ITM_MOVE: return MOVE;
+			case ITM_MOVEDRAG: return MOVEDRAG;
 			case ITM_RESIZE: return RESIZE;
 			case ITM_CLEAR: return CLEAR;
 			case ITM_DELETE: return DELET;

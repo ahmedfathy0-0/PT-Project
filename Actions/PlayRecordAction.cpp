@@ -84,3 +84,16 @@ color PlayRecordAction::getclr(string colour)
 		return BLUE;
 }
 
+Action* PlayRecordAction::Clone()
+{
+	return NULL;
+}
+
+void PlayRecordAction::Undo()
+{
+}
+
+void PlayRecordAction::Redo()
+{
+}
+

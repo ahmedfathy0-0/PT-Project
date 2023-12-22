@@ -2,12 +2,14 @@
 
 CHexagon::CHexagon() : CFigure(FigGfxInfo)
 {
+
 }
 
 CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
 	figtype = hexagon;
+
 }
 
 void CHexagon::Draw(Output* pOut) const
@@ -61,6 +63,7 @@ double CHexagon::CalculateArea(Point P1, Point P2, Point P3) const {
 
 void CHexagon::Move(Point NewCenter)
 {
+	OldCenter = Center;
 	Center = NewCenter;
 }
 
@@ -122,9 +125,14 @@ void CHexagon::PlayRecord(ifstream& Infile)
 	if (clr == "NO_FILL")
 	{
 		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
 	}
-	else {
+	else
+	{
 		FigGfxInfo.FillClr = getClr(clr);
+		UI.FillColor = FigGfxInfo.FillClr;
 	}
 	Infile >> slc;
 	if (slc == "SELECTED")
@@ -135,6 +143,12 @@ void CHexagon::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 
 }
+
+Point CHexagon::ReturnOldCenter()
+{
+	return OldCenter;
+}
+
 CHexagon::~CHexagon() {
 }
 

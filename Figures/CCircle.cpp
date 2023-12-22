@@ -2,6 +2,7 @@
 
 CCircle::CCircle() : CFigure(FigGfxInfo)
 {
+
 }
 
 CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
@@ -9,6 +10,7 @@ CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) : CFigure(FigureGfxI
 	Center = P1;
 	point = P2;
 	figtype = circle;
+
 }
 
 
@@ -30,6 +32,7 @@ bool CCircle::IsInsideFigure(int x, int y) const {
 
 void CCircle::Move(Point NewCenter)
 {
+	OldCenter = Center;
 	point.x += NewCenter.x - Center.x;
 	point.y += NewCenter.y - Center.y;
 	Center = NewCenter;
@@ -62,9 +65,14 @@ void CCircle::Load(ifstream& Infile)
 	{
 		FigGfxInfo.isFilled = false;
 		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
 	}
 	else
+	{
 		FigGfxInfo.FillClr = getClr(clr);
+		UI.FillColor = FigGfxInfo.FillClr;
+	}
 }
 
 void CCircle::StartEndRecord(ofstream& OutFile)
@@ -114,6 +122,11 @@ void CCircle::PlayRecord(ifstream& Infile)
 		this->SetSelected(false);
 
 
+}
+
+Point CCircle::ReturnOldCenter()
+{
+	return OldCenter;
 }
 
 void CCircle::PrintInfo(Output* pOut) {

@@ -2,6 +2,7 @@
 
 CRectangle::CRectangle() : CFigure(FigGfxInfo)
 {
+
 }
 
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
@@ -11,6 +12,7 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(Figur
 	Center.x = (Corner1.x + Corner2.x) / 2;
 	Center.y = (Corner1.y + Corner2.y) / 2;
 	figtype = rectangle;
+
 }
 
 
@@ -31,6 +33,7 @@ bool CRectangle::IsInsideFigure(int x, int y) const{
 
 void CRectangle::Move(Point NewCenter)
 {
+	OldCenter = Center;
 	Corner1.x += NewCenter.x - Center.x;
 	Corner1.y += NewCenter.y - Center.y;
 	Corner2.x += NewCenter.x - Center.x;
@@ -67,9 +70,14 @@ void CRectangle::Load(ifstream& Infile)
 	{
 		FigGfxInfo.isFilled = false;
 		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
 	}
 	else
+	{
 		FigGfxInfo.FillClr = getClr(clr);
+		UI.FillColor = FigGfxInfo.FillClr;
+	}
 }
 
 void CRectangle::StartEndRecord(ofstream& OutFile)
@@ -116,6 +124,11 @@ void CRectangle::PlayRecord(ifstream& Infile)
 	}
 	else
 		this->SetSelected(false);
+}
+
+Point CRectangle::ReturnOldCenter()
+{
+	return OldCenter;
 }
 
 void CRectangle::PrintInfo(Output* pOut)  {

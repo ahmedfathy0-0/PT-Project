@@ -23,6 +23,10 @@ private:
 	bool IsRecording;
 	ofstream Recordfile;//used for save kids operations in the game
 	int OPcount;//used for max 20 operation
+	Action* UndoableActions[5];
+	Action* RedoableActions[5];
+	int UndoableActionsCount;
+	int RedoableActionsCount;
 public:
 	ApplicationManager();
 	~ApplicationManager();
@@ -39,7 +43,6 @@ public:
 	void SaveAll(ofstream& OutFile) const;
 	void Clearall();
 	void deletefigure();
-	void movefigure(Point New);
 	// functions for the Start,Stop,and Play Record  action//
 	void StartRecord(string) ;
 	void RecordFigure(CFigure*); //to record any changes in draw mode
@@ -52,7 +55,16 @@ public:
 	void IsInsideFigure(CFigure* pFig);
 	void SetSelectedFigure(CFigure* pFig);
 	CFigure* GetSelectedFigure() const;
-	void deselectall() ;
+	void deselectall();
+
+	//Functions for the undo action
+
+	void AddAction(Action*);
+	Action* ReturnLastUndoableAction();
+	void AddToRedo(Action*);
+
+	Action* ReturnLastRedoableAction();
+	void ClearRedoList();
 
 	// -- Interface Management Functions
 	Input* GetInput() const; //Return pointer to the input

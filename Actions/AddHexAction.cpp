@@ -40,8 +40,24 @@ void AddHexAction::Execute()
 	ReadActionParameters();
 
 	//Create a Hexagon with the parameters read from the user
-	CHexagon* H = new CHexagon(P1,RectGfxInfo);
+	H = new CHexagon(P1,RectGfxInfo);
 
 	//Add the Hexagon to the list of figures
+	H->IsHidden(false);
 	pManager->AddFigure(H);
+}
+
+Action* AddHexAction::Clone()
+{
+	return new AddHexAction(*this);
+}
+
+void AddHexAction::Undo()
+{
+	H->IsHidden(true);
+}
+
+void AddHexAction::Redo()
+{
+	H->IsHidden(false);
 }

@@ -2,12 +2,14 @@
 
 CSquare::CSquare() : CFigure(FigGfxInfo)
 {
+
 }
 
 CSquare::CSquare(Point P1,  GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Centre = P1;
 	figtype = square;
+
 	
 }
 void CSquare::Draw(Output* pOut) const
@@ -29,6 +31,7 @@ bool CSquare::IsInsideFigure(int x, int y) const{
 
 void CSquare::Move(Point NewCenter)
 {
+	OldCentre = Centre;
 	Centre = NewCenter;
 }
 
@@ -57,9 +60,14 @@ void CSquare::Load(ifstream& Infile)
 	{
 		FigGfxInfo.isFilled = false;
 		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		UI.FillColor = GREEN;
 	}
 	else
+	{
 		FigGfxInfo.FillClr = getClr(clr);
+		UI.FillColor = FigGfxInfo.FillClr;
+	}
 }
 
 void CSquare::StartEndRecord(ofstream& OutFile)
@@ -102,6 +110,11 @@ void CSquare::PlayRecord(ifstream& Infile)
 	}
 	else
 		this->SetSelected(false);
+}
+
+Point CSquare::ReturnOldCenter()
+{
+	return OldCentre;
 }
 
 void CSquare::PrintInfo(Output* pOut) {
