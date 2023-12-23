@@ -149,7 +149,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case DRAWING_AREA:
-		pOut->PrintMessage("Action: a click on the Drawing Area, Click anywhere");
 		break;
 
 	case EMPTY:
@@ -615,6 +614,7 @@ void ApplicationManager::UpdateBuffer(bool flag) const
 	pIn->SetBuffering(flag);
 	pIn->SetWaitClose(flag);
 	pIn->UpdateBuffer();
+	pOut->CreateDrawToolBar();
 }
 void ApplicationManager::UpdateInterface() const
 {
