@@ -15,7 +15,6 @@ public:
 	void CreateDrawToolBar() const;	//creates Draw mode toolbar & menu
 	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu
 	void CreateStatusBar() const;	//create the status bar
-	void CreatePickAndHideToolbar() const;
 	void deletePickAndHideToolbar() const;
 
 
@@ -48,6 +47,11 @@ public:
 	bool getisFilled() const;
 	color getCrntDrawColor() const;	//get current drwawing color
 	color getCrntFillColor() const;	//get current filling color
+	color getOldFillColor() const;	//get old filling color
+	color getOldDrawColor() const;	//get old Drawing color
+
+
+
 	int getCrntPenWidth() const;		//get current pen width
 
 

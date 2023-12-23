@@ -64,11 +64,12 @@
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PickAndHideAction.cpp" />
     <ClCompile Include="PickByFig.cpp" />
     <ClCompile Include="PickByFillClr.cpp" />
     <ClCompile Include="SwitchToPlayAction.cpp" />
     <ClCompile Include="Actions\MoveFigureByDrag.cpp" />
+    <ClCompile Include="Actions\ResizeAction.cpp" />
+    <ClCompile Include="PickByBoth.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\AddCircAction.h" />
@@ -120,11 +121,12 @@
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
-    <ClInclude Include="PickAndHideAction.h" />
     <ClInclude Include="PickByFig.h" />
     <ClInclude Include="PickByFillClr.h" />
     <ClInclude Include="SwitchToPlayAction.h" />
     <ClInclude Include="Actions\MoveFigureByDrag.h" />
+    <ClInclude Include="Actions\ResizeAction.h" />
+    <ClInclude Include="PickByBoth.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

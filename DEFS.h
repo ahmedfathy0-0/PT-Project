@@ -15,7 +15,6 @@ enum ActionType //The actions supported (you can add more if needed)
 	SELECTONE,
 	UNDO,
 	REDO,
-	PICKANDHIDE,
 
 	TO_DRAW,//Switch interface to Draw mode
 	TO_PLAY,		//Switch interface to Play mode
@@ -37,16 +36,16 @@ enum ActionType //The actions supported (you can add more if needed)
 	CHANGECOLOR,
 	CHANGEDRAWCOLOR,
 	CHANGEFILLCOLOR,
-
+	PICKBYFIG,
+	PICKBYCOL,
+	PICKBYBOTH,
 	BLACKCLR = 0,
 	YELLOWCLR,
 	ORANGECLR,
 	REDCLR,
 	GREENCLR,
-	BLUECLR,
-	PICKBYFIG = 0,
-	PICKBYCOL,
-	PICKBYBOTH
+	BLUECLR
+	
 
 
 

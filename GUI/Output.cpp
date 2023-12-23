@@ -152,7 +152,9 @@ void Output::CreatePlayToolBar() const
 
 	string PlayToolBarImages[PLAY_ITM_COUNT];
 	PlayToolBarImages[ITM_SWITCHDRAW] = "images\\MenuItems\\DRAW.jpg";
-	PlayToolBarImages[ITM_PICKANDHIDE] = "images\\MenuItems\\PICKANDHIDE.jpg";
+	PlayToolBarImages[ITM_PICKBYFIGURE] = "images\\MenuItems\\pickbyfig.jpg";
+	PlayToolBarImages[ITM_PICKBYCOLOR] = "images\\MenuItems\\ChangeColor.jpg";
+	PlayToolBarImages[ITM_PICKBYBOTH] = "images\\MenuItems\\pickbyboth.jpg";
 
 
 	for (int i = 0; i < PLAY_ITM_COUNT; i++)
@@ -166,21 +168,6 @@ void Output::CreatePlayToolBar() const
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
-void Output::CreatePickAndHideToolbar() const
-{
-	
-	CreatePlayToolBar();
-	string PickAndHideImages[PICKANDHIDECOUNT];
-	PickAndHideImages[ITM_PICKBYFIGURE] = "images\\MenuItems\\pickbyfig.jpg";
-	PickAndHideImages[ITM_PICKBYCOLOR] = "images\\MenuItems\\ChangeColor.jpg";
-	PickAndHideImages[ITM_PICKBYBOTH] = "images\\MenuItems\\pickbyboth.jpg";
-
-	for (int i = 0; i < PICKANDHIDECOUNT; i++)
-	{
-		pWind->DrawImage(PickAndHideImages[i], ((i+2) * UI.MenuItemWidth) + 5, 5, UI.MenuItemWidth - 5, UI.ToolBarHeight - 10);
-	}
-
-}
 
 void Output::deletePickAndHideToolbar() const
 {
@@ -264,12 +251,13 @@ void Output::deleteColorPalette() const
 }
 void Output::setCrntDrawColor(color color)
 {
+	UI.OldDrawColor = UI.DrawColor;
 	UI.DrawColor = color;
 }
 void Output::setCrntFillColor(color color)
 {
+	UI.OldFillColor = UI.FillColor;
 	UI.FillColor = color;
-
 }
 void Output::setisFilled(bool isfilled)
 {
@@ -289,8 +277,6 @@ bool Output::getisFilled() const
 }
 color Output::getCrntDrawColor() const	//get current drawing color
 {
-
-
 	return UI.DrawColor;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -300,6 +286,17 @@ color Output::getCrntFillColor() const	//get current filling color
 	return UI.FillColor;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+color Output::getOldFillColor() const	//get old filling color
+{
+	return UI.OldFillColor;
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+color Output::getOldDrawColor() const	//get old Drawing color
+{
+	return UI.OldDrawColor;
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+
 
 int Output::getCrntPenWidth() const		//get current pen width
 {

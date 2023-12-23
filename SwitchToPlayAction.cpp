@@ -2,7 +2,7 @@
 
 SwitchToPlayAction::SwitchToPlayAction(ApplicationManager* pApp) :Action(pApp)
 {
-
+	UI.InterfaceMode == MODE_PLAY;
 }
 
 void SwitchToPlayAction::ReadActionParameters()

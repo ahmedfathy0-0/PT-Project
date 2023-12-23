@@ -54,20 +54,14 @@ enum PlayMenuItem //The items of the Play menu (you should add more items)
 
 	//TODO: Add more items names here
 	ITM_SWITCHDRAW,
-	ITM_PICKANDHIDE,
-
-	PLAY_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
-
-};
-enum PickAndHideItem
-{
 	ITM_PICKBYFIGURE,
 
 	ITM_PICKBYCOLOR,
 
 	ITM_PICKBYBOTH,
 
-	PICKANDHIDECOUNT
+	PLAY_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
+
 };
 
 enum ColorPaletteItem
@@ -108,11 +102,12 @@ struct UI_Info	//User Interface Info.
 		HexagonVertices,
 		HexagonSize;
 	bool conD;
-	bool conDforPicknHide;
 
 
 	color DrawColor;		//Drawing color
+	color OldDrawColor;
 	color FillColor;		//Filling color
+	color OldFillColor;
 	color HighlightColor;	//Highlighting color
 	color MsgColor;			//Messages color
 	color BkGrndColor;		//Background color
