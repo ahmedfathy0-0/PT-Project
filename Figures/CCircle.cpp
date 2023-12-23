@@ -2,7 +2,7 @@
 
 CCircle::CCircle() : CFigure(FigGfxInfo)
 {
-
+	figtype = circle;
 }
 
 CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
@@ -78,6 +78,30 @@ void CCircle::Load(ifstream& Infile)
 	{
 		FigGfxInfo.FillClr = getClr(clr);
 		UI.FillColor = FigGfxInfo.FillClr;
+		if (UI.FillColor == RED)
+		{
+			FillClr = Red;
+		}
+		if (UI.FillColor == BLUE)
+		{
+			FillClr = Blue;
+		}
+		if (UI.FillColor == GREEN)
+		{
+			FillClr = Green;
+		}
+		if (UI.FillColor == ORANGE)
+		{
+			FillClr = Orange;
+		}
+		if (UI.FillColor == YELLOW)
+		{
+			FillClr = Yellow;
+		}
+		if (UI.FillColor == BLACK)
+		{
+			FillClr = Black;
+		}
 	}
 }
 
