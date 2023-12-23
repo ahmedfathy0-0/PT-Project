@@ -12,6 +12,7 @@
 PickByFillClr::PickByFillClr(ApplicationManager* pApp) :Action(pApp)
 {
 	ptrToPickByFig = NULL;
+	ptrToPickByBoth = NULL;
 }
 
 void PickByFillClr::RightCase(CFigure* Clicked, int& right, int& wrong)
@@ -93,6 +94,10 @@ void PickByFillClr::ReturnToDrawMidGame()
 	{
 		delete ptrToPickByFig;
 	}
+	if (ptrToPickByBoth != NULL)
+	{
+		delete ptrToPickByBoth;
+	}
 	pManager->UnHideFigures();
 	pManager->UpdateInterface();
 	pOut->CreateDrawToolBar();
@@ -127,6 +132,14 @@ void PickByFillClr::Execute()
 			ptrToPickByFig->Execute();
 			break;
 		}
+		else if (P.x <= (UI.MenuItemWidth * 5) && P.x >= (UI.MenuItemWidth * 4) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		{
+			pManager->UnHideFigures();
+			pManager->UpdateInterface();
+			ptrToPickByBoth = new PickByBoth(pManager);
+			ptrToPickByBoth->Execute();
+			break;
+		}
 			Clicked = pManager->GetFigure(P.x, P.y);
 			if (Clicked == NULL)
 			{
@@ -141,11 +154,11 @@ void PickByFillClr::Execute()
 				WrongCase(Clicked, RightCounter, WrongCounter);
 			}
 	}
-	if (pManager->GetFigCount() != 0 && pManager->CheckForFillColor() == true&&ptrToPickByFig==NULL)
+	if (pManager->GetFigCount() != 0 && pManager->CheckForFillColor() == true&&ptrToPickByFig==NULL&&ptrToPickByBoth==NULL)
 	{
 		pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
 	}
-	if (pManager->GetFigCount() != 0 && pManager->CheckForFillColor() == true && ptrToPickByFig == NULL)
+	if (pManager->GetFigCount() != 0 && pManager->CheckForFillColor() == true && ptrToPickByFig == NULL&&ptrToPickByBoth==NULL)
 	{
 		ReadActionParameters();
 		if (P.x <= (UI.MenuItemWidth * 4) && P.x >= (UI.MenuItemWidth * 3) && P.y <= UI.ToolBarHeight && P.y >= 0)
@@ -170,6 +183,11 @@ void PickByFillClr::Execute()
 	{
 		delete ptrToPickByFig;
 	}
+	if (ptrToPickByBoth != NULL)
+	{
+		delete ptrToPickByBoth;
+	}
+	
 }
 
 Action* PickByFillClr::Clone()

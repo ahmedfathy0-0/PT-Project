@@ -9,11 +9,17 @@
 #include<cstring>
 #include"PickByFig.h"
 #include"PickByFillClr.h"
+#include"PickByFig.h"
+#include"PickByFillClr.h"
+class PickByFig;
+class PickByFillClr;
 class PickByBoth :public Action
 {
 private:
 	Point P;
 	CFigure* ptrRandom;
+	PickByFig* ptrToPickByFig;
+	PickByFillClr* ptrToPickByFill;
 public:
 	PickByBoth(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

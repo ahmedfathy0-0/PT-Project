@@ -8,13 +8,15 @@
 #include"DEFS.h"
 #include<cstring>
 #include"PickByFillClr.h"
+#include"PickByBoth.h"
 class PickByFillClr;
-
+class PickByBoth;
 class PickByFig :public Action
 {private:
 	Point P;
 	CFigure* ptrRandom;
 	PickByFillClr* ptrToPickByFill;
+	PickByBoth* ptrToPickByBoth;
 public:
 	PickByFig(ApplicationManager* pApp);
 	CFigure* RandomizeFig();

@@ -8,12 +8,15 @@
 #include"DEFS.h"
 #include<cstring>
 #include"PickByFig.h"
+#include"PickByBoth.h"
+class PickByBoth;
 class PickByFig;
 class PickByFillClr:public Action
 {private:
 	Point P;
 	CFigure* ptrRandom;
 	PickByFig* ptrToPickByFig;
+	PickByBoth* ptrToPickByBoth;
 public:
 	PickByFillClr(ApplicationManager* pApp);
 	void RightCase(CFigure*, int&, int&);

@@ -11,6 +11,7 @@
 PickByFig::PickByFig(ApplicationManager* papp) :Action(papp)
 {
 	ptrToPickByFill = NULL;
+	ptrToPickByBoth = NULL;
 }
 
 CFigure* PickByFig::RandomizeFig()
@@ -50,9 +51,6 @@ CFigure* PickByFig::RandomizeFig()
 			return ptrRandom;
 		}
 }
-
-
-
 void PickByFig::Execute()
 {	
 	Output* pOut = pManager->GetOutput();
@@ -82,6 +80,14 @@ void PickByFig::Execute()
 			 ptrToPickByFill->Execute();
 			 break;
 		 }
+		 else if (P.x <= (UI.MenuItemWidth * 5) && P.x >= (UI.MenuItemWidth * 4) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		 {
+			 pManager->UnHideFigures();
+			 pManager->UpdateInterface();
+			 ptrToPickByBoth = new PickByBoth(pManager);
+			 ptrToPickByBoth->Execute();
+			 break;
+		 }
 			 Clicked = pManager->GetFigure(P.x, P.y);
 			 if (Clicked == NULL)
 			 {
@@ -96,11 +102,11 @@ void PickByFig::Execute()
 				 WrongCase(Clicked, RightCounter, WrongCounter);
 			 }
 	 }
-	 if (pManager->GetFigCount()!=0&&ptrToPickByFill==NULL)
+	 if (pManager->GetFigCount()!=0&&ptrToPickByFill==NULL&&ptrToPickByBoth==NULL)
 	 {
 		 pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
 	 }
-	 if (pManager->GetFigCount() != 0&&ptrToPickByFill==NULL)
+	 if (pManager->GetFigCount() != 0&&ptrToPickByFill==NULL&&ptrToPickByBoth==NULL)
 	 {
 		 ReadActionParameters();
 		 if (P.x <= (UI.MenuItemWidth * 3) && P.x >= (UI.MenuItemWidth * 2) && P.y <= UI.ToolBarHeight && P.y >= 0)
@@ -120,10 +126,21 @@ void PickByFig::Execute()
 			 ptrToPickByFill = new PickByFillClr(pManager);
 			 ptrToPickByFill->Execute();
 		 }
+		 else if (P.x <= (UI.MenuItemWidth * 5) && P.x >= (UI.MenuItemWidth * 4) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		 {
+			 pManager->UnHideFigures();
+			 pManager->UpdateInterface();
+			 ptrToPickByBoth = new PickByBoth(pManager);
+			 ptrToPickByBoth->Execute();
+		 }
 	 }
 	 if (ptrToPickByFill!=NULL)
 	 {
 		 delete ptrToPickByFill;
+	 }
+	 if (ptrToPickByBoth != NULL)
+	 {
+		 delete ptrToPickByBoth;
 	 }
 }
 
@@ -168,6 +185,10 @@ void PickByFig::ReturnToDrawMidGame()
 	if (ptrToPickByFill != NULL)
 	{
 		delete ptrToPickByFill;
+	}
+	if (ptrToPickByBoth != NULL)
+	{
+		delete ptrToPickByBoth;
 	}
 	pManager->UnHideFigures();
 	pManager->UpdateInterface();
