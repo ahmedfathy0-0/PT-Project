@@ -10,14 +10,7 @@ void MoveDragAction::ReadActionParameters()
 	pOut = pManager->GetOutput();
 	pIn = pManager->GetInput();
 	pFig = pManager->GetSelectedFigure();
-
-	if (pFig == NULL)
-		pOut->PrintMessage("Please select Figure first");
-	else if (pFig) {
-		pOut->PrintMessage("Click on The Figure and Drag");
-		//pIn->GetPointClicked(NewCenter.x, NewCenter.y);
-	}
-	}
+}
 
 
 
@@ -25,42 +18,44 @@ void MoveDragAction::ReadActionParameters()
 void MoveDragAction::Execute()
 {
 	ReadActionParameters();
-	if (pFig)
+	if (pFig == NULL) //check if there is a selected figure or not
+		pOut->PrintMessage("Please select Figure first");
+	else
 	{
-		bool MoveCondition = false; 
+		pOut->PrintMessage("Click on The Figure and Drag");
+		bool MoveCondition = false;
 		/*
 		used to first get checked is in the figure or not
 		after you can move out the figure
 		*/
-		int IX, IY, ix, iy;
-		Point C = pFig->ReturnCenter();
-		while (true)
+		int IX, IY, ix, iy; //IX,IY is the last point the mouse point at when clicked
+		//ix,iy is the first point the mouse point at when clicked
+		Point C = pFig->ReturnCenter(); //get center for calculations of new center
+		while (true) //get the first click
 		{
-			if (pIn->isClicked(IX, IY))
-			{
-				pIn->isClicked(ix, iy);
+			if (pIn->isClicked(ix, iy))
 				break;
-			}
 		}
-		while (pIn->isClicked(IX, IY))
-		{
-			if (pFig)
+		if (!pFig->IsInsideFigure(ix, iy)) //checks if the point you drag from is inside the shape
+			pOut->PrintMessage("Please select point on the figure");
+		else
+			while (pIn->isClicked(IX, IY))
 			{
-				if (pFig->IsInsideFigure(IX, IY)||MoveCondition)
+				if (pFig)
 				{
-					NewCenter.x = IX + C.x - ix;
-					NewCenter.y = IY + C.y - iy;
-					pManager->UpdateBuffer(true);
-					pManager->UpdateInterface();
-					pFig->Move(NewCenter);
+					if (pFig->IsInsideFigure(IX, IY) || MoveCondition)
+					{
+						NewCenter.x = IX + C.x - ix;
+						NewCenter.y = IY + C.y - iy;
+						pManager->UpdateBuffer(true);
+						pManager->UpdateInterface();
+						pFig->Move(NewCenter);
+					}
+					MoveCondition = true;
+					if (!pIn->isClicked(NewCenter.x, NewCenter.y))
+						break;
 				}
-				Sleep(1);
-				
-				if (!pIn->isClicked(NewCenter.x, NewCenter.y))
-					break;
-				MoveCondition = true;
 			}
-		}
 		pManager->UpdateBuffer(false);
 		pManager->RecordFigure(pFig);
 		pManager->deselectall();

@@ -149,7 +149,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case DRAWING_AREA:
-		pOut->PrintMessage("Action: a click on the Drawing Area, Click anywhere");
 		break;
 
 	case EMPTY:

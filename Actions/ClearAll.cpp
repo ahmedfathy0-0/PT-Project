@@ -5,11 +5,13 @@ void ClearAll::ReadActionParameters(){}
 void ClearAll::Execute()
 {
 	pManager->Clearall();
+	ClearRecord.open("Last Record", ios::trunc);
+	ClearRecord.close();
 	UI.DrawColor = BLUE;
 	UI.FillColor = GREEN;
 	UI.ISFILLED = false;
-	ClearRecord.open("Last Record", ios::trunc);
-	ClearRecord.close();
+	UI.HexagonSize = 100;
+	UI.SqrSize = 160;
 }
 
 Action* ClearAll::Clone()
