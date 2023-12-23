@@ -14,7 +14,6 @@
 #include "Actions\LoadAction.h"
 #include "Actions\StartRecordingAction.h"
 #include "Actions\PlayRecordAction.h"
-#include"PickAndHideAction.h"
 #include"PickByFig.h"
 #include"PickByFillClr.h"
 #include"SwitchToPlayAction.h"
@@ -161,13 +160,29 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		
 		pOut->PrintMessage("Action: Switch to Draw Mode, creating simualtion tool bar");
 		pOut->CreateDrawToolBar();
+		UI.InterfaceMode == MODE_DRAW;
 		UnHideFigures();
 		
 		break;
 
 	case TO_PLAY:
 		pAct = new SwitchToPlayAction(this);
+		pAct->Execute();
+		
+		{
+	case PICKBYFIG:
+		pAct = new PickByFig(this);
 		break;
+
+	case PICKBYCOL:
+		pAct = new PickByFillClr(this);
+
+		break;
+	case PICKBYBOTH:
+		pAct = new PickByBoth(this);
+
+		break;
+		}
 
 	case EMPTY_PLAYTOOLBAR:
 		pOut->PrintMessage("Action: a click on empty area in the Play Tool Bar, Click anywhere");
@@ -178,28 +193,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pOut->PrintMessage("Action: a click on the draw area in Play Mode, Click anywhere");
 		break;
 
-	case PICKANDHIDE:
-		pAct = new PickAndHideAction(this);
-		pAct->Execute();
-		ActTypeForPickndHide = pIn->GetUserAction(pOut);
-		switch (ActTypeForPickndHide)
-		{
-		case PICKBYFIG:
-			pAct = new PickByFig(this);
-			break;
-
-		case PICKBYCOL:
-			pAct = new PickByFillClr(this);
-
-			break;
-		case PICKBYBOTH:
-			pAct = new PickByBoth(this);
-
-			break;
-		}
-
-		//pOut->deletePickAndHideToolbar();
-		break;
 
 
 	case STARTRECORDING:

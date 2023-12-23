@@ -152,7 +152,9 @@ void Output::CreatePlayToolBar() const
 
 	string PlayToolBarImages[PLAY_ITM_COUNT];
 	PlayToolBarImages[ITM_SWITCHDRAW] = "images\\MenuItems\\DRAW.jpg";
-	PlayToolBarImages[ITM_PICKANDHIDE] = "images\\MenuItems\\PICKANDHIDE.jpg";
+	PlayToolBarImages[ITM_PICKBYFIGURE] = "images\\MenuItems\\pickbyfig.jpg";
+	PlayToolBarImages[ITM_PICKBYCOLOR] = "images\\MenuItems\\ChangeColor.jpg";
+	PlayToolBarImages[ITM_PICKBYBOTH] = "images\\MenuItems\\pickbyboth.jpg";
 
 
 	for (int i = 0; i < PLAY_ITM_COUNT; i++)
@@ -166,21 +168,6 @@ void Output::CreatePlayToolBar() const
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
-void Output::CreatePickAndHideToolbar() const
-{
-	
-	CreatePlayToolBar();
-	string PickAndHideImages[PICKANDHIDECOUNT];
-	PickAndHideImages[ITM_PICKBYFIGURE] = "images\\MenuItems\\pickbyfig.jpg";
-	PickAndHideImages[ITM_PICKBYCOLOR] = "images\\MenuItems\\ChangeColor.jpg";
-	PickAndHideImages[ITM_PICKBYBOTH] = "images\\MenuItems\\pickbyboth.jpg";
-
-	for (int i = 0; i < PICKANDHIDECOUNT; i++)
-	{
-		pWind->DrawImage(PickAndHideImages[i], ((i+2) * UI.MenuItemWidth) + 5, 5, UI.MenuItemWidth - 5, UI.ToolBarHeight - 10);
-	}
-
-}
 
 void Output::deletePickAndHideToolbar() const
 {

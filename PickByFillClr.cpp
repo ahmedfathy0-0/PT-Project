@@ -88,8 +88,8 @@ void PickByFillClr::RestartGame()
 
 void PickByFillClr::ReturnToDrawMidGame()
 {
+	UI.InterfaceMode = MODE_DRAW;
 	Output* pOut = pManager->GetOutput();
-	UI.conDforPicknHide = false;
 	if (ptrToPickByFig != NULL)
 	{
 		delete ptrToPickByFig;
@@ -105,6 +105,8 @@ void PickByFillClr::ReturnToDrawMidGame()
 
 void PickByFillClr::Execute()
 {
+	pManager->UnHideFigures();
+	pManager->UpdateInterface();
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	CFigure* Clicked;
@@ -114,7 +116,7 @@ void PickByFillClr::Execute()
 	while (RightCounter < pManager->RandomizedFillClrCount(ptrRandom))
 	{
 		ReadActionParameters();
-		if (P.x <= (UI.MenuItemWidth * 4) && P.x >= (UI.MenuItemWidth * 3) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		if (P.x <= (UI.MenuItemWidth * 3) && P.x >= (UI.MenuItemWidth * 2) && P.y <= UI.ToolBarHeight && P.y >= 0)
 		{
 			RestartGame();
 			RightCounter = WrongCounter = 0;
@@ -124,7 +126,7 @@ void PickByFillClr::Execute()
 			ReturnToDrawMidGame();
 			return;
 		}
-		else if (P.x <= (UI.MenuItemWidth * 3) && P.x >= (UI.MenuItemWidth * 2) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		else if (P.x <= (UI.MenuItemWidth * 2) && P.x >= (UI.MenuItemWidth * 1) && P.y <= UI.ToolBarHeight && P.y >= 0)
 		{
 			pManager->UnHideFigures();
 			pManager->UpdateInterface();
@@ -132,7 +134,7 @@ void PickByFillClr::Execute()
 			ptrToPickByFig->Execute();
 			break;
 		}
-		else if (P.x <= (UI.MenuItemWidth * 5) && P.x >= (UI.MenuItemWidth * 4) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		else if (P.x <= (UI.MenuItemWidth * 4) && P.x >= (UI.MenuItemWidth * 3) && P.y <= UI.ToolBarHeight && P.y >= 0)
 		{
 			pManager->UnHideFigures();
 			pManager->UpdateInterface();
@@ -157,27 +159,6 @@ void PickByFillClr::Execute()
 	if (pManager->GetFigCount() != 0 && pManager->CheckForFillColor() == true&&ptrToPickByFig==NULL&&ptrToPickByBoth==NULL)
 	{
 		pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-	}
-	if (pManager->GetFigCount() != 0 && pManager->CheckForFillColor() == true && ptrToPickByFig == NULL&&ptrToPickByBoth==NULL)
-	{
-		ReadActionParameters();
-		if (P.x <= (UI.MenuItemWidth * 4) && P.x >= (UI.MenuItemWidth * 3) && P.y <= UI.ToolBarHeight && P.y >= 0)
-		{
-			pManager->UnHideFigures();
-			pManager->UpdateInterface();
-			Execute();
-		}
-		else if (P.x <= (UI.MenuItemWidth) && P.x >= 0 && P.y <= UI.ToolBarHeight && P.y >= 0)
-		{
-			ReturnToDrawMidGame();
-		}
-		else if (P.x <= (UI.MenuItemWidth * 3) && P.x >= (UI.MenuItemWidth * 2) && P.y <= UI.ToolBarHeight && P.y >= 0)
-		{
-			pManager->UnHideFigures();
-			pManager->UpdateInterface();
-			ptrToPickByFig = new PickByFig(pManager);
-			ptrToPickByFig->Execute();
-		}
 	}
 	if (ptrToPickByFig!=NULL)
 	{

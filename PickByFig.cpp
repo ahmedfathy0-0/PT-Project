@@ -53,6 +53,8 @@ CFigure* PickByFig::RandomizeFig()
 }
 void PickByFig::Execute()
 {	
+	pManager->UnHideFigures();
+	pManager->UpdateInterface();
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	CFigure* Clicked;
@@ -62,7 +64,7 @@ void PickByFig::Execute()
 	 while (RightCounter < pManager->RandomizedFigCount(ptrRandom))
 	 {
 		 ReadActionParameters();
-		 if (P.x <= (UI.MenuItemWidth * 3) && P.x >= (UI.MenuItemWidth * 2) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		 if (P.x <= (UI.MenuItemWidth * 2) && P.x >= (UI.MenuItemWidth * 1) && P.y <= UI.ToolBarHeight && P.y >= 0)
 		 {
 			 RestartGame();
 			 RightCounter = WrongCounter = 0;
@@ -72,18 +74,15 @@ void PickByFig::Execute()
 			 ReturnToDrawMidGame();
 			 return;
 		 }
-		 else if (P.x <= (UI.MenuItemWidth * 4) && P.x >= (UI.MenuItemWidth * 3) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		 else if (P.x <= (UI.MenuItemWidth * 3) && P.x >= (UI.MenuItemWidth * 2) && P.y <= UI.ToolBarHeight && P.y >= 0)
 		 {
-			 pManager->UnHideFigures();
-			 pManager->UpdateInterface();
+
 			 ptrToPickByFill = new PickByFillClr(pManager);
 			 ptrToPickByFill->Execute();
 			 break;
 		 }
-		 else if (P.x <= (UI.MenuItemWidth * 5) && P.x >= (UI.MenuItemWidth * 4) && P.y <= UI.ToolBarHeight && P.y >= 0)
+		 else if (P.x <= (UI.MenuItemWidth * 4) && P.x >= (UI.MenuItemWidth * 3) && P.y <= UI.ToolBarHeight && P.y >= 0)
 		 {
-			 pManager->UnHideFigures();
-			 pManager->UpdateInterface();
 			 ptrToPickByBoth = new PickByBoth(pManager);
 			 ptrToPickByBoth->Execute();
 			 break;
@@ -105,34 +104,6 @@ void PickByFig::Execute()
 	 if (pManager->GetFigCount()!=0&&ptrToPickByFill==NULL&&ptrToPickByBoth==NULL)
 	 {
 		 pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-	 }
-	 if (pManager->GetFigCount() != 0&&ptrToPickByFill==NULL&&ptrToPickByBoth==NULL)
-	 {
-		 ReadActionParameters();
-		 if (P.x <= (UI.MenuItemWidth * 3) && P.x >= (UI.MenuItemWidth * 2) && P.y <= UI.ToolBarHeight && P.y >= 0)
-		 {
-			  pManager->UnHideFigures();
-			 pManager->UpdateInterface();
-			 Execute();
-		 }
-		 else if (P.x <= (UI.MenuItemWidth) && P.x >= 0 && P.y <= UI.ToolBarHeight && P.y >= 0)
-		 {
-			 ReturnToDrawMidGame();
-		 }
-		 else if (P.x <= (UI.MenuItemWidth * 4) && P.x >= (UI.MenuItemWidth * 3) && P.y <= UI.ToolBarHeight && P.y >= 0)
-		 {
-			 pManager->UnHideFigures();
-			 pManager->UpdateInterface();
-			 ptrToPickByFill = new PickByFillClr(pManager);
-			 ptrToPickByFill->Execute();
-		 }
-		 else if (P.x <= (UI.MenuItemWidth * 5) && P.x >= (UI.MenuItemWidth * 4) && P.y <= UI.ToolBarHeight && P.y >= 0)
-		 {
-			 pManager->UnHideFigures();
-			 pManager->UpdateInterface();
-			 ptrToPickByBoth = new PickByBoth(pManager);
-			 ptrToPickByBoth->Execute();
-		 }
 	 }
 	 if (ptrToPickByFill!=NULL)
 	 {
@@ -180,8 +151,8 @@ void PickByFig::RestartGame()
 }
 void PickByFig::ReturnToDrawMidGame()
 {
+	UI.InterfaceMode == MODE_DRAW;
 	Output* pOut = pManager->GetOutput();
-	UI.conDforPicknHide = false;
 	if (ptrToPickByFill != NULL)
 	{
 		delete ptrToPickByFill;

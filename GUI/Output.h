@@ -15,7 +15,6 @@ public:
 	void CreateDrawToolBar() const;	//creates Draw mode toolbar & menu
 	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu
 	void CreateStatusBar() const;	//create the status bar
-	void CreatePickAndHideToolbar() const;
 	void deletePickAndHideToolbar() const;
 
 
