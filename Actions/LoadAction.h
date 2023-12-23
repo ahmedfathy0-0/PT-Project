@@ -10,11 +10,11 @@
 class LoadAction : public Action
 {
 private:
-	string filename;
-	string type;
-	string fillcolor;
+	string filename, type, fillcolor;
 	int NO_OF_FIGS;
 	ifstream fIn;
+	Output* pOut;
+	Input* pIn;
 public :
 	LoadAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

@@ -1,8 +1,0 @@
-BLUE     RED
-6
-HEXAGN     1     220     360     BLUE     NO_FILL
-SQUARE     2     602     299     BLUE     NO_FILL
-SQUARE     3     931     328     BLUE     GREEN
-HEXAGN     4     436     498     BLUE     GREEN
-SQUARE     5     739     550     BLUE     RED
-HEXAGN     6     1123     583     BLUE     RED
