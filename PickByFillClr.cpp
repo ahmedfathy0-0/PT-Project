@@ -160,6 +160,11 @@ void PickByFillClr::Execute()
 	{
 		pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
 	}
+	if (WrongCounter == 0)
+	{
+		//PlaySound("")
+	}
+
 	if (ptrToPickByFig!=NULL)
 	{
 		delete ptrToPickByFig;
