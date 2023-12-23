@@ -142,6 +142,9 @@ void CHexagon::Load(ifstream& Infile)
 	{
 		FigGfxInfo.isFilled = false;
 		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		FigGfxInfo.isFilled = false;
+		FillClr = No_Fill;
 	}
 	else
 	{

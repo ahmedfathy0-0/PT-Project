@@ -79,6 +79,7 @@ void CRectangle::Load(ifstream& Infile)
 		FigGfxInfo.FillClr = GREEN;
 		UI.ISFILLED = false;
 		UI.FillColor = GREEN;
+		FillClr = No_Fill;
 	}
 	else
 	{
