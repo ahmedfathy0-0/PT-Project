@@ -621,6 +621,7 @@ void ApplicationManager::UpdateBuffer(bool flag) const
 	pIn->SetBuffering(flag);
 	pIn->SetWaitClose(flag);
 	pIn->UpdateBuffer();
+	pOut->CreateDrawToolBar();
 }
 void ApplicationManager::UpdateInterface() const
 {

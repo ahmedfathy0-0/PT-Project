@@ -51,7 +51,6 @@ void MoveDragAction::Execute()
 					NewCenter.x = IX + C.x - ix;
 					NewCenter.y = IY + C.y - iy;
 					pManager->UpdateBuffer(true);
-					pOut->CreateDrawToolBar();
 					pManager->UpdateInterface();
 					pFig->Move(NewCenter);
 				}

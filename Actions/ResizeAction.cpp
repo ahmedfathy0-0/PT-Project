@@ -38,7 +38,6 @@ void ResizeAction::Execute()
 					NewCenter.x = IX;
 					NewCenter.y = IY;
 					pManager->UpdateBuffer(true);
-					pOut->CreateDrawToolBar();
 					pManager->UpdateInterface();
 					pFig->Resize(NewCenter);
 
