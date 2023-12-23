@@ -167,8 +167,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case TO_PLAY:
 		pAct = new SwitchToPlayAction(this);
 		pAct->Execute();
+		break;
 		
-		{
 	case PICKBYFIG:
 		pAct = new PickByFig(this);
 		break;
@@ -181,7 +181,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new PickByBoth(this);
 
 		break;
-		}
+		
 
 	case EMPTY_PLAYTOOLBAR:
 		pOut->PrintMessage("Action: a click on empty area in the Play Tool Bar, Click anywhere");
