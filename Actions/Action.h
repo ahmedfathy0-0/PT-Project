@@ -3,6 +3,8 @@
 
 #include "..\DefS.h"
 #include "..\CMUgraphicsLib\auxil.h"
+#include <Windows.h>
+
 class ApplicationManager; //forward class declaration
 
 

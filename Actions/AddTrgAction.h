@@ -11,8 +11,9 @@ private:
 	Point P1, P2,P3; //Triangle Corners
 	GfxInfo RectGfxInfo;
 	CTriangle* T;
+	bool Sound;
 public:
-	AddTrgAction(ApplicationManager* pApp);
+	AddTrgAction(ApplicationManager* pApp, bool s = false);
 
 	//Reads Triangle parameters
 	virtual void ReadActionParameters();

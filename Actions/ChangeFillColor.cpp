@@ -23,13 +23,15 @@ void ChangeFillcolor::Execute()
 
 Action* ChangeFillcolor::Clone()
 {
-	return nullptr;
+	return new ChangeFillcolor(*this);
 }
 
 void ChangeFillcolor::Undo()
 {
+	pFig->ChngFillClr(pOut->getOldFillColor());
 }
 
 void ChangeFillcolor::Redo()
 {
+	pFig->ChngFillClr(pOut->getCrntFillColor());
 }

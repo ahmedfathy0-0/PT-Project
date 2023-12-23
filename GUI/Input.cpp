@@ -1,6 +1,6 @@
 #include "Input.h"
 #include "Output.h"
-int Input::flag = false;
+bool Input::flag = false;
 Input::Input(window* pW)
 {
 	pWind = pW; //point to the passed window
@@ -120,10 +120,12 @@ ActionType Input::GetUserAction(Output* pOut) const
 				case(COLOR_BLACK): {
 					if (flag == true) {
 						pOut->PrintMessage("The Fill color will now be black");
+						pOut->SetOldFillColor(pOut->getCrntFillColor());
 						pOut->setCrntFillColor(BLACK);
 					}
 					else {
 						pOut->PrintMessage("The Draw color will now be black");
+						pOut->SetOldDrawColor(pOut->getCrntDrawColor());
 						pOut->setCrntDrawColor(BLACK);
 					}
 					return BLACKCLR;
@@ -131,50 +133,60 @@ ActionType Input::GetUserAction(Output* pOut) const
 				case(COLOR_YELLOW): { 
 					if (flag == true) {
 						pOut->PrintMessage("The Fill color will now be YELLOW");
+						pOut->SetOldFillColor(pOut->getCrntFillColor());
 						pOut->setCrntFillColor(YELLOW);
 					}
 					else {
 						pOut->PrintMessage("The Draw color will now be YELLOW");
+						pOut->SetOldDrawColor(pOut->getCrntDrawColor());
 						pOut->setCrntDrawColor(YELLOW);
 					}
 					return YELLOWCLR;}
 				case(COLOR_ORANGE): {
 					if (flag == true) {
 						pOut->PrintMessage("The Fill color will now be ORANGE");
+						pOut->SetOldFillColor(pOut->getCrntFillColor());
 						pOut->setCrntFillColor(ORANGE);
 					}
 					else {
 						pOut->PrintMessage("The Draw color will now be ORANGE");
+						pOut->SetOldDrawColor(pOut->getCrntDrawColor());
 						pOut->setCrntDrawColor(ORANGE);
 					}
 					return ORANGECLR;}
 				case(COLOR_RED): { 
 					if (flag == true) {
 						pOut->PrintMessage("The Fill color will now be RED");
+						pOut->SetOldFillColor(pOut->getCrntFillColor());
 						pOut->setCrntFillColor(RED);
 					}
 					else {
 						pOut->PrintMessage("The Draw color will now be RED");
+						pOut->SetOldDrawColor(pOut->getCrntDrawColor());
 						pOut->setCrntDrawColor(RED);
 					}
 					return REDCLR;}
 				case(COLOR_GREEN): { 
 					if (flag == true) {
 						pOut->PrintMessage("The Fill color will now be GREEN");
+						pOut->SetOldFillColor(pOut->getCrntFillColor());
 						pOut->setCrntFillColor(GREEN);
 					}
 					else {
 						pOut->PrintMessage("The Draw color will now be GREEN");
+						pOut->SetOldDrawColor(pOut->getCrntDrawColor());
 						pOut->setCrntDrawColor(GREEN);
 					}
 					return GREENCLR;}
 				case(COLOR_BLUE): {
 					if (flag == true) {
 						pOut->PrintMessage("The Fill color will now be BLUE");
+						pOut->SetOldFillColor(pOut->getCrntFillColor());
 						pOut->setCrntFillColor(BLUE);
 					}
 					else {
 						pOut->PrintMessage("The Draw color will now be BLUE");
+						pOut->SetOldDrawColor(pOut->getCrntDrawColor());
 						pOut->setCrntDrawColor(BLUE);
 					}
 					return BLUECLR;}

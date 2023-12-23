@@ -29,9 +29,10 @@ Action* ChangeDrawcolor::Clone()
 
 void ChangeDrawcolor::Undo()
 {
-
+	pFig->ChngDrawClr(pOut->getOldDrawColor());
 }
 
 void ChangeDrawcolor::Redo()
 {
+	pFig->ChngDrawClr(pOut->getCrntDrawColor());
 }

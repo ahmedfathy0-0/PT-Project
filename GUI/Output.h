@@ -49,7 +49,8 @@ public:
 	color getCrntFillColor() const;	//get current filling color
 	color getOldFillColor() const;	//get old filling color
 	color getOldDrawColor() const;	//get old Drawing color
-
+	void SetOldFillColor(color);	//get old filling color
+	void SetOldDrawColor(color);
 
 
 	int getCrntPenWidth() const;		//get current pen width

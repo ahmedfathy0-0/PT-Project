@@ -11,7 +11,7 @@ class Input		//The application manager should have a pointer to this class
 {
 private:
 	window* pWind;	//Pointer to the Graphics Window
-	static int flag;//used to check if its fill or draw color
+	static bool flag;//used to check if its fill or draw color
 public:
 	Input(window* pW);		//Consturctor
 	void GetPointClicked(int& x, int& y) const;//Get coordinate where user clicks

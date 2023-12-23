@@ -11,8 +11,9 @@ private:
 	Point P1; //Hexagon Centers
 	GfxInfo RectGfxInfo;
 	CHexagon* H;
+	bool Sound;
 public:
-	AddHexAction(ApplicationManager* pApp);
+	AddHexAction(ApplicationManager* pApp, bool s = false);
 
 	//Reads Hexagon parameters
 	virtual void ReadActionParameters();

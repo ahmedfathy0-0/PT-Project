@@ -6,7 +6,7 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddRectAction::AddRectAction(ApplicationManager* pApp) :Action(pApp)
+AddRectAction::AddRectAction(ApplicationManager* pApp, bool sound) :Action(pApp), Sound(sound)
 {
 
 }
@@ -16,6 +16,9 @@ void AddRectAction::ReadActionParameters()
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
+
+	if (Sound)
+		PlaySound("Sounds\\Rectangle.wav", NULL, SND_ASYNC);
 
 	pOut->PrintMessage("New Rectangle: Click at first corner");
 

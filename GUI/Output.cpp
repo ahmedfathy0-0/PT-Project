@@ -28,7 +28,7 @@ Output::Output()
 	UI.ColorPaletteHeightend = 75 + UI.ChangeColorPaletteHeight;
 
 	UI.DrawColor = BLUE;	//Drawing color
-	UI.FillColor = GREEN;	//Filling color
+	UI.FillColor = WHITESMOKE;	//Filling color
 	UI.MsgColor = WHITESMOKE;		//Messages color
 	UI.BkGrndColor = GHOSTWHITE;	//Background color
 	UI.ChangeColorPalette = grey;
@@ -153,7 +153,7 @@ void Output::CreatePlayToolBar() const
 	string PlayToolBarImages[PLAY_ITM_COUNT];
 	PlayToolBarImages[ITM_SWITCHDRAW] = "images\\MenuItems\\DRAW.jpg";
 	PlayToolBarImages[ITM_PICKBYFIGURE] = "images\\MenuItems\\pickbyfig.jpg";
-	PlayToolBarImages[ITM_PICKBYCOLOR] = "images\\MenuItems\\ChangeColor.jpg";
+	PlayToolBarImages[ITM_PICKBYCOLOR] = "images\\MenuItems\\Pickbycolor.jpg";
 	PlayToolBarImages[ITM_PICKBYBOTH] = "images\\MenuItems\\pickbyboth.jpg";
 
 
@@ -294,6 +294,14 @@ color Output::getOldFillColor() const	//get old filling color
 color Output::getOldDrawColor() const	//get old Drawing color
 {
 	return UI.OldDrawColor;
+}
+void Output::SetOldFillColor(color c)
+{
+	UI.OldFillColor = c;
+}
+void Output::SetOldDrawColor(color c)
+{
+	UI.OldDrawColor = c;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 

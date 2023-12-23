@@ -11,8 +11,9 @@ private:
 	Point P1,P2; //Circle Center and point
 	GfxInfo RectGfxInfo;
 	CCircle* C;
+	bool Sound;
 public:
-	AddCircAction(ApplicationManager* pApp);
+	AddCircAction(ApplicationManager* pApp, bool s = false);
 
 	//Reads Circle parameters
 	virtual void ReadActionParameters();

@@ -81,27 +81,27 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	{
 	case DRAW_RECT:
 		
-		pAct = new AddRectAction(this);
+		pAct = new AddRectAction(this,true);
 		break;
 
 	case DRAW_SQUARE:
 		
-		pAct = new AddSqrAction(this);
+		pAct = new AddSqrAction(this,true);
 		break;
 
 	case DRAW_TRIANGLE:
 		
-		pAct = new AddTrgAction(this);
+		pAct = new AddTrgAction(this,true);
 		break;
 
 	case DRAW_HEXAGON:
 
-		pAct = new AddHexAction(this);
+		pAct = new AddHexAction(this, true);
 		break;
 
 	case DRAW_CIRCLE:
 		
-		pAct = new AddCircAction(this);
+		pAct = new AddCircAction(this, true);
 		break;
 
 	case STATUS:	//a click on the status bar ==> no action
@@ -283,8 +283,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		//adding the action to the undoable list if this action is undoable
 		if (dynamic_cast<AddCircAction*>(pAct) != NULL || dynamic_cast<AddRectAction*>(pAct) != NULL || dynamic_cast<AddSqrAction*>(pAct) != NULL ||
 			dynamic_cast<AddTrgAction*>(pAct) != NULL || dynamic_cast<AddHexAction*>(pAct) != NULL || dynamic_cast<DeleteAction*>(pAct) != NULL || dynamic_cast<MoveAction*>(pAct) != NULL
-			|| dynamic_cast<ChangeDrawcolor*>(pAct) != NULL || dynamic_cast<ChangeFillcolor*>(pAct) != NULL|| dynamic_cast< MoveDragAction*>(pAct) != NULL 
-			|| dynamic_cast<ResizeAction*>(pAct) != NULL )
+			|| dynamic_cast<ChangeDrawcolor*>(pAct) != NULL || dynamic_cast<ChangeFillcolor*>(pAct) != NULL || dynamic_cast<MoveDragAction*>(pAct) != NULL
+			|| dynamic_cast<ResizeAction*>(pAct) != NULL)
 		{
 			AddAction(pAct);
 			ClearRedoList();
