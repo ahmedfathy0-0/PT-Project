@@ -12,7 +12,7 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(Figur
 	Center.x = (Corner1.x + Corner2.x) / 2;
 	Center.y = (Corner1.y + Corner2.y) / 2;
 	figtype = rectangle;
-
+	OldestCenter = Center;
 }
 
 
@@ -141,6 +141,11 @@ Point CRectangle::ReturnCenter() const
 Point CRectangle::ReturnOldCenter() const 
 {
 	return OldCenter;
+}
+
+Point CRectangle::ReturnOldestCenter() const
+{
+	return OldestCenter;
 }
 
 void CRectangle::PrintInfo(Output* pOut)  {

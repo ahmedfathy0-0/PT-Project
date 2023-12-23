@@ -78,7 +78,7 @@ void MoveDragAction::Undo()
 {
 	if (pFig)
 	{
-		Point Center = pFig->ReturnOldCenter();
+		Point Center = pFig->ReturnOldestCenter();
 		pFig->Move(Center);
 	}
 }

@@ -10,6 +10,7 @@ private:
 	Point Corner2;
 	Point Center;
 	Point OldCenter;
+	Point OldestCenter;
 public:
 	CRectangle();
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
@@ -23,6 +24,7 @@ public:
 	virtual void PlayRecord(ifstream& Infile);
 	virtual Point ReturnCenter() const;
 	virtual Point ReturnOldCenter() const;
+	virtual Point ReturnOldestCenter() const;
 	virtual void PrintInfo(Output*);
 };
 

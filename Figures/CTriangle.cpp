@@ -13,7 +13,7 @@ CTriangle::CTriangle(Point P1, Point P2,Point P3,GfxInfo FigureGfxInfo) :CFigure
 	Center.x = (Corner1.x + Corner2.x + Corner3.x) / 3;
 	Center.y = (Corner1.y + Corner2.y + Corner3.y) / 3;
 	figtype = triangle;
-
+	OldestCenter = Center;
 }
 void CTriangle::Draw(Output* pOut) const
 {
@@ -157,6 +157,11 @@ Point CTriangle::ReturnCenter()const
 Point CTriangle::ReturnOldCenter()const
 {
 	return OldCenter;
+}
+
+Point CTriangle::ReturnOldestCenter() const
+{
+	return OldestCenter;
 }
 
 void CTriangle::PrintInfo(Output* pOut) {

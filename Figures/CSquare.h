@@ -8,6 +8,7 @@ class CSquare : public CFigure
 private:
 	Point Centre;
 	Point OldCentre;
+	Point OldestCentre;
 public:
 	CSquare();
 	CSquare(Point, GfxInfo FigureGfxInfo);
@@ -21,6 +22,7 @@ public:
 	virtual void PlayRecord(ifstream& Infile);
 	virtual Point ReturnCenter()const;
 	virtual Point ReturnOldCenter()const;
+	virtual Point ReturnOldestCenter() const;
 	virtual void PrintInfo(Output*);
 };
 

@@ -8,6 +8,7 @@ class CHexagon : public CFigure
 private:
 	Point Center;
 	Point OldCenter;
+	Point OldestCenter;
 public:
 	CHexagon();
 	CHexagon(Point, GfxInfo FigureGfxInfo);
@@ -23,6 +24,7 @@ public:
 	virtual Point ReturnCenter() const;
 	virtual Point ReturnOldCenter() const;
 	virtual void PrintInfo(Output*) ;
+	virtual Point ReturnOldestCenter() const;
 	~CHexagon();
 };
 

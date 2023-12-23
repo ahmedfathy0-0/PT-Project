@@ -9,6 +9,7 @@ private:
 	Point Center;
 	Point point;//Point at the circle
 	Point OldCenter;
+	Point OldestCenter;
 public:
 	CCircle();
 	CCircle(Point,Point, GfxInfo FigureGfxInfo);
@@ -22,6 +23,7 @@ public:
 	virtual void PlayRecord(ifstream& Infile);
 	virtual Point ReturnCenter() const;
 	virtual Point ReturnOldCenter() const;
+	virtual Point ReturnOldestCenter() const;
 	virtual void PrintInfo(Output*);
 };
 

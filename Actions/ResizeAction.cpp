@@ -58,8 +58,7 @@ void ResizeAction::Execute()
 
 Action* ResizeAction::Clone()
 {
-//	return new ResizeAction(*this);
-	return NULL;
+	return new ResizeAction(*this);
 }
 
 void ResizeAction::Undo()

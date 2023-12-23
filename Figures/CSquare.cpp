@@ -9,8 +9,7 @@ CSquare::CSquare(Point P1,  GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Centre = P1;
 	figtype = square;
-
-	
+	OldestCentre = Centre;
 }
 void CSquare::Draw(Output* pOut) const
 {
@@ -126,6 +125,11 @@ Point CSquare::ReturnCenter() const
 Point CSquare::ReturnOldCenter()const
 {
 	return OldCentre;
+}
+
+Point CSquare::ReturnOldestCenter() const
+{
+	return OldestCentre;
 }
 
 void CSquare::PrintInfo(Output* pOut) {

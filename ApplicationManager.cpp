@@ -416,7 +416,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		//adding the action to the undoable list if this action is undoable
 		if (dynamic_cast<AddCircAction*>(pAct) != NULL || dynamic_cast<AddRectAction*>(pAct) != NULL || dynamic_cast<AddSqrAction*>(pAct) != NULL ||
 			dynamic_cast<AddTrgAction*>(pAct) != NULL || dynamic_cast<AddHexAction*>(pAct) != NULL || dynamic_cast<DeleteAction*>(pAct) != NULL || dynamic_cast<MoveAction*>(pAct) != NULL
-			|| dynamic_cast<ChangeDrawcolor*>(pAct) != NULL || dynamic_cast<ChangeFillcolor*>(pAct) != NULL)
+			|| dynamic_cast<ChangeDrawcolor*>(pAct) != NULL || dynamic_cast<ChangeFillcolor*>(pAct) != NULL|| dynamic_cast< MoveDragAction*>(pAct) != NULL 
+			|| dynamic_cast<ResizeAction*>(pAct) != NULL )
 		{
 			AddAction(pAct);
 			ClearRedoList();
@@ -705,6 +706,11 @@ int ApplicationManager::RandomizedFillClrCount(CFigure*p)
 	}
 	return count;
 
+}
+
+Action* ApplicationManager::GetActionType()
+{
+	return nullptr;
 }
 
 bool ApplicationManager::CheckForFillColor()

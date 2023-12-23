@@ -9,7 +9,7 @@ CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
 	figtype = hexagon;
-
+	OldestCenter = Center;
 }
 
 void CHexagon::Draw(Output* pOut) const
@@ -84,7 +84,8 @@ bool CHexagon::IsInsideFigure(int X, int Y) const
 		double thirdSmallArea4 = CalculateArea(Corner2, Corner3, P);
 
 
-		if ((BigTriangleArea1 == firstSmallArea1 + SecondSmallArea1 + thirdSmallArea1) || (BigTriangleArea2 == firstSmallArea2 + SecondSmallArea2 + thirdSmallArea2) || (BigTriangleArea3 == firstSmallArea3 + SecondSmallArea3 + thirdSmallArea3) || (BigTriangleArea4 == firstSmallArea4 + SecondSmallArea4 + thirdSmallArea4)) 
+		if ((BigTriangleArea1 == firstSmallArea1 + SecondSmallArea1 + thirdSmallArea1) || (BigTriangleArea2 == firstSmallArea2 + SecondSmallArea2 + thirdSmallArea2) || 
+			(BigTriangleArea3 == firstSmallArea3 + SecondSmallArea3 + thirdSmallArea3) || (BigTriangleArea4 == firstSmallArea4 + SecondSmallArea4 + thirdSmallArea4)) 
 		return false;
 		else 
 			return true;
@@ -209,4 +210,9 @@ CHexagon::~CHexagon() {
 void CHexagon::PrintInfo(Output* pOut) {
 	string message = "Hexagon: Centre= (" + to_string(Center.x) + " ," + to_string(Center.y) + " )";
 	pOut->PrintMessage(message);
+}
+
+Point CHexagon::ReturnOldestCenter() const
+{
+	return OldestCenter;
 }

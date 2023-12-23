@@ -40,6 +40,7 @@ public:
 	virtual void Resize(Point) = 0;
 	virtual Point ReturnCenter() const = 0;
 	virtual Point ReturnOldCenter() const= 0;
+	virtual Point ReturnOldestCenter() const = 0;
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 

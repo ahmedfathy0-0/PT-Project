@@ -78,7 +78,7 @@ public:
 	void UnHideFigures();
 	bool CheckForFillColor();
 	int RandomizedFillClrCount(CFigure*);
-	
+	Action* GetActionType();
 };
 
 #endif

@@ -10,7 +10,7 @@ CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) : CFigure(FigureGfxI
 	Center = P1;
 	point = P2;
 	figtype = circle;
-
+	OldestCenter = Center;
 }
 
 
@@ -138,6 +138,11 @@ Point CCircle::ReturnCenter() const
 Point CCircle::ReturnOldCenter()const
 {
 	return OldCenter;
+}
+
+Point CCircle::ReturnOldestCenter() const
+{
+	return OldestCenter;
 }
 
 void CCircle::PrintInfo(Output* pOut) {
