@@ -6,7 +6,7 @@ class Output	//The application manager should have a pointer to this class
 {
 private:
 	window* pWind;	//Pointer to the Graphics Window
-	int count;//for Start and end record items
+	static bool flag;//for Start and end record items
 	static string Lastmsg;//used to fix statue bar issue to get last message back after clear all in every figure function
 public:
 	Output();
@@ -27,13 +27,14 @@ public:
 	void CreateSTARTRECORDING() const;
 	void deleteENDRECORDING() const;
 	void deleteSTARTRECORDING() const;
-
+	void Output::UpdateBuffer() const;
+	void Output::SetBuffering(bool flag)const;
 
 	// -- Figures Drawing functions
 	void DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected = false) const;  //Draw a rectangle
-	void DrawSqr(Point P1, GfxInfo SqGfxInfo, bool selected = false) const;
+	void DrawSqr(Point P1, GfxInfo SqGfxInfo, bool selected = false,double SqrSize=160) const;
 	void DrawTr(Point P1, Point P2, Point P3, GfxInfo TrGfxInfo, bool selected = false) const;
-	void DrawHex(Point P1, GfxInfo HXGfxInfo, bool selected = false) const;
+	void DrawHex(Point P1, GfxInfo HXGfxInfo, bool selected = false,double HexSize=100) const;
 	void DrawCirc(Point P1, Point P2, GfxInfo CircGfxInfo, bool selected = false) const;
 	///Make similar functions for drawing all other figure types.
 

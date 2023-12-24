@@ -9,6 +9,8 @@ private:
 	Point Center;
 	Point OldCenter;
 	Point OldestCenter;
+	int HexSize;// i have to use it after making the resize operation
+
 public:
 	CHexagon();
 	CHexagon(Point, GfxInfo FigureGfxInfo);

@@ -32,7 +32,6 @@ void MoveAction::Execute()
 	pManager->RecordFigure(pFig);
 	pOut->ClearStatusBar();
 	}
-
 Action* MoveAction::Clone()
 {
 	return new MoveAction(*this);

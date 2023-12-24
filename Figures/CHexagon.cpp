@@ -2,11 +2,12 @@
 
 CHexagon::CHexagon() : CFigure(FigGfxInfo)
 {
-
+	HexSize = 100;
 }
 
 CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
+	HexSize = 100;
 	Center = P1;
 	figtype = hexagon;
 	OldestCenter = Center;
@@ -15,16 +16,16 @@ CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 void CHexagon::Draw(Output* pOut) const
 {
 	//Call Output::DrawRect to draw a Hexagon on the screen	
-	pOut->DrawHex(Center, FigGfxInfo, Selected);
+	pOut->DrawHex(Center, FigGfxInfo, Selected, HexSize);
 }
 
 bool CHexagon::IsInsideFigure(int X, int Y) const 
 {
 	Point p3, p4;
-	p3.x = Center.x + UI.HexagonSize;
-	p3.y = Center.y - UI.HexagonSize*0.866;
-	p4.x = Center.x - UI.HexagonSize;
-	p4.y = Center.y + UI.HexagonSize*0.866;
+	p3.x = Center.x + HexSize;
+	p3.y = Center.y - HexSize *0.866;
+	p4.x = Center.x - HexSize;
+	p4.y = Center.y + HexSize *0.866;
 
 	if (X >= p4.x && X <= p3.x && Y >= p3.y && Y <= p4.y)
 	{
@@ -38,23 +39,23 @@ bool CHexagon::IsInsideFigure(int X, int Y) const
 		Point Corner1;
 		P.x = X;
 		P.y = Y;
-		Corner1.x = Center.x - UI.HexagonSize;
-		Corner1.y = Center.y - UI.HexagonSize * 0.866;
-		Corner2.x = Corner1.x + UI.HexagonSize / 2;
+		Corner1.x = Center.x - HexSize;
+		Corner1.y = Center.y - HexSize * 0.866;
+		Corner2.x = Corner1.x + HexSize / 2;
 		Corner2.y = Corner1.y;
 		Corner3.x = Corner1.x;
-		Corner3.y = Corner1.y + UI.HexagonSize * 0.866;
+		Corner3.y = Corner1.y + HexSize * 0.866;
 		double BigTriangleArea1 = CalculateArea(Corner1, Corner2, Corner3);
 		double firstSmallArea1 = CalculateArea(Corner1, Corner2, P);
 		double SecondSmallArea1 = CalculateArea(Corner1, Corner3, P);
 		double thirdSmallArea1 = CalculateArea(Corner2, Corner3, P);
 
 		///second triangle
-		Corner1.x += UI.HexagonSize + UI.HexagonSize/ 2;
+		Corner1.x += HexSize + HexSize / 2;
 		//y coordianate of Corner1 is same here
-		Corner2.x += UI.HexagonSize + (UI.HexagonSize) / 2;
+		Corner2.x += HexSize + (HexSize) / 2;
 		//y coordianate of Corner2 is same here
-		Corner3.x += 2 * UI.HexagonSize;
+		Corner3.x += 2 * HexSize;
 		//y coordianate of Corner3 is same here
 		double BigTriangleArea2 = CalculateArea(Corner1, Corner2, Corner3);
 		double firstSmallArea2 = CalculateArea(Corner1, Corner2, P);
@@ -62,9 +63,9 @@ bool CHexagon::IsInsideFigure(int X, int Y) const
 		double thirdSmallArea2 = CalculateArea(Corner2, Corner3, P);
 
 		///third triangle
-		Corner1.y +=2*(UI.HexagonSize * 0.866);
+		Corner1.y +=2*(HexSize * 0.866);
 		//x coordianate of Corner1 is same here
-		Corner2.y += 2 * (UI.HexagonSize * 0.866);
+		Corner2.y += 2 * (HexSize * 0.866);
 		//x coordianate of Corner2 is same here
 		// coordianates of Corner3 is same here
 		double BigTriangleArea3 = CalculateArea(Corner1, Corner2, Corner3);
@@ -74,9 +75,9 @@ bool CHexagon::IsInsideFigure(int X, int Y) const
 
 		///Fourth triangle
 		//coordianates of Corner1 is same here
-		Corner2.x -= 2 * UI.HexagonSize;
+		Corner2.x -= 2 * HexSize;
 		//y coordianate of Corner2 is same here
-		Corner3.x -= 2 * UI.HexagonSize;
+		Corner3.x -= 2 * HexSize;
 		// y coordianate of Corner3 is same here
 		double BigTriangleArea4 = CalculateArea(Corner1, Corner2, Corner3);
 		double firstSmallArea4 = CalculateArea(Corner1, Corner2, P);
@@ -114,7 +115,7 @@ void CHexagon::Move(Point NewCenter)
 
 void CHexagon::Resize(Point NewPoint)
 {
-	UI.HexagonSize = (abs(Center.y - NewPoint.y))/0.866;
+	HexSize = (abs(Center.y - NewPoint.y))/0.866;
 }
 
 void CHexagon::Save(ofstream& OutFile)
@@ -123,6 +124,7 @@ void CHexagon::Save(ofstream& OutFile)
 	OutFile << ID << "     ";
 	OutFile << Center.x << "     ";
 	OutFile << Center.y << "     ";
+	OutFile << HexSize << "     "; // we have to add this after doing the resize operation
 	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
 	if (FigGfxInfo.isFilled)
 		OutFile << getClr(FigGfxInfo.FillClr) << endl;
@@ -134,7 +136,7 @@ void CHexagon::Load(ifstream& Infile)
 {
 	string clr;
 	FigGfxInfo.BorderWdth = UI.PenWidth;
-	Infile >> ID >> Center.x >> Center.y;
+	Infile >> ID >> Center.x >> Center.y>>HexSize;
 	Infile >> clr;
 	FigGfxInfo.DrawClr = getClr(clr);
 	Infile >> clr;
@@ -153,6 +155,7 @@ void CHexagon::StartEndRecord(ofstream& OutFile)
 	OutFile << ID << "     ";
 	OutFile << Center.x << "     ";
 	OutFile << Center.y << "     ";
+	OutFile << HexSize << "     "; // we have to add this after doing the resize operation
 	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
 	if (FigGfxInfo.isFilled)
 		OutFile << getClr(FigGfxInfo.FillClr) << "     ";
@@ -168,7 +171,7 @@ void CHexagon::PlayRecord(ifstream& Infile)
 	string clr;
 	string slc;
 	FigGfxInfo.BorderWdth = UI.PenWidth;
-	Infile >> ID >> Center.x >> Center.y;
+	Infile >> ID >> Center.x >> Center.y >> HexSize;
 	Infile >> clr;
 	FigGfxInfo.DrawClr = getClr(clr);
 	Infile >> clr;

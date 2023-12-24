@@ -121,6 +121,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case SELECTONE:
+		if (FigCount == 0) {
+			pOut->PrintMessage("Please Draw some figures first");
+		}
+		else 
 		pAct = new SelectOneAction(this);
 		break;
 
@@ -611,20 +615,20 @@ bool ApplicationManager::CheckForFillColor()
 
 void ApplicationManager::UpdateBuffer(bool flag) const
 {
-	pIn->SetBuffering(flag);
+	pOut->SetBuffering(flag);
 	pIn->SetWaitClose(flag);
-	pIn->UpdateBuffer();
+	pOut->UpdateBuffer();
 	pOut->CreateDrawToolBar();
 }
 void ApplicationManager::UpdateInterface() const
 {
-
 	pOut->ClearDrawArea();
 	for (int i = 0; i < FigCount; i++)
 		if (!(FigList[i]->GetHiddenStatus()))
 		{
 			FigList[i]->Draw(pOut);//Call Draw function (virtual member fn)1
 		}
+	//pOut->UpdateBuffer();
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input
