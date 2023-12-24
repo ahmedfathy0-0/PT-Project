@@ -20,7 +20,8 @@ void PlayRecordAction::ReadActionParameters()
 
 void PlayRecordAction::Execute()
 {
-
+	int n1 = 0;
+	int n2 = 0;
 	ReadActionParameters();
 	fIn.open(filename);
 	bool flag = true;
@@ -56,8 +57,48 @@ void PlayRecordAction::Execute()
 		else if (type == "DELETE") {
 			pManager->deletefigure();
 		}
+		else if (type == "UNDO") {
+			ifstream fIn1;
+			fIn1.open(filename);
+			for (int i = 0;i < n2;i++) {
+				fIn >> type;
+		if (type == "RECTAN") {
+			myFig = new CRectangle;
+			myFig->PlayRecord(fIn);
+			pManager->AddFigure(myFig);
+		}
+		else if (type == "SQUARE") {
+			myFig = new CSquare;
+			myFig->PlayRecord(fIn);
+			pManager->AddFigure(myFig);
+		}
+		else if (type == "TRIANG") {
+			myFig = new CTriangle;
+			myFig->PlayRecord(fIn);
+			pManager->AddFigure(myFig);
+		}
+		else if (type == "HEXAGN") {
+			myFig = new CHexagon;
+			myFig->PlayRecord(fIn);
+			pManager->AddFigure(myFig);
+		}
+		else if (type == "CIRCLE") {
+			myFig = new CCircle;
+			myFig->PlayRecord(fIn);
+			pManager->AddFigure(myFig);
+		}
+		else if (type == "DELETE") {
+			pManager->deletefigure();
+		}
+			}
+		}
 		else if(type=="FINISHED") {
 			flag = false;
+		}
+		if(!myFig->IsSelected())
+		{
+			n2 = n1;
+			n1 = i;
 		}
 		pManager->UpdateInterface();
 		Pause(1000);

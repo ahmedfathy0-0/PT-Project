@@ -367,7 +367,6 @@ void ApplicationManager::SetSelectedFigure(CFigure* pFig) {
 	if (pFig){
 		SelectedFigure = pFig;
 	if (IsRecording && OPcount <= 20) {
-		OPcount++;
 		pFig->StartEndRecord(Recordfile);
 	}
 }
@@ -438,7 +437,7 @@ Action* ApplicationManager::ReturnLastUndoableAction()
 			return UndoableActions[UndoableActionsCount];
 		}*/
 		return UndoableActions[UndoableActionsCount];
-	}
+		}
 }
 void ApplicationManager::AddToRedo(Action* Act)
 {
@@ -458,9 +457,8 @@ Action* ApplicationManager::ReturnLastRedoableAction()
 	{
 		RedoableActionsCount--;
 		return RedoableActions[RedoableActionsCount];
+		}
 	}
-}
-
 void ApplicationManager::ClearRedoList()
 {
 	for (int i = 0; i < RedoableActionsCount; i++)

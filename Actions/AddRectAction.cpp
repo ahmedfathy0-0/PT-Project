@@ -65,9 +65,12 @@ Action* AddRectAction::Clone()
 void AddRectAction::Undo()
 {
 	R->IsHidden(true);
+	pManager->RecordFigure(R);
+
 }
 
 void AddRectAction::Redo()
 {
 	R->IsHidden(false);
+	pManager->RecordFigure(R);
 }

@@ -40,6 +40,7 @@ void ChangeFillcolor::Undo()
 			pFig->SetIsFilled(false);
 		}
 	}
+	pManager->RecordFigure(pFig);
 }
 
 void ChangeFillcolor::Redo()
@@ -47,4 +48,5 @@ void ChangeFillcolor::Redo()
 	if (pFig) {
 		pFig->ChngFillClr(pOut->getCrntFillColor());
 	}
+	pManager->RecordFigure(pFig);
 }

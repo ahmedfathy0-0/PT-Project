@@ -63,9 +63,11 @@ Action* AddCircAction::Clone()
 void AddCircAction::Undo()
 {
 	C->SetHidden(true);
+	pManager->RecordFigure(C);
 }
 
 void AddCircAction::Redo()
 {
 	C->SetHidden(false);
+	pManager->RecordFigure(C);
 }

@@ -145,6 +145,10 @@ void CTriangle::StartEndRecord(ofstream& OutFile)
 		OutFile << "SELECTED" << endl;
 	else
 		OutFile << "NOT_SELECTED" << endl;
+	if (this->isHidden)
+		OutFile << "HIDDEN" << endl;
+	else
+		OutFile << "NOT_HIDDEN" << endl;
 }
 
 void CTriangle::PlayRecord(ifstream& Infile)
@@ -177,6 +181,13 @@ void CTriangle::PlayRecord(ifstream& Infile)
 	}
 	else
 		this->SetSelected(false);
+	Infile >> slc;
+	if (slc == "HIDDEN")
+	{
+		this->IsHidden(true);
+	}
+	else
+		this->IsHidden(false);
 }
 
 Point CTriangle::ReturnCenter()const

@@ -68,6 +68,7 @@ void ResizeAction::Undo()
 		Point Center = pFig->ReturnOldCenter();
 		pFig->Move(Center);
 	}
+	pManager->RecordFigure(pFig);
 }
 
 void ResizeAction::Redo()
@@ -77,5 +78,6 @@ void ResizeAction::Redo()
 		Point Center = pFig->ReturnOldCenter();
 		pFig->Move(Center);
 	}
+	pManager->RecordFigure(pFig);
 }
 

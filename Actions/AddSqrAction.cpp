@@ -62,9 +62,13 @@ Action* AddSqrAction::Clone()
 void AddSqrAction::Undo()
 {
 	S->IsHidden(true);
+	pManager->RecordFigure(S);
+
 }
 
 void AddSqrAction::Redo()
 {
 	S->IsHidden(false);
+	pManager->RecordFigure(S);
+
 }

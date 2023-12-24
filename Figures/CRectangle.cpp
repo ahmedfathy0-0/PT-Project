@@ -129,6 +129,10 @@ void CRectangle::StartEndRecord(ofstream& OutFile)
 		OutFile << "SELECTED" << endl;
 	else
 		OutFile << "NOT_SELECTED" << endl;
+	if (this->isHidden)
+		OutFile << "HIDDEN" << endl;
+	else
+		OutFile << "NOT_HIDDEN" << endl;
 }
 
 void CRectangle::PlayRecord(ifstream& Infile)
@@ -156,6 +160,13 @@ void CRectangle::PlayRecord(ifstream& Infile)
 	}
 	else
 		this->SetSelected(false);
+	Infile >> slc;
+	if (slc == "HIDDEN")
+	{
+		this->IsHidden(true);
+	}
+	else
+		this->IsHidden(false);
 }
 
 Point CRectangle::ReturnCenter() const 

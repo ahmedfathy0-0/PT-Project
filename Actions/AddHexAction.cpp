@@ -63,9 +63,12 @@ Action* AddHexAction::Clone()
 void AddHexAction::Undo()
 {
 	H->IsHidden(true);
+	pManager->RecordFigure(H);
+
 }
 
 void AddHexAction::Redo()
 {
 	H->IsHidden(false);
+	pManager->RecordFigure(H);
 }

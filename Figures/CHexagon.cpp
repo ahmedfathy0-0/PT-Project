@@ -197,6 +197,10 @@ void CHexagon::StartEndRecord(ofstream& OutFile)
 		OutFile << "SELECTED" << endl;
 	else
 		OutFile << "NOT_SELECTED" << endl;
+	if (this->isHidden)
+		OutFile << "HIDDEN" << endl;
+	else
+		OutFile << "NOT_HIDDEN" << endl;
 }
 void CHexagon::PlayRecord(ifstream& Infile)
 {
@@ -226,6 +230,13 @@ void CHexagon::PlayRecord(ifstream& Infile)
 	}
 	else
 		this->SetSelected(false);
+	Infile >> slc;
+	if (slc == "HIDDEN")
+	{
+		this->IsHidden(true);
+	}
+	else
+		this->IsHidden(false);
 
 }
 

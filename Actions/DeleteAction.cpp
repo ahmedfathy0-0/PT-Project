@@ -31,6 +31,7 @@ void DeleteAction::Undo()
 	{
 		pManager->GetSelectedFigure()->SetHidden(false);
 	}
+	pManager->RecordFigure(pFig);
 }
 
 void DeleteAction::Redo()
@@ -39,4 +40,5 @@ void DeleteAction::Redo()
 	{
 		pManager->GetSelectedFigure()->SetHidden(true);
 	}
+	pManager->RecordFigure(pFig);
 }
