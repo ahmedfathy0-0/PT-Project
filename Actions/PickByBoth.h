@@ -1,32 +1,34 @@
 #pragma once
-#include"ApplicationManager.h"
+#include"../../ApplicationManager.h"
 #include<cstdlib>
 #include<time.h>
 #include<iostream>
-#include"Actions/Action.h"
-#include"Figures/CFigure.h"
-#include"DEFS.h"
+#include"../Actions/Action.h"
+#include"../Figures/CFigure.h"
+#include"../DEFS.h"
 #include<cstring>
+#include"PickByFig.h"
 #include"PickByFillClr.h"
-#include"PickByBoth.h"
+#include"PickByFig.h"
+#include"PickByFillClr.h"
+class PickByFig;
 class PickByFillClr;
-class PickByBoth;
-class PickByFig :public Action
-{private:
+class PickByBoth :public Action
+{
+private:
 	Point P;
 	CFigure* ptrRandom;
+	PickByFig* ptrToPickByFig;
 	PickByFillClr* ptrToPickByFill;
-	PickByBoth* ptrToPickByBoth;
 public:
-	PickByFig(ApplicationManager* pApp);
-	CFigure* RandomizeFig();
+	PickByBoth(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
 	virtual void Execute();
-	void RightCase(CFigure*,int&,int&);
+	CFigure* Randomize();
+	void RightCase(CFigure*, int&, int&);
 	void WrongCase(CFigure*, int&, int&);
 	void RestartGame();
 	void ReturnToDrawMidGame();
-	
 	virtual Action* Clone();
 	virtual void Undo();
 	virtual void Redo();

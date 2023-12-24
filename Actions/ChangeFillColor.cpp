@@ -35,7 +35,7 @@ void ChangeFillcolor::Undo()
 	if (pFig)
 	{
 		pFig->ChngFillClr(pOut->getOldFillColor());
-		if (pOut->getOldFillColor() == WHITESMOKE)
+		if (pOut->getOldFillColor() == GHOSTWHITE)
 		{
 			pFig->SetIsFilled(false);
 		}
