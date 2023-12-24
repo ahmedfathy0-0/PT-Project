@@ -47,19 +47,19 @@ void CSquare::Save(ofstream& OutFile)
 	OutFile << ID << "     ";
 	OutFile << Centre.x << "     ";
 	OutFile << Centre.y << "     ";
-	OutFile << SqrSize << "     ";//we have to add this after doing the resize operation
 	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
 	if (FigGfxInfo.isFilled)
-		OutFile << getClr(FigGfxInfo.FillClr) << endl;
+		OutFile << getClr(FigGfxInfo.FillClr) << "     ";
 	else
-		OutFile << "NO_FILL" << endl;
+		OutFile << "NO_FILL" << "     ";
+	OutFile << SqrSize << endl;//we have to add this after doing the resize operation
 }
 
 void CSquare::Load(ifstream& Infile)
 {
 	string clr;
 	FigGfxInfo.BorderWdth = UI.PenWidth;
-	Infile >> ID >> Centre.x >> Centre.y>>SqrSize;
+	Infile >> ID >> Centre.x >> Centre.y;
 	Infile >> clr;
 	FigGfxInfo.DrawClr = getClr(clr);
 	Infile >> clr;
@@ -100,6 +100,7 @@ void CSquare::Load(ifstream& Infile)
 			FillClr = Black;
 		}
 	}
+	Infile >> SqrSize;
 }
 
 void CSquare::StartEndRecord(ofstream& OutFile)

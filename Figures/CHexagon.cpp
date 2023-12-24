@@ -125,19 +125,19 @@ void CHexagon::Save(ofstream& OutFile)
 	OutFile << ID << "     ";
 	OutFile << Center.x << "     ";
 	OutFile << Center.y << "     ";
-	OutFile << HexSize << "     "; // we have to add this after doing the resize operation
 	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
 	if (FigGfxInfo.isFilled)
-		OutFile << getClr(FigGfxInfo.FillClr) << endl;
+		OutFile << getClr(FigGfxInfo.FillClr) << "     ";
 	else
-		OutFile << "NO_FILL" << endl;
+		OutFile << "NO_FILL" << "     ";
+	OutFile << HexSize << endl; // we have to add this after doing the resize operation
 }
 
 void CHexagon::Load(ifstream& Infile)
 {
 	string clr;
 	FigGfxInfo.BorderWdth = UI.PenWidth;
-	Infile >> ID >> Center.x >> Center.y>>HexSize;
+	Infile >> ID >> Center.x >> Center.y;
 	Infile >> clr;
 	FigGfxInfo.DrawClr = getClr(clr);
 	Infile >> clr;
@@ -178,6 +178,7 @@ void CHexagon::Load(ifstream& Infile)
 			FillClr = Black;
 		}
 	}
+	Infile >> HexSize;
 }
 
 void CHexagon::StartEndRecord(ofstream& OutFile)
