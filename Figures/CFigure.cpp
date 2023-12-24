@@ -75,6 +75,9 @@ void CFigure::ChngFillClr(color Fclr)
 	}
 
 }
+void CFigure::setisFilled(bool b)  {
+	FigGfxInfo.isFilled=b;
+}
 
 bool CFigure::isfilled()
 {
@@ -84,6 +87,10 @@ bool CFigure::isfilled()
 int CFigure::GetFillClr()
 {
 	return FillClr;
+}
+color CFigure::CGetFillClr()
+{
+	return FigGfxInfo.FillClr;
 }
 
 double CFigure::CalculateDistance(Point P1, Point P2) const{

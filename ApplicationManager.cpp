@@ -72,6 +72,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 						Recordfile << "FINISHED" << endl;
 						IsRecording = false;
 						pAct = new StartRecordingAction(this);
+						PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
 						OPcount = 0;
 						Recordfile.close();
 					}
@@ -121,6 +122,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case SELECTONE:
+		if (FigCount == 0) {
+			pOut->PrintMessage("Please Draw some figures first");
+		}
+		else 
 		pAct = new SelectOneAction(this);
 		break;
 
@@ -167,8 +172,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case TO_PLAY:
 		pAct = new SwitchToPlayAction(this);
 		pAct->Execute();
+		break;
 		
-		{
 	case PICKBYFIG:
 		pAct = new PickByFig(this);
 		break;
@@ -181,7 +186,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new PickByBoth(this);
 
 		break;
-		}
+		
 
 	case EMPTY_PLAYTOOLBAR:
 		pOut->PrintMessage("Action: a click on empty area in the Play Tool Bar, Click anywhere");
@@ -199,7 +204,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			if (FigCount == 0) {
 			pOut->CreateENDRECORDING();
 			IsRecording = true;
+			PlaySound(("Sounds\\Start.wav"), NULL, SND_ASYNC);
 			pAct = new StartRecordingAction(this);
+
 		}
 			else {
 				pOut->PrintMessage("Please Clear all first");
@@ -212,6 +219,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pOut->CreateSTARTRECORDING();
 			Recordfile << "FINISHED" << endl;
 			IsRecording = false;
+			PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
 			pAct = new StartRecordingAction(this);
 			OPcount = 0;
 			Recordfile.close();
@@ -266,8 +274,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 
 	case EXIT:
-		///create ExitAction here
 	{
+			
     }
 
 		break;
@@ -602,20 +610,20 @@ bool ApplicationManager::CheckForFillColor()
 
 void ApplicationManager::UpdateBuffer(bool flag) const
 {
-	pIn->SetBuffering(flag);
+	pOut->SetBuffering(flag);
 	pIn->SetWaitClose(flag);
-	pIn->UpdateBuffer();
+	pOut->UpdateBuffer();
 	pOut->CreateDrawToolBar();
 }
 void ApplicationManager::UpdateInterface() const
 {
-
 	pOut->ClearDrawArea();
 	for (int i = 0; i < FigCount; i++)
 		if (!(FigList[i]->GetHiddenStatus()))
 		{
 			FigList[i]->Draw(pOut);//Call Draw function (virtual member fn)1
 		}
+	//pOut->UpdateBuffer();
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input

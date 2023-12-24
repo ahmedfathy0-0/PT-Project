@@ -55,8 +55,11 @@ public:
 	void IsHidden(bool);
 	void SetHidden(bool);
 	bool GetHiddenStatus();
+	void setisFilled(bool b);
 	bool isfilled();
 	int GetFillClr();
+	color CGetFillClr();
+
 
 	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 	void setID(int);

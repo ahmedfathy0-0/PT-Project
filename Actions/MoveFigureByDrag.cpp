@@ -57,7 +57,6 @@ void MoveDragAction::Execute()
 				}
 			}
 		pManager->UpdateBuffer(false);
-		pManager->RecordFigure(pFig);
 		pManager->deselectall();
 		pOut->ClearStatusBar();
 	}

@@ -60,7 +60,7 @@ void PlayRecordAction::Execute()
 			flag = false;
 		}
 		pManager->UpdateInterface();
-		Pause(2000);
+		Pause(1000);
 
 		
 

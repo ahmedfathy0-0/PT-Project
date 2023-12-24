@@ -9,6 +9,7 @@ private:
 	Point Centre;
 	Point OldCentre;
 	Point OldestCentre;
+	int SqrSize;// i have to use it after making the resize operation
 public:
 	CSquare();
 	CSquare(Point, GfxInfo FigureGfxInfo);

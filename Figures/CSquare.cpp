@@ -2,11 +2,13 @@
 
 CSquare::CSquare() : CFigure(FigGfxInfo)
 {
-
+	SqrSize = 160;
+	figtype = square;
 }
 
 CSquare::CSquare(Point P1,  GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
+	SqrSize = 160;
 	Centre = P1;
 	figtype = square;
 	OldestCentre = Centre;
@@ -14,15 +16,15 @@ CSquare::CSquare(Point P1,  GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 void CSquare::Draw(Output* pOut) const
 {
 	//Call Output::DrawRect to draw a Square on the screen	
-	pOut->DrawSqr(Centre, FigGfxInfo, Selected);
+	pOut->DrawSqr(Centre, FigGfxInfo, Selected, SqrSize);
 }
 
 bool CSquare::IsInsideFigure(int x, int y) const{
 	Point p3, p4;
-	p3.x = Centre.x + UI.SqrSize / 2;
-	p3.y = Centre.y - UI.SqrSize / 2;
-	p4.x = Centre.x - UI.SqrSize / 2;
-	p4.y = Centre.y + UI.SqrSize / 2;
+	p3.x = Centre.x + SqrSize / 2;
+	p3.y = Centre.y - SqrSize / 2;
+	p4.x = Centre.x - SqrSize / 2;
+	p4.y = Centre.y + SqrSize / 2;
 
 	if (x >= p4.x && x <= p3.x && y >= p3.y && y <= p4.y) return true;
 	else return false;
@@ -36,8 +38,7 @@ void CSquare::Move(Point NewCenter)
 
 void CSquare::Resize(Point NewPoint)
 {
-	UI.SqrSize = 2 * abs(Centre.y - NewPoint.y);
-
+	SqrSize = 2 * abs(Centre.y - NewPoint.y);
 }
 
 void CSquare::Save(ofstream& OutFile)
@@ -48,9 +49,10 @@ void CSquare::Save(ofstream& OutFile)
 	OutFile << Centre.y << "     ";
 	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
 	if (FigGfxInfo.isFilled)
-		OutFile << getClr(FigGfxInfo.FillClr) << endl;
+		OutFile << getClr(FigGfxInfo.FillClr) << "     ";
 	else
-		OutFile << "NO_FILL" << endl;
+		OutFile << "NO_FILL" << "     ";
+	OutFile << SqrSize << endl;//we have to add this after doing the resize operation
 }
 
 void CSquare::Load(ifstream& Infile)
@@ -67,12 +69,38 @@ void CSquare::Load(ifstream& Infile)
 		FigGfxInfo.FillClr = GREEN;
 		UI.ISFILLED = false;
 		UI.FillColor = GREEN;
+		FillClr = No_Fill;
 	}
 	else
 	{
 		FigGfxInfo.FillClr = getClr(clr);
 		UI.FillColor = FigGfxInfo.FillClr;
+		if (UI.FillColor == RED)
+		{
+			FillClr = Red;
+		}
+		if (UI.FillColor == BLUE)
+		{
+			FillClr = Blue;
+		}
+		if (UI.FillColor == GREEN)
+		{
+			FillClr = Green;
+		}
+		if (UI.FillColor == ORANGE)
+		{
+			FillClr = Orange;
+		}
+		if (UI.FillColor == YELLOW)
+		{
+			FillClr = Yellow;
+		}
+		if (UI.FillColor == BLACK)
+		{
+			FillClr = Black;
+		}
 	}
+	Infile >> SqrSize;
 }
 
 void CSquare::StartEndRecord(ofstream& OutFile)
@@ -81,6 +109,7 @@ void CSquare::StartEndRecord(ofstream& OutFile)
 	OutFile << ID << "     ";
 	OutFile << Centre.x << "     ";
 	OutFile << Centre.y << "     ";
+	OutFile << SqrSize << "     ";//we have to add this after doing the resize operation
 	OutFile << getClr(FigGfxInfo.DrawClr) << "     ";
 	if (FigGfxInfo.isFilled)
 		OutFile << getClr(FigGfxInfo.FillClr) << "     ";
@@ -97,7 +126,7 @@ void CSquare::PlayRecord(ifstream& Infile)
 	string clr;
 	string slc;
 	FigGfxInfo.BorderWdth = UI.PenWidth;
-	Infile >> ID >> Centre.x >> Centre.y;
+	Infile >> ID >> Centre.x >> Centre.y>>SqrSize;
 	Infile >> clr;
 	FigGfxInfo.DrawClr = getClr(clr);
 	Infile >> clr;

@@ -14,9 +14,13 @@ void ChangeFillcolor::Execute()
 	ReadActionParameters();
 
 	if (pFig != NULL) {
-	     	pFig->SetSelected(false);
-			pFig->ChngFillClr(pOut->getCrntFillColor());
-			pManager->RecordFigure(pFig);
+			if (pOut->getCrntFillColor() == pFig->CGetFillClr()) {
+				pFig->setisFilled(false);
+				pOut->setisFilled(false);
+			}
+			else
+				pFig->ChngFillClr(pOut->getCrntFillColor());
+			pManager->deselectall();
 	}
 
 }

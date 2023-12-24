@@ -1,34 +1,34 @@
 BLUE     BLACK
 43
 RECTAN     1     22     63     104     198     BLACK     YELLOW
-SQUARE     2     188     140     YELLOW     ORANGE
-SQUARE     3     270     607     ORANGE     RED
+SQUARE     2     188     140     YELLOW     ORANGE     160
+SQUARE     3     270     607     ORANGE     RED     160
 TRIANG     4     456     101     631     87     544     237     RED     GREEN
-HEXAGN     5     765     153     GREEN     BLUE
+HEXAGN     5     765     153     GREEN     BLUE     100
 CIRCLE     6     442     485     499     486     BLUE     BLACK
 RECTAN     7     896     78     978     213     BLACK     YELLOW
-SQUARE     8     1082     140     YELLOW     ORANGE
-SQUARE     9     808     348     ORANGE     RED
+SQUARE     8     1082     140     YELLOW     ORANGE     160
+SQUARE     9     808     348     ORANGE     RED     160
 TRIANG     10     7     286     182     272     95     422     RED     GREEN
-HEXAGN     11     317     348     GREEN     ORANGE
+HEXAGN     11     317     348     GREEN     ORANGE     100
 CIRCLE     12     79     258     86     259     BLUE     BLACK
 RECTAN     13     440     275     522     410     BLACK     YELLOW
-SQUARE     14     622     352     YELLOW     ORANGE
-SQUARE     15     1015     559     ORANGE     RED
+SQUARE     14     622     352     YELLOW     ORANGE     160
+SQUARE     15     1015     559     ORANGE     RED     160
 TRIANG     16     894     297     1069     283     982     433     RED     GREEN
-HEXAGN     17     1147     361     GREEN     BLUE
+HEXAGN     17     1147     361     GREEN     BLUE     100
 CIRCLE     18     412     262     419     263     BLUE     BLACK
 RECTAN     19     1276     283     1358     418     BLACK     YELLOW
-SQUARE     20     99     614     YELLOW     ORANGE
-SQUARE     21     1261     145     ORANGE     RED
+SQUARE     20     99     614     YELLOW     ORANGE     160
+SQUARE     21     1261     145     ORANGE     RED     160
 TRIANG     22     333     553     508     539     421     689     RED     GREEN
-HEXAGN     23     586     594     GREEN     BLUE
+HEXAGN     23     586     594     GREEN     BLUE     100
 CIRCLE     24     911     259     918     260     BLUE     BLACK
 RECTAN     25     688     520     770     655     BLACK     YELLOW
-SQUARE     26     853     577     YELLOW     ORANGE
-SQUARE     27     357     147     ORANGE     RED
+SQUARE     26     853     577     YELLOW     ORANGE     160
+SQUARE     27     357     147     ORANGE     RED     160
 TRIANG     28     1069     487     1244     473     1157     623     RED     GREEN
-HEXAGN     29     1286     619     GREEN     BLUE
+HEXAGN     29     1286     619     GREEN     BLUE     100
 CIRCLE     30     1291     252     1298     253     BLUE     BLACK
 CIRCLE     31     155     475     213     475     BLUE     BLACK
 CIRCLE     32     714     470     741     470     BLUE     BLACK
@@ -36,10 +36,10 @@ CIRCLE     33     630     230     663     225     BLUE     BLACK
 CIRCLE     34     1296     471     1346     479     BLUE     BLACK
 RECTAN     35     126     237     236     321     ORANGE     NO_FILL
 TRIANG     36     584     474     491     431     504     524     RED     NO_FILL
-SQUARE     37     878     445     BLUE     NO_FILL
-HEXAGN     38     1065     238     BLACK     NO_FILL
+SQUARE     37     878     445     BLUE     NO_FILL     160
+HEXAGN     38     1065     238     BLACK     NO_FILL     100
 CIRCLE     39     961     663     876     643     GREEN     NO_FILL
-SQUARE     40     457     232     BLUE     NO_FILL
-HEXAGN     41     780     235     BLUE     NO_FILL
-HEXAGN     42     305     489     YELLOW     NO_FILL
+SQUARE     40     457     232     BLUE     NO_FILL     160
+HEXAGN     41     780     235     BLUE     NO_FILL     100
+HEXAGN     42     305     489     YELLOW     NO_FILL     100
 TRIANG     43     1183     458     1340     378     1219     546     BLUE     NO_FILL

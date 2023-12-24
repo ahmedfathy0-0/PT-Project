@@ -224,8 +224,6 @@ hInstance(GetModuleHandle(0)), iWindowWidth(iWindWidth), iWindowHeight(iWindHeig
 		ShowWindow(hwndWindow, SW_SHOW);
 		dcScreen = GetDC(hwndWindow);
 
-
-
 			HMENU hMenu = GetSystemMenu(hwndWindow, FALSE);
 			if (hMenu != NULL) {
 			//Disable the close button (SC_CLOSE)

@@ -14,9 +14,9 @@ void ChangeDrawcolor::Execute()
 	ReadActionParameters();
 
 	if (pFig!=NULL) {
-		pFig->SetSelected(false);
+		
 			pFig->ChngDrawClr(pOut->getCrntDrawColor());
-			pManager->RecordFigure(pFig);
+			pManager->deselectall();
 
 	}
 

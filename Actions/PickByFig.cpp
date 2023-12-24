@@ -104,6 +104,11 @@ void PickByFig::Execute()
 	 if (pManager->GetFigCount()!=0&&ptrToPickByFill==NULL&&ptrToPickByBoth==NULL)
 	 {
 		 pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
+		 if(RightCounter>WrongCounter)
+			 PlaySound(("Sounds\\Win.wav"), NULL, SND_ASYNC);
+		 else
+			 PlaySound(("Sounds\\Fail.wav"), NULL, SND_ASYNC);
+
 	 }
 	 if (ptrToPickByFill!=NULL)
 	 {
@@ -139,6 +144,7 @@ void PickByFig::WrongCase(CFigure*clicked, int&right, int&wrong)
 {
 	Output* pOut = pManager->GetOutput();
 	wrong++;
+	PlaySound(("Sounds\\Wrong.wav"), NULL, SND_ASYNC);
 	clicked->IsHidden(true);
 	pManager->UpdateInterface();
 	pOut->PrintMessage("Right attempts: " + to_string(right) + " Wrong attempts: " + to_string(wrong));

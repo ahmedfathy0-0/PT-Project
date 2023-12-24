@@ -1,5 +1,6 @@
 #include "Input.h"
 #include "Output.h"
+#include "..\CMUgraphicsLib\auxil.h"
 bool Input::flag = false;
 Input::Input(window* pW)
 {
@@ -14,7 +15,6 @@ void Input::GetPointClicked(int& x, int& y) const
 
 void Input::UpdateBuffer() const// to solve when window turns white suddenly or after minmized it
 {
-
 	pWind->UpdateBuffer();
 }
 void Input::SetBuffering (bool flag)const// to solve when window turns white suddenly or after minmized it
@@ -106,7 +106,10 @@ ActionType Input::GetUserAction(Output* pOut) const
 				return CHANGEFILLCOLOR;
 			}
 			case ITM_CHANGECOLOR: return CHANGECOLOR;
-			case ITM_EXIT: return EXIT;
+			case ITM_EXIT: {
+				PlaySound(("Sounds\\Exit.wav"), NULL, SND_ASYNC);
+				Pause(2500);
+				return EXIT;}
 			default: return EMPTY;	//A click on empty place in design toolbar
 			}
 		}
