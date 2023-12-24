@@ -29,7 +29,6 @@ void MoveAction::Execute()
 	if(pFig)
 	    pFig->Move(NewCenter);
 	pManager->deselectall();
-	pManager->RecordFigure(pFig);
 	pOut->ClearStatusBar();
 	}
 Action* MoveAction::Clone()

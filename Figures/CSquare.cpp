@@ -2,11 +2,8 @@
 
 CSquare::CSquare() : CFigure(FigGfxInfo)
 {
-<<<<<<< HEAD
 	SqrSize = 160;
-=======
 	figtype = square;
->>>>>>> ec6e9ab48e8cef3b566a14cb9d4883d7c99a81f1
 }
 
 CSquare::CSquare(Point P1,  GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)

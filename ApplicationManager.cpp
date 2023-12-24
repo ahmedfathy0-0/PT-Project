@@ -72,6 +72,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 						Recordfile << "FINISHED" << endl;
 						IsRecording = false;
 						pAct = new StartRecordingAction(this);
+						PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
 						OPcount = 0;
 						Recordfile.close();
 					}
@@ -203,7 +204,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			if (FigCount == 0) {
 			pOut->CreateENDRECORDING();
 			IsRecording = true;
+			PlaySound(("Sounds\\Start.wav"), NULL, SND_ASYNC);
 			pAct = new StartRecordingAction(this);
+
 		}
 			else {
 				pOut->PrintMessage("Please Clear all first");
@@ -216,6 +219,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pOut->CreateSTARTRECORDING();
 			Recordfile << "FINISHED" << endl;
 			IsRecording = false;
+			PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
 			pAct = new StartRecordingAction(this);
 			OPcount = 0;
 			Recordfile.close();
@@ -270,8 +274,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 
 	case EXIT:
-		///create ExitAction here
 	{
+			
     }
 
 		break;
