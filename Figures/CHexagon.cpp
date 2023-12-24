@@ -2,7 +2,11 @@
 
 CHexagon::CHexagon() : CFigure(FigGfxInfo)
 {
+<<<<<<< HEAD
 	HexSize = 100;
+=======
+	figtype = hexagon;
+>>>>>>> ec6e9ab48e8cef3b566a14cb9d4883d7c99a81f1
 }
 
 CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
@@ -144,9 +148,39 @@ void CHexagon::Load(ifstream& Infile)
 	{
 		FigGfxInfo.isFilled = false;
 		FigGfxInfo.FillClr = GREEN;
+		UI.ISFILLED = false;
+		FigGfxInfo.isFilled = false;
+		FillClr = No_Fill;
 	}
 	else
+	{
 		FigGfxInfo.FillClr = getClr(clr);
+		UI.FillColor = FigGfxInfo.FillClr;
+		if (UI.FillColor == RED)
+		{
+			FillClr = Red;
+		}
+		if (UI.FillColor == BLUE)
+		{
+			FillClr = Blue;
+		}
+		if (UI.FillColor == GREEN)
+		{
+			FillClr = Green;
+		}
+		if (UI.FillColor == ORANGE)
+		{
+			FillClr = Orange;
+		}
+		if (UI.FillColor == YELLOW)
+		{
+			FillClr = Yellow;
+		}
+		if (UI.FillColor == BLACK)
+		{
+			FillClr = Black;
+		}
+	}
 }
 
 void CHexagon::StartEndRecord(ofstream& OutFile)

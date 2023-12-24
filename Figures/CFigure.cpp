@@ -97,6 +97,11 @@ double CFigure::CalculateDistance(Point P1, Point P2) const{
 	return sqrt(pow((P1.x - P2.x), 2) + pow((P1.y - P2.y), 2));
 }
 
+void CFigure::SetIsFilled(bool s)
+{
+	FigGfxInfo.isFilled = s;
+}
+
 void CFigure::setID(int i)
 {
 	ID = i;

@@ -2,7 +2,11 @@
 
 CSquare::CSquare() : CFigure(FigGfxInfo)
 {
+<<<<<<< HEAD
 	SqrSize = 160;
+=======
+	figtype = square;
+>>>>>>> ec6e9ab48e8cef3b566a14cb9d4883d7c99a81f1
 }
 
 CSquare::CSquare(Point P1,  GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
@@ -68,11 +72,36 @@ void CSquare::Load(ifstream& Infile)
 		FigGfxInfo.FillClr = GREEN;
 		UI.ISFILLED = false;
 		UI.FillColor = GREEN;
+		FillClr = No_Fill;
 	}
 	else
 	{
 		FigGfxInfo.FillClr = getClr(clr);
 		UI.FillColor = FigGfxInfo.FillClr;
+		if (UI.FillColor == RED)
+		{
+			FillClr = Red;
+		}
+		if (UI.FillColor == BLUE)
+		{
+			FillClr = Blue;
+		}
+		if (UI.FillColor == GREEN)
+		{
+			FillClr = Green;
+		}
+		if (UI.FillColor == ORANGE)
+		{
+			FillClr = Orange;
+		}
+		if (UI.FillColor == YELLOW)
+		{
+			FillClr = Yellow;
+		}
+		if (UI.FillColor == BLACK)
+		{
+			FillClr = Black;
+		}
 	}
 }
 

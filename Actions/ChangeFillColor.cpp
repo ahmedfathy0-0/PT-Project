@@ -34,10 +34,19 @@ Action* ChangeFillcolor::Clone()
 
 void ChangeFillcolor::Undo()
 {
-	pFig->ChngFillClr(pOut->getOldFillColor());
+	if (pFig)
+	{
+		pFig->ChngFillClr(pOut->getOldFillColor());
+		if (pOut->getOldFillColor() == WHITESMOKE)
+		{
+			pFig->SetIsFilled(false);
+		}
+	}
 }
 
 void ChangeFillcolor::Redo()
 {
-	pFig->ChngFillClr(pOut->getCrntFillColor());
+	if (pFig) {
+		pFig->ChngFillClr(pOut->getCrntFillColor());
+	}
 }

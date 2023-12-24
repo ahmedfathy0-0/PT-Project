@@ -28,7 +28,7 @@ Output::Output()
 	UI.ColorPaletteHeightend = 75 + UI.ChangeColorPaletteHeight;
 
 	UI.DrawColor = BLUE;	//Drawing color
-	UI.FillColor = WHITESMOKE;	//Filling color
+	UI.FillColor = GHOSTWHITE;	//Filling color
 	UI.MsgColor = WHITESMOKE;		//Messages color
 	UI.BkGrndColor = GHOSTWHITE;	//Background color
 	UI.ChangeColorPalette = grey;
