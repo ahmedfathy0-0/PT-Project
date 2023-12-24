@@ -204,7 +204,7 @@ void Output::CreateENDRECORDING() const {
 	MenuItemImages[ITM_ENDRECORDING] = "images\\MenuItems\\ENDRECORD.jpg";
 
 
-	for (int i = 18; i < 20; i++)
+	for (int i = 19; i <= 20; i++)
 		pWind->DrawImage(MenuItemImages[i], (i * UI.MenuItemWidth) + 5, 5, UI.MenuItemWidth - 5, UI.ToolBarHeight - 10);
 
 }
@@ -218,7 +218,7 @@ void Output::CreateSTARTRECORDING() const {
 	MenuItemImages[ITM_ENDRECORDING] = "images\\MenuItems\\ENDRECORD-1.jpg";
 
 
-	for (int i = 18; i < 20; i++)
+	for (int i = 19; i <= 20; i++)
 
 		pWind->DrawImage(MenuItemImages[i], (i * UI.MenuItemWidth) + 5, 5, UI.MenuItemWidth - 5, UI.ToolBarHeight - 10);
 }

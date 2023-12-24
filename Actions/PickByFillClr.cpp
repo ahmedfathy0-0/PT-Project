@@ -1,12 +1,12 @@
 #include "PickByFillClr.h"
 #include "PickByFig.h"
-#include"Figures/CCircle.h"
-#include"Figures/CHexagon.h"
-#include"Figures/CRectangle.h"
-#include"Figures/CSquare.h"
-#include"Figures/CTriangle.h"
-#include"Actions/Action.h"
-#include"DEFS.h"
+#include"../Figures/CCircle.h"
+#include"../Figures/CHexagon.h"
+#include"../Figures/CRectangle.h"
+#include"../Figures/CSquare.h"
+#include"../Figures/CTriangle.h"
+#include"../Actions/Action.h"
+#include"../DEFS.h"
 #include<cstring>
 
 PickByFillClr::PickByFillClr(ApplicationManager* pApp) :Action(pApp)

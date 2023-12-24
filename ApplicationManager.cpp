@@ -14,14 +14,14 @@
 #include "Actions\LoadAction.h"
 #include "Actions\StartRecordingAction.h"
 #include "Actions\PlayRecordAction.h"
-#include"PickByFig.h"
-#include"PickByFillClr.h"
+#include"Actions\PickByFig.h"
+#include"Actions\PickByFillClr.h"
 #include"SwitchToPlayAction.h"
 #include"Actions\Changecolor.h"
 #include "Actions/UndoAction.h"
 #include "Actions/RedoAction.h"
 #include"Actions\ChangeFillcolor.h"
-#include"PickByBoth.h"
+#include"Actions\PickByBoth.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -420,15 +420,6 @@ Action* ApplicationManager::ReturnLastUndoableAction()
 	else if (UndoableActionsCount > 0)
 	{
 		UndoableActionsCount--;
-		/*if (UndoableActionsCount == 0)
-		{
-			for (int i = 0; i < 4; i++) 
-			{
-				if (UndoableActions[i]) UndoableActionsCount++;
-				else break;
-			}
-			return UndoableActions[UndoableActionsCount];
-		}*/
 		return UndoableActions[UndoableActionsCount];
 	}
 }

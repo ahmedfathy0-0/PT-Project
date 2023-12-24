@@ -133,17 +133,20 @@
     <ClCompile Include="Actions\AddSqrAction.cpp" />
     <ClCompile Include="Actions\AddTrgAction.cpp" />
     <ClCompile Include="Actions\Changecolor.cpp" />
+    <ClCompile Include="Actions\ChangeFillColor.cpp" />
     <ClCompile Include="Actions\ClearAll.cpp" />
     <ClCompile Include="Actions\DeleteAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\MoveFigure.cpp" />
     <ClCompile Include="Actions\MoveFigureByDrag.cpp" />
+    <ClCompile Include="Actions\PickByBoth.cpp" />
+    <ClCompile Include="Actions\PickByFig.cpp" />
+    <ClCompile Include="Actions\PickByFillClr.cpp" />
     <ClCompile Include="Actions\PlayRecordAction.cpp" />
     <ClCompile Include="Actions\RedoAction.cpp" />
     <ClCompile Include="Actions\ResizeAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectOneAction.cpp" />
-    <ClCompile Include="Actions\ChangeFillColor.cpp" />
     <ClCompile Include="Actions\StartRecordingAction.cpp" />
     <ClCompile Include="Actions\UndoAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
@@ -193,9 +196,6 @@
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PickByBoth.cpp" />
-    <ClCompile Include="PickByFig.cpp" />
-    <ClCompile Include="PickByFillClr.cpp" />
     <ClCompile Include="SwitchToPlayAction.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +210,9 @@
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\MoveFigure.h" />
     <ClInclude Include="Actions\MoveFigureByDrag.h" />
+    <ClInclude Include="Actions\PickByBoth.h" />
+    <ClInclude Include="Actions\PickByFig.h" />
+    <ClInclude Include="Actions\PickByFillClr.h" />
     <ClInclude Include="Actions\PlayRecordAction.h" />
     <ClInclude Include="Actions\RedoAction.h" />
     <ClInclude Include="Actions\ResizeAction.h" />
@@ -250,9 +253,6 @@
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
-    <ClInclude Include="PickByBoth.h" />
-    <ClInclude Include="PickByFig.h" />
-    <ClInclude Include="PickByFillClr.h" />
     <ClInclude Include="SwitchToPlayAction.h" />
   </ItemGroup>
   <ItemGroup>
