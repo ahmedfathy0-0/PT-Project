@@ -64,6 +64,7 @@ public:
 	void AddToRedo(Action*);
 
 	Action* ReturnLastRedoableAction();
+	void ClearUndoList();
 	void ClearRedoList();
 
 	// -- Interface Management Functions

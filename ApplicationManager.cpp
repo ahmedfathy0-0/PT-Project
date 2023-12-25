@@ -450,6 +450,20 @@ Action* ApplicationManager::ReturnLastRedoableAction()
 		return RedoableActions[RedoableActionsCount];
 		}
 	}
+
+void ApplicationManager::ClearUndoList()
+{
+	for (int i = 0; i < UndoableActionsCount; i++)
+	{
+		if (UndoableActions[i] != NULL)
+		{
+			delete UndoableActions[i];
+			UndoableActions[i] = NULL;
+		}
+	}
+	UndoableActionsCount = 0;
+}
+
 void ApplicationManager::ClearRedoList()
 {
 	for (int i = 0; i < RedoableActionsCount; i++)

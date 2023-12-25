@@ -7,6 +7,8 @@ void ClearAll::Execute()
 	pManager->Clearall();
 	ClearRecord.open("Last Record", ios::trunc);
 	ClearRecord.close();
+	pManager->ClearRedoList();
+	pManager->ClearUndoList();
 	UI.DrawColor = BLUE;
 	UI.FillColor = GREEN;
 	UI.ISFILLED = false;

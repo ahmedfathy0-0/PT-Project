@@ -59,6 +59,8 @@ void LoadAction::Execute()
 	}
 	else
 		pOut->PrintMessage("File Not Found, Please type Name of File again");
+	pManager->ClearRedoList();
+	pManager->ClearUndoList();
 }
 
 color LoadAction::getclr(string colour)

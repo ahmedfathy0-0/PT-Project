@@ -24,89 +24,94 @@ void PlayRecordAction::Execute()
 	int n2 = 0;
 	ReadActionParameters();
 	fIn.open(filename);
-	bool flag = true;
-	CFigure* myFig = NULL;
-	for (int i = 0; i < 20 && flag ; i++)
+	if (fIn.peek() == ifstream::traits_type::eof())
+		pOut->PrintMessage("No Records to Play");
+	else
 	{
-		fIn >> type;
-		if (type == "RECTAN") {
-			myFig = new CRectangle;
-			myFig->PlayRecord(fIn);
-			pManager->AddFigure(myFig);
-		}
-		else if (type == "SQUARE") {
-			myFig = new CSquare;
-			myFig->PlayRecord(fIn);
-			pManager->AddFigure(myFig);
-		}
-		else if (type == "TRIANG") {
-			myFig = new CTriangle;
-			myFig->PlayRecord(fIn);
-			pManager->AddFigure(myFig);
-		}
-		else if (type == "HEXAGN") {
-			myFig = new CHexagon;
-			myFig->PlayRecord(fIn);
-			pManager->AddFigure(myFig);
-		}
-		else if (type == "CIRCLE") {
-			myFig = new CCircle;
-			myFig->PlayRecord(fIn);
-			pManager->AddFigure(myFig);
-		}
-		else if (type == "DELETE") {
-			pManager->deletefigure();
-		}
-		else if (type == "UNDO") {
-			ifstream fIn1;
-			fIn1.open(filename);
-			for (int i = 0;i < n2;i++) {
-				fIn >> type;
-		if (type == "RECTAN") {
-			myFig = new CRectangle;
-			myFig->PlayRecord(fIn);
-			pManager->AddFigure(myFig);
-		}
-		else if (type == "SQUARE") {
-			myFig = new CSquare;
-			myFig->PlayRecord(fIn);
-			pManager->AddFigure(myFig);
-		}
-		else if (type == "TRIANG") {
-			myFig = new CTriangle;
-			myFig->PlayRecord(fIn);
-			pManager->AddFigure(myFig);
-		}
-		else if (type == "HEXAGN") {
-			myFig = new CHexagon;
-			myFig->PlayRecord(fIn);
-			pManager->AddFigure(myFig);
-		}
-		else if (type == "CIRCLE") {
-			myFig = new CCircle;
-			myFig->PlayRecord(fIn);
-			pManager->AddFigure(myFig);
-		}
-		else if (type == "DELETE") {
-			pManager->deletefigure();
-		}
-			}
-		}
-		else if(type=="FINISHED") {
-			flag = false;
-		}
-		if(!myFig->IsSelected())
+		bool flag = true;
+		CFigure* myFig = NULL;
+		for (int i = 0; i < 20 && flag ; i++)
 		{
-			n2 = n1;
-			n1 = i;
+			fIn >> type;
+			if (type == "RECTAN") {
+				myFig = new CRectangle;
+				myFig->PlayRecord(fIn);
+				pManager->AddFigure(myFig);
+			}
+			else if (type == "SQUARE") {
+				myFig = new CSquare;
+				myFig->PlayRecord(fIn);
+				pManager->AddFigure(myFig);
+			}
+			else if (type == "TRIANG") {
+				myFig = new CTriangle;
+				myFig->PlayRecord(fIn);
+				pManager->AddFigure(myFig);
+			}
+			else if (type == "HEXAGN") {
+				myFig = new CHexagon;
+				myFig->PlayRecord(fIn);
+				pManager->AddFigure(myFig);
+			}
+			else if (type == "CIRCLE") {
+				myFig = new CCircle;
+				myFig->PlayRecord(fIn);
+				pManager->AddFigure(myFig);
+			}
+			else if (type == "DELETE") {
+				pManager->deletefigure();
+			}
+			else if (type == "UNDO") {
+				ifstream fIn1;
+				fIn1.open(filename);
+				for (int i = 0;i < n2;i++) {
+					fIn >> type;
+					if (type == "RECTAN") {
+						myFig = new CRectangle;
+						myFig->PlayRecord(fIn);
+						pManager->AddFigure(myFig);
+					}
+					else if (type == "SQUARE") {
+						myFig = new CSquare;
+						myFig->PlayRecord(fIn);
+						pManager->AddFigure(myFig);
+					}
+					else if (type == "TRIANG") {
+						myFig = new CTriangle;
+						myFig->PlayRecord(fIn);
+						pManager->AddFigure(myFig);
+					}
+					else if (type == "HEXAGN") {
+						myFig = new CHexagon;
+						myFig->PlayRecord(fIn);
+						pManager->AddFigure(myFig);
+					}
+					else if (type == "CIRCLE") {
+						myFig = new CCircle;
+						myFig->PlayRecord(fIn);
+						pManager->AddFigure(myFig);
+					}
+					else if (type == "DELETE") {
+						pManager->deletefigure();
+					}
+				}
+			}
+			else if(type=="FINISHED") {
+				flag = false;
+			}
+			if(!myFig->IsSelected())
+			{
+				n2 = n1;
+				n1 = i;
+			}
+			pManager->UpdateInterface();
+			Pause(1000);
+
+
+
 		}
-		pManager->UpdateInterface();
-		Pause(1000);
-
-		
-
+		pOut->PrintMessage("Streaming The Last Record is finished :)");
 	}
-	pOut->PrintMessage("Streaming The Last Record is finished :)");
 }
 
 color PlayRecordAction::getclr(string colour)
