@@ -81,6 +81,24 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 					}
 	}
 	else
+<<<<<<< HEAD
+	switch (ActType)
+	{
+	case DRAW_RECT:
+		
+		pAct = new AddRectAction(this);
+		break;
+
+	case DRAW_SQUARE:
+		
+		pAct = new AddSqrAction(this);
+		break;
+
+	case DRAW_TRIANGLE:
+		
+		pAct = new AddTrgAction(this);
+		break;
+=======
 		switch (ActType)
 		{
 		case DRAW_RECT:
@@ -89,14 +107,25 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case DRAW_SQUARE:
+>>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
 
 			pAct = new AddSqrAction(this, true);
 			break;
 
+<<<<<<< HEAD
+		pAct = new AddHexAction(this);
+		break;
+
+	case DRAW_CIRCLE:
+		
+		pAct = new AddCircAction(this);
+		break;
+=======
 		case DRAW_TRIANGLE:
 
 			pAct = new AddTrgAction(this, true);
 			break;
+>>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
 
 		case DRAW_HEXAGON:
 
@@ -126,15 +155,42 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case SELECTONE:
 			if (FigCount == 0) {
+<<<<<<< HEAD
+			pOut->CreateENDRECORDING();
+			IsRecording = true;
+			if (!pOut->getSound())
+				PlaySound(("Sounds\\Start.wav"), NULL, SND_ASYNC);
+			pAct = new StartRecordingAction(this);
+
+		}
+			else {
+				pOut->PrintMessage("Please Clear all first");
+=======
 				pOut->PrintMessage("Please Draw some figures first");
+>>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
 			}
 			else
 				pAct = new SelectOneAction(this);
 			break;
 
+<<<<<<< HEAD
+	case ENDRECORDING:
+		if (IsRecording) {
+			pOut->CreateSTARTRECORDING();
+			Recordfile << "FINISHED" << endl;
+			IsRecording = false;
+			if (!pOut->getSound())
+			PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
+			pAct = new StartRecordingAction(this);
+			OPcount = 0;
+			Recordfile.close();
+		}
+		break;
+=======
 		case LOAD:
 			pAct = new LoadAction(this);
 			break;
+>>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
 
 		case MOVE:
 			pAct = new MoveAction(this);
@@ -188,6 +244,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case PICKBYBOTH:
 			pAct = new PickByBoth(this);
 
+<<<<<<< HEAD
+	case MUTE:
+		pOut->CreateMUTE();
+	    IsMute=!IsMute;
+=======
+>>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
 			break;
 
 

@@ -6,7 +6,7 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddHexAction::AddHexAction(ApplicationManager* pApp, bool sound) :Action(pApp), Sound(sound)
+AddHexAction::AddHexAction(ApplicationManager* pApp) :Action(pApp)
 {
 
 }
@@ -17,7 +17,7 @@ void AddHexAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
-	if (Sound)
+	if (!pOut->getSound())
 		PlaySound("Sounds\\Hexagon.wav", NULL, SND_ASYNC);
 
 	pOut->PrintMessage("New Hexagon: Click at the Corner");

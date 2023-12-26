@@ -36,7 +36,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_LOAD,
 	ITM_CHANGEDRAWCLR,
 	ITM_CHANGEFILLCLR,
-	ITM_CHANGECOLOR,
+	ITM_MUTE,
 	ITM_STARTRECORDING,
 	ITM_ENDRECORDING,
 	ITM_PLAYRECORDING,

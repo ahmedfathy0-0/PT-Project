@@ -1,4 +1,4 @@
-#include "ChangeFillColor.h"
+ #include "ChangeFillColor.h"
 
 ChangeFillcolor::ChangeFillcolor(ApplicationManager* pApp) : Action(pApp) {}
 
