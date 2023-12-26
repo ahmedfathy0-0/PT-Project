@@ -45,6 +45,7 @@ public:
 	void SaveAll(ofstream& OutFile) const;
 	void Clearall();
 	void deletefigure(CFigure*);
+	void ResetConstants();
 	// functions for the Start,Stop,and Play Record  action//
 	void StartRecord(string) ;
 	void StopRecord();

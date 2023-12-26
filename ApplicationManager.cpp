@@ -491,12 +491,12 @@ void ApplicationManager::AddToDeleteList(CFigure* figtobedeleted)
 	}
 }
 
-void ApplicationManager::SaveAll(ofstream& OutFile) const
+void ApplicationManager::SaveAll(ofstream& OutFile) const //call save functions of all figures
 {
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->Save(OutFile);
 }
-void ApplicationManager::Clearall()
+void ApplicationManager::Clearall() //clear all figures
 {
 	for (int i = 0; i < FigCount; i++)
 	{
@@ -506,7 +506,7 @@ void ApplicationManager::Clearall()
 	FigCount = 0;
 	pOut->PrintMessage("All Cleared Successfully");
 }
-void ApplicationManager::deletefigure(CFigure* figtobedeleted)
+void ApplicationManager::deletefigure(CFigure* figtobedeleted) //delete figure and some actions of saving undo history and recording
 {
 	bool flag = true;
 	for (int i = 0; i < FigCount && flag; i++)
@@ -528,6 +528,14 @@ void ApplicationManager::deletefigure(CFigure* figtobedeleted)
 
 			}
 		}
+}
+void ApplicationManager::ResetConstants() //reset UI variables
+{
+	UI.DrawColor = BLUE;
+	UI.FillColor = GREEN;
+	UI.ISFILLED = false;
+	UI.SqrSize = 160;
+	UI.HexagonSize = 100;
 }
 void ApplicationManager::StartRecord(string filename) 
 {

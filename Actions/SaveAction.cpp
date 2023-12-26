@@ -9,7 +9,7 @@ void SaveAction::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 
 	pOut->PrintMessage("Enter name of the file you want to save in");
-	filename = pIn->GetSrting(pOut);
+	filename = pIn->GetString(pOut);
 	pOut->ClearStatusBar();
 }
 

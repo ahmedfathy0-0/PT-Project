@@ -12,16 +12,15 @@ void LoadAction::ReadActionParameters()
 	pOut = pManager->GetOutput();
 	pIn = pManager->GetInput();
 	pOut->PrintMessage("Enter name of the file you want to load from");
-	filename = pIn->GetSrting(pOut);
+	filename = pIn->GetString(pOut);
 	pOut->ClearStatusBar();
 }
 
 void LoadAction::Execute()
 {
-	pManager->Clearall();
+	pManager->Clearall(); //clear before loading
 	ReadActionParameters();
-	UI.HexagonSize = 100;
-	UI.SqrSize = 160;
+	pManager->ResetConstants();//reset Sizes of Hexagon and Square
 	fIn.open("Saved/" + filename);
 	if (fIn.is_open())
 	{
