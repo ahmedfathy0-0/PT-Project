@@ -134,11 +134,9 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_CHANGEFILLCLR] = "images\\MenuItems\\CHANGEFILLCOLOR.jpg";
 	if (SOUND) {
 		MenuItemImages[ITM_MUTE] = "images\\MenuItems\\SOUND.jpg";
-		SOUND = false;
 	}
 	else{
 		MenuItemImages[ITM_MUTE] = "images\\MenuItems\\SOUND-1.jpg";
-		SOUND = true;
 	}
 	if (flag) {
 		MenuItemImages[ITM_STARTRECORDING] = "images\\MenuItems\\STARTRECORD.jpg";
@@ -256,14 +254,18 @@ void Output::CreateSTARTRECORDING() const {
 void Output::CreateMUTE() const {
 	string MenuItemImages[DRAW_ITM_COUNT];
 
-	if (SOUND) {
-		MenuItemImages[ITM_MUTE] = "images\\MenuItems\\SOUND.jpg";
-		PlaySound(("Sounds\\HELLO.wav"), NULL, SND_ASYNC);
-	}
-	else {
 		MenuItemImages[ITM_MUTE] = "images\\MenuItems\\SOUND-1.jpg";
-	}
 		pWind->DrawImage(MenuItemImages[ITM_MUTE], (18 * UI.MenuItemWidth) + 5, 5, UI.MenuItemWidth - 5, UI.ToolBarHeight - 10);
+	SOUND = !SOUND;
+
+}
+void Output::CreateUNMUTE() const {
+	string MenuItemImages[DRAW_ITM_COUNT];
+
+       MenuItemImages[ITM_MUTE] = "images\\MenuItems\\SOUND.jpg";
+		PlaySound(("Sounds\\HELLO.wav"), NULL, SND_ASYNC);
+
+	pWind->DrawImage(MenuItemImages[ITM_MUTE], (18 * UI.MenuItemWidth) + 5, 5, UI.MenuItemWidth - 5, UI.ToolBarHeight - 10);
 	SOUND = !SOUND;
 
 }
