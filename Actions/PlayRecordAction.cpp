@@ -103,6 +103,7 @@ void PlayRecordAction::Execute()
 			Pause(1000);
 		}
 		pOut->PrintMessage("Streaming The Last Record is finished :)");
+		pManager->setISPlaying(false);
 	}
 }
 

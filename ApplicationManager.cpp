@@ -315,7 +315,6 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 { 
 	int i = 0;
 	if (ISPLYING) {
-		int i = 0;
 		for (i; i < FigCount; i++) {
 			if (FigList[i] != NULL) {
 				if (pFig->getID() == FigList[i]->getID()) {
@@ -326,6 +325,7 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 				}
 			}
 		}
+		
 	}
 	else i = FigCount;
 	if (i == FigCount)
@@ -590,6 +590,11 @@ ofstream* ApplicationManager::getRecoedFile()
 bool ApplicationManager::getIsRecording() 
 {
 	return IsRecording;
+}
+
+void ApplicationManager::setISPlaying(bool flg)
+{
+	ISPLYING = flg;
 }
 
 CFigure* ApplicationManager::GetFigByIndex(int i)
