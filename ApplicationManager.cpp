@@ -494,6 +494,18 @@ void ApplicationManager::AddToDeleteList(CFigure* figtobedeleted)
 		}
 	}
 }
+void ApplicationManager::ClearDeleteList()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		if (DeletedArray[i] != NULL)
+		{
+			delete DeletedArray[i];
+			DeletedArray[i] = NULL;
+		}
+	}
+	DeletedActionsCount = 0;
+}
 
 void ApplicationManager::SaveAll(ofstream& OutFile) const //call save functions of all figures
 {
