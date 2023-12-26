@@ -107,13 +107,8 @@ ActionType Input::GetUserAction(Output* pOut) const
 				pOut->setisFilled(true);
 				return CHANGEFILLCOLOR;
 			}
-			case ITM_MUTE: return MUTE;
 			case ITM_EXIT: {
-				if (!pOut->getSound())
-				{
-					PlaySound(("Sounds\\Exit.wav"), NULL, SND_ASYNC);
-					Pause(1500);
-				}
+				
 				return EXIT;}
 			default: return EMPTY;	//A click on empty place in design toolbar
 			}

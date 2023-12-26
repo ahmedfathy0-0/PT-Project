@@ -5,7 +5,7 @@ void DeleteAction::ReadActionParameters()
 {
 	pOut = pManager->GetOutput();
 	pFig = pManager->GetSelectedFigure();
-	if (pFig == NULL())
+	if (pFig == NULL()) //check if there is a selected figure or not
 		pOut->PrintMessage("Please select Figure first");
 	else
 		pOut->PrintMessage("Figure Deleted");
@@ -14,7 +14,7 @@ void DeleteAction::Execute()
 {
 	ReadActionParameters();
 	pManager->deletefigure(pFig); //delete selected figure
-	pManager->AddToDeleteList(pFig); 
+	pManager->AddToDeleteList(pFig); //for undo
 }
 
 Action* DeleteAction::Clone()

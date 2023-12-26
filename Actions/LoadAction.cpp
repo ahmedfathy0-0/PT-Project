@@ -24,6 +24,7 @@ void LoadAction::Execute()
 	fIn.open("Saved/" + filename);
 	if (fIn.is_open())
 	{
+		pOut->PrintMessage("The File  '" + filename + "'  is Opened");
 		fIn >> type;
 		UI.DrawColor = getclr(type);
 		fIn >> fillcolor;
