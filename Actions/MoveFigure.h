@@ -12,6 +12,7 @@ class MoveAction : public Action
 {
 private:
 	Point NewCenter;
+	Point OldCenter;
 	CFigure* pFig;
 	Output* pOut;
 	Input* pIn;

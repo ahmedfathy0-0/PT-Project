@@ -13,9 +13,10 @@ class ChangeDrawcolor : public Action
 {
 private:
 	CFigure* pFig;
-	color Color;
+	color OldColor;
+	color NewColor;
 	string name;
-	Output* pOut ;
+	Output* pOut;
 	Input* pIn;
 public:
 	ChangeDrawcolor(ApplicationManager* pApp);

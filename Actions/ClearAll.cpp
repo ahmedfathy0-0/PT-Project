@@ -12,7 +12,7 @@ void ClearAll::Execute()
 	pManager->ClearRedoList();
 	pManager->ClearUndoList();
 	UI.DrawColor = BLUE;
-	UI.FillColor = GREEN;
+	UI.FillColor = UI.BkGrndColor;
 	UI.ISFILLED = false;
 	UI.HexagonSize = 100;
 	UI.SqrSize = 160;

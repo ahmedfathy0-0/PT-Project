@@ -13,7 +13,8 @@ class ChangeFillcolor : public Action
 {
 private:
 	CFigure* pFig;
-	color Color;
+	color OldColor;
+	color NewColor;
 	string name;
 	Output* pOut;
 	Input* pIn;

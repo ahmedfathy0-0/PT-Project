@@ -24,13 +24,13 @@ void MoveAction::ReadActionParameters()
 
 void MoveAction::Execute()
 {
-
 	ReadActionParameters();
-	if(pFig)
-	    pFig->Move(NewCenter);
+	OldCenter = pFig->ReturnCenter();
+	if (pFig)
+		pFig->Move(NewCenter);
 	pManager->deselectall();
 	pOut->ClearStatusBar();
-	}
+}
 Action* MoveAction::Clone()
 {
 	return new MoveAction(*this);
@@ -40,8 +40,9 @@ void MoveAction::Undo()
 {
 	if (pFig)
 	{
-		Point Center = pFig->ReturnOldCenter();
-		pFig->Move(Center);
+		pFig->Move(OldCenter);
+		OldCenter = NewCenter;
+		NewCenter = pFig->ReturnCenter();
 	}
 	pManager->RecordFigure(pFig);
 
@@ -51,8 +52,9 @@ void MoveAction::Redo()
 {
 	if (pFig)
 	{
-		Point Center = pFig->ReturnOldCenter();
-		pFig->Move(Center);
+		pFig->Move(OldCenter);
+		OldCenter = NewCenter;
+		NewCenter = pFig->ReturnCenter();
 	}
 	pManager->RecordFigure(pFig);
 

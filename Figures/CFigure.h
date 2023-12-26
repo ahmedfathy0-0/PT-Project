@@ -59,7 +59,7 @@ public:
 	bool isfilled();
 	int GetFillClr();
 	color CGetFillClr();
-
+	color CGetDrawClr();
 
 	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 	void setID(int);
