@@ -56,6 +56,7 @@ public:
 	color getOldDrawColor() const;	//get old Drawing color
 	void SetOldFillColor(color);	//get old filling color
 	void SetOldDrawColor(color);
+	void CreateUNMUTE() const;
 
 
 	int getCrntPenWidth() const;		//get current pen width
