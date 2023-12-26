@@ -54,7 +54,7 @@ public:
 	void RecordFigure(CFigure*); //to record any changes in draw mode
 	ofstream* getRecoedFile();//send the file address to any class Action
 	bool getIsRecording();//send the Recording boolean to any class Action
-
+	void setISPlaying(bool flg);
 
 	// functions for the select action//
 	CFigure* GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
