@@ -1,9 +1,11 @@
 #include "Output.h"
 string Output::Lastmsg = " ";
 bool Output::flag = true;
+bool Output::SOUND = true;
+
 Output::Output()
 {
-	flag = true;//if count is even start button enabled
+	flag = true;//if flag is true start button enabled
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 
@@ -11,10 +13,7 @@ Output::Output()
 	UI.height = 800;
 	UI.wx = 5;
 	UI.wy = 5;
-	//UI.SqrSize = 160;
 	UI.HexagonVertices = 6;
-	//UI.HexagonSize = 100;
-
 	UI.StatusBarHeight = 60;
 	UI.ToolBarHeight = 60;
 	UI.ChangeColorPaletteHeight = 50;
@@ -69,11 +68,11 @@ window* Output::CreateWind(int w, int h, int x, int y) const
 	return pW;
 }
 
-void Output::UpdateBuffer() const// to solve when window turns white suddenly or after minmized it
-{
+void Output::UpdateBuffer() const// to solve when window turns white suddenly or after minmized it or any thing else
+{ 
 	pWind->UpdateBuffer();
 }
-void Output::SetBuffering(bool flag)const// to solve when window turns white suddenly or after minmized it
+void Output::SetBuffering(bool flag)const// to solve when window turns white suddenly or after minmized it or any thing else
 {
 	pWind->SetBuffering(flag);
 
@@ -133,12 +132,19 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_REDO] = "images\\MenuItems\\REDO.jpg";
 	MenuItemImages[ITM_CHANGEDRAWCLR] = "images\\MenuItems\\CHANGEDRAWCOLOR.jpg";
 	MenuItemImages[ITM_CHANGEFILLCLR] = "images\\MenuItems\\CHANGEFILLCOLOR.jpg";
-	MenuItemImages[ITM_CHANGECOLOR] = "images\\MenuItems\\ChangeColor.jpg";
+	if (SOUND) {
+		MenuItemImages[ITM_MUTE] = "images\\MenuItems\\SOUND.jpg";
+		SOUND = false;
+	}
+	else{
+		MenuItemImages[ITM_MUTE] = "images\\MenuItems\\SOUND-1.jpg";
+		SOUND = true;
+	}
 	if (flag) {
 		MenuItemImages[ITM_STARTRECORDING] = "images\\MenuItems\\STARTRECORD.jpg";
 		MenuItemImages[ITM_ENDRECORDING] = "images\\MenuItems\\ENDRECORD-1.jpg";
 	}
-	if (!flag) {
+	else{
 		MenuItemImages[ITM_STARTRECORDING] = "images\\MenuItems\\STARTRECORD-1.jpg";
 		MenuItemImages[ITM_ENDRECORDING] = "images\\MenuItems\\ENDRECORD.jpg";
 	}
@@ -247,7 +253,20 @@ void Output::CreateSTARTRECORDING() const {
 //	pWind->UpdateBuffer();
 
 }
+void Output::CreateMUTE() const {
+	string MenuItemImages[DRAW_ITM_COUNT];
 
+	if (SOUND) {
+		MenuItemImages[ITM_MUTE] = "images\\MenuItems\\SOUND.jpg";
+		PlaySound(("Sounds\\HELLO.wav"), NULL, SND_ASYNC);
+	}
+	else {
+		MenuItemImages[ITM_MUTE] = "images\\MenuItems\\SOUND-1.jpg";
+	}
+		pWind->DrawImage(MenuItemImages[ITM_MUTE], (18 * UI.MenuItemWidth) + 5, 5, UI.MenuItemWidth - 5, UI.ToolBarHeight - 10);
+	SOUND = !SOUND;
+
+}
 void Output::CreateColorPalette() const
 {
 	string Colors[colors];
@@ -330,6 +349,10 @@ void Output::SetOldDrawColor(color c)
 int Output::getCrntPenWidth() const		//get current pen width
 {
 	return UI.PenWidth;
+}
+bool Output::getSound() const		//get current pen width
+{
+	return SOUND;
 }
 
 //======================================================================================//

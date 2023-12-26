@@ -6,7 +6,7 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddCircAction::AddCircAction(ApplicationManager* pApp, bool sound) :Action(pApp), Sound(sound)
+AddCircAction::AddCircAction(ApplicationManager* pApp) :Action(pApp)
 {
 
 }
@@ -17,8 +17,10 @@ void AddCircAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
-	if (Sound)
+	if (!pOut->getSound())
+	{
 		PlaySound(("Sounds\\Circle.wav"), NULL, SND_ASYNC);
+	}
 
 	pOut->PrintMessage("New Circle: Click at the Center");
 

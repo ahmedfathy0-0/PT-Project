@@ -21,8 +21,8 @@ void RedoAction::Execute()
 	else {
 		ReturnedAction->Redo();
 		pManager->AddAction(ReturnedAction);
-		//delete ReturnedAction;
-		//ReturnedAction = NULL;
+		delete ReturnedAction;
+		ReturnedAction = NULL;
 	}
 }
 

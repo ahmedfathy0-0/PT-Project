@@ -28,6 +28,7 @@ void PickByFillClr::WrongCase(CFigure* Clicked, int& right, int& wrong)
 {
 	Output* pOut = pManager->GetOutput();
 	wrong++;
+	if (!pOut->getSound())
 	PlaySound(("Sounds\\Wrong.wav"), NULL, SND_ASYNC);
 	Clicked->IsHidden(true);
 	pManager->UpdateInterface();
@@ -160,15 +161,14 @@ void PickByFillClr::Execute()
 	if (pManager->GetFigCount() != 0 && pManager->CheckForFillColor() == true&&ptrToPickByFig==NULL&&ptrToPickByBoth==NULL)
 	{
 		pOut->PrintMessage("SCORE---------->>Right attempts: " + to_string(RightCounter) + " Wrong attempts: " + to_string(WrongCounter));
-		if (RightCounter > WrongCounter)
-			PlaySound(("Sounds\\Win.wav"), NULL, SND_ASYNC);
-		else
-			PlaySound(("Sounds\\Fail.wav"), NULL, SND_ASYNC);
-	}
-	if (WrongCounter == 0)
-	{
-		//PlaySound("")
-	}
+		if (!pOut->getSound())
+		{
+			if (RightCounter > WrongCounter)
+				PlaySound(("Sounds\\Win.wav"), NULL, SND_ASYNC);
+			else
+				PlaySound(("Sounds\\Fail.wav"), NULL, SND_ASYNC);
+		}
+		}
 
 	if (ptrToPickByFig!=NULL)
 	{

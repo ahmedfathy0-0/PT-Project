@@ -11,11 +11,7 @@ void ClearAll::Execute()
 	pManager->Clearall();
 	pManager->ClearRedoList();
 	pManager->ClearUndoList();
-	UI.DrawColor = BLUE;
-	UI.FillColor = UI.BkGrndColor;
-	UI.ISFILLED = false;
-	UI.HexagonSize = 100;
-	UI.SqrSize = 160;
+	pManager->ResetConstants();
 }
 
 Action* ClearAll::Clone()

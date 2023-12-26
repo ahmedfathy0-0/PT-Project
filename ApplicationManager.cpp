@@ -83,32 +83,32 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 					}
 	}
 	else
-		switch (ActType)
-		{
-		case DRAW_RECT:
+	switch (ActType)
+	{
+	case DRAW_RECT:
+		
+		pAct = new AddRectAction(this);
+		break;
 
-			pAct = new AddRectAction(this, true);
-			break;
+	case DRAW_SQUARE:
+		
+		pAct = new AddSqrAction(this);
+		break;
 
-		case DRAW_SQUARE:
-
-			pAct = new AddSqrAction(this, true);
-			break;
-
-		case DRAW_TRIANGLE:
-
-			pAct = new AddTrgAction(this, true);
-			break;
+	case DRAW_TRIANGLE:
+		
+		pAct = new AddTrgAction(this);
+		break;
 
 		case DRAW_HEXAGON:
 
-			pAct = new AddHexAction(this, true);
-			break;
+		pAct = new AddHexAction(this);
+		break;
 
-		case DRAW_CIRCLE:
-
-			pAct = new AddCircAction(this, true);
-			break;
+	case DRAW_CIRCLE:
+		
+		pAct = new AddCircAction(this);
+		break;
 
 		case STATUS:	//a click on the status bar ==> no action
 			pOut->PrintMessage("Action: a click on the Status Bar, Click anywhere");
@@ -201,13 +201,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 
 
-		case STARTRECORDING:
-			if (!IsRecording) {
-				if (FigCount == 0) {
-					pOut->CreateENDRECORDING();
-					IsRecording = true;
-					PlaySound(("Sounds\\Start.wav"), NULL, SND_ASYNC);
-					pAct = new StartRecordingAction(this);
+	case STARTRECORDING:
+		if (!IsRecording) {
+			if (FigCount == 0) {
+			pOut->CreateENDRECORDING();
+			IsRecording = true;
+			if (!pOut->getSound())
+				PlaySound(("Sounds\\Start.wav"), NULL, SND_ASYNC);
+			pAct = new StartRecordingAction(this);
 
 				}
 				else {
@@ -216,17 +217,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			}
 			break;
 
-		case ENDRECORDING:
-			if (IsRecording) {
-				pOut->CreateSTARTRECORDING();
-				Recordfile << "FINISHED" << endl;
-				IsRecording = false;
-				PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
-				pAct = new StartRecordingAction(this);
-				OPcount = 0;
-				Recordfile.close();
-			}
-			break;
+	case ENDRECORDING:
+		if (IsRecording) {
+			pOut->CreateSTARTRECORDING();
+			Recordfile << "FINISHED" << endl;
+			IsRecording = false;
+			if (!pOut->getSound())
+			PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
+			pAct = new StartRecordingAction(this);
+			OPcount = 0;
+			Recordfile.close();
+		}
+		break;
 
 		case PLAYRECORDING:
 			if (!IsRecording) {
@@ -264,8 +266,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			UI.conD = false;
 			break;
 
-		case CHANGECOLOR:
-
+	case MUTE:
+		pOut->CreateMUTE();
+	    IsMute=!IsMute;
 			break;
 
 			pOut->deleteColorPalette();
@@ -490,12 +493,12 @@ void ApplicationManager::AddToDeleteList(CFigure* figtobedeleted)
 	}
 }
 
-void ApplicationManager::SaveAll(ofstream& OutFile) const
+void ApplicationManager::SaveAll(ofstream& OutFile) const //call save functions of all figures
 {
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->Save(OutFile);
 }
-void ApplicationManager::Clearall()
+void ApplicationManager::Clearall() //clear all figures
 {
 	for (int i = 0; i < FigCount; i++)
 	{
@@ -505,7 +508,7 @@ void ApplicationManager::Clearall()
 	FigCount = 0;
 	pOut->PrintMessage("All Cleared Successfully");
 }
-void ApplicationManager::deletefigure(CFigure* figtobedeleted)
+void ApplicationManager::deletefigure(CFigure* figtobedeleted) //delete figure and some actions of saving undo history and recording
 {
 	bool flag = true;
 	for (int i = 0; i < FigCount && flag; i++)
@@ -527,6 +530,14 @@ void ApplicationManager::deletefigure(CFigure* figtobedeleted)
 
 			}
 		}
+}
+void ApplicationManager::ResetConstants() //reset UI variables
+{
+	UI.DrawColor = BLUE;
+	UI.FillColor = GREEN;
+	UI.ISFILLED = false;
+	UI.SqrSize = 160;
+	UI.HexagonSize = 100;
 }
 void ApplicationManager::StartRecord(string filename) 
 {

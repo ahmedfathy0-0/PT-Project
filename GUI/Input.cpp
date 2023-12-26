@@ -6,6 +6,8 @@ Input::Input(window* pW)
 {
 	pWind = pW; //point to the passed window
 	UI.conD = false;
+	PlaySound(("Sounds\\HELLO.wav"), NULL, SND_ASYNC);
+
 }
 
 void Input::GetPointClicked(int& x, int& y) const
@@ -27,7 +29,7 @@ void Input::SetWaitClose(bool flag) const {
 }
 
 
-string Input::GetSrting(Output* pO) const
+string Input::GetString(Output* pO) const
 {
 	string Label;
 	char Key;
@@ -106,10 +108,9 @@ ActionType Input::GetUserAction(Output* pOut) const
 				return CHANGEFILLCOLOR;
 			}
 			case ITM_CHANGECOLOR: return CHANGECOLOR;
-			case ITM_EXIT: 
-			{
-				return EXIT;
-			}
+			case ITM_EXIT: {
+				
+				return EXIT;}
 			default: return EMPTY;	//A click on empty place in design toolbar
 			}
 		}
