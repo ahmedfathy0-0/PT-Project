@@ -107,7 +107,6 @@ ActionType Input::GetUserAction(Output* pOut) const
 				pOut->setisFilled(true);
 				return CHANGEFILLCOLOR;
 			}
-			case ITM_CHANGECOLOR: return CHANGECOLOR;
 			case ITM_EXIT: {
 				
 				return EXIT;}
