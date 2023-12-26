@@ -25,9 +25,10 @@ void MoveAction::ReadActionParameters()
 void MoveAction::Execute()
 {
 	ReadActionParameters();
-	OldCenter = pFig->ReturnCenter();
-	if (pFig)
+	if (pFig) {
 		pFig->Move(NewCenter);
+		OldCenter = pFig->ReturnCenter();
+	}
 	pManager->deselectall();
 	pOut->ClearStatusBar();
 }

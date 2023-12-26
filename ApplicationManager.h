@@ -27,6 +27,8 @@ private:
 	Action* RedoableActions[5];
 	int UndoableActionsCount;
 	int RedoableActionsCount;
+	CFigure* DeletedArray[5];
+	int DeletedActionsCount;
 public:
 	ApplicationManager();
 	~ApplicationManager();
@@ -42,7 +44,7 @@ public:
 	//if = 0 change draw color if =1 change fillcolor if =-1 change both 
 	void SaveAll(ofstream& OutFile) const;
 	void Clearall();
-	void deletefigure();
+	void deletefigure(CFigure*);
 	// functions for the Start,Stop,and Play Record  action//
 	void StartRecord(string) ;
 	void StopRecord();
@@ -67,6 +69,8 @@ public:
 	Action* ReturnLastRedoableAction();
 	void ClearUndoList();
 	void ClearRedoList();
+
+	void AddToDeleteList(CFigure *);
 
 	// -- Interface Management Functions
 	Input* GetInput() const; //Return pointer to the input
