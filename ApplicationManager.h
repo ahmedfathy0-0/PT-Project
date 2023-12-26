@@ -45,6 +45,7 @@ public:
 	void deletefigure();
 	// functions for the Start,Stop,and Play Record  action//
 	void StartRecord(string) ;
+	void StopRecord();
 	void RecordFigure(CFigure*); //to record any changes in draw mode
 	ofstream* getRecoedFile();//send the file address to any class Action
 	bool getIsRecording();//send the Recording boolean to any class Action

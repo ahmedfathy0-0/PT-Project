@@ -490,6 +490,7 @@ void ApplicationManager::Clearall()
 		FigList[i] = NULL;
 	}
 	FigCount = 0;
+	pOut->PrintMessage("All Cleared Successfully");
 }
 void ApplicationManager::deletefigure()
 {
@@ -523,6 +524,15 @@ void ApplicationManager::StartRecord(string filename)
 		Recordfile.open(filename ,ios::trunc);
 	else
 		Recordfile.close();
+}
+
+void ApplicationManager::StopRecord()
+{
+	pOut->CreateSTARTRECORDING();
+	IsRecording = false;
+	PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
+	OPcount = 0;
+	Recordfile.close();
 }
 
 void ApplicationManager::RecordFigure(CFigure* pFig)

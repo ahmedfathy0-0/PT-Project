@@ -4,9 +4,11 @@ ClearAll::ClearAll(ApplicationManager* pApp) : Action(pApp) {}
 void ClearAll::ReadActionParameters(){}
 void ClearAll::Execute()
 {
-	pManager->Clearall();
+	if (pManager->getIsRecording())
+		pManager->StopRecord();
 	ClearRecord.open("Last Record", ios::trunc);
 	ClearRecord.close();
+	pManager->Clearall();
 	pManager->ClearRedoList();
 	pManager->ClearUndoList();
 	UI.DrawColor = BLUE;

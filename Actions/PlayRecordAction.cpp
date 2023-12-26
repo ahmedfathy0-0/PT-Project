@@ -13,9 +13,9 @@ void PlayRecordAction::ReadActionParameters()
 	pOut = pManager->GetOutput();
 	pIn = pManager->GetInput();
 
-	pOut->PrintMessage("Streaming The Last Record is started ;)");
 	filename = "Last Record";
 	pManager->Clearall();
+	pOut->PrintMessage("Streaming The Last Record is started ;)");
 }
 
 void PlayRecordAction::Execute()
@@ -99,16 +99,8 @@ void PlayRecordAction::Execute()
 			else if(type=="FINISHED") {
 				flag = false;
 			}
-			if(!myFig->IsSelected())
-			{
-				n2 = n1;
-				n1 = i;
-			}
 			pManager->UpdateInterface();
 			Pause(1000);
-
-
-
 		}
 		pOut->PrintMessage("Streaming The Last Record is finished :)");
 	}
