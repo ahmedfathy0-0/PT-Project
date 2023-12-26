@@ -81,7 +81,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 					}
 	}
 	else
-<<<<<<< HEAD
 	switch (ActType)
 	{
 	case DRAW_RECT:
@@ -98,21 +97,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		
 		pAct = new AddTrgAction(this);
 		break;
-=======
-		switch (ActType)
-		{
-		case DRAW_RECT:
 
-			pAct = new AddRectAction(this, true);
-			break;
+		case DRAW_HEXAGON:
 
-		case DRAW_SQUARE:
->>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
-
-			pAct = new AddSqrAction(this, true);
-			break;
-
-<<<<<<< HEAD
 		pAct = new AddHexAction(this);
 		break;
 
@@ -120,22 +107,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		
 		pAct = new AddCircAction(this);
 		break;
-=======
-		case DRAW_TRIANGLE:
-
-			pAct = new AddTrgAction(this, true);
-			break;
->>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
-
-		case DRAW_HEXAGON:
-
-			pAct = new AddHexAction(this, true);
-			break;
-
-		case DRAW_CIRCLE:
-
-			pAct = new AddCircAction(this, true);
-			break;
 
 		case STATUS:	//a click on the status bar ==> no action
 			pOut->PrintMessage("Action: a click on the Status Bar, Click anywhere");
@@ -155,42 +126,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case SELECTONE:
 			if (FigCount == 0) {
-<<<<<<< HEAD
-			pOut->CreateENDRECORDING();
-			IsRecording = true;
-			if (!pOut->getSound())
-				PlaySound(("Sounds\\Start.wav"), NULL, SND_ASYNC);
-			pAct = new StartRecordingAction(this);
-
-		}
-			else {
-				pOut->PrintMessage("Please Clear all first");
-=======
 				pOut->PrintMessage("Please Draw some figures first");
->>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
 			}
 			else
 				pAct = new SelectOneAction(this);
 			break;
 
-<<<<<<< HEAD
-	case ENDRECORDING:
-		if (IsRecording) {
-			pOut->CreateSTARTRECORDING();
-			Recordfile << "FINISHED" << endl;
-			IsRecording = false;
-			if (!pOut->getSound())
-			PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
-			pAct = new StartRecordingAction(this);
-			OPcount = 0;
-			Recordfile.close();
-		}
-		break;
-=======
 		case LOAD:
 			pAct = new LoadAction(this);
 			break;
->>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
 
 		case MOVE:
 			pAct = new MoveAction(this);
@@ -244,12 +188,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case PICKBYBOTH:
 			pAct = new PickByBoth(this);
 
-<<<<<<< HEAD
-	case MUTE:
-		pOut->CreateMUTE();
-	    IsMute=!IsMute;
-=======
->>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
 			break;
 
 
@@ -264,13 +202,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 
 
-		case STARTRECORDING:
-			if (!IsRecording) {
-				if (FigCount == 0) {
-					pOut->CreateENDRECORDING();
-					IsRecording = true;
-					PlaySound(("Sounds\\Start.wav"), NULL, SND_ASYNC);
-					pAct = new StartRecordingAction(this);
+	case STARTRECORDING:
+		if (!IsRecording) {
+			if (FigCount == 0) {
+			pOut->CreateENDRECORDING();
+			IsRecording = true;
+			if (!pOut->getSound())
+				PlaySound(("Sounds\\Start.wav"), NULL, SND_ASYNC);
+			pAct = new StartRecordingAction(this);
 
 				}
 				else {
@@ -279,17 +218,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			}
 			break;
 
-		case ENDRECORDING:
-			if (IsRecording) {
-				pOut->CreateSTARTRECORDING();
-				Recordfile << "FINISHED" << endl;
-				IsRecording = false;
-				PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
-				pAct = new StartRecordingAction(this);
-				OPcount = 0;
-				Recordfile.close();
-			}
-			break;
+	case ENDRECORDING:
+		if (IsRecording) {
+			pOut->CreateSTARTRECORDING();
+			Recordfile << "FINISHED" << endl;
+			IsRecording = false;
+			if (!pOut->getSound())
+			PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
+			pAct = new StartRecordingAction(this);
+			OPcount = 0;
+			Recordfile.close();
+		}
+		break;
 
 		case PLAYRECORDING:
 			if (!IsRecording) {
@@ -327,8 +267,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			UI.conD = false;
 			break;
 
-		case CHANGECOLOR:
-
+	case MUTE:
+		pOut->CreateMUTE();
+	    IsMute=!IsMute;
 			break;
 
 			pOut->deleteColorPalette();
