@@ -57,7 +57,6 @@ void CTriangle::Resize(Point NewPoint)
 	Point* NearestPoint = NewPoint.IsNeartoWhich(Nearest2Point, &Corner3);
 	NearestPoint->x = NewPoint.x;
 	NearestPoint->y = NewPoint.y;
-
 }
 
 void CTriangle::Save(ofstream& OutFile)

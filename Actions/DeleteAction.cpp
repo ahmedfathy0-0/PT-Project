@@ -13,11 +13,8 @@ void DeleteAction::ReadActionParameters()
 void DeleteAction::Execute()
 {
 	ReadActionParameters();
-	//pManager->deletefigure();
-	if (pFig != NULL)
-	{
-		pFig->SetHidden(true);
-	}
+	pManager->deletefigure(pFig);
+	pManager->AddToDeleteList(pFig);
 }
 
 Action* DeleteAction::Clone()
@@ -27,18 +24,19 @@ Action* DeleteAction::Clone()
 
 void DeleteAction::Undo()
 {
-	if (pManager->GetSelectedFigure() != NULL)
+	if (pFig)
 	{
-		pManager->GetSelectedFigure()->SetHidden(false);
+		pManager->AddFigure(pFig);
 	}
 	pManager->RecordFigure(pFig);
+
 }
 
 void DeleteAction::Redo()
 {
-	if (pManager->GetSelectedFigure() != NULL)
+	if (pFig)
 	{
-		pManager->GetSelectedFigure()->SetHidden(true);
+		pManager->deletefigure(pFig);
 	}
 	pManager->RecordFigure(pFig);
 }

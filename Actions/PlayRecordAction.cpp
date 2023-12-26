@@ -59,7 +59,7 @@ void PlayRecordAction::Execute()
 				pManager->AddFigure(myFig);
 			}
 			else if (type == "DELETE") {
-				pManager->deletefigure();
+				pManager->deletefigure(myFig);
 			}
 			else if (type == "UNDO") {
 				ifstream fIn1;
@@ -92,7 +92,7 @@ void PlayRecordAction::Execute()
 						pManager->AddFigure(myFig);
 					}
 					else if (type == "DELETE") {
-						pManager->deletefigure();
+						pManager->deletefigure(myFig);
 					}
 				}
 			}

@@ -30,7 +30,7 @@ void MoveDragAction::Execute()
 		*/
 		int IX, IY, ix, iy; //IX,IY is the last point the mouse point at when clicked
 		//ix,iy is the first point the mouse point at when clicked
-		Point C = pFig->ReturnCenter(); //get center for calculations of new center
+		C = pFig->ReturnCenter(); //get center for calculations of new center
 		while (true) //get the first click
 		{
 			if (pIn->isClicked(ix, iy))
@@ -71,8 +71,7 @@ void MoveDragAction::Undo()
 {
 	if (pFig)
 	{
-		Point Center = pFig->ReturnOldestCenter();
-		pFig->Move(Center);
+		pFig->Move(C);
 	}
 	pManager->RecordFigure(pFig);
 
@@ -82,8 +81,7 @@ void MoveDragAction::Redo()
 {
 	if (pFig)
 	{
-		Point Center = pFig->ReturnOldCenter();
-		pFig->Move(Center);
+		pFig->Move(NewCenter);
 	}
 	pManager->RecordFigure(pFig);
 

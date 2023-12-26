@@ -39,10 +39,13 @@ ApplicationManager::ApplicationManager()
 	OPcount = 0;
 	UndoableActionsCount = 0;
 	RedoableActionsCount = 0;
-	for (int i = 0; i < 4; i++)
+	DeletedActionsCount = 0;
+	for (int i = 0; i < 5; i++)
 		UndoableActions[i] = NULL;
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 5; i++)
 		RedoableActions[i] = NULL;
+	for (int i = 0; i < 5; i++)
+		DeletedArray[i] = NULL;
 }
 
 //==================================================================================//
@@ -65,7 +68,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//According to Action Type, create the corresponding action object
 	if (OPcount == 20) {
 		pOut->PrintMessage("You Reached the maximum operation please End Record first to continue drawing");
-		switch(ActType)
+		switch (ActType)
 				case ENDRECORDING:
 					if (IsRecording) {
 						pOut->CreateSTARTRECORDING();
@@ -78,6 +81,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 					}
 	}
 	else
+<<<<<<< HEAD
 	switch (ActType)
 	{
 	case DRAW_RECT:
@@ -94,9 +98,21 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		
 		pAct = new AddTrgAction(this);
 		break;
+=======
+		switch (ActType)
+		{
+		case DRAW_RECT:
 
-	case DRAW_HEXAGON:
+			pAct = new AddRectAction(this, true);
+			break;
 
+		case DRAW_SQUARE:
+>>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
+
+			pAct = new AddSqrAction(this, true);
+			break;
+
+<<<<<<< HEAD
 		pAct = new AddHexAction(this);
 		break;
 
@@ -104,104 +120,42 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		
 		pAct = new AddCircAction(this);
 		break;
+=======
+		case DRAW_TRIANGLE:
 
-	case STATUS:	//a click on the status bar ==> no action
-		pOut->PrintMessage("Action: a click on the Status Bar, Click anywhere");
-		return;
+			pAct = new AddTrgAction(this, true);
+			break;
+>>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
 
-	case SAVE:
-		pAct = new SaveAction(this);
-		break;
+		case DRAW_HEXAGON:
 
-	case UNDO:
-		pAct = new UndoAction(this);
-		break;
+			pAct = new AddHexAction(this, true);
+			break;
 
-	case REDO:
-		pAct = new RedoAction(this);
-		break;
+		case DRAW_CIRCLE:
 
-	case SELECTONE:
-		if (FigCount == 0) {
-			pOut->PrintMessage("Please Draw some figures first");
-		}
-		else 
-		pAct = new SelectOneAction(this);
-		break;
+			pAct = new AddCircAction(this, true);
+			break;
 
-	case LOAD:
-		pAct = new LoadAction(this);
-		break;
+		case STATUS:	//a click on the status bar ==> no action
+			pOut->PrintMessage("Action: a click on the Status Bar, Click anywhere");
+			return;
 
-	case MOVE:
-		pAct = new MoveAction(this);
-		break;
+		case SAVE:
+			pAct = new SaveAction(this);
+			break;
 
-	case MOVEDRAG:
-		pAct = new MoveDragAction(this);
-		break;
+		case UNDO:
+			pAct = new UndoAction(this);
+			break;
 
-	case RESIZE:
-		pAct = new ResizeAction(this);
-		break;
+		case REDO:
+			pAct = new RedoAction(this);
+			break;
 
-	case CLEAR:
-		pAct = new ClearAll(this);
-		break;
-
-	case DELET:
-		pAct = new DeleteAction(this);
-		break;
-
-	case DRAWING_AREA:
-		break;
-
-	case EMPTY:
-		pOut->PrintMessage("Action: a click on empty area in the Design Tool Bar, Click anywhere");
-		break;
-
-	case TO_DRAW:
-		
-		pOut->PrintMessage("Action: Switch to Draw Mode, creating simualtion tool bar");
-		pOut->CreateDrawToolBar();
-		UI.InterfaceMode == MODE_DRAW;
-		UnHideFigures();
-		
-		break;
-
-	case TO_PLAY:
-		pAct = new SwitchToPlayAction(this);
-		pAct->Execute();
-		break;
-		
-	case PICKBYFIG:
-		pAct = new PickByFig(this);
-		break;
-
-	case PICKBYCOL:
-		pAct = new PickByFillClr(this);
-
-		break;
-	case PICKBYBOTH:
-		pAct = new PickByBoth(this);
-
-		break;
-		
-
-	case EMPTY_PLAYTOOLBAR:
-		pOut->PrintMessage("Action: a click on empty area in the Play Tool Bar, Click anywhere");
-		break;
-
-
-	case PLAYING_AREA:
-		pOut->PrintMessage("Action: a click on the draw area in Play Mode, Click anywhere");
-		break;
-
-
-
-	case STARTRECORDING:
-		if (!IsRecording) {
+		case SELECTONE:
 			if (FigCount == 0) {
+<<<<<<< HEAD
 			pOut->CreateENDRECORDING();
 			IsRecording = true;
 			if (!pOut->getSound())
@@ -211,10 +165,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 			else {
 				pOut->PrintMessage("Please Clear all first");
+=======
+				pOut->PrintMessage("Please Draw some figures first");
+>>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
 			}
-		}
-		break;
+			else
+				pAct = new SelectOneAction(this);
+			break;
 
+<<<<<<< HEAD
 	case ENDRECORDING:
 		if (IsRecording) {
 			pOut->CreateSTARTRECORDING();
@@ -227,63 +186,162 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			Recordfile.close();
 		}
 		break;
+=======
+		case LOAD:
+			pAct = new LoadAction(this);
+			break;
+>>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
 
-	case PLAYRECORDING:
-		if (!IsRecording) {
-			pAct = new PlayRecordAction(this);
-		}
-		break;
+		case MOVE:
+			pAct = new MoveAction(this);
+			break;
 
-	case CHANGEDRAWCOLOR:
-		if (SelectedFigure != NULL) {
-			pOut->CreateColorPalette();
-			UI.conD = true;
-			ActiType = pIn->GetUserAction(pOut);
-			pAct = new ChangeDrawcolor(this);
-		}
-		else
-			pOut->PrintMessage("Please select figure first to be able to change the color");
+		case MOVEDRAG:
+			pAct = new MoveDragAction(this);
+			break;
 
-		pOut->deleteColorPalette();
+		case RESIZE:
+			pAct = new ResizeAction(this);
+			break;
 
+		case CLEAR:
+			pAct = new ClearAll(this);
+			break;
 
-		UI.conD = false;
-		break;
+		case DELET:
+			pAct = new DeleteAction(this);
+			break;
 
-	case CHANGEFILLCOLOR:
-		if (SelectedFigure != NULL) {
-			pOut->CreateColorPalette();
-			UI.conD = true;
-			ActiType = pIn->GetUserAction(pOut);
-			pAct = new ChangeFillcolor(this);
-		}
-		else
-			pOut->PrintMessage("Please select figure first to be able to change the color");
+		case DRAWING_AREA:
+			break;
 
-		pOut->deleteColorPalette();
-		UI.conD = false;
-		break;
+		case EMPTY:
+			pOut->PrintMessage("Action: a click on empty area in the Design Tool Bar, Click anywhere");
+			break;
 
+		case TO_DRAW:
+
+			pOut->PrintMessage("Action: Switch to Draw Mode, creating simualtion tool bar");
+			pOut->CreateDrawToolBar();
+			UI.InterfaceMode == MODE_DRAW;
+			UnHideFigures();
+
+			break;
+
+		case TO_PLAY:
+			pAct = new SwitchToPlayAction(this);
+			pAct->Execute();
+			break;
+
+		case PICKBYFIG:
+			pAct = new PickByFig(this);
+			break;
+
+		case PICKBYCOL:
+			pAct = new PickByFillClr(this);
+
+			break;
+		case PICKBYBOTH:
+			pAct = new PickByBoth(this);
+
+<<<<<<< HEAD
 	case MUTE:
 		pOut->CreateMUTE();
 	    IsMute=!IsMute;
+=======
+>>>>>>> 6492c90a6c120255ac986fc9b3d13fa8f4edf15d
 			break;
 
 
-		pOut->deleteColorPalette();
-		UI.conD = false;
+		case EMPTY_PLAYTOOLBAR:
+			pOut->PrintMessage("Action: a click on empty area in the Play Tool Bar, Click anywhere");
+			break;
+
+
+		case PLAYING_AREA:
+			pOut->PrintMessage("Action: a click on the draw area in Play Mode, Click anywhere");
+			break;
 
 
 
+		case STARTRECORDING:
+			if (!IsRecording) {
+				if (FigCount == 0) {
+					pOut->CreateENDRECORDING();
+					IsRecording = true;
+					PlaySound(("Sounds\\Start.wav"), NULL, SND_ASYNC);
+					pAct = new StartRecordingAction(this);
 
-	case EXIT:
-	{
-			
-    }
+				}
+				else {
+					pOut->PrintMessage("Please Clear all first");
+				}
+			}
+			break;
+
+		case ENDRECORDING:
+			if (IsRecording) {
+				pOut->CreateSTARTRECORDING();
+				Recordfile << "FINISHED" << endl;
+				IsRecording = false;
+				PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
+				pAct = new StartRecordingAction(this);
+				OPcount = 0;
+				Recordfile.close();
+			}
+			break;
+
+		case PLAYRECORDING:
+			if (!IsRecording) {
+				pAct = new PlayRecordAction(this);
+			}
+			break;
+
+		case CHANGEDRAWCOLOR:
+			if (SelectedFigure != NULL) {
+				pOut->CreateColorPalette();
+				UI.conD = true;
+				ActiType = pIn->GetUserAction(pOut);
+				pAct = new ChangeDrawcolor(this);
+			}
+			else
+				pOut->PrintMessage("Please select figure first to be able to change the color");
+
+			pOut->deleteColorPalette();
+
+
+			UI.conD = false;
+			break;
+
+		case CHANGEFILLCOLOR:
+			if (SelectedFigure != NULL) {
+				pOut->CreateColorPalette();
+				UI.conD = true;
+				ActiType = pIn->GetUserAction(pOut);
+				pAct = new ChangeFillcolor(this);
+			}
+			else
+				pOut->PrintMessage("Please select figure first to be able to change the color");
+
+			pOut->deleteColorPalette();
+			UI.conD = false;
+			break;
+
+		case CHANGECOLOR:
+
+			break;
+
+			pOut->deleteColorPalette();
+			UI.conD = false;
+
+		case EXIT:
+		{
+
+		}
 
 		break;
 
-	}
+		}
 
 	//Execute the created action
 	if (pAct != NULL)
@@ -318,7 +376,7 @@ int ApplicationManager::GetFigCount()
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	int i = 0;
-	for (i;i < FigCount;i++){
+	/*for (i; i < FigCount; i++) {
 		if (FigList[i] != NULL) {
 			if (pFig->getID() == FigList[i]->getID()) {
 				delete FigList[i];
@@ -327,8 +385,8 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 				break;
 			}
 		}
-}
-	if (i == FigCount)
+}*/
+	//if (i == FigCount)
 	{
 		if (FigCount < MaxFigCount) {
 			FigList[FigCount++] = pFig;
@@ -375,14 +433,10 @@ void ApplicationManager::SetSelectedFigure(CFigure* pFig) {
 }
 }
 
-
-
 CFigure* ApplicationManager::GetSelectedFigure() const
 {
 		return SelectedFigure;
 }
-
-
 
 void ApplicationManager::deselectall()  {
 	if (SelectedFigure != NULL) {
@@ -431,7 +485,7 @@ Action* ApplicationManager::ReturnLastUndoableAction()
 	{
 		UndoableActionsCount--;
 		return UndoableActions[UndoableActionsCount];
-		}
+	}
 }
 void ApplicationManager::AddToRedo(Action* Act)
 {
@@ -451,8 +505,8 @@ Action* ApplicationManager::ReturnLastRedoableAction()
 	{
 		RedoableActionsCount--;
 		return RedoableActions[RedoableActionsCount];
-		}
 	}
+}
 
 void ApplicationManager::ClearUndoList()
 {
@@ -480,6 +534,25 @@ void ApplicationManager::ClearRedoList()
 	RedoableActionsCount = 0;
 }
 
+void ApplicationManager::AddToDeleteList(CFigure* figtobedeleted)
+{
+	if (DeletedActionsCount < 5) {
+		DeletedArray[DeletedActionsCount++] = figtobedeleted;
+	}
+	else {
+		if (DeletedArray[0])
+		{
+			delete DeletedArray[0];
+			DeletedArray[0] = NULL;
+			for (int i = 0; i < 4; i++)
+			{
+				DeletedArray[i] = DeletedArray[i + 1];
+			}
+			DeletedArray[4] = figtobedeleted;
+		}
+	}
+}
+
 void ApplicationManager::SaveAll(ofstream& OutFile) const
 {
 	for (int i = 0; i < FigCount; i++)
@@ -495,21 +568,18 @@ void ApplicationManager::Clearall()
 	FigCount = 0;
 	pOut->PrintMessage("All Cleared Successfully");
 }
-void ApplicationManager::deletefigure()
+void ApplicationManager::deletefigure(CFigure* figtobedeleted)
 {
 	bool flag = true;
-	/*for (int i = 0; i < FigCount && flag; i++)
+	for (int i = 0; i < FigCount && flag; i++)
 		if (FigList[i] != NULL) {
-			if (FigList[i]->IsSelected())
+			if (FigList[i]==figtobedeleted)
 			{
 				if (IsRecording && OPcount <= 20) {
 					OPcount++;
 					Recordfile << "DELETE" << endl;
 				}
-				//delete FigList[i];
-
-				//this is the part i changed ya fathy
-				FigList[i]->IsHidden(true);
+				
 				FigList[i] = FigList[FigCount - 1];
 				FigList[i]->setID(i + 1);
 
@@ -519,7 +589,7 @@ void ApplicationManager::deletefigure()
 				flag = false;
 
 			}
-		}*/
+		}
 }
 void ApplicationManager::StartRecord(string filename) 
 {
@@ -564,8 +634,6 @@ CFigure* ApplicationManager::GetFigByIndex(int i)
 {
 	return FigList[i];
 }
-
-
 
 int ApplicationManager::RandomizedFigCount(CFigure*p)
 {
@@ -646,7 +714,7 @@ void ApplicationManager::UpdateInterface() const
 	for (int i = 0; i < FigCount; i++)
 		if (!(FigList[i]->GetHiddenStatus()))
 		{
-			FigList[i]->Draw(pOut);//Call Draw function (virtual member fn)1
+			FigList[i]->Draw(pOut);//Call Draw function (virtual member fn)
 		}
 	//pOut->UpdateBuffer();
 }
@@ -669,8 +737,4 @@ ApplicationManager::~ApplicationManager()
 		delete FigList[i];
 	delete pIn;
 	delete pOut;
-	for (int i = 0; i < UndoableActionsCount; i++)
-		delete UndoableActions[i];
-	for (int i = 0; i < RedoableActionsCount; i++)
-		delete RedoableActions[i];
 }

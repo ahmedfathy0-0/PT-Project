@@ -14,6 +14,7 @@ private:
 	CFigure* pFig;
 	Output* pOut;
 	Input* pIn;
+	Point C;
 public :
 	MoveDragAction(ApplicationManager* pApp);//Garbage intial value if its garabge getpoint from the user
 	virtual void ReadActionParameters();
