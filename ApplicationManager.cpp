@@ -267,14 +267,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			UI.conD = false;
 			break;
 
-	case MUTE:
-		pOut->CreateMUTE();
-	    IsMute=!IsMute;
+		case MUTE: {
+			pOut->CreateMUTE();
+			IsMute = !IsMute;
 			break;
-
-			pOut->deleteColorPalette();
-			UI.conD = false;
-
+		}
 		case EXIT:
 		{
 			pAct = new Exit(this);
