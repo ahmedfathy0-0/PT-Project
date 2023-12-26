@@ -22,6 +22,8 @@
 #include "Actions/RedoAction.h"
 #include"Actions\ChangeFillcolor.h"
 #include"Actions\PickByBoth.h"
+#include"SwitchToDrawAction.h"
+#include"Exit.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -165,11 +167,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case TO_DRAW:
 
-			pOut->PrintMessage("Action: Switch to Draw Mode, creating simualtion tool bar");
-			pOut->CreateDrawToolBar();
-			UI.InterfaceMode == MODE_DRAW;
-			UnHideFigures();
-
+			pAct = new SwitchToDrawAction(this);
+			pAct->Execute();
 			break;
 
 		case TO_PLAY:
@@ -274,7 +273,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case EXIT:
 		{
-
+			pAct = new Exit(this);
 		}
 
 		break;
