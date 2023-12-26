@@ -22,6 +22,7 @@ private:
 	Output* pOut;
 	bool IsRecording;
 	bool IsMute;
+	bool ISPLYING;
 	ofstream Recordfile;//used for save kids operations in the game
 	int OPcount;//used for max 20 operation
 	Action* UndoableActions[5];
