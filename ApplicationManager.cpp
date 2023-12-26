@@ -28,7 +28,7 @@ ApplicationManager::ApplicationManager()
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
-
+	ISPLYING = false;
 	FigCount = 0;
 
 	//Create an array of figure pointers and set them to NULL		
@@ -234,6 +234,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case PLAYRECORDING:
 			if (!IsRecording) {
 				pAct = new PlayRecordAction(this);
+				ISPLYING = true;
 			}
 			break;
 
@@ -315,19 +316,23 @@ int ApplicationManager::GetFigCount()
 
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
-{
+{ 
 	int i = 0;
-	/*for (i; i < FigCount; i++) {
-		if (FigList[i] != NULL) {
-			if (pFig->getID() == FigList[i]->getID()) {
-				delete FigList[i];
-				FigList[i] = NULL;
-				FigList[i] = pFig;
-				break;
+	if (ISPLYING) {
+		int i = 0;
+		for (i; i < FigCount; i++) {
+			if (FigList[i] != NULL) {
+				if (pFig->getID() == FigList[i]->getID()) {
+					delete FigList[i];
+					FigList[i] = NULL;
+					FigList[i] = pFig;
+					break;
+				}
 			}
 		}
-}*/
-	//if (i == FigCount)
+	}
+	else i = FigCount;
+	if (i == FigCount)
 	{
 		if (FigCount < MaxFigCount) {
 			FigList[FigCount++] = pFig;
