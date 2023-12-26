@@ -38,15 +38,26 @@ public:
 	//Reads the input command from the user and returns the corresponding action type
 	ActionType GetUserAction() const;
 	void ExecuteAction(ActionType); //Creates an action and executes it
-	int GetFigCount();
+	int GetFigCount();//getter for number of drawn figures
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	void Changefigurecolor(color, int);//the integer here represent the type of change color 
 	//if = 0 change draw color if =1 change fillcolor if =-1 change both 
-	void SaveAll(ofstream& OutFile) const;
-	void Clearall();
-	void deletefigure(CFigure*);
-	void ResetConstants();
+	
+	//function of save
+	void SaveAll(ofstream& OutFile) const; //call the save functions of all figures drawn
+
+	//functions of clear all
+	void Clearall(); //clear all figures and delete it
+	void ClearUndoList(); //clear undo history
+	void ClearRedoList(); //clear redo history
+	void ClearDeleteList(); //clear the rest of undo & redo history
+	void ResetConstants(); // reset UI constants like colors and sizes
+
+	//fuction of delete
+	void deletefigure(CFigure*); // delete figure and shift the rest
+
+
 	// functions for the Start,Stop,and Play Record  action//
 	void StartRecord(string) ;
 	void StopRecord();
@@ -57,7 +68,6 @@ public:
 
 	// functions for the select action//
 	CFigure* GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
-	void IsInsideFigure(CFigure* pFig);
 	void SetSelectedFigure(CFigure* pFig);
 	CFigure* GetSelectedFigure() const;
 	void deselectall();
@@ -69,10 +79,9 @@ public:
 	void AddToRedo(Action*);
 
 	Action* ReturnLastRedoableAction();
-	void ClearUndoList();
-	void ClearRedoList();
 
 	void AddToDeleteList(CFigure *);
+
 
 	// -- Interface Management Functions
 	Input* GetInput() const; //Return pointer to the input
