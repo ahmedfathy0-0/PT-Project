@@ -15,7 +15,7 @@ private:
 public:
 	Input(window* pW);		//Consturctor
 	void GetPointClicked(int& x, int& y) const;//Get coordinate where user clicks
-	string GetSrting(Output* pO) const;	 //Returns a string entered by the user
+	string GetString(Output* pO) const;	 //Returns a string entered by the user
 	bool isClicked(int&, int&);
 	void UpdateBuffer() const;
 	void SetWaitClose(bool flag) const;

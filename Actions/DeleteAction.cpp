@@ -13,8 +13,8 @@ void DeleteAction::ReadActionParameters()
 void DeleteAction::Execute()
 {
 	ReadActionParameters();
-	pManager->deletefigure(pFig);
-	pManager->AddToDeleteList(pFig);
+	pManager->deletefigure(pFig); //delete selected figure
+	pManager->AddToDeleteList(pFig); 
 }
 
 Action* DeleteAction::Clone()

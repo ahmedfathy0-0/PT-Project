@@ -29,7 +29,7 @@ void Input::SetWaitClose(bool flag) const {
 }
 
 
-string Input::GetSrting(Output* pO) const
+string Input::GetString(Output* pO) const
 {
 	string Label;
 	char Key;
