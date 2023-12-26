@@ -11,9 +11,8 @@ private:
 	Point P1;
 	GfxInfo RectGfxInfo;
 	CSquare* S;
-	bool Sound;
 public:
-	AddSqrAction(ApplicationManager* pApp, bool s = false);
+	AddSqrAction(ApplicationManager* pApp);
 
 	//Reads Square parameters
 	virtual void ReadActionParameters();

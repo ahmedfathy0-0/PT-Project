@@ -6,6 +6,8 @@ Input::Input(window* pW)
 {
 	pWind = pW; //point to the passed window
 	UI.conD = false;
+	PlaySound(("Sounds\\HELLO.wav"), NULL, SND_ASYNC);
+
 }
 
 void Input::GetPointClicked(int& x, int& y) const
@@ -105,10 +107,13 @@ ActionType Input::GetUserAction(Output* pOut) const
 				pOut->setisFilled(true);
 				return CHANGEFILLCOLOR;
 			}
-			case ITM_CHANGECOLOR: return CHANGECOLOR;
+			case ITM_MUTE: return MUTE;
 			case ITM_EXIT: {
-				PlaySound(("Sounds\\Exit.wav"), NULL, SND_ASYNC);
-				Pause(2500);
+				if (!pOut->getSound())
+				{
+					PlaySound(("Sounds\\Exit.wav"), NULL, SND_ASYNC);
+					Pause(1500);
+				}
 				return EXIT;}
 			default: return EMPTY;	//A click on empty place in design toolbar
 			}

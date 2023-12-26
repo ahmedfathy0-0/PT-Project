@@ -11,9 +11,8 @@ private:
 	Point P1, P2; //Rectangle Corners
 	GfxInfo RectGfxInfo;
 	CRectangle* R;
-	bool Sound;
 public:
-	AddRectAction(ApplicationManager* pApp, bool s = false);
+	AddRectAction(ApplicationManager* pApp);
 
 	//Reads rectangle parameters
 	virtual void ReadActionParameters();
