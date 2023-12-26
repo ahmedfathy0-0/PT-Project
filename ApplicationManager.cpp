@@ -82,27 +82,27 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	{
 	case DRAW_RECT:
 		
-		pAct = new AddRectAction(this,true);
+		pAct = new AddRectAction(this);
 		break;
 
 	case DRAW_SQUARE:
 		
-		pAct = new AddSqrAction(this,true);
+		pAct = new AddSqrAction(this);
 		break;
 
 	case DRAW_TRIANGLE:
 		
-		pAct = new AddTrgAction(this,true);
+		pAct = new AddTrgAction(this);
 		break;
 
 	case DRAW_HEXAGON:
 
-		pAct = new AddHexAction(this, true);
+		pAct = new AddHexAction(this);
 		break;
 
 	case DRAW_CIRCLE:
 		
-		pAct = new AddCircAction(this, true);
+		pAct = new AddCircAction(this);
 		break;
 
 	case STATUS:	//a click on the status bar ==> no action
@@ -204,7 +204,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			if (FigCount == 0) {
 			pOut->CreateENDRECORDING();
 			IsRecording = true;
-			PlaySound(("Sounds\\Start.wav"), NULL, SND_ASYNC);
+			if (!pOut->getSound())
+				PlaySound(("Sounds\\Start.wav"), NULL, SND_ASYNC);
 			pAct = new StartRecordingAction(this);
 
 		}
@@ -219,6 +220,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pOut->CreateSTARTRECORDING();
 			Recordfile << "FINISHED" << endl;
 			IsRecording = false;
+			if (!pOut->getSound())
 			PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
 			pAct = new StartRecordingAction(this);
 			OPcount = 0;
@@ -262,8 +264,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		UI.conD = false;
 		break;
 
-	case CHANGECOLOR:
-		
+	case MUTE:
+		pOut->CreateMUTE();
+	    IsMute=!IsMute;
 			break;
 
 

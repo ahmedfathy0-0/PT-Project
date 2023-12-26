@@ -8,6 +8,8 @@ private:
 	window* pWind;	//Pointer to the Graphics Window
 	static bool flag;//for Start and end record items
 	static string Lastmsg;//used to fix statue bar issue to get last message back after clear all in every figure function
+	static bool SOUND;//for MUTE & UNMUTE items
+
 public:
 	Output();
 
@@ -25,10 +27,12 @@ public:
 	void deleteColorPalette() const;
 	void CreateENDRECORDING() const;
 	void CreateSTARTRECORDING() const;
+	void CreateMUTE() const;
+	bool getSound() const;
 	void deleteENDRECORDING() const;
 	void deleteSTARTRECORDING() const;
-	void Output::UpdateBuffer() const;
-	void Output::SetBuffering(bool flag)const;
+	void UpdateBuffer() const;
+	void SetBuffering(bool flag)const;
 
 	// -- Figures Drawing functions
 	void DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected = false) const;  //Draw a rectangle

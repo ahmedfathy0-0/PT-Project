@@ -33,7 +33,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	STARTRECORDING,
 	ENDRECORDING,
 	PLAYRECORDING,
-	CHANGECOLOR,
+	MUTE,
 	CHANGEDRAWCOLOR,
 	CHANGEFILLCOLOR,
 	PICKBYFIG,

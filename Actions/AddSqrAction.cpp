@@ -6,7 +6,7 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddSqrAction::AddSqrAction(ApplicationManager* pApp, bool sound) :Action(pApp), Sound(sound)
+AddSqrAction::AddSqrAction(ApplicationManager* pApp) :Action(pApp)
 {
 
 }
@@ -17,7 +17,7 @@ void AddSqrAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
-	if (Sound)
+	if (!pOut->getSound())
 		PlaySound("Sounds\\Square.wav", NULL, SND_ASYNC);
 
 	pOut->PrintMessage("New Square: Click at The Center");

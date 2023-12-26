@@ -6,7 +6,7 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddTrgAction::AddTrgAction(ApplicationManager* pApp, bool sound) :Action(pApp), Sound(sound)
+AddTrgAction::AddTrgAction(ApplicationManager* pApp) :Action(pApp)
 {
 
 }
@@ -17,7 +17,7 @@ void AddTrgAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
-	if (Sound)
+	if (!pOut->getSound())
 		PlaySound("Sounds\\Triangle.wav", NULL, SND_ASYNC);
 
 	pOut->PrintMessage("New Triangle: Click at first corner");
