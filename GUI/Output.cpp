@@ -354,7 +354,7 @@ int Output::getCrntPenWidth() const		//get current pen width
 }
 bool Output::getSound() const		//get current pen width
 {
-	return SOUND;
+	return !SOUND;
 }
 
 //======================================================================================//
