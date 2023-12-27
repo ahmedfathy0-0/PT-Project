@@ -30,77 +30,48 @@ void PlayRecordAction::Execute()
 	{
 		bool flag = true;
 		CFigure* myFig = NULL;
-		for (int i = 0; i < 20 && flag ; i++)
+		for (int i = 0;flag ; i++)
 		{
 			fIn >> type;
 			if (type == "RECTAN") {
 				myFig = new CRectangle;
 				myFig->PlayRecord(fIn);
 				pManager->AddFigure(myFig);
+				Pause(1000);
 			}
 			else if (type == "SQUARE") {
 				myFig = new CSquare;
 				myFig->PlayRecord(fIn);
 				pManager->AddFigure(myFig);
+				Pause(1000);
 			}
 			else if (type == "TRIANG") {
 				myFig = new CTriangle;
 				myFig->PlayRecord(fIn);
 				pManager->AddFigure(myFig);
+				Pause(1000);
 			}
 			else if (type == "HEXAGN") {
 				myFig = new CHexagon;
 				myFig->PlayRecord(fIn);
 				pManager->AddFigure(myFig);
+				Pause(1000);
 			}
 			else if (type == "CIRCLE") {
 				myFig = new CCircle;
 				myFig->PlayRecord(fIn);
 				pManager->AddFigure(myFig);
+				Pause(1000);
+
 			}
 			else if (type == "DELETE") {
 				pManager->deletefigure(myFig);
-			}
-			else if (type == "UNDO") {
-				ifstream fIn1;
-				fIn1.open(filename);
-				for (int i = 0;i < n2;i++) {
-					fIn >> type;
-					if (type == "RECTAN") {
-						myFig = new CRectangle;
-						myFig->PlayRecord(fIn);
-						pManager->AddFigure(myFig);
-					}
-					else if (type == "SQUARE") {
-						myFig = new CSquare;
-						myFig->PlayRecord(fIn);
-						pManager->AddFigure(myFig);
-					}
-					else if (type == "TRIANG") {
-						myFig = new CTriangle;
-						myFig->PlayRecord(fIn);
-						pManager->AddFigure(myFig);
-					}
-					else if (type == "HEXAGN") {
-						myFig = new CHexagon;
-						myFig->PlayRecord(fIn);
-						pManager->AddFigure(myFig);
-					}
-					else if (type == "CIRCLE") {
-						myFig = new CCircle;
-						myFig->PlayRecord(fIn);
-						pManager->AddFigure(myFig);
-					}
-					else if (type == "DELETE") {
-						pManager->deletefigure(myFig);
-					}
-				}
+
 			}
 			else if(type=="FINISHED") {
 				flag = false;
 			}
 			pManager->UpdateInterface();
-			Pause(1000);
 		}
 		pOut->PrintMessage("Streaming The Last Record is finished :)");
 		pManager->setISPlaying(false);

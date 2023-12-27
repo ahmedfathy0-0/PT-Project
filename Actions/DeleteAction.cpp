@@ -13,8 +13,8 @@ void DeleteAction::ReadActionParameters()
 void DeleteAction::Execute()
 {
 	ReadActionParameters();
-	pManager->deletefigure(pFig); //delete selected figure
 	pManager->AddToDeleteList(pFig); //for undo
+	pManager->deletefigure(pFig); //delete selected figure
 }
 
 Action* DeleteAction::Clone()
@@ -34,10 +34,15 @@ void DeleteAction::Undo()
 
 void DeleteAction::Redo()
 {
+	pManager->RecordFigure(pFig);
+
 	if (pFig)
 	{
 		pManager->deletefigure(pFig);
 	}
-	pManager->RecordFigure(pFig);
+}
 
+bool DeleteAction::IsUndoable()
+{
+	return true;
 }

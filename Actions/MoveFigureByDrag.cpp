@@ -87,3 +87,8 @@ void MoveDragAction::Redo()
 
 }
 
+bool MoveDragAction::IsUndoable()
+{
+	return true;
+}
+

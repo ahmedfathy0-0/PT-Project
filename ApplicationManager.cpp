@@ -300,10 +300,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct->Execute();//Execute
 
 		//adding the action to the undoable list if this action is undoable
-		if (dynamic_cast<AddCircAction*>(pAct) != NULL || dynamic_cast<AddRectAction*>(pAct) != NULL || dynamic_cast<AddSqrAction*>(pAct) != NULL ||
-			dynamic_cast<AddTrgAction*>(pAct) != NULL || dynamic_cast<AddHexAction*>(pAct) != NULL || dynamic_cast<DeleteAction*>(pAct) != NULL || dynamic_cast<MoveAction*>(pAct) != NULL
-			|| dynamic_cast<ChangeDrawcolor*>(pAct) != NULL || dynamic_cast<ChangeFillcolor*>(pAct) != NULL || dynamic_cast<MoveDragAction*>(pAct) != NULL
-			|| dynamic_cast<ResizeAction*>(pAct) != NULL)
+		if (pAct->IsUndoable())
 		{
 			AddAction(pAct);
 			ClearRedoList();
@@ -509,17 +506,18 @@ void ApplicationManager::AddToDeleteList(CFigure* figtobedeleted)
 }
 void ApplicationManager::ClearDeleteList()
 {
-	for (int i = 0; i < 5; i++)
-	{
-		if (DeletedArray[i] != NULL)
+	if (DeletedActionsCount != 0) {
+		for (int i = 0; i < 5; i++)
 		{
-			delete DeletedArray[i];
-			DeletedArray[i] = NULL;
+			if (DeletedArray[i] != NULL)
+			{
+				delete DeletedArray[i];
+				DeletedArray[i] = NULL;
+			}
 		}
+		DeletedActionsCount = 0;
 	}
-	DeletedActionsCount = 0;
 }
-
 void ApplicationManager::SaveAll(ofstream& OutFile) const //call save functions of all figures
 {
 	for (int i = 0; i < FigCount; i++)
@@ -561,7 +559,7 @@ void ApplicationManager::deletefigure(CFigure* figtobedeleted) //delete figure a
 void ApplicationManager::ResetConstants() //reset UI variables
 {
 	UI.DrawColor = BLUE;
-	UI.FillColor = GREEN;
+	UI.FillColor = UI.BkGrndColor;
 	UI.ISFILLED = false;
 	UI.SqrSize = 160;
 	UI.HexagonSize = 100;

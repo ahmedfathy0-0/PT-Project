@@ -25,7 +25,7 @@ public:
 	virtual void Redo() = 0;
 	//Execute action (code depends on action type)
 	virtual void Execute() =0;
-
+	virtual bool IsUndoable();
 
 };
 

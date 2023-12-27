@@ -18,12 +18,12 @@ void LoadAction::ReadActionParameters()
 
 void LoadAction::Execute()
 {
-	pManager->Clearall(); //clear before loading
 	ReadActionParameters();
 	pManager->ResetConstants();//reset Sizes of Hexagon and Square
 	fIn.open("Saved/" + filename);
 	if (fIn.is_open())
 	{
+		pManager->Clearall(); //clear before loading
 		pOut->PrintMessage("The File  '" + filename + "'  is Opened");
 		fIn >> type;
 		UI.DrawColor = getclr(type);
@@ -92,5 +92,10 @@ void LoadAction::Undo()
 
 void LoadAction::Redo()
 {
+}
+
+bool LoadAction::IsUndoable()
+{
+	return false;
 }
 

@@ -25,6 +25,7 @@ public:
 	virtual Action* Clone();
 	virtual void Undo();
 	virtual void Redo();
+	virtual bool IsUndoable();
 };
 
 #endif

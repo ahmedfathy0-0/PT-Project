@@ -11,8 +11,8 @@ void ClearAll::Execute()
 	pManager->Clearall(); //clear all figures
 	pManager->ClearRedoList(); //clear redo history
 	pManager->ClearUndoList(); //clear undo history
-	pManager->ClearDeleteList(); //clear rest of undo & redo history
 	pManager->ResetConstants(); //reset UI constants
+
 }
 
 Action* ClearAll::Clone()

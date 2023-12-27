@@ -62,13 +62,18 @@ Action* AddHexAction::Clone()
 
 void AddHexAction::Undo()
 {
-	pManager->deletefigure(H);
 	pManager->RecordFigure(H);
+	pManager->deletefigure(H);
 
 }
 
 void AddHexAction::Redo()
 {
 	pManager->AddFigure(H);
-	pManager->RecordFigure(H);
+	//pManager->RecordFigure(H);
+}
+
+bool AddHexAction::IsUndoable()
+{
+	return true;
 }

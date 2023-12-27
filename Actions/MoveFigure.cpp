@@ -26,8 +26,9 @@ void MoveAction::Execute()
 {
 	ReadActionParameters();
 	if (pFig) {
-		pFig->Move(NewCenter);
 		OldCenter = pFig->ReturnCenter();
+		pFig->Move(NewCenter);
+		
 	}
 	pManager->deselectall();
 	pOut->ClearStatusBar();
@@ -59,5 +60,10 @@ void MoveAction::Redo()
 	}
 	pManager->RecordFigure(pFig);
 
+}
+
+bool MoveAction::IsUndoable()
+{
+	return true;
 }
 

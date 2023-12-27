@@ -49,3 +49,8 @@ void ChangeDrawcolor::Redo()
 	}
 	pManager->RecordFigure(pFig);
 }
+
+bool ChangeDrawcolor::IsUndoable()
+{
+	return true;
+}

@@ -116,9 +116,9 @@ void CSquare::StartEndRecord(ofstream& OutFile)
 	else
 		OutFile << "NO_FILL" << "     ";
 	if (this->IsSelected())
-		OutFile << "SELECTED" << endl;
+		OutFile << "SELECTED" << "     ";
 	else
-		OutFile << "NOT_SELECTED" << endl;
+		OutFile << "NOT_SELECTED" << "     ";
 	if (this->isHidden)
 		OutFile << "HIDDEN" << endl;
 	else

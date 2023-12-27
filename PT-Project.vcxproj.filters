@@ -216,6 +216,9 @@
     <ClCompile Include="Actions\ChangeFillColor.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Exit.cpp" />
+    <ClCompile Include="SwitchToDrawAction.cpp" />
+    <ClCompile Include="Actions\Action.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -371,6 +374,8 @@
     <ClInclude Include="Actions\ChangeFillColor.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Exit.h" />
+    <ClInclude Include="SwitchToDrawAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

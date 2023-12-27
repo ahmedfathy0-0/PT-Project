@@ -63,13 +63,18 @@ Action* AddRectAction::Clone()
 
 void AddRectAction::Undo()
 {
-	pManager->deletefigure(R);
 	pManager->RecordFigure(R);
+	pManager->deletefigure(R);
 
 }
 
 void AddRectAction::Redo()
 {
 	pManager->AddFigure(R);
-	pManager->RecordFigure(R);
+	//pManager->RecordFigure(R);
+}
+
+bool AddRectAction::IsUndoable()
+{
+	return true;
 }

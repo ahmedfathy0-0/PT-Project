@@ -64,12 +64,17 @@ Action* AddCircAction::Clone()
 
 void AddCircAction::Undo()
 {
-	pManager->deletefigure(C);
 	pManager->RecordFigure(C);
+	pManager->deletefigure(C);
 }
 
 void AddCircAction::Redo()
 {
 	pManager->AddFigure(C);
-	pManager->RecordFigure(C);
+	//pManager->RecordFigure(C);
+}
+
+bool AddCircAction::IsUndoable()
+{
+	return true;
 }

@@ -129,6 +129,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actions\Action.cpp" />
     <ClCompile Include="Actions\AddCircAction.cpp" />
     <ClCompile Include="Actions\AddHexAction.cpp" />
     <ClCompile Include="Actions\AddSqrAction.cpp" />

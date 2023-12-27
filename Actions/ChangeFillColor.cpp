@@ -62,3 +62,8 @@ void ChangeFillcolor::Redo()
 	}
 	pManager->RecordFigure(pFig);
 }
+
+bool ChangeFillcolor::IsUndoable()
+{
+	return true;
+}
