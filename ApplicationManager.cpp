@@ -32,6 +32,7 @@ ApplicationManager::ApplicationManager()
 	pIn = pOut->CreateInput();
 	ISPLYING = false;
 	FigCount = 0;
+	IsMute = false;
 
 	//Create an array of figure pointers and set them to NULL		
 	for (int i = 0; i < MaxFigCount; i++)
@@ -268,8 +269,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case MUTE: {
-			pOut->CreateMUTE();
-			IsMute = !IsMute;
+			if (IsMute) {
+				pOut->CreateUNMUTE();
+				IsMute = false;
+
+			}
+			else {
+				pOut->CreateMUTE();
+				IsMute = true;
+
+			}
 			break;
 		}
 		case EXIT:
