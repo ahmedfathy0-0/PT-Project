@@ -24,12 +24,12 @@ Action* DeleteAction::Clone()
 
 void DeleteAction::Undo()
 {
+
 	if (pFig)
 	{
 		pManager->AddFigure(pFig);
 	}
 	pManager->RecordFigure(pFig);
-
 }
 
 void DeleteAction::Redo()
@@ -39,4 +39,5 @@ void DeleteAction::Redo()
 		pManager->deletefigure(pFig);
 	}
 	pManager->RecordFigure(pFig);
+
 }

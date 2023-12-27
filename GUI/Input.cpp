@@ -109,8 +109,7 @@ ActionType Input::GetUserAction(Output* pOut) const
 				return CHANGEFILLCOLOR;
 			}
 			case ITM_EXIT: {
-				
-				return EXIT;}
+					return EXIT;}
 			default: return EMPTY;	//A click on empty place in design toolbar
 			}
 		}

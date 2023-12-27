@@ -62,13 +62,13 @@ Action* AddHexAction::Clone()
 
 void AddHexAction::Undo()
 {
-	H->IsHidden(true);
+	pManager->deletefigure(H);
 	pManager->RecordFigure(H);
 
 }
 
 void AddHexAction::Redo()
 {
-	H->IsHidden(false);
+	pManager->AddFigure(H);
 	pManager->RecordFigure(H);
 }

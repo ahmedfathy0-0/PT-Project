@@ -15,8 +15,9 @@ void Exit::Execute()
 	Output* pOut=pManager->GetOutput();
 	pOut->PrintMessage("Click anywhere to exit");
 	ReadActionParameters();
-	PlaySound(("Sounds\\Exit.wav"), NULL, SND_ASYNC);
-	Pause(2500);
+	if (!pOut->getSound())
+		PlaySound(("Sounds\\Exit.wav"), NULL, SND_ASYNC);
+	Pause(1000);
 }
 
 Action* Exit::Clone()

@@ -28,8 +28,8 @@ void MoveDragAction::Execute()
 		used to first get checked is in the figure or not
 		after you can move out the figure
 		*/
-		int IX, IY, ix, iy; //IX,IY is the last point the mouse point at when clicked
-		//ix,iy is the first point the mouse point at when clicked
+		int IX, IY; //IX,IY is the last point the mouse point at when clicked
+		int ix, iy; //ix,iy is the first point the mouse point at when clicked
 		C = pFig->ReturnCenter(); //get center for calculations of new center
 		while (true) //get the first click
 		{

@@ -75,14 +75,14 @@ Action* AddTrgAction::Clone()
 
 void AddTrgAction::Undo()
 {
-	T->IsHidden(true);
+	pManager->deletefigure(T);
 	pManager->RecordFigure(T);
 
 }
 
 void AddTrgAction::Redo()
 {
-	T->IsHidden(false);
+	pManager->AddFigure(T);
 	pManager->RecordFigure(T);
 
 }

@@ -274,6 +274,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 		case EXIT:
 		{
+			pAct = new ClearAll(this);
+			pAct->Execute();
+			delete pAct;
+			pAct = NULL;
 			pAct = new Exit(this);
 		}
 
@@ -565,7 +569,8 @@ void ApplicationManager::StopRecord()
 {
 	pOut->CreateSTARTRECORDING();
 	IsRecording = false;
-	PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
+	if (!pOut->getSound())
+		PlaySound(("Sounds\\End.wav"), NULL, SND_ASYNC);
 	OPcount = 0;
 	Recordfile.close();
 }
@@ -700,8 +705,8 @@ Output* ApplicationManager::GetOutput() const
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
-	for (int i = 0; i < FigCount; i++)
-		delete FigList[i];
+	/*for (int i = 0; i < FigCount; i++)
+		delete FigList[i];*/
 	delete pIn;
 	delete pOut;
 }

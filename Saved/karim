@@ -1,5 +1,5 @@
 BLUE     BLACK
-43
+47
 RECTAN     1     22     63     104     198     BLACK     YELLOW
 SQUARE     2     188     140     YELLOW     ORANGE     160
 SQUARE     3     270     607     ORANGE     RED     160
@@ -43,3 +43,7 @@ SQUARE     40     457     232     BLUE     NO_FILL     160
 HEXAGN     41     780     235     BLUE     NO_FILL     100
 HEXAGN     42     305     489     YELLOW     NO_FILL     100
 TRIANG     43     1183     458     1340     378     1219     546     BLUE     NO_FILL
+HEXAGN     44     506     264     BLUE     BLACK     100
+HEXAGN     45     201     355     BLUE     BLACK     100
+HEXAGN     46     220     207     BLUE     BLACK     100
+HEXAGN     47     1022     326     BLUE     BLACK     100
